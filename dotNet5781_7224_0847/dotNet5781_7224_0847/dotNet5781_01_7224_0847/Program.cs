@@ -12,26 +12,26 @@ namespace dotNet5781_01_7224_0847
     class Program
     {
         private static int numBusesAdded;
-        private static List <Bus> buses;
+        private static List <Bus> buses=new List <Bus>();
    /*     public static long Km_all_buses = 0;  */             //total kilometrage of all the buses
         private static Random r = new Random(DateTime.Now.Millisecond);
         //public enum options { exit, add_bus, choose_bus, fuelOrcare, showKmAll };
         static void Main(string[] args)
-        {
+        {   
             int op;
 
             do
-            {
-                string temp = Console.ReadLine();
-                
-                bool flag = int.TryParse(temp, out op);
-                Console.WriteLine(@"
+            {       Console.WriteLine(@"
                     to add a bus press 1
                     to choose a bus press 2
                     to fuel or take care of the bus press 3
                     to show the total kilometrage of the buses since the last care press 4
                     to exit press 0 
                     ");
+                string temp = Console.ReadLine();
+                
+                bool flag = int.TryParse(temp, out op);
+               
 
                 switch (op)
                 {
@@ -135,7 +135,8 @@ namespace dotNet5781_01_7224_0847
             DateTime startDate;
             bool flag = DateTime.TryParse(tmp, out startDate);
             buses.Insert(numBusesAdded, new Bus () { License_num = licenceNumber, Start_d = startDate });
-
+             int op1;
+             
             do
             {
                 Console.WriteLine(@"
@@ -146,8 +147,7 @@ namespace dotNet5781_01_7224_0847
                     ");
                 
                 string temp = Console.ReadLine();
-                int op1;
-                bool flag1 = int.TryParse(temp, out op1);
+               bool flag1 = int.TryParse(temp, out op1);
                 switch (op1)
                 {
                     case 0:
