@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -36,9 +34,9 @@ namespace dotNet5781_02_7224_0847
         public double latitude
         {
             get { return latitude1; }
-            set 
+            set
             {
-                latitude1= r.NextDouble() * (33.3 - 31) + 31;
+                latitude1 = r.NextDouble() * (33.3 - 31) + 31;
             }
         }
         private double longitude1;//field
@@ -54,9 +52,9 @@ namespace dotNet5781_02_7224_0847
 
         public override string ToString()
         {
-            return "Bus Station Code: "+ BusStationKey + ", "+ latitude+ "°N "+longitude+ "°E"+"\n";
+            return "Bus Station Code: " + BusStationKey + ", " + latitude + "°N " + longitude + "°E" + "\n";
         }
-        
+
 
     }
 }

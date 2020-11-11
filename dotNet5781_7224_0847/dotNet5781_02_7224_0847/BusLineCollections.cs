@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_7224_0847
 {
-    class BusLineCollection
+    class BusLineCollections
     {
     }
 }
