@@ -9,33 +9,63 @@ namespace dotNet5781_02_7224_0847
     class BusLineStation
     {
         private static Random r = new Random();
-        public BusStation busStation
+        private BusStation busStation = new BusStation();
+        private double distance;
+        public double Distance
         {
-            get { return busStation; }////////////////
-            private set { busStation = value; }//////
-        }
-        private double distance1;
-        public double distance
-        {
-            get { return distance1; }
+            get { return distance; }
             set
             {
                 double lat = r.NextDouble() * (33.3 - 31) + 31;
-                double lon = r.NextDouble() * (33.3 - 31) + 31;
-                distance1 = Math.Sqrt(Math.Pow(lat - busStation.latitude, 2) - Math.Pow(lon - busStation.longitude, 2));
+                double lon = r.NextDouble() * (35.5 - 34.3) + 34.3;
+                distance = Math.Sqrt(Math.Pow(lat - busStation.Latitude, 2) - Math.Pow(lon - busStation.Londitude, 2));
             }
         }
+      
+        private double time;
 
-        private TimeSpan time1;
-        public TimeSpan time
+        public double Time
         {
-            get { return time1; }
-
+            get { return time; }
+            set { time = r.NextDouble()* (60-1)+1; }
         }
+    
+
+
 
         public override string ToString()
         {
-            return " " + busStation.key + " ";
+            string s1 = busStation.ToString(); 
+            string s2 = "distance from last station: " + distance +" km"+ " travel time from last station " + time+" minutes";
+            return " " + s1+ "\n" +s2 + "\n";
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//DateTime d = new DateTime();
+//d.Min.
+
+//private TimeSpan time;
+//public TimeSpan Time
+//{
+//    get { return time; }
+//    set
+//    {
+//        DateTime d1 = DateTime.Now;
+//        DateTime d2 = new DateTime(1,1,(int)distance+2017);//we used the distance so the num will turn out random each time\
+//        time = d1 - d2;
+//    }
+//}
