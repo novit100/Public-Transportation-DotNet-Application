@@ -8,12 +8,11 @@ namespace dotNet5781_02_7224_0847
 {
     class BusStation
     {
-        //private BusStation() /////ctor   ///////////////// 
-        //{
-        //    BusStationKey =1;
-        //}
+
         private static Random r = new Random();
+
         private static int num = 0;
+        ////////////////////////////////////////
         public int BusStationKey  //the code of the bus syation 
         {
             get
@@ -21,14 +20,15 @@ namespace dotNet5781_02_7224_0847
                 return BusStationKey;
             }
 
-      private  set
+            private set
             {
                 if (num > 999999)
-                    throw new BusException ("more than 6 digits key was insertd- overflow!");//
+                    throw new BusException("more than 6 digits key was insertd- overflow!");//
                 BusStationKey = num++;//forwards the codes 
 
             }
         }
+        ////////////////////////////////////////
         private double latitude;//field "rochav"
         public double Latitude
         {
@@ -38,6 +38,7 @@ namespace dotNet5781_02_7224_0847
                 latitude = r.NextDouble() * (33.3 - 31) + 31;
             }
         }
+        ////////////////////////////////////////
         private double longitude;//field "orech"
         public double Londitude
         {
@@ -47,6 +48,7 @@ namespace dotNet5781_02_7224_0847
                 longitude = r.NextDouble() * (35.5 - 34.3) + 34.3;
             }
         }
+        ////////////////////////////////////////
         //public string address { get; private set; }
 
         public override string ToString()
@@ -57,3 +59,23 @@ namespace dotNet5781_02_7224_0847
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//private BusStation() /////ctor   ///////////////// 
+//{
+//    BusStationKey =1;
+//}

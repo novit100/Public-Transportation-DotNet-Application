@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_7224_0847
 {
-    class BusLineStation
-    {
+    class BusLineStation:BusStation
+    {   private double distance;
         private static Random r = new Random();
-        private BusStation busStation = new BusStation();
-        private double distance;
+       
+        ///////////////////////////////////////////////////////
+        
         public double Distance
         {
             get { return distance; }
@@ -18,10 +19,10 @@ namespace dotNet5781_02_7224_0847
             {
                 double lat = r.NextDouble() * (33.3 - 31) + 31;
                 double lon = r.NextDouble() * (35.5 - 34.3) + 34.3;
-                distance = Math.Sqrt(Math.Pow(lat - busStation.Latitude, 2) - Math.Pow(lon - busStation.Londitude, 2));
+                distance = Math.Sqrt(Math.Pow(lat - Latitude, 2) - Math.Pow(lon - Londitude, 2));
             }
         }
-      
+        ///////////////////////////////////////////////////////
         private double time;
 
         public double Time
@@ -29,13 +30,13 @@ namespace dotNet5781_02_7224_0847
             get { return time; }
             set { time = r.NextDouble()* (60-1)+1; }
         }
-    
 
 
 
+        ///////////////////////////////////////////////////////
         public override string ToString()
         {
-            string s1 = busStation.ToString(); 
+            string s1 = base.ToString(); //callind the tostring of BusStation
             string s2 = "distance from last station: " + distance +" km"+ " travel time from last station " + time+" minutes";
             return " " + s1+ "\n" +s2 + "\n";
         }
@@ -69,3 +70,4 @@ namespace dotNet5781_02_7224_0847
 //        time = d1 - d2;
 //    }
 //}
+//private BusStation busStation = new BusStation();

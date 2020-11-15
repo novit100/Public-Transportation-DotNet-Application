@@ -46,12 +46,14 @@
     <Compile Include="BusLine.cs" />
     <Compile Include="BusLineStation.cs" />
     <Compile Include="BusStation.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="MyExceptions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
