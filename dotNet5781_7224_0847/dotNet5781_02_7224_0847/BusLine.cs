@@ -36,7 +36,12 @@ namespace dotNet5781_02_7224_0847
 
         public override string ToString()
         {
-            return "bus number: " + busLineKey + ", area: " + area + "\n" + stations.ToString();
+            String s = "";
+            foreach (BusLineStation item in BusLine)
+            {
+                s += item.BusStationKey+" , ";
+            }
+            return "bus number: " + busLineKey + ", area: " + area + "\n" + "bus station numbers: " +s;
 
 
         }
@@ -47,16 +52,27 @@ namespace dotNet5781_02_7224_0847
             int stationCode = ReceiveStationCode();
             for (int i = 0; i < stations.Count; i++)
             {
-                //if (stations[i].BusStationKey == stationCode)
-                //{
-                //    stations.Remove(stations[i]);
-                //}
+               if (stations[i].BusStationKey == stationCode)
+                {
+                    stations.Remove(stations[i]);
+             }
             }
         }
         //////////////////////////////////////////////////////
         private void AddBusStationFromBusLine()
         {
+            Console.WriteLine("please enter the bus station number that you intend to add a station after it : ");
+            int stationCode = ReceiveStationCode();
+            for (int i = 0; i < stations.Count; i++)
+            {
+                if (stations[i].BusStationKey == stationCode)
+                {
+                    BusLineStation bus = new BusLineStation();
+                    bus.Distance = 2.5;
 
+                    stations.Add(stations[i + 1]);
+                }
+            }
         }
         //////////////////////////////////////////////////////
         private int ReceiveStationCode()
@@ -64,13 +80,26 @@ namespace dotNet5781_02_7224_0847
             String s = Console.ReadLine();
             int x;
             bool b = int.TryParse(s, out x);
-            int y = int.Parse(s);
-            return y;
+            if (!b)
+            {
+                throw new BusException("invalid input");
+            }
+            return x;
         }
 
         public int CompareTo(BusLine other)
         {
-            return (stations.time).CompareTo(other.stations.time);
+            double sum = 0.0;
+            double sum1 = 0.0;
+            foreach (BusLineStation item in BusLine)
+            {
+                sum += item.Time;
+            }
+            foreach (BusLineStation item in other)
+            {
+                sum1 += item.Time;
+            }
+            return sum.CompareTo(sum1);
         }
     }
 }

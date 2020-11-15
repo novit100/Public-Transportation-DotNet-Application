@@ -9,9 +9,12 @@ namespace dotNet5781_02_7224_0847
     class BusLineStation:BusStation
     {   private double distance;
         private static Random r = new Random();
-       
+
         ///////////////////////////////////////////////////////
-        
+        public BusLineStation()
+        {
+
+        }
         public double Distance
         {
             get { return distance; }
