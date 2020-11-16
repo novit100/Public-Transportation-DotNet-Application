@@ -17,7 +17,7 @@ namespace dotNet5781_02_7224_0847
                 yield return buses[i];
         }
 
-        private void addNewBusToCollection()
+        public void addNewBusToCollection()
         {
             Console.WriteLine("please enter the bus line you want to add to the collection: ");
             int newbusLine = ReceiveInt();
