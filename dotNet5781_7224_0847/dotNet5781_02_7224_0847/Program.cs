@@ -10,7 +10,7 @@ namespace dotNet5781_02_7224_0847
     {
         static void Main(string[] args)
         {
-            int op;
+            Options op;
             do
             {
                 Console.WriteLine(@"
@@ -26,27 +26,42 @@ namespace dotNet5781_02_7224_0847
                     ");
                 string temp = Console.ReadLine();
 
-                bool flag = int.TryParse(temp, out op);
+                 op = (Options)Enum.Parse(typeof(Options), temp);
 
                 BusLineCollections coll = new BusLineCollections();
                 switch (op)
                 {
-                    case 1:
+                    case Options.AddBus:
                        coll.addNewBusToCollection();
                         break;
-                    case 2:
+                    case Options.AddStop:
                         
                         break;
-                    case 3:
+                    case Options.DeleteBusLine:
                         
                         break;
-                    case 4:
-                        
+                    case Options.DeleteBusStation:
+
+
                         break;
+                    case Options.SearchBuses:
+
+                        break;
+                    case Options.SearchPath:
+
+                        break;
+
+                    case Options.PrintBusLines:
+                        break;
+
+                    case Options.PrintAll:
+                        break;
+                 
+
                     default: break;
                 }
             }
-            while (op != 0);
+            while (op!=Options.exit);
             Console.ReadKey();
         }
 
