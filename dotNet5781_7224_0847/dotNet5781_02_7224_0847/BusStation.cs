@@ -8,52 +8,40 @@ namespace dotNet5781_02_7224_0847
 {
     class BusStation
     {
+        public BusStation(int key)
+        {
+            if (num > 999999 || num<10000)
+                throw new BusException("invalid number of digits for the key was insertd");
+            BusStationKey = key;
 
+            Latitude = r.NextDouble() * (33.3 - 31) + 31;
+
+            Longitude = r.NextDouble() * (35.5 - 34.3) + 34.3;
+        }
         private static Random r = new Random();
 
         private static int num = 0;
         ////////////////////////////////////////
-        public int BusStationKey  //the code of the bus syation 
+        public int BusStationKey//the code of the bus syation
         {
-            get
-            {
-                return BusStationKey;
-            }
+            get; private set;
+        }
+        ////////////////////////////////////////
+        public double Latitude//field "rochav"
+        {
+        get; private set;
+        }
 
-            private set
-            {
-                if (num > 999999)
-                    throw new BusException("more than 6 digits key was insertd- overflow!");//
-                BusStationKey = num++;//forwards the codes 
-
-            }
-        }
         ////////////////////////////////////////
-        private double latitude;//field "rochav"
-        public double Latitude
+        public double Longitude//field "orech"
         {
-            get { return latitude; }
-            set
-            {
-                latitude = r.NextDouble() * (33.3 - 31) + 31;
-            }
+            get; private set;
         }
         ////////////////////////////////////////
-        private double longitude;//field "orech"
-        public double Londitude
-        {
-            get { return longitude; }
-            set
-            {
-                longitude = r.NextDouble() * (35.5 - 34.3) + 34.3;
-            }
-        }
-        ////////////////////////////////////////
-        //public string address { get; private set; }
 
         public override string ToString()
         {
-            return "Bus Station Code: " + BusStationKey + ", " + Latitude + "°N " + longitude + "°E" + "\n";
+            return "Bus Station Code: " + BusStationKey + ", " + Latitude + "°N " + Longitude + "°E" + "\n";
         }
 
 

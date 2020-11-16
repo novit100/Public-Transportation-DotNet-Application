@@ -7,42 +7,38 @@ using System.Threading.Tasks;
 namespace dotNet5781_02_7224_0847
 {
     class BusLineStation:BusStation
-    {   private double distance;
+    {  
         private static Random r = new Random();
 
-        ///////////////////////////////////////////////////////
-        public BusLineStation()
+        public BusLineStation(int key, bool ifFirst):base(key)
         {
-
-        }
-        public double Distance
-        {
-            get { return distance; }
-            set
+            if (ifFirst)//if its the 1st station in the bus-line path
+                Distance = 0;
+            else
             {
                 double lat = r.NextDouble() * (33.3 - 31) + 31;
                 double lon = r.NextDouble() * (35.5 - 34.3) + 34.3;
-                distance = Math.Sqrt(Math.Pow(lat - Latitude, 2) - Math.Pow(lon - Londitude, 2));
+                Distance = Math.Sqrt(Math.Pow(lat - Latitude, 2) - Math.Pow(lon - Longitude, 2));
             }
+            TimeInMin = Distance * 1.2;//we assume that it takes 1.2 min per km
         }
-        ///////////////////////////////////////////////////////
-        private double time;
 
-        public double Time
+        public double Distance
         {
-            get { return time; }
-            set { time = r.NextDouble()* (60-1)+1; }
+            get; private set;
         }
 
-
-
-        ///////////////////////////////////////////////////////
-        public override string ToString()
+        public double TimeInMin
         {
-            string s1 = base.ToString(); //callind the tostring of BusStation
-            string s2 = "distance from last station: " + distance +" km"+ " travel time from last station " + time+" minutes";
-            return " " + s1+ "\n" +s2 + "\n";
+            get; private set;
         }
+
+        //public override string ToString()
+        //{
+        //    string s1 = base.ToString(); //callind the tostring of BusStation
+        //    string s2 = "distance from last station: " + Distance +" km"+ " travel time from last station " + TimeInSec+" seconds";
+        //    return " " + s1+ "\n" +s2 + "\n";
+        //}
     }
 }
 
