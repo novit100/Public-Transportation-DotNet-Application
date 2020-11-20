@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_7224_0847
 {
+    /// <summary>
+    /// this class represents a single bus stop 
+    /// </summary>
     class BusStation
     {
         public BusStation(int key)

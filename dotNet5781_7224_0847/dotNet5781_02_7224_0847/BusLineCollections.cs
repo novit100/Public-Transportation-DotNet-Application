@@ -161,6 +161,8 @@ press 4- Jerusalem
         private void returnSortedPathes(int key1, int key2)
         {
             List<BusLine> sortedCollection = new List<BusLine>();
+            int [] busesIndexes=new int[this.buses.Count-1];//an array of possible list-all buses
+            int f = 0;
             foreach (BusLine BusLineItem in buses)
             {
                 int indkey1=-1;
@@ -182,17 +184,17 @@ press 4- Jerusalem
                 }
                 if(indkey1<indkey2)
                 {
-                    sortedCollection.Add(BusLineItem);//add the bus to the list of possible buses
+                    busesIndexes[f]=BusLineItem.
                 }
             }
-
+            if (sortedCollection.Count == 0)
+            {
+                throw new BusException("no buses pass from station " + key1 + " to station " + key2);
+            }
             sortedCollection.Sort();//since we initialized icomparable interface in busLine and it compares two buses by the time, it sorts buses by the time
 
             buses.Sort();//since we initialized icomparable interface in busLine and it compares two buses by the time, it sorts buses by the time
-            if(sortedCollection.Count==0)
-            {
-                throw new BusException("no buses that from station " + key1 + " to station " + key2 + "found");
-            }
+
         
         }
 
