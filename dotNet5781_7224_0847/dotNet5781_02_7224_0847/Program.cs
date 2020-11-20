@@ -20,6 +20,7 @@ namespace dotNet5781_02_7224_0847
         {
             Console.Title = "Esti's ans Nov's second bus project";
             Console.BackgroundColor = ConsoleColor.Magenta;
+            Console.ForegroundColor = ConsoleColor.White;
             Options op;
             do
             {
