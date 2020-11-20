@@ -51,10 +51,10 @@ namespace dotNet5781_02_7224_0847
                         {
                             Console.WriteLine(ex.ToString());
                         }
-                        catch
-                        {
-                            Console.WriteLine("error");
-                        }
+                        //catch
+                        //{
+                        //    Console.WriteLine("error");
+                        //}
                         break;
                     case Options.AddStop:
                         try//2
