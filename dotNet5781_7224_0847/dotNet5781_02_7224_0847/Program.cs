@@ -43,7 +43,7 @@ namespace dotNet5781_02_7224_0847
                 switch (op)
                 {
                     case Options.AddBus:
-                        try
+                        try//1
                         {
                             coll.addNewBusToCollection();
                         }
@@ -51,9 +51,13 @@ namespace dotNet5781_02_7224_0847
                         {
                             Console.WriteLine(ex.ToString());
                         }
+                        catch
+                        {
+                            Console.WriteLine("error");
+                        }
                         break;
                     case Options.AddStop:
-                        try
+                        try//2
                         {
                             coll.addStationToBus();
                         }
@@ -64,7 +68,7 @@ namespace dotNet5781_02_7224_0847
 
                         break;
                     case Options.DeleteBusLine:
-                        try
+                        try//3
                         {
                             coll.deleteBusFromCollection();
                         }
@@ -74,7 +78,7 @@ namespace dotNet5781_02_7224_0847
                         }
                         break;
                     case Options.DeleteBusStation:
-                        try
+                        try//4
                         {
                             coll.delStationFromBus();
                         }
@@ -84,7 +88,7 @@ namespace dotNet5781_02_7224_0847
                         }
                         break;
                     case Options.SearchBuses:
-                        try 
+                        try //5
                         {
                             Console.WriteLine("please enter the key of the bus station you want to serch");
                             int key = ReceiveInt();
@@ -95,14 +99,38 @@ namespace dotNet5781_02_7224_0847
                             Console.WriteLine(ex.ToString());
                         }
                         break;
-                    case Options.SearchPath:
+                    case Options.SearchPath://6
+                        try
+                        {
+                            Console.WriteLine("please enter the code of the first and last bus station of the path you want ");
+                            int k1 = ReceiveInt();
+                            int k2 = ReceiveInt();
+                            coll.returnSortedPathes(k1, k2);
 
+                        }
+                        catch (BusException ex)
+                        {
+                            Console.WriteLine(ex.ToString());
+                        }
                         break;
 
-                    case Options.PrintBusLines:
+                    case Options.PrintBusLines://7
+                        try
+                        {
+                            foreach (BusLine item in coll)
+                            {
+                                Console.WriteLine(coll.ToString()+'\n'); 
+
+                            }
+                        }
+                        catch (BusException ex)
+                        {
+
+                            Console.WriteLine(ex.ToString());
+                        }
                         break;
 
-                    case Options.PrintAll:
+                    case Options.PrintAll://8
                         break;
 
 
