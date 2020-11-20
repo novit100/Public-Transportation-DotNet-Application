@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 /// <summary>
-/// this project is programmed to be a platform witch we will be able to actualize a system 
+/// this project is programmed to be a platform which we will be able to actualize a system 
 /// of buses.
 /// we assumed in our project that the user does not change the first or last 
 /// bus stop, because they are what define the essence of the specific bus line.
@@ -21,8 +21,14 @@ namespace dotNet5781_02_7224_0847
             Console.Title = "Esti's ans Nov's second bus project";
             Console.BackgroundColor = ConsoleColor.Magenta;
             Console.ForegroundColor = ConsoleColor.White;
-            BusLineCollections coll = new BusLineCollections();
+
+            BusLineCollections coll = new BusLineCollections();//buslines collection
+
+            List<BusLineStation> allStat = new List<BusLineStation>();//keeps all stations
+
+            int num = -1;
             Options op;
+
             do
             {
                 Console.WriteLine(@"
@@ -36,11 +42,16 @@ namespace dotNet5781_02_7224_0847
                     for printing the whole list of stations and the bus line that approach them press 8
                     to exit press 0
                     ");
-                string temp = Console.ReadLine();
 
-                op = (Options)Enum.Parse(typeof(Options), temp);
+                string str = Console.ReadLine();
+                int.TryParse(str, out num);
+                while (!(Enum.TryParse(str, true, out op)) || num < 0 || num > 8)
+                {
+                    Console.WriteLine("ERROR! enter your choice again");
+                    str = Console.ReadLine();
+                    int.TryParse(str, out num);
+                }
 
-               
                 switch (op)
                 {
                     case Options.AddBus:
@@ -51,10 +62,6 @@ namespace dotNet5781_02_7224_0847
                         catch (BusException ex)
                         {
                             Console.WriteLine(ex.ToString());
-                        }
-                        catch
-                        {
-                            Console.WriteLine("error");
                         }
                         break;
                     case Options.AddStop:
@@ -120,18 +127,31 @@ namespace dotNet5781_02_7224_0847
                         {
                             foreach (BusLine item in coll)
                             {
-                                Console.WriteLine(coll.ToString()+'\n'); 
-
+                                Console.WriteLine(item.ToString()+'\n'); 
                             }
                         }
                         catch (BusException ex)
                         {
-
                             Console.WriteLine(ex.ToString());
                         }
                         break;
 
-                    case Options.PrintAll://8
+                    case Options.PrintAllStations://8
+                        try
+                        {
+                            
+
+                            foreach (BusLineStation item in allStat)
+                            {
+
+                            }
+
+
+                        }
+                        catch(BusException ex)
+                        {
+                            Console.WriteLine(ex.ToString());
+                        }
                         break;
 
 
@@ -147,7 +167,7 @@ namespace dotNet5781_02_7224_0847
             String s = Console.ReadLine();
             int x;
             bool b = int.TryParse(s, out x);
-            if (!b)
+            if (!b||x<0)
             {
                 throw new BusException("invalid input");
             }

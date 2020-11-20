@@ -226,7 +226,7 @@ namespace dotNet5781_02_7224_0847
             String s = Console.ReadLine();
             int x;
             bool b = int.TryParse(s, out x);
-            if (!b)
+            if (!b||x<0)
             {
                 throw new BusException("invalid input");
             }
