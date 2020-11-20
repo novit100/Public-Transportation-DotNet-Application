@@ -51,10 +51,6 @@ namespace dotNet5781_02_7224_0847
                         {
                             Console.WriteLine(ex.ToString());
                         }
-                        catch
-                        {
-                            Console.WriteLine("error");
-                        }
                         break;
                     case Options.AddStop:
                         try//2
@@ -120,7 +116,6 @@ namespace dotNet5781_02_7224_0847
                             foreach (BusLine item in coll)
                             {
                                 Console.WriteLine(coll.ToString()+'\n'); 
-
                             }
                         }
                         catch (BusException ex)
