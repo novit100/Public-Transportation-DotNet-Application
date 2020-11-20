@@ -55,7 +55,7 @@ namespace dotNet5781_02_7224_0847
         {
             Console.WriteLine("please enter the LOCATION IN PATH of the bus station that you want to add: ");
             int location = ReceiveInt();
-            if (location == 1||location==Stations.Count)
+            if (location == 1||location==Stations.Count+1)
                 throw new BusException("cannot change the first or last  bus station");
             
 
