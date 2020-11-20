@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
 namespace dotNet5781_02_7224_0847
-{
-    class BusException:Exception
+{/// <summary>
+/// here we keep our exceptions,
+/// it is an estetic and common way to write the code.
+/// we overrided the func to string so we can use the messages 
+/// that we've chosen.
+/// </summary>
+    class BusException :Exception
     {
         public int Capacity { get; private set; }
 

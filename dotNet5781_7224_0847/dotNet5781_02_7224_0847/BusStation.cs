@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/// <summary>
+/// this class represents a single bus stop 
+/// </summary>
 namespace dotNet5781_02_7224_0847
 {
     class BusStation
