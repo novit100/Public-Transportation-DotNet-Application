@@ -161,7 +161,7 @@ press 4- Jerusalem
             }
         }
 
-        private void returnSortedPathes(int key1, int key2)
+        public void returnSortedPathes(int key1, int key2)
         {
             List<BusLine> sortedCollection = new List<BusLine>();
 
