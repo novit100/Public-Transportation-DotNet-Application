@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 /// <summary>
 /// class BusLineCollections contains a collection of bus lines.
 /// we declared part of the functions un this class
@@ -35,6 +36,8 @@ namespace dotNet5781_02_7224_0847
                     count++;
                 }
             }
+            if (newbusLine < 0)
+                throw new BusException("invalid input for the busline key");
 
             Console.WriteLine("Enter the key of the first station");
             int key1 = ReceiveInt();
@@ -161,8 +164,7 @@ press 4- Jerusalem
         public void returnSortedPathes(int key1, int key2)
         {
             List<BusLine> sortedCollection = new List<BusLine>();
-            int [] busesIndexes=new int[this.buses.Count-1];//an array of possible list-all buses
-            int f = 0;
+
             foreach (BusLine BusLineItem in buses)
             {
                 int indkey1=-1;
@@ -184,18 +186,21 @@ press 4- Jerusalem
                 }
                 if(indkey1<indkey2)
                 {
-                    busesIndexes[f]=BusLineItem.
+                    BusLine bus = BusLineItem.returnSubPath(key1, key2, indkey1, indkey2, BusLineItem);
+                    sortedCollection.Add(bus);              
                 }
             }
+
             if (sortedCollection.Count == 0)
             {
                 throw new BusException("no buses pass from station " + key1 + " to station " + key2);
             }
             sortedCollection.Sort();//since we initialized icomparable interface in busLine and it compares two buses by the time, it sorts buses by the time
 
-            buses.Sort();//since we initialized icomparable interface in busLine and it compares two buses by the time, it sorts buses by the time
-
-        
+            foreach (BusLine item in sortedCollection)
+            {
+                Console.WriteLine(item.ToString()+"\n"+"travel time: "+item.time(key1,key2)+" minutes\n");
+            }
         }
 
         private int ReceiveInt()

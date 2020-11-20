@@ -48,7 +48,7 @@ namespace dotNet5781_02_7224_0847
             {
                 s += item.BusStationKey+", ";
             }
-            return "bus number: " + busLine + ", area: " + area + "\n" + "bus station numbers: " +s;
+            return "bus number: " + busLine + ", area: " + area + "\n" + "bus stations: " +s;
         }
         //////////////////////////////////////////////////////
         public void AddBusStationToBusLine()
@@ -101,7 +101,7 @@ namespace dotNet5781_02_7224_0847
             return false;
         }
 
-        private double distance()
+        public double distance()
         {
             Console.WriteLine("please enter the key of the station you want to check the distance from: ");
             int key1 = ReceiveInt();
@@ -134,7 +134,7 @@ namespace dotNet5781_02_7224_0847
             return dis;
         }
 
-        private double time(int key1, int key2)
+        public double time(int key1, int key2)
         {
             if (key1 == key2)//same station
                 return 0;
@@ -162,45 +162,58 @@ namespace dotNet5781_02_7224_0847
             return time;
         }
 
-        private BusLine subPath()
+        public BusLine returnSubPath(int key1, int key2, int indexkey1, int indexkey2, BusLine myBus)
         {
-            Console.WriteLine("please enter the key of the station you want to start from: ");
-            int key1 = ReceiveInt();
-            Console.WriteLine("please enter the key of the station you want to end at: ");
-            int key2 = ReceiveInt();
+            List<BusLineStation> stat = new List<BusLineStation>();
+            BusLineStation first = new BusLineStation(key1, true);
+            BusLineStation last = new BusLineStation(key2, false);
+            stat.Add(first);
+            stat.Add(last);
 
-            if (key1 == key2)//same station
-                throw new BusException("empty path");
-
-            int key1Index = -1;
-            int key2Index = -1;
-
-            for (int i = 0; i < Stations.Count; i++)
-            {
-                if (Stations[i].BusStationKey == key1)
-                    key1Index = i;
-                if (Stations[i].BusStationKey == key2)
-                    key2Index = i;
-            }
-
-            if (key1Index == -1 || key2Index == -1)//one or two of the stations werent found
-                throw new BusException("ERROR! one or two of the stations werent found");
-
-            List<BusLineStation> stats = new List<BusLineStation>();//a new list of BusLineStations to initialize
-            
             int f = 0;
-            for (int i = key1Index + 1; i < key2Index; i++)
+
+            for (int i = indexkey1; i <= indexkey2; i++)
             {
-                stats.Insert(f, Stations[i]);
+                stat.Insert(f, myBus.Stations[i]);
                 f++;
             }
-            BusLineStation first = new BusLineStation(stats[0].BusStationKey, true);
-            BusLineStation last = new BusLineStation(stats[stats.Count-1].BusStationKey, false);
-
-            BusLine bus = new BusLine() {Stations=stats, area= this.area, busLine=this.busLine, FirstStation=first, LastStation= last };
+            BusLine bus = new BusLine() { Stations = stat, busLine = myBus.busLine, FirstStation = first, LastStation = last, Area = myBus.Area };
             return bus;
-
         }
+
+        //private BusLine subPath(int key1, int key2)
+        //{
+        //    if (key1 == key2)//same station
+        //        throw new BusException("empty path");
+
+        //    int key1Index = -1;
+        //    int key2Index = -1;
+
+        //    for (int i = 0; i < Stations.Count; i++)
+        //    {
+        //        if (Stations[i].BusStationKey == key1)
+        //            key1Index = i;
+        //        if (Stations[i].BusStationKey == key2)
+        //            key2Index = i;
+        //    }
+
+        //    if (key1Index == -1 || key2Index == -1)//one or two of the stations werent found
+        //        throw new BusException("ERROR! one or two of the stations werent found");
+
+        //    List<BusLineStation> stats = new List<BusLineStation>();//a new list of BusLineStations to initialize
+
+        //    int f = 0;
+        //    for (int i = key1Index + 1; i < key2Index; i++)
+        //    {
+        //        stats.Insert(f, Stations[i]);
+        //        f++;
+        //    }
+        //    BusLineStation first = new BusLineStation(stats[0].BusStationKey, true);
+        //    BusLineStation last = new BusLineStation(stats[stats.Count-1].BusStationKey, false);
+
+        //    BusLine bus = new BusLine() {Stations=stats, area= this.area, busLine=this.busLine, FirstStation=first, LastStation= last };
+        //    return bus;
+        //}
 
 
         private int ReceiveInt()
