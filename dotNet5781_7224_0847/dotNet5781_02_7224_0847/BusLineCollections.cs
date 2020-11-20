@@ -26,7 +26,8 @@ namespace dotNet5781_02_7224_0847
         {
             Console.WriteLine("please enter the bus line you want to add to the collection: ");
             int newbusLine = ReceiveInt();
-
+            if (newbusLine < 0)
+                throw new BusException("invalid input for the busline key");
             int count = 0;//counts how many times the bus already appears in the collection
             foreach (BusLine item in buses)//since BusLineCollections is enumerable, we can use it as a type (the list of buses itself)
             {
@@ -39,14 +40,14 @@ namespace dotNet5781_02_7224_0847
             Console.WriteLine("Enter the key of the first station");
             int key1;
             bool f1 = int.TryParse(Console.ReadLine(), out key1);
-            if (!f1)
-                throw new BusException("invalis input for the station key");
+            if (!f1||key1<0)
+                throw new BusException("invalid input for the station key");
 
             Console.WriteLine("Enter the key of the last station");
             int key2;
             bool f2 = int.TryParse(Console.ReadLine(), out key2);
-            if (!f2)
-                throw new BusException("invalis input for the station key");
+            if (!f2||key1<0)
+                throw new BusException("invalid input for the station key");
 
             if (count==1)//the bus exist once
             {
