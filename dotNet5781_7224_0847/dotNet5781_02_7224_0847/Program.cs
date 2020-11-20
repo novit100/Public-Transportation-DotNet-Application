@@ -3,7 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/// <summary>
+/// this project is programmed to be a platform wich we will be able to actualize a system 
+/// of buses.
+/// we assumed in our priject that the user does not change the first or last 
+/// bus stop, because they are what define the essence of the specific bus line.
+/// also we assume that the time is a function of distance. 
+///there were 
+/// </summary>
 namespace dotNet5781_02_7224_0847
 {
     class Program
