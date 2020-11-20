@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 /// <summary>
-/// this project is programmed to be a platform wich we will be able to actualize a system 
+/// this project is programmed to be a platform witch we will be able to actualize a system 
 /// of buses.
-/// we assumed in our priject that the user does not change the first or last 
+/// we assumed in our project that the user does not change the first or last 
 /// bus stop, because they are what define the essence of the specific bus line.
 /// also we assume that the time is a function of distance. 
 ///there were 
@@ -21,12 +21,13 @@ namespace dotNet5781_02_7224_0847
             Console.Title = "Esti's ans Nov's second bus project";
             Console.BackgroundColor = ConsoleColor.Magenta;
             Console.ForegroundColor = ConsoleColor.White;
+            BusLineCollections coll = new BusLineCollections();
             Options op;
             do
             {
                 Console.WriteLine(@"
                     to add a new bus line press 1
-                    to sdd a new bus stop press 2
+                    to add a new bus stop press 2
                     to to delete a bus line press 3
                     to to delete a bus station from a bus line path press 4
                     to search buses that approach a certain station press 5
@@ -39,7 +40,7 @@ namespace dotNet5781_02_7224_0847
 
                 op = (Options)Enum.Parse(typeof(Options), temp);
 
-                BusLineCollections coll = new BusLineCollections();
+               
                 switch (op)
                 {
                     case Options.AddBus:
@@ -51,10 +52,10 @@ namespace dotNet5781_02_7224_0847
                         {
                             Console.WriteLine(ex.ToString());
                         }
-                        //catch
-                        //{
-                        //    Console.WriteLine("error");
-                        //}
+                        catch
+                        {
+                            Console.WriteLine("error");
+                        }
                         break;
                     case Options.AddStop:
                         try//2
