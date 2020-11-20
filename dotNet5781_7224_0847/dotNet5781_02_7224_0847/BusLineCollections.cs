@@ -36,8 +36,6 @@ namespace dotNet5781_02_7224_0847
                     count++;
                 }
             }
-            if (newbusLine < 0)
-                throw new BusException("invalid input for the busline key");
 
             Console.WriteLine("Enter the key of the first station");
             int key1 = ReceiveInt();
@@ -85,14 +83,17 @@ press 4- Jerusalem
         {
             Console.WriteLine("please enter the bus line you want to delete from the collection: ");
             int delbusLine = ReceiveInt();
-
+            bool flag = false;
             foreach  (BusLine item in buses)
             {
                 if (item.busLine == delbusLine)
                 {
                     buses.Remove(item);//it will remove the bus line to both directions
+                    flag = true;
                 }
             }
+            if (!flag)
+                throw new BusException("no such bus found\n");
         }
 
         public BusLine this[int index]//indexer
@@ -208,7 +209,7 @@ press 4- Jerusalem
             String s = Console.ReadLine();
             int x;
             bool b = int.TryParse(s, out x);
-            if (!b)
+            if (!b||x<0)
             {
                 throw new BusException("invalid input");
             }

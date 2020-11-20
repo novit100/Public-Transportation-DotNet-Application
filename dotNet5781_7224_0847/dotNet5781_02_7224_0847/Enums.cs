@@ -10,7 +10,7 @@ namespace dotNet5781_02_7224_0847
     }
     public enum Options 
     { 
-        exit, AddBus, AddStop, DeleteBusLine, DeleteBusStation, SearchBuses, SearchPath, PrintBusLines, PrintAll 
+        exit, AddBus, AddStop, DeleteBusLine, DeleteBusStation, SearchBuses, SearchPath, PrintBusLines, PrintAllStations 
     }
 
 

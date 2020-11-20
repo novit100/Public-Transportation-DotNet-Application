@@ -48,7 +48,7 @@ namespace dotNet5781_02_7224_0847
             {
                 s += item.BusStationKey+", ";
             }
-            return "bus number: " + busLine + ", area: " + area + "\n" + "bus stations: " +s;
+            return "bus number: " + busLine + ", area: " + Area + "\n" + "bus stations: " +s;
         }
         //////////////////////////////////////////////////////
         public void AddBusStationToBusLine()
@@ -221,7 +221,7 @@ namespace dotNet5781_02_7224_0847
             String s = Console.ReadLine();
             int x;
             bool b = int.TryParse(s, out x);
-            if (!b)
+            if (!b||x<0)
             {
                 throw new BusException("invalid input");
             }
