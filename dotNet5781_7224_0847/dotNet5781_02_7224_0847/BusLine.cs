@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 /// </summary>
 namespace dotNet5781_02_7224_0847
 {
-    class BusLine:IComparable<BusLine>
+    class BusLine:IComparable<BusLine>//number of bus line lets say:"kav mispar--76" 
     {
         public List<BusLineStation> Stations { get; set; } //the field of the bus line,it is performed by (many) single bus line stations
         
         private int busLine1;
-        public int busLine
+        public int busLine //number of bus line lets say:"kav mispar--76" 
         {
             get; set;
         }
@@ -53,14 +53,19 @@ namespace dotNet5781_02_7224_0847
         //////////////////////////////////////////////////////
         public void AddBusStationToBusLine()
         {
-            Console.WriteLine("please enter the location of the bus station that you want to add: ");
-            int location= ReceiveInt();
-            Console.WriteLine("please enter the key of the bus station that you want to add: ");
+            Console.WriteLine("please enter the LOCATION IN PATH of the bus station that you want to add: ");
+            int location = ReceiveInt();
+            if (location == 1||location==Stations.Count)
+                throw new BusException("cannot change the first or last  bus station");
+            
+
+            Console.WriteLine("please enter the CODE of the bus station that you want to add: ");
             int key = ReceiveInt();
             foreach (BusLineStation item in Stations)
             {
                 if (item.BusStationKey == key)
                     throw new BusException("bus station already exists in the bus-line path");
+               
             }
             BusLineStation stat;
 

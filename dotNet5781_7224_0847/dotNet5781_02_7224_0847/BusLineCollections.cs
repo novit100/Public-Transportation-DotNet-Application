@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 /// to be public so we would be able to approach them from 
 /// the main.
 /// </summary>
+
 namespace dotNet5781_02_7224_0847
 {
     class BusLineCollections: IEnumerable
@@ -27,29 +28,40 @@ namespace dotNet5781_02_7224_0847
         {
             Console.WriteLine("please enter the bus line you want to add to the collection: ");
             int newbusLine = ReceiveInt();
-
+            if (newbusLine < 0)
+                throw new BusException("invalid input for the busline key");
             int count = 0;//counts how many times the bus already appears in the collection
-            foreach (BusLine item in buses)//since BusLineCollections is enumerable, we can use it as a type (the list of buses itself)
+            foreach (BusLine item in 
+                buses)//since BusLineCollections is enumerable, we can use it as a type (the list of buses itself)
             {
                 if (item.busLine == newbusLine)
                 {
                     count++;
                 }
             }
+           
 
             Console.WriteLine("Enter the key of the first station");
             int key1 = ReceiveInt();
             Console.WriteLine("Enter the key of the last station");
             int key2 = ReceiveInt();
-
+            if (key1 == key2)
+                throw new BusException("at least two bus stops in a path");
+            /// <summary>
+            ///  אם ישלנו את הקו הזה כבר פעם אחת וגם התחנה הראשונה שאני רוצים להוסיף שווה לתחנה הראשונה של הקו הקיים 
+            ///אבל מה עם המצב שיש לנו את הקו הזה פעם אחת וגם המספר תחנה האחרון לא שווה למספר תחנה הראשון שאני רוצים להוסיף?!?
+            ///אז מה שצריך לעשות זה להוסיף פשוט עוד תנאי איפ שאומר שאם המספר קו שווה למספר קו וגם התחנה הראשונה שאני רוצים להוסיף לא שווה לסופי אז תזרוק חריגה- אחרת תאפשר להכניס !  
+            /// </summary>
             if (count==1)//the bus exist once
             {
                 foreach (BusLine item in buses)
                 {
-                    if (item.busLine == newbusLine && item.FirstStation.BusStationKey==key1)
+                    if (item.busLine == newbusLine && item.FirstStation.BusStationKey == key1 )
                     {
                         throw new BusException("cannot add the bus since the same bus to the same direction already exists");
                     }
+                    else if(item.busLine == newbusLine&& (item.LastStation.BusStationKey != key1||key2!= item.FirstStation.BusStationKey))
+                        throw new BusException("cannot add the bus since the same bus reffers to another path");
                 }
             }
 
@@ -139,7 +151,7 @@ press 4- Jerusalem
         {
             Console.WriteLine("please enter the bus line you want to add a station to: ");
             int bus = ReceiveInt();
-
+         
             foreach (BusLine BusLineItem in buses)//for each bus line in the collection
             {
                 if(BusLineItem.busLine==bus)
