@@ -51,7 +51,7 @@ namespace dotNet5781_02_7224_0847
             return "bus number: " + busLine + ", area: " + area + "\n" + "bus station numbers: " +s;
         }
         //////////////////////////////////////////////////////
-        private void AddBusStationToBusLine()
+        public void AddBusStationToBusLine()
         {
             Console.WriteLine("please enter the location of the bus station that you want to add: ");
             int location= ReceiveInt();
@@ -78,7 +78,7 @@ namespace dotNet5781_02_7224_0847
                 throw new BusException("invalid location, cannot insert");
         }
         ///////////////////////////////////////////////////////
-        private void deleteBusStationFromBusLine()
+        public void deleteBusStationFromBusLine()
         {
             Console.WriteLine("please enter the key of the bus station that you intend to delete: ");
             int key = ReceiveInt();

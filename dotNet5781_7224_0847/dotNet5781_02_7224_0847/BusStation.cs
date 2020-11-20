@@ -10,7 +10,7 @@ namespace dotNet5781_02_7224_0847
     {
         public BusStation(int key)
         {
-            if (num > 999999 || num<10000)
+            if (num > 999999 || num < 0)
                 throw new BusException("invalid number of digits for the key was insertd");
             BusStationKey = key;
 
