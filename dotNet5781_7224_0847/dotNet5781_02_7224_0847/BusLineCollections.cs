@@ -102,7 +102,7 @@ press 4- Jerusalem
             }
         }
 
-        private void busesPassInStation(int key)
+        public void busesPassInStation(int key)
         {
             bool ifSomeonePasses = false;
             List<BusLine> list = new List<BusLine>();
@@ -153,12 +153,42 @@ press 4- Jerusalem
             }
         }
 
-        private void sortAllBussesByTravelTime()
+        private void returnSortedPathes(int key1, int key2)
         {
-            //List<BusLine> sortedCollection = new List<BusLine>();
-            //sortedCollection= buses.Sort();//since we initialized icomparable interface in busLine and it compares two buses by the time, it sorts buses by the time
+            List<BusLine> sortedCollection = new List<BusLine>();
+            foreach (BusLine BusLineItem in buses)
+            {
+                int indkey1=-1;
+                int indkey2=-1;
+                for(int i=0; i<BusLineItem.Stations.Count; i++)//passes on all stat of a bus
+                {
+                    if (BusLineItem.Stations[i].BusStationKey == key1)
+                        indkey1 = i;
+                    if (BusLineItem.Stations[i].BusStationKey == key2)
+                        indkey2 = i;
+                }
+                if(indkey1==-1||indkey2==-1)
+                {
+                    //the bus path doesnt contain the stations
+                }
+                if(indkey1>indkey2)
+                {
+                    //the bus contains the stations but not to the wanted direction
+                }
+                if(indkey1<indkey2)
+                {
+                    sortedCollection.Add(BusLineItem);//add the bus to the list of possible buses
+                }
+            }
+
+            sortedCollection.Sort();//since we initialized icomparable interface in busLine and it compares two buses by the time, it sorts buses by the time
 
             buses.Sort();//since we initialized icomparable interface in busLine and it compares two buses by the time, it sorts buses by the time
+            if(sortedCollection.Count==0)
+            {
+                throw new BusException("no buses that from station " + key1 + " to station " + key2 + "found");
+            }
+        
         }
 
         private int ReceiveInt()
