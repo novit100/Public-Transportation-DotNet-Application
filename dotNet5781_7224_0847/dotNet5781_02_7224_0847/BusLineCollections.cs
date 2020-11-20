@@ -4,7 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/// <summary>
+/// class BusLineCollections contains a collection of bus lines.
+/// we declared part of the functions un this class
+/// to be public so we would be able to approach them from 
+/// the main.
+/// </summary>
 namespace dotNet5781_02_7224_0847
 {
     class BusLineCollections: IEnumerable

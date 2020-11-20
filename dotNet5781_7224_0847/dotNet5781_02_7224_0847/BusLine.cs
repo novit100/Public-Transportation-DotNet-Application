@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace dotNet5781_02_7224_0847
-{/// <summary>
+/// <summary>
 /// the class busline presents an object of a bus path, it is presented by the code of the path, 
 ///the first and last bus station and the area of the path.
 ///it also contains different tipes of methodes that allowes us to do different actions on the current layout 
 /// </summary>
+namespace dotNet5781_02_7224_0847
+{
     class BusLine:IComparable<BusLine>
     {
         public List<BusLineStation> Stations { get; set; } //the field of the bus line,it is performed by (many) single bus line stations

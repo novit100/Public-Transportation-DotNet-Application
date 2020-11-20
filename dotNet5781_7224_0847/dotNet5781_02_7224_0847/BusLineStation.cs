@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/// <summary>
+/// BusLineStation inherites from busstation and adds a few more features 
+/// so it will be able to fit in a path.
+/// </summary>
 namespace dotNet5781_02_7224_0847
 {
     class BusLineStation:BusStation
