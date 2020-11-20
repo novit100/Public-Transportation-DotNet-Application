@@ -26,8 +26,7 @@ namespace dotNet5781_02_7224_0847
         {
             Console.WriteLine("please enter the bus line you want to add to the collection: ");
             int newbusLine = ReceiveInt();
-            if (newbusLine < 0)
-                throw new BusException("invalid input for the busline key");
+
             int count = 0;//counts how many times the bus already appears in the collection
             foreach (BusLine item in buses)//since BusLineCollections is enumerable, we can use it as a type (the list of buses itself)
             {
@@ -38,16 +37,9 @@ namespace dotNet5781_02_7224_0847
             }
 
             Console.WriteLine("Enter the key of the first station");
-            int key1;
-            bool f1 = int.TryParse(Console.ReadLine(), out key1);
-            if (!f1||key1<0)
-                throw new BusException("invalid input for the station key");
-
+            int key1 = ReceiveInt();
             Console.WriteLine("Enter the key of the last station");
-            int key2;
-            bool f2 = int.TryParse(Console.ReadLine(), out key2);
-            if (!f2||key1<0)
-                throw new BusException("invalid input for the station key");
+            int key2 = ReceiveInt();
 
             if (count==1)//the bus exist once
             {
@@ -86,16 +78,28 @@ press 4- Jerusalem
             buses.Add(bus);//add the new bus to the collection
         }
 
-        private void deleteBusFromCollection ()
+        public void deleteBusFromCollection()
         {
+            Console.WriteLine("please enter the bus line you want to delete from the collection: ");
+            int delbusLine = ReceiveInt();
 
+            foreach  (BusLine item in buses)
+            {
+                if (item.busLine == delbusLine)
+                {
+                    buses.Remove(item);//it will remove the bus line to both directions
+                }
+            }
         }
 
         public BusLine this[int index]//indexer
         {
             get
             {
-                return buses[index];
+                if (index <= buses.Count - 1)
+                    return buses[index];
+                else
+                    throw new BusException("no bus exists in this index in the buses collection");
             }
             set
             {
@@ -103,6 +107,96 @@ press 4- Jerusalem
             }
         }
 
+        public void busesPassInStation(int key)
+        {
+            bool ifSomeonePasses = false;
+            List<BusLine> list = new List<BusLine>();
+            foreach (BusLine BusLineItem in buses)//for each bus line in the collection
+            {
+                bool flag = false;
+                foreach (BusLineStation stationItem in BusLineItem.Stations)//for each station of a specific bus line
+                {
+                    if (stationItem.BusStationKey==key)
+                    {
+                        flag = true;
+                        ifSomeonePasses = true;
+                    }
+                }
+                if(flag)//if one of the bus stations is "key", the bus passes in that station
+                {
+                    Console.WriteLine("bus line "+BusLineItem.busLine+" passes in the station\n");
+                }
+            }
+            if (!ifSomeonePasses)//if no bus passes the station
+                throw new BusException("no bus passes the station");
+        }
+
+        public void addStationToBus()
+        {
+            Console.WriteLine("please enter the bus line you want to add a station to: ");
+            int bus = ReceiveInt();
+
+            foreach (BusLine BusLineItem in buses)//for each bus line in the collection
+            {
+                if(BusLineItem.busLine==bus)
+                {
+                    BusLineItem.AddBusStationToBusLine();
+                }
+            }
+        }
+
+        public void delStationFromBus()
+        {
+            Console.WriteLine("please enter the bus line you want to delete a station from: ");
+            int bus = ReceiveInt();
+            foreach (BusLine BusLineItem in buses)//for each bus line in the collection
+            {
+                if (BusLineItem.busLine == bus)
+                {
+                    BusLineItem.deleteBusStationFromBusLine();
+                }
+            }
+        }
+
+        private void returnSortedPathes(int key1, int key2)
+        {
+            List<BusLine> sortedCollection = new List<BusLine>();
+            int [] busesIndexes=new int[this.buses.Count-1];//an array of possible list-all buses
+            int f = 0;
+            foreach (BusLine BusLineItem in buses)
+            {
+                int indkey1=-1;
+                int indkey2=-1;
+                for(int i=0; i<BusLineItem.Stations.Count; i++)//passes on all stat of a bus
+                {
+                    if (BusLineItem.Stations[i].BusStationKey == key1)
+                        indkey1 = i;
+                    if (BusLineItem.Stations[i].BusStationKey == key2)
+                        indkey2 = i;
+                }
+                if(indkey1==-1||indkey2==-1)
+                {
+                    //the bus path doesnt contain the stations
+                }
+                if(indkey1>indkey2)
+                {
+                    //the bus contains the stations but not to the wanted direction
+                }
+                if(indkey1<indkey2)
+                {
+                    busesIndexes[f]=BusLineItem.
+                }
+            }
+            if (sortedCollection.Count == 0)
+            {
+                throw new BusException("no buses pass from station " + key1 + " to station " + key2);
+            }
+            sortedCollection.Sort();//since we initialized icomparable interface in busLine and it compares two buses by the time, it sorts buses by the time
+
+            buses.Sort();//since we initialized icomparable interface in busLine and it compares two buses by the time, it sorts buses by the time
+
+        
+        }
 
         private int ReceiveInt()
         {

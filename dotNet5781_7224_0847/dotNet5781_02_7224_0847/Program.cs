@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 /// <summary>
 /// this project is programmed to be a platform wich we will be able to actualize a system 
 /// of buses.
@@ -29,33 +30,70 @@ namespace dotNet5781_02_7224_0847
                     to to delete a bus line press 3
                     to to delete a bus station from a bus line path press 4
                     to search buses that approach a certain station press 5
-                    to search for a direct path between two bus stations press 6 
-                    for printing all of the bus lines press 7 
+                    to search for a direct path between two bus stations press 6
+                    for printing all of the bus lines press 7
                     for printing the whole list of stations and the bus line that approach them press 8
                     to exit press 0
                     ");
                 string temp = Console.ReadLine();
 
-                 op = (Options)Enum.Parse(typeof(Options), temp);
+                op = (Options)Enum.Parse(typeof(Options), temp);
 
                 BusLineCollections coll = new BusLineCollections();
                 switch (op)
                 {
                     case Options.AddBus:
-                       coll.addNewBusToCollection();
+                        try
+                        {
+                            coll.addNewBusToCollection();
+                        }
+                        catch (BusException ex)
+                        {
+                            Console.WriteLine(ex.ToString());
+                        }
                         break;
                     case Options.AddStop:
-                        
+                        try
+                        {
+                            coll.addStationToBus();
+                        }
+                        catch (BusException ex)
+                        {
+                            Console.WriteLine(ex.ToString());
+                        }
+
                         break;
                     case Options.DeleteBusLine:
-                        
+                        try
+                        {
+                            coll.deleteBusFromCollection();
+                        }
+                        catch (BusException ex)
+                        {
+                            Console.WriteLine(ex.ToString());
+                        }
                         break;
                     case Options.DeleteBusStation:
-
-
+                        try
+                        {
+                            coll.delStationFromBus();
+                        }
+                        catch (BusException ex)
+                        {
+                            Console.WriteLine(ex.ToString());
+                        }
                         break;
                     case Options.SearchBuses:
-
+                        try 
+                        {
+                            Console.WriteLine("please enter the key of the bus station you want to serch");
+                            int key = ReceiveInt();
+                            coll.busesPassInStation(key);
+                        }
+                        catch (BusException ex)
+                        {
+                            Console.WriteLine(ex.ToString());
+                        }
                         break;
                     case Options.SearchPath:
 
@@ -66,15 +104,25 @@ namespace dotNet5781_02_7224_0847
 
                     case Options.PrintAll:
                         break;
-                 
+
 
                     default: break;
                 }
             }
-            while (op!=Options.exit);
+            while (op != Options.exit);
             Console.ReadKey();
         }
 
+        public static int ReceiveInt()
+        {
+            String s = Console.ReadLine();
+            int x;
+            bool b = int.TryParse(s, out x);
+            if (!b)
+            {
+                throw new BusException("invalid input");
+            }
+            return x;
+        }
     }
 }
-

@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-/// <summary>
-/// this class represents a single bus stop 
-/// </summary>
+
 namespace dotNet5781_02_7224_0847
 {
+    /// <summary>
+    /// this class represents a single bus stop 
+    /// </summary>
     class BusStation
     {
         public BusStation(int key)
         {
-            if (num > 1000000 || num < 0)
+            if (num > 999999 || num < 0)
                 throw new BusException("invalid number of digits for the key was insertd");
             BusStationKey = key;
 
@@ -31,7 +32,7 @@ namespace dotNet5781_02_7224_0847
         ////////////////////////////////////////
         public double Latitude//field "rochav"
         {
-            get; private set;
+        get; private set;
         }
 
         ////////////////////////////////////////
