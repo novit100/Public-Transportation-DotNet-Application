@@ -28,18 +28,21 @@ namespace dotNet5781_02_7224_0847
         {
             Console.WriteLine("please enter the bus line you want to add to the collection: ");
             int newbusLine = ReceiveInt();
-            if (newbusLine < 0)
-                throw new BusException("invalid input for the busline key");
+
             int count = 0;//counts how many times the bus already appears in the collection
-            foreach (BusLine item in 
+            
+            foreach (BusLine item in
                 buses)//since BusLineCollections is enumerable, we can use it as a type (the list of buses itself)
             {
                 if (item.busLine == newbusLine)
                 {
                     count++;
+                    
                 }
+
             }
-           
+
+
 
             Console.WriteLine("Enter the key of the first station");
             int key1 = ReceiveInt();
@@ -151,14 +154,18 @@ press 4- Jerusalem
         {
             Console.WriteLine("please enter the bus line you want to add a station to: ");
             int bus = ReceiveInt();
-         
+            bool flag = false; 
+            
             foreach (BusLine BusLineItem in buses)//for each bus line in the collection
             {
                 if(BusLineItem.busLine==bus)
                 {
                     BusLineItem.AddBusStationToBusLine();
+                    flag = true;
                 }
             }
+            if (flag == false)
+                throw new BusException("No bus line was found");
         }
 
         public void delStationFromBus()
