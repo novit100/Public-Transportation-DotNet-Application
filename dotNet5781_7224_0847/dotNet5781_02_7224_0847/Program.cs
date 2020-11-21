@@ -24,8 +24,6 @@ namespace dotNet5781_02_7224_0847
 
             BusLineCollections coll = new BusLineCollections();//buslines collection
 
-            List<BusLineStation> allStat = new List<BusLineStation>();//keeps all stations
-
             int num = -1;
             Options op;
 
@@ -33,7 +31,7 @@ namespace dotNet5781_02_7224_0847
             {
                 Console.WriteLine(@"
                     to add a new bus line press 1
-                    to add a new bus stop press 2
+                    to sdd a new bus stop press 2
                     to to delete a bus line press 3
                     to to delete a bus station from a bus line path press 4
                     to search buses that approach a certain station press 5
@@ -141,10 +139,10 @@ namespace dotNet5781_02_7224_0847
                         {
                             
 
-                            foreach (BusLineStation item in allStat)
-                            {
+                            //foreach (BusLineStation item in allStat)
+                            //{
 
-                            }
+                            //}
 
 
                         }
