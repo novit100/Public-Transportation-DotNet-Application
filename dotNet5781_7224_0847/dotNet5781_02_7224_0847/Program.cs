@@ -137,19 +137,14 @@ namespace dotNet5781_02_7224_0847
                     case Options.PrintAllStations://8
                         try
                         {
-                            List<BusLineStation> allstat = new List<BusLineStation>();
+                            List<BusLineStation> allstat = new List<BusLineStation>();//contains all the stat but only once
 
                             foreach (BusLine bus in coll)
                             {
-                                int i = 0;
                                 foreach (BusLineStation stat in bus.Stations)
                                 {
-                                    List<BusLineStation> repeatingStat = bus.Stations.FindAll(delegate (BusLineStation s)//repeating stat contains all 
-                                    {
-                                        return s.BusStationKey == stat.BusStationKey;
-                                    });
-                                    repeatingStat[i] = lst;
-                                    i++;
+                                    if (!allstat.Contains(stat))
+                                        allstat.Add(stat);
                                 }
                             }
                             foreach (BusLineStation item in allstat)
