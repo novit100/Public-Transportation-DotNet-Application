@@ -24,8 +24,6 @@ namespace dotNet5781_02_7224_0847
 
             BusLineCollections coll = new BusLineCollections();//buslines collection
 
-            List<BusLineStation> allStat = new List<BusLineStation>();//keeps all stations
-
             int num = -1;
             Options op;
 
@@ -139,14 +137,25 @@ namespace dotNet5781_02_7224_0847
                     case Options.PrintAllStations://8
                         try
                         {
-                            
+                            List<BusLineStation> allstat = new List<BusLineStation>();
 
-                            foreach (BusLineStation item in allStat)
+                            foreach (BusLine bus in coll)
                             {
-
+                                int i = 0;
+                                foreach (BusLineStation stat in bus.Stations)
+                                {
+                                    List<BusLineStation> repeatingStat = bus.Stations.FindAll(delegate (BusLineStation s)//repeating stat contains all 
+                                    {
+                                        return s.BusStationKey == stat.BusStationKey;
+                                    });
+                                    repeatingStat[i] = lst;
+                                    i++;
+                                }
                             }
-
-
+                            foreach (BusLineStation item in allstat)
+                            {
+                                coll.busesPassInStation(item.BusStationKey);
+                            }
                         }
                         catch(BusException ex)
                         {
@@ -172,6 +181,11 @@ namespace dotNet5781_02_7224_0847
                 throw new BusException("invalid input");
             }
             return x;
+        }
+
+        private static bool thisStatFound(BusLine bus, BusLineStation stat)
+        {
+            return bus.Stations.Contains(stat);
         }
     }
 }
