@@ -10,7 +10,9 @@ using System.Threading.Tasks;
 /// we assumed in our project that the user does not change the first or last 
 /// bus stop, because they are what define the essence of the specific bus line.
 /// also we assume that the time is a function of distance. 
-///there were 
+/// we assume that 2 stations with the same key can appear in 2 buses with different areas,
+/// since there are interurbun buses, that statrt from the same city but travel to different areas.
+/// 
 /// </summary>
 namespace dotNet5781_02_7224_0847
 {
@@ -22,7 +24,9 @@ namespace dotNet5781_02_7224_0847
             Console.BackgroundColor = ConsoleColor.Magenta;
             Console.ForegroundColor = ConsoleColor.White;
 
-            BusLineCollections coll = new BusLineCollections();//buslines collection
+            BusLineCollections coll = new BusLineCollections();
+
+            //initialize(coll);
 
             int num = -1;
             Options op;
@@ -185,6 +189,10 @@ namespace dotNet5781_02_7224_0847
             return x;
         }
 
+        //public static void initialize(BusLineCollections coll)
+        //{
+            
+        //}
 
     }
 }
