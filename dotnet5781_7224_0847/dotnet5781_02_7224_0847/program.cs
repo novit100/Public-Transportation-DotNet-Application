@@ -18,7 +18,8 @@ namespace dotNet5781_02_7224_0847
     {
         static void Main(string[] args)
         {
-            Console.Title = "Esti's ans Nov's second bus project";
+            Console.Title = "                                          " +
+                "                                                 Esti's ans Nov's second bus project";
             Console.BackgroundColor = ConsoleColor.Magenta;
             Console.ForegroundColor = ConsoleColor.White;
 
@@ -31,7 +32,7 @@ namespace dotNet5781_02_7224_0847
             {
                 Console.WriteLine(@"
                     to add a new bus line press 1
-                    to sdd a new bus stop press 2
+                    to add a new bus stop press 2
                     to to delete a bus line press 3
                     to to delete a bus station from a bus line path press 4
                     to search buses that approach a certain station press 5
@@ -137,14 +138,20 @@ namespace dotNet5781_02_7224_0847
                     case Options.PrintAllStations://8
                         try
                         {
-                            
+                            List<BusLineStation> allstat = new List<BusLineStation>();//contains all the stat but only once
 
-                            foreach (BusLineStation item in allStat)
+                            foreach (BusLine bus in coll)
                             {
-
+                                foreach (BusLineStation stat in bus.Stations)
+                                {
+                                    if (!allstat.Contains(stat))
+                                        allstat.Add(stat);
+                                }
                             }
-
-
+                            foreach (BusLineStation item in allstat)
+                            {
+                                coll.busesPassInStation(item.BusStationKey);
+                            }
                         }
                         catch(BusException ex)
                         {
@@ -170,6 +177,11 @@ namespace dotNet5781_02_7224_0847
                 throw new BusException("invalid input");
             }
             return x;
+        }
+
+        private static bool thisStatFound(BusLine bus, BusLineStation stat)
+        {
+            return bus.Stations.Contains(stat);
         }
     }
 }
