@@ -16,7 +16,143 @@ namespace dotNet5781_02_7224_0847
 {
     class BusLineCollections: IEnumerable
     {
-        List<BusLine> buses = new List<BusLine>();
+        private List<BusLine> buses;
+
+        public BusLineCollections()//ctor that initializes 10 buses with 40 stations
+        {
+            buses = new List<BusLine>();//collection allready contains 10 buses (40 stations)
+
+            //1
+            List<BusLineStation> stat = new List<BusLineStation>();
+            BusLineStation first = new BusLineStation(31156, true);
+            stat.Add(first);
+            BusLineStation s2= new BusLineStation(31170, false);
+            stat.Add(s2);
+            BusLineStation s3 = new BusLineStation(30673, false);
+            stat.Add(s3);
+            BusLineStation s4 = new BusLineStation(21377, false);
+            stat.Add(s4);
+            BusLine bus = new BusLine() { Stations = stat, busLine = 97, FirstStation = first, LastStation = s4, Area = Areas.Center };
+            buses.Add(bus);
+
+            //2
+            stat = new List<BusLineStation>();//reference to a new list of stations
+            first = new BusLineStation(10877, true);
+            stat.Add(first);
+            s2 = new BusLineStation(12390, false);
+            stat.Add(s2);
+            s3 = new BusLineStation(12086, false);
+            stat.Add(s3);
+            s4 = new BusLineStation(14567, false);
+            stat.Add(s4);
+            bus = new BusLine() { Stations = stat, busLine = 540, FirstStation = first, LastStation = s4, Area = Areas.North };
+            buses.Add(bus);
+
+            //3
+            stat = new List<BusLineStation>();//reference to a new list of stations
+            first = new BusLineStation(5400, true);
+            stat.Add(first);
+            s2 = new BusLineStation(5200, false);
+            stat.Add(s2);
+            s3 = new BusLineStation(5267, false);
+            stat.Add(s3);
+            s4 = new BusLineStation(12908, false);
+            stat.Add(s4);
+            bus = new BusLine() { Stations = stat, busLine = 177, FirstStation = first, LastStation = s4, Area = Areas.Jerusalem };
+            buses.Add(bus);
+
+            //4
+            stat = new List<BusLineStation>();//reference to a new list of stations
+            first = new BusLineStation(20456, true);
+            stat.Add(first);
+            s2 = new BusLineStation(21570, false);
+            stat.Add(s2);
+            s3 = new BusLineStation(20673, false);
+            stat.Add(s3);
+            s4 = new BusLineStation(21377, false);
+            stat.Add(s4);
+            bus = new BusLine() { Stations = stat, busLine = 108, FirstStation = first, LastStation = s4, Area = Areas.Center };
+            buses.Add(bus);
+
+            //5
+            stat = new List<BusLineStation>();//reference to a new list of stations
+            first = new BusLineStation(23456, true);
+            stat.Add(first);
+            s2 = new BusLineStation(20673, false);
+            stat.Add(s2);
+            s3 = new BusLineStation(35328, false);
+            stat.Add(s3);
+            s4 = new BusLineStation(25807, false);
+            stat.Add(s4);
+            bus = new BusLine() { Stations = stat, busLine = 230, FirstStation = first, LastStation = s4, Area = Areas.Center };
+            buses.Add(bus);
+
+            //6
+            stat = new List<BusLineStation>();//reference to a new list of stations
+            first = new BusLineStation(18970, true);
+            stat.Add(first);
+            s2 = new BusLineStation(45970, false);
+            stat.Add(s2);
+            s3 = new BusLineStation(39481, false);
+            stat.Add(s3);
+            s4 = new BusLineStation(34567, false);
+            stat.Add(s4);
+            bus = new BusLine() { Stations = stat, busLine = 43, FirstStation = first, LastStation = s4, Area = Areas.South };
+            buses.Add(bus);
+
+            //7
+            stat = new List<BusLineStation>();//reference to a new list of stations
+            first = new BusLineStation(34567, true);
+            stat.Add(first);
+            s2 = new BusLineStation(204338, false);
+            stat.Add(s2);
+            s3 = new BusLineStation(345678, false);
+            stat.Add(s3);
+            s4 = new BusLineStation(764322, false);
+            stat.Add(s4);
+            bus = new BusLine() { Stations = stat, busLine = 999, FirstStation = first, LastStation = s4, Area = Areas.South };
+            buses.Add(bus);
+
+            //8
+            stat = new List<BusLineStation>();//reference to a new list of stations
+            first = new BusLineStation(28432, true);
+            stat.Add(first);
+            s2 = new BusLineStation(31170, false);
+            stat.Add(s2);
+            s3 = new BusLineStation(12342, false);
+            stat.Add(s3);
+            s4 = new BusLineStation(21377, false);
+            stat.Add(s4);
+            bus = new BusLine() { Stations = stat, busLine = 51, FirstStation = first, LastStation = s4, Area = Areas.Center };
+            buses.Add(bus);
+
+            //9
+            stat = new List<BusLineStation>();//reference to a new list of stations
+            first = new BusLineStation(31156, true);
+            stat.Add(first);
+            s2 = new BusLineStation(326216, false);
+            stat.Add(s2);
+            s3 = new BusLineStation(309080, false);
+            stat.Add(s3);
+            s4 = new BusLineStation(21377, false);
+            stat.Add(s4);
+            bus = new BusLine() { Stations = stat, busLine = 98, FirstStation = first, LastStation = s4, Area = Areas.Center };
+            buses.Add(bus);
+
+            //10
+            stat = new List<BusLineStation>();//reference to a new list of stations
+            first = new BusLineStation(86764, true);
+            stat.Add(first);
+            s2 = new BusLineStation(12122, false);
+            stat.Add(s2);
+            s3 = new BusLineStation(13107, false);
+            stat.Add(s3);
+            s4 = new BusLineStation(12008, false);
+            stat.Add(s4);
+            bus = new BusLine() { Stations = stat, busLine = 410, FirstStation = first, LastStation = s4, Area = Areas.Jerusalem };
+            buses.Add(bus);
+
+        }
 
         public IEnumerator GetEnumerator()
         {
