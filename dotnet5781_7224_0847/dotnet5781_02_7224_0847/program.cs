@@ -119,6 +119,8 @@ namespace dotNet5781_02_7224_0847
                         {
                             Console.WriteLine(ex.ToString());
                         }
+                        catch
+                        { throw new BusException("unknown error"); }
                         break;
 
                     case Options.PrintBusLines://7
@@ -165,10 +167,12 @@ namespace dotNet5781_02_7224_0847
                             Console.WriteLine(ex.ToString());
                         }
                         break;
-
+                        
 
                     default: break;
+                        
                 }
+                
             }
             while (op != Options.exit);
             Console.ReadKey();
