@@ -99,11 +99,12 @@ press 4- Jerusalem
             Console.WriteLine("please enter the bus line you want to delete from the collection: ");
             int delbusLine = ReceiveInt();
             bool flag = false;
+           
             foreach  (BusLine item in buses)
             {
                 if (item.busLine == delbusLine)
                 {
-                    buses.Remove(item);//it will remove the bus line to both directions
+                    buses.Remove(item);//it will remove the bus line in both directions
                     flag = true;
                 }
             }
