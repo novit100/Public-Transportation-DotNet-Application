@@ -144,12 +144,19 @@ namespace dotNet5781_02_7224_0847
                             {
                                 foreach (BusLineStation stat in bus.Stations)
                                 {
-                                    if (!allstat.Contains(stat))
+                                    bool ifExistInAllStat = false;
+                                    foreach (BusLineStation s in allstat)
+                                    {
+                                        if (s.BusStationKey == stat.BusStationKey)
+                                            ifExistInAllStat = true;
+                                    }
+                                    if(!ifExistInAllStat)//add only stations that dont exist allready in allstat
                                         allstat.Add(stat);
                                 }
                             }
                             foreach (BusLineStation item in allstat)
                             {
+                                Console.WriteLine("bus station " + item.BusStationKey+":");
                                 coll.busesPassInStation(item.BusStationKey);
                             }
                         }
@@ -179,9 +186,6 @@ namespace dotNet5781_02_7224_0847
             return x;
         }
 
-        private static bool thisStatFound(BusLine bus, BusLineStation stat)
-        {
-            return bus.Stations.Contains(stat);
-        }
+
     }
 }
