@@ -23,7 +23,7 @@ namespace dotNet5781_02_7224_0847
                 double lon = r.NextDouble() * (35.5 - 34.3) + 34.3;
                 Distance = Math.Sqrt(Math.Pow(lat - Latitude, 2) - Math.Pow(lon - Longitude, 2));
             }
-            TimeInMin = Distance * 1.2 *10;//we assume that it takes 1.2 min per km
+            TimeInMin = Distance * 1.2 ;//we assume that it takes 1.2 min per km
         }
 
         public double Distance
@@ -47,23 +47,3 @@ namespace dotNet5781_02_7224_0847
 
 
 
-
-
-
-
-
-//DateTime d = new DateTime();
-//d.Min.
-
-//private TimeSpan time;
-//public TimeSpan Time
-//{
-//    get { return time; }
-//    set
-//    {
-//        DateTime d1 = DateTime.Now;
-//        DateTime d2 = new DateTime(1,1,(int)distance+2017);//we used the distance so the num will turn out random each time\
-//        time = d1 - d2;
-//    }
-//}
-//private BusStation busStation = new BusStation();
