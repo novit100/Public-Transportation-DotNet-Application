@@ -52,20 +52,3 @@ namespace dotNet5781_02_7224_0847
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-//private BusStation() /////ctor   ///////////////// 
-//{
-//    BusStationKey =1;
-//}
