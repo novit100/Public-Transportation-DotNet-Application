@@ -156,11 +156,11 @@ namespace dotNet5781_02_7224_0847
             if (key1Index == -1 || key2Index == -1)//one or two of the stations werent found
                 throw new BusException("ERROR! one or two of the stations werent found");
 
-            double time = 0;
+            float time = 0;
 
             for (int i = key1Index +1; i <= key2Index; i++)
             {
-                time += Stations[i].TimeInMin;
+                time += (float) Stations[i].TimeInMin;
             }
             return time;
         }

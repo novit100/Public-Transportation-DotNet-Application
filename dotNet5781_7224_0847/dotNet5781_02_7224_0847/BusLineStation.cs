@@ -33,7 +33,7 @@ namespace dotNet5781_02_7224_0847
 
         public double TimeInMin
         {
-            get; private set;
+            get;  private set;
         }
 
     }
