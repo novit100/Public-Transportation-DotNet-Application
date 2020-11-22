@@ -92,24 +92,6 @@ press 4- Jerusalem
             buses.Add(bus);//add the new bus to the collection
         }
 
-        //public void deleteBusFromCollection()
-        //{
-        //    Console.WriteLine("please enter the bus line you want to delete from the collection: ");
-        //    int delbusLine = ReceiveInt();
-        //    bool flag = false;
-        //    foreach  (BusLine item in buses)
-        //    {
-        //        if (item.busLine == delbusLine)
-        //        {
-        //            buses.Remove(item);//it will remove the bus line to both directions
-        //            flag = true;
-        //        }
-        //    }
-        //    if (!flag)
-        //        throw new BusException("no such bus found\n");
-        //}
-
-
         public void deleteBusFromCollection()
         {
             Console.WriteLine("please enter the bus line you want to delete from the collection: ");
@@ -171,13 +153,16 @@ press 4- Jerusalem
         {
             Console.WriteLine("please enter the bus line you want to add a station to: ");
             int bus = ReceiveInt();
-            bool flag = false; 
-            
+            bool flag = false;
+
+            int direction = 1;
             foreach (BusLine BusLineItem in buses)//for each bus line in the collection
             {
                 if(BusLineItem.busLine==bus)
                 {
+                    Console.WriteLine("add station to bus "+bus+" to direction "+direction);
                     BusLineItem.AddBusStationToBusLine();
+                    direction++;
                     flag = true;
                 }
             }

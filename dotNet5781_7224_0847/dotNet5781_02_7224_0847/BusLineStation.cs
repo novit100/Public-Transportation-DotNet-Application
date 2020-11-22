@@ -23,7 +23,7 @@ namespace dotNet5781_02_7224_0847
                 double lon = r.NextDouble() * (35.5 - 34.3) + 34.3;
                 Distance = Math.Sqrt(Math.Pow(lat - Latitude, 2) - Math.Pow(lon - Longitude, 2));
             }
-            TimeInMin = Distance * 1.2;//we assume that it takes 1.2 min per km
+            TimeInMin = Distance * 1.2 *10;//we assume that it takes 1.2 min per km
         }
 
         public double Distance
@@ -36,12 +36,6 @@ namespace dotNet5781_02_7224_0847
             get; private set;
         }
 
-        //public override string ToString()
-        //{
-        //    string s1 = base.ToString(); //callind the tostring of BusStation
-        //    string s2 = "distance from last station: " + Distance +" km"+ " travel time from last station " + TimeInSec+" seconds";
-        //    return " " + s1+ "\n" +s2 + "\n";
-        //}
     }
 }
 

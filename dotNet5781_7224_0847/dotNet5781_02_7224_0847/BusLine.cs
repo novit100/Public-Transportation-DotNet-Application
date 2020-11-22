@@ -158,7 +158,7 @@ namespace dotNet5781_02_7224_0847
 
             double time = 0;
 
-            for (int i = key1Index + 1; i < key2Index; i++)
+            for (int i = key1Index +1; i <= key2Index; i++)
             {
                 time += Stations[i].TimeInMin;
             }
@@ -169,55 +169,18 @@ namespace dotNet5781_02_7224_0847
         {
             List<BusLineStation> stat = new List<BusLineStation>();
             BusLineStation first = new BusLineStation(key1, true);
-            BusLineStation last = new BusLineStation(key2, false);
             stat.Add(first);
-            stat.Add(last);
 
-            int f = 0;
+            int f = 1;
 
-            for (int i = indexkey1; i <= indexkey2; i++)
+            for (int i = indexkey1+1; i <= indexkey2; i++)
             {
                 stat.Insert(f, myBus.Stations[i]);
                 f++;
             }
-            BusLine bus = new BusLine() { Stations = stat, busLine = myBus.busLine, FirstStation = first, LastStation = last, Area = myBus.Area };
+            BusLine bus = new BusLine() { Stations = stat, busLine = myBus.busLine, FirstStation = first, LastStation = stat[indexkey2], Area = myBus.Area };
             return bus;
         }
-
-        //private BusLine subPath(int key1, int key2)
-        //{
-        //    if (key1 == key2)//same station
-        //        throw new BusException("empty path");
-
-        //    int key1Index = -1;
-        //    int key2Index = -1;
-
-        //    for (int i = 0; i < Stations.Count; i++)
-        //    {
-        //        if (Stations[i].BusStationKey == key1)
-        //            key1Index = i;
-        //        if (Stations[i].BusStationKey == key2)
-        //            key2Index = i;
-        //    }
-
-        //    if (key1Index == -1 || key2Index == -1)//one or two of the stations werent found
-        //        throw new BusException("ERROR! one or two of the stations werent found");
-
-        //    List<BusLineStation> stats = new List<BusLineStation>();//a new list of BusLineStations to initialize
-
-        //    int f = 0;
-        //    for (int i = key1Index + 1; i < key2Index; i++)
-        //    {
-        //        stats.Insert(f, Stations[i]);
-        //        f++;
-        //    }
-        //    BusLineStation first = new BusLineStation(stats[0].BusStationKey, true);
-        //    BusLineStation last = new BusLineStation(stats[stats.Count-1].BusStationKey, false);
-
-        //    BusLine bus = new BusLine() {Stations=stats, area= this.area, busLine=this.busLine, FirstStation=first, LastStation= last };
-        //    return bus;
-        //}
-
 
         private int ReceiveInt()
         {
@@ -240,17 +203,4 @@ namespace dotNet5781_02_7224_0847
     }
 }
 
-//public int CompareTo(BusLine other)
-//{
-//    double sum = 0.0;
-//    double sum1 = 0.0;
-//    foreach (BusLineStation item in Stations)
-//    {
-//        sum += item.TimeInSec;
-//    }
-//    foreach (BusLineStation item in other)
-//    {
-//        sum1 += item.TimeInSec;
-//    }
-//    return sum.CompareTo(sum1);
-//}
+
