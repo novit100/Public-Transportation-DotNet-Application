@@ -55,9 +55,16 @@ namespace dotNet5781_02_7224_0847
         {
             Console.WriteLine("please enter the LOCATION IN PATH of the bus station that you want to add: ");
             int location = ReceiveInt();
+
+            //we assume that we dont allow changing the 1st or last bus station in a bus, 
+            //since they are imporrtant to distinguish the bus
             if (location == 1||location==Stations.Count+1)
-                throw new BusException("cannot change the first or last  bus station");
-            
+                throw new BusException("cannot change the first or last bus station");
+
+            if(location<1 || location>Stations.Count)//location 1 means the 1st station (index 0)
+            {
+                throw new BusException("invalid location, cannot insert");
+            }
 
             Console.WriteLine("please enter the CODE of the bus station that you want to add: ");
             int key = ReceiveInt();
@@ -68,19 +75,10 @@ namespace dotNet5781_02_7224_0847
                
             }
             BusLineStation stat;
+            stat = new BusLineStation(key, false);
+            Stations.Insert(location - 1, stat);
+            
 
-            if (location == 1)//if its the 1st station in the bus-line path
-            {
-                stat = new BusLineStation(key, true);
-                Stations.Insert(location - 1, stat);
-            }
-            else if (location>0 && location <= Stations.Count+1)//if the wanted location to insert is smaller up to bigger in 1 then the number of stations
-            {
-                stat = new BusLineStation(key, false);
-                Stations.Insert(location - 1, stat);
-            }
-            else
-                throw new BusException("invalid location, cannot insert");
         }
         ///////////////////////////////////////////////////////
         public void deleteBusStationFromBusLine()

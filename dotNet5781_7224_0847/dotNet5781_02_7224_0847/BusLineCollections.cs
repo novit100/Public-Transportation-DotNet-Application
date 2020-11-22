@@ -42,8 +42,6 @@ namespace dotNet5781_02_7224_0847
 
             }
 
-
-
             Console.WriteLine("Enter the key of the first station");
             int key1 = ReceiveInt();
             Console.WriteLine("Enter the key of the last station");
@@ -94,17 +92,36 @@ press 4- Jerusalem
             buses.Add(bus);//add the new bus to the collection
         }
 
+        //public void deleteBusFromCollection()
+        //{
+        //    Console.WriteLine("please enter the bus line you want to delete from the collection: ");
+        //    int delbusLine = ReceiveInt();
+        //    bool flag = false;
+        //    foreach  (BusLine item in buses)
+        //    {
+        //        if (item.busLine == delbusLine)
+        //        {
+        //            buses.Remove(item);//it will remove the bus line to both directions
+        //            flag = true;
+        //        }
+        //    }
+        //    if (!flag)
+        //        throw new BusException("no such bus found\n");
+        //}
+
+
         public void deleteBusFromCollection()
         {
             Console.WriteLine("please enter the bus line you want to delete from the collection: ");
             int delbusLine = ReceiveInt();
             bool flag = false;
-            foreach  (BusLine item in buses)
+            foreach (BusLine item in buses)
             {
                 if (item.busLine == delbusLine)
                 {
                     buses.Remove(item);//it will remove the bus line to both directions
                     flag = true;
+                    return;//stop the func.
                 }
             }
             if (!flag)
@@ -172,13 +189,24 @@ press 4- Jerusalem
         {
             Console.WriteLine("please enter the bus line you want to delete a station from: ");
             int bus = ReceiveInt();
+            int index = 0;
             foreach (BusLine BusLineItem in buses)//for each bus line in the collection
             {
                 if (BusLineItem.busLine == bus)
                 {
                     BusLineItem.deleteBusStationFromBusLine();
+                    break;
+                }
+                index++;
+            }
+            if (buses.Count != 0)//if not an empty collection
+            {
+                if (buses[index].Stations.Count == 0)//if all buses of a certain bus were deleted
+                {
+                    buses.Remove(buses[index]);//delete the whole bus from collection
                 }
             }
+            
         }
 
         public void returnSortedPathes(int key1, int key2)

@@ -13,7 +13,7 @@ namespace dotNet5781_02_7224_0847
     {
         public BusStation(int key)
         {
-            if (num > 999999 || num < 0)
+            if (key > 999999 || key < 0)
                 throw new BusException("invalid number of digits for the key was insertd");
             BusStationKey = key;
 
@@ -23,7 +23,6 @@ namespace dotNet5781_02_7224_0847
         }
         private static Random r = new Random();
 
-        private static int num = 0;
         ////////////////////////////////////////
         public int BusStationKey//the code of the bus syation
         {
