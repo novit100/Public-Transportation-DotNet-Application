@@ -39,7 +39,7 @@ namespace dotNet5781_02_7224_0847
                     to add a new bus stop press 2
                     to to delete a bus line press 3
                     to to delete a bus station from a bus line path press 4
-                    to search buses that approach a certain station press 5
+                    to search for buses that get to a certain station press 5
                     to search for a direct path between two bus stations press 6
                     for printing all of the bus lines press 7
                     for printing the whole list of stations and the bus line that approach them press 8
@@ -101,7 +101,7 @@ namespace dotNet5781_02_7224_0847
                     case Options.SearchBuses:
                         try //5
                         {
-                            Console.WriteLine("please enter the key of the bus station you want to serch");
+                            Console.WriteLine("please enter the key of the bus station you want to search buses that get to");
                             int key = ReceiveInt();
                             coll.busesPassInStation(key);
                         }
@@ -162,6 +162,7 @@ namespace dotNet5781_02_7224_0847
                             {
                                 Console.WriteLine("bus station " + item.BusStationKey+":");
                                 coll.busesPassInStation(item.BusStationKey);
+                                Console.WriteLine("\n");
                             }
                         }
                         catch(BusException ex)
@@ -189,11 +190,6 @@ namespace dotNet5781_02_7224_0847
             }
             return x;
         }
-
-        //public static void initialize(BusLineCollections coll)
-        //{
-            
-        //}
 
     }
 }
