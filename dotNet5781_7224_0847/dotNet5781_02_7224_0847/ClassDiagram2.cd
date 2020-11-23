@@ -3,7 +3,7 @@
   <Class Name="dotNet5781_02_7224_0847.BusLine" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="4.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIBAAgIEAAAAAQEAAAAAAAAAEAgAAAACQAAAAAAAAE=</HashCode>
+      <HashCode>AAIBAAgIEAAABBQEAAAAIiAAAEAgAAAAAQAAAQAAAAE=</HashCode>
       <FileName>BusLine.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -11,28 +11,28 @@
   <Class Name="dotNet5781_02_7224_0847.BusLineStation" Collapsed="true">
     <Position X="0.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAABAAAABAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAABAAAAAQA=</HashCode>
       <FileName>BusLineStation.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="dotNet5781_02_7224_0847.BusStation" Collapsed="true">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAACAAIEAAAAAEAAAIAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAIEAAAAAEAAAIAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
       <FileName>BusStation.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="dotNet5781_02_7224_0847.BusException" Collapsed="true">
     <Position X="3" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>MyExceptions.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BusExceptions.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="dotNet5781_02_7224_0847.Program" Collapsed="true">
+  <Class Name="dotNet5781_02_7224_0847.Program">
     <Position X="4.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>

@@ -26,8 +26,6 @@ namespace dotNet5781_02_7224_0847
 
             BusLineCollections coll = new BusLineCollections();
 
-            //initialize(coll);
-
             int num = -1;
             Options op;
 
