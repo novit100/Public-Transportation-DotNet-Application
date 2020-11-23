@@ -278,7 +278,7 @@ press 4- Jerusalem
                 }
                 if(flag)//if one of the bus stations is "key", the bus passes in that station
                 {
-                    Console.WriteLine("bus line "+BusLineItem.busLine+" passes in the station\n");
+                    Console.WriteLine("bus line "+BusLineItem.busLine+" passes in the station");
                 }
             }
             if (!ifSomeonePasses)//if no bus passes the station
@@ -353,7 +353,7 @@ press 4- Jerusalem
                 {
                     //the bus contains the stations but not to the wanted direction
                 }
-                if(indkey1<indkey2)
+                if(indkey1<indkey2 && indkey1!=-1 && indkey2!=-1)//both stations found in the bus, and to the right direction
                 {
                     BusLine bus = BusLineItem.returnSubPath(key1, key2, indkey1, indkey2, BusLineItem);
                     sortedCollection.Add(bus);              
@@ -362,13 +362,14 @@ press 4- Jerusalem
 
             if (sortedCollection.Count == 0)
             {
-                throw new BusException("no buses pass from station " + key1 + " to station " + key2);
+                throw new BusException("unknown stations, or no buses pass from station " + key1 + " to station " + key2);
             }
             sortedCollection.Sort();//since we initialized icomparable interface in busLine and it compares two buses by the time, it sorts buses by the time
 
             foreach (BusLine item in sortedCollection)
             {
-                Console.WriteLine(item.ToString()+"\n"+"travel time: "+item.time(key1,key2)+" minutes\n");
+                Console.WriteLine(item.ToString()+"\n"+"travel time: "+item.time(key1,key2));
+                Console.WriteLine("\n");
             }
         }
 

@@ -21,9 +21,9 @@ namespace dotNet5781_02_7224_0847
             {
                 double lat = r.NextDouble() * (33.3 - 31) + 31;
                 double lon = r.NextDouble() * (35.5 - 34.3) + 34.3;
-                Distance = Math.Sqrt(Math.Pow(lat - Latitude, 2) - Math.Pow(lon - Longitude, 2));
+                Distance = Math.Sqrt(Math.Pow(lat - Latitude, 2) + Math.Pow(lon - Longitude, 2));
             }
-            TimeInMin = Distance * 1.2 ;//we assume that it takes 1.2 min per km
+            Time = new TimeSpan(r.Next(0,1), r.Next(0,59),r.Next(0,59));//we assume that it doesnt take more than 1:59:59 time btween 2 stations
         }
 
         public double Distance
@@ -31,7 +31,7 @@ namespace dotNet5781_02_7224_0847
             get; private set;
         }
 
-        public double TimeInMin
+        public TimeSpan Time
         {
             get; private set;
         }

@@ -85,16 +85,25 @@ namespace dotNet5781_02_7224_0847
         {
             Console.WriteLine("please enter the key of the bus station that you intend to delete: ");
             int key = ReceiveInt();
+
+            if(!exist(key))
+                throw new BusException("ERROR! bus station does not exist in the bus-line path");
+
+            int index = 0;
             foreach (BusLineStation item in Stations)
             {
                 if (item.BusStationKey == key)
-                { Stations.Remove(item); return; }
+                    break;
+                index++;
             }
-            throw new BusException("ERROR! bus station does not exist in the bus-line path");
+            if(index==0||index==Stations.Count-1)
+                throw new BusException("ERROR! not allowed to delete the first or the last stations! they ditinguish the bus!");
+           
+            Stations.Remove(Stations[index]); 
         }
         //////////////////////////////////////////////////////
         
-        private bool exist(int key)
+        public bool exist(int key)
         {
             foreach(BusLineStation item in Stations)
             {
@@ -137,10 +146,10 @@ namespace dotNet5781_02_7224_0847
             return dis;
         }
 
-        public double time(int key1, int key2)
+        public TimeSpan time(int key1, int key2)
         {
             if (key1 == key2)//same station
-                return 0;
+                return new TimeSpan(0,0,0);
 
             int key1Index = -1;
             int key2Index = -1;
@@ -156,13 +165,13 @@ namespace dotNet5781_02_7224_0847
             if (key1Index == -1 || key2Index == -1)//one or two of the stations werent found
                 throw new BusException("ERROR! one or two of the stations werent found");
 
-            double time = 0;
+            TimeSpan t=new TimeSpan(0,0,0);
 
             for (int i = key1Index +1; i <= key2Index; i++)
             {
-                time += Stations[i].TimeInMin;
+                t += Stations[i].Time;
             }
-            return time;
+            return t;
         }
 
         public BusLine returnSubPath(int key1, int key2, int indexkey1, int indexkey2, BusLine myBus)
@@ -178,7 +187,7 @@ namespace dotNet5781_02_7224_0847
                 stat.Insert(f, myBus.Stations[i]);
                 f++;
             }
-            BusLine bus = new BusLine() { Stations = stat, busLine = myBus.busLine, FirstStation = first, LastStation = stat[indexkey2], Area = myBus.Area };
+            BusLine bus = new BusLine() { Stations = stat, busLine = myBus.busLine, FirstStation = first, LastStation = stat[stat.Count-1], Area = myBus.Area };
             return bus;
         }
 
