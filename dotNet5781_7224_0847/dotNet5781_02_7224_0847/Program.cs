@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 /// this project is programmed to be a platform which we will be able to actualize a system 
 /// of buses.
 /// we assumed in our project that the user does not change the first or last 
-/// bus stop, because they are what define the essence of the specific bus line.
-/// also we assume that the time is a function of distance. 
+/// bus stop, because they are what define the essence of the specific bus line. 
 /// we assume that 2 stations with the same key can appear in 2 buses with different areas,
 /// since there are interurbun buses, that statrt from the same city but travel to different areas.
 /// 
