@@ -6,7 +6,30 @@
         xmlns:local="clr-namespace:dotNet5781_03A_7224_0847"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+    <Grid Name ="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="400*"/>
+        </Grid.RowDefinitions>
+        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
+VerticalAlignment="Stretch" Width="auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions >
+            <ComboBox Grid.ColumnSpan="2" Grid.Column="1" Margin="0.6,0,198.2,0.4">
+                <ComboBox Name ="cbBusLineCollections" HorizontalAlignment="Stretch" Margin="31.6,11,0,0" VerticalAlignment="Stretch" Width="119" Grid.Column="1"/>
+            </ComboBox>
+            <TextBox Name="tbArea" Grid.Column="2" HorizontalAlignment="Stretch" Margin="198.2,0,-0.4,0.4" TextWrapping="Wrap" Text="bhcbj" VerticalAlignment="Stretch" Grid.ColumnSpan="2" FontSize="20" FontFamily="Segoe Print"/>
+            <Label Content="Bus line number :" HorizontalAlignment="Left" VerticalAlignment="Top" Height="46" Width="198" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
+            <Label Content="               Area :" HorizontalAlignment="Left" Margin="0.2,0,0,0" VerticalAlignment="Top" Height="46" Width="198" Grid.Column="2" FontWeight="Bold" FontSize="18" FontFamily="Segoe Print"/>
+
+        </Grid>
+        <ListBox Name ="IbBusLineStations" HorizontalAlignment="Left" Height="100" Margin="414,184.6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="100" ItemsSource="{Binding}"/>
     </Grid>
 </Window>
+    
+    
+    
