@@ -20,7 +20,7 @@ namespace dotNet5781_02_7224_0847
 
         public BusLineCollections()//ctor that initializes 10 buses with 40 stations
         {
-            buses = new List<BusLine>();//collection allready contains 10 buses (40 stations)
+            buses = new List<BusLine>();
 
             //1
             List<BusLineStation> stat = new List<BusLineStation>();
