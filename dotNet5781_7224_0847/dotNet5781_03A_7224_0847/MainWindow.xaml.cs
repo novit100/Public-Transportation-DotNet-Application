@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace dotNet5781_03A_7224_0847
 {
     /// <summary>
@@ -20,8 +21,9 @@ namespace dotNet5781_03A_7224_0847
     /// </summary>
     public partial class MainWindow : Window
     {
+       private BusLineCollections busLineColl=new BusLineCollections();
         public MainWindow()
-        {
+        { 
             InitializeComponent();
         }
     }
