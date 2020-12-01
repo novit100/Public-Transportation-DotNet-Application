@@ -81,10 +81,5 @@ namespace dotNet5781_03A_7224_0847
             }
 
         }
-
-        private void lbBusLineStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }

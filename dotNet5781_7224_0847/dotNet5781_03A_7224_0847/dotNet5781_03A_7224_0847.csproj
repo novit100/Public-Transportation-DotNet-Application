@@ -115,5 +115,8 @@
   <ItemGroup>
     <Resource Include="busesImage2.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="kavimIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
