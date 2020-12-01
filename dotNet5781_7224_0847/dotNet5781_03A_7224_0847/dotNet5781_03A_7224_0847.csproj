@@ -106,5 +106,8 @@
   <ItemGroup>
     <Resource Include="download.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="busesImage.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

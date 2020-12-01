@@ -5,10 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03A_7224_0847"
         mc:Ignorable="d"
-        Title="Buses Display" Height="450" Width="800" Icon="20170814_162753 (2).jpg" SizeToContent="WidthAndHeight" WindowState="Maximized">
-    <Window.Background>
-        <ImageBrush/>
-    </Window.Background>
+        Title="Buses Display" Height="450" Width="800" Icon="kavimIcon.png">
     <Grid Name ="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>
@@ -22,20 +19,17 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <Label Content="Bus line number :" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="46" Width="198" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18" Background="#FF0379B5"/>
+            <Label Content="Bus line number :" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18" Background="#FF0363B5"/>
             <ComboBox x:Name="cbBusLines" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="ComboBox_SelectionChanged" />
-            <Label Content="               Area :" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="46" Width="198" FontWeight="Bold" FontSize="18" FontFamily="Segoe Print" Background="#FF0073AD"/>
+            <Label Content="               Area :" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontWeight="Bold" FontSize="18" FontFamily="Segoe Print" Background="#FF0E59B6"/>
             <TextBox x:Name="tbArea" Grid.Column="3" Text ="{Binding Path=Area}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap" FontSize="20" FontFamily="Segoe Print"/>
 
         </Grid>
-        <ListBox x:Name ="lbBusLineStations" Grid.Row ="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0.6,-0.4,0" SelectionChanged="lbBusLineStations_SelectionChanged">
-            <ListBox.Effect>
-                <BlurEffect/>
-            </ListBox.Effect>
+        <ListBox x:Name="lbBusLineStations" Grid.Row ="1" ItemsSource="{Binding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <ListBox.Background>
-                <ImageBrush ImageSource="download.jpg" Opacity="0.35"/>
+                <ImageBrush ImageSource="busesImage.jpg"/>
             </ListBox.Background>
-            <Button/>
+
         </ListBox>
     </Grid>
 </Window>
