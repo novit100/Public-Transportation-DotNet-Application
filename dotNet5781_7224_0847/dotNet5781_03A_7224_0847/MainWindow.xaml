@@ -26,6 +26,9 @@
 
         </Grid>
         <ListBox Grid.Row ="1" ItemsSource="{Binding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <ListBox.Background>
+                <ImageBrush ImageSource="הורדה.png"/>
+            </ListBox.Background>
         </ListBox>
     </Grid>
 </Window>
