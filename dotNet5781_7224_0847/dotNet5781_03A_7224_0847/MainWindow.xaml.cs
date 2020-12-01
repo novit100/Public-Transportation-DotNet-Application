@@ -71,7 +71,7 @@ namespace dotNet5781_03A_7224_0847
                     stat.Add(st);
                 }
 
-                Areas ar = (Areas)r.Next(0, 4);
+                Areas ar = (Areas)r.Next(0, 5);//enum of areas
 
                 BusLine bus = new BusLine() { Stations = stat, busLine = busLineNum, FirstStation = first, LastStation = stat[stat.Count-1], Area = ar };
 
