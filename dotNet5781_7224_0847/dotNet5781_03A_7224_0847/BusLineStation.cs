@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 /// BusLineStation inherites from busstation and adds a few more features 
 /// so it will be able to fit in a path.
 /// </summary>
-
 namespace dotNet5781_03A_7224_0847
 {
     class BusLineStation:BusStation

@@ -1,36 +1,30 @@
-﻿<Window x:Class="dotNet5781_03A_7224_0847.MainWindow"
+﻿<Window x:Class="dotNet5781_03A_7224_0847.BusesDisplay"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03A_7224_0847"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Buses Display" Height="450" Width="800">
     <Grid Name ="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>
             <RowDefinition Height="400*"/>
         </Grid.RowDefinitions>
         <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
-VerticalAlignment="Stretch" Width="auto">
+            VerticalAlignment="Stretch" Width="auto">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <ComboBox x:Name="cbBusLines" Grid.ColumnSpan="2" Grid.Column="1" Margin="0.6,0,198.2,0.4" SelectionChanged="ComboBox_SelectionChanged">
-                <ComboBox HorizontalAlignment="Stretch" Margin="31.6,11,0,0" VerticalAlignment="Stretch" Width="119" Grid.Column="1"/>
-            </ComboBox>
-            <TextBox x:Name="tbArea" Grid.Column="2" HorizontalAlignment="Stretch" Margin="198.2,0,-0.4,0.4" TextWrapping="Wrap" Text="bhcbj" VerticalAlignment="Stretch" Grid.ColumnSpan="2" FontSize="20" FontFamily="Segoe Print"/>
-            <Label Content="Bus line number :" HorizontalAlignment="Left" VerticalAlignment="Top" Height="46" Width="198" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
-            <Label Content="               Area :" HorizontalAlignment="Left" Margin="0.2,0,0,0" VerticalAlignment="Top" Height="46" Width="198" Grid.Column="2" FontWeight="Bold" FontSize="18" FontFamily="Segoe Print"/>
-
-            <ListBox x:Name ="lbBusLineStations" HorizontalAlignment="Left" Height="350" Margin="0,51,0,-354.333" VerticalAlignment="Top" Width="596" ItemsSource="{Binding}" Grid.ColumnSpan="4"/>
-            <Button Content="Button" HorizontalAlignment="Left" Margin="449,346.333,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75"/>
+            <Label Content="Bus line number :" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="46" Width="198" FontFamily="Segoe Print" FontWeight="Bold" FontSize="18"/>
+            <ComboBox x:Name="cbBusLines" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectionChanged="ComboBox_SelectionChanged" />
+            <Label Content="               Area :" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="46" Width="198" FontWeight="Bold" FontSize="18" FontFamily="Segoe Print"/>
+            <TextBox x:Name="tbArea" Grid.Column="3" Text ="{Binding Path=Area}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap" FontSize="20" FontFamily="Segoe Print"/>
+            
         </Grid>
+        <ListBox x:Name ="lbBusLineStations" Grid.Row ="1" ItemsSource="{Binding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
     </Grid>
 </Window>
-    
-    
-    

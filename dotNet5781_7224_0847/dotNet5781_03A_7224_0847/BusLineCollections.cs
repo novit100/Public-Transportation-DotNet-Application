@@ -120,16 +120,16 @@ press 4- Jerusalem
         {
             get
             {
-                foreach (BusLine item in buses)
-                {
-                    if (item.busLine == busLineNum)
-                        return item;
-                }
-                return null;//if didnt find it
+                return buses.Find(item => item.busLine == busLineNum);
+                //foreach (BusLine item in buses)
+                //{
+                //    if (item.busLine == busLineNum)
+                //        return item;
+                //}
             }
             set
             {
-  
+
             }
         }
 
