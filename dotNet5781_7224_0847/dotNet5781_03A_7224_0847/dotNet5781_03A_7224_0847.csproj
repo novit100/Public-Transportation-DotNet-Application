@@ -101,7 +101,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="kavimIcon.png" />
+    <Resource Include="20170814_162753 %282%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="download.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="busesImage.jpg" />
