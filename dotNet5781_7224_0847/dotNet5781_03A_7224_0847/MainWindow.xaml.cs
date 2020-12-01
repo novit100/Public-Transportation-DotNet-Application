@@ -23,6 +23,7 @@ namespace dotNet5781_03A_7224_0847
         private BusLineCollections busLineColl;
         public BusesDisplay()
         {
+
             InitializeComponent();
             init();//func initialization that randomally adds 10 buses to coll from 15 available options
 
