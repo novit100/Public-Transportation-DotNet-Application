@@ -31,8 +31,12 @@ namespace dotNet5781_03B_7224_0847
             foreach (Bus bus in buses)
             {
                 bus.Start_d = new DateTime(r.Next(1, 30), r.Next(1, 12), r.Next(1997, 2020));
-                if (bus.Start_d.Year < 2018) {
+                if (bus.Start_d.Year < 2018)
+                {
+
                     bus.License_num = r.Next(1000000, 9999999);
+
+                }
 }
                 //last_care_d
                 //    Km;

@@ -8,7 +8,7 @@ namespace dotNet5781_03B_7224_0847
 {
     public enum Status
     {
-     READY_FOR_A_RIDE,DRIVING,FUELING,IN_CARE,NEED_CARE,NEED_FUEL//STATUS OF BUS
+     READY_FOR_A_RIDE,DRIVING,FUELING,IN_CARE//STATUS OF BUS
     }
     class Bus
     {
@@ -18,7 +18,7 @@ namespace dotNet5781_03B_7224_0847
         public long Km { get; set; }                    //kilometrage of one bus
         public int Km_since_care { get; set; }
         public int Km_since_fuel { get; set; }
-       private Status status { get; set; }
+        public Status status { get; set; }
         //    private static void fuelOrcare()
         //    {
         //        Console.WriteLine("please enter the licence number:");
