@@ -80,7 +80,22 @@ namespace dotNet5781_03B_7224_0847
                     condition[2] = i;//THE CONDITION IN THE THIRD INDEX OF THE ARRAY EXISTS 
                 }
             }
-            if (condition[0] != condition[1] != condition[2] != -1) { }
+            if (condition[0] != condition[1]&& condition[1] != condition[2] && condition[0] != condition[2]) {
+                if(condition[0]==-1|| condition[1]==-1|| condition[2] ==-1) {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        if (condition[j] == -1)
+                        {
+                            if (j == 0)//year since care
+                                buses[r.Next(0, 2)].Start_d.Year;
+                            if (j == 1)
+                                buses[r.Next(4, 6)].Km_since_care = 19995;
+                        }
+
+                    }
+                
+            }
+            }
 
         }
 
