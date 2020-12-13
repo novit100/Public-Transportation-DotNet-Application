@@ -72,7 +72,7 @@ namespace dotNet5781_01_7224_0847
             } while (!checkLicenseNum(startDate, licenceNumber));
 
 
-            buses.Insert(numBusesAdded, new Bus() { License_num = licenceNumber, Start_d = startDate, last_care_d = startDate, Km = 0, Km_since_care = 0, Km_since_fuel=0});  ;
+            buses.Insert(numBusesAdded, new Bus() { License_num = licenceNumber, Start_d = startDate, last_care_d = startDate, Km = 0, Km_since_care = 0, Km_since_fuel=0});  
             //default value of last care date= start date. if the user restarts it later, it becomes the updated date.
             //same with km since care and fuel=0, till the user updates them.
 
