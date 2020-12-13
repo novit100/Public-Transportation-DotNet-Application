@@ -15,9 +15,10 @@ using System.Windows.Shapes;
 
 namespace dotNet5781_03A_7224_0847
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+    /// <SUMMARY>
+    /// INTERACTION LOGIC FOR MAINWINDOW.XAML
+    /// </SUMMARY> 
+
     public partial class BusesDisplay : Window
     {
         private BusLineCollections busLineColl;//the collection of buses
