@@ -16,14 +16,14 @@ using System.Windows.Shapes;
 
 namespace dotNet5781_03B_7224_0847
 {
-   
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
         private static Random r = new Random(DateTime.Now.Millisecond);
-        private ObservableCollection<Bus> buses=new ObservableCollection<Bus>();
+        private ObservableCollection<Bus> buses = new ObservableCollection<Bus>();
 
 
         public MainWindow()
@@ -36,6 +36,7 @@ namespace dotNet5781_03B_7224_0847
 
         public void initBuses()
         {
+
             int indcond1 = r.Next(0, 2);//choose a random bus wich in it, a year past since last care
             int indcond2 = r.Next(3, 6);//choose a random bus wich in it, closley to 20000km
             int indcond3 = r.Next(7, 10);//choose a random bus wich in it, very few fuel
@@ -101,13 +102,13 @@ namespace dotNet5781_03B_7224_0847
 
         private void AddBus_Click(object sender, RoutedEventArgs e)
         {
-              Bus b1=new Bus();
-              AddBus win = new AddBus(b1);
-              win.ShowDialog();
-        
+            Bus b1 = new Bus() {status=Status.TRY_ME };
+            AddBus win = new AddBus(b1);
+            win.ShowDialog();
+        }
 
     }
-    }
+    
 }         
 //int[] condition = { -1, -1, -1 };//ALL THE CONDIYIONS ARE DIFAULTIVLY FALSE,IF A CONDITION IS TRUE-IT WILL ACSSESS A PLACE IN THE ARRAY WITH THE BUS INDEX
             //                                 //CONDITIONS[0]=a year past since last care
