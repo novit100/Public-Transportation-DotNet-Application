@@ -33,9 +33,17 @@
         </DataTemplate>
     </Window.Resources>
     <StackPanel>
-        <ListBox ItemsSource="{Binding}"
-           ItemTemplate="{StaticResource BusTemplate}"
-             HorizontalContentAlignment="Stretch" />
-        <Button x:Name="AddBus"  Content="add a bus" Click="AddBus_Click"/>
+        <ListBox ItemsSource="{Binding}" ItemTemplate="{StaticResource BusTemplate}" HorizontalContentAlignment="Stretch" />
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button x:Name="AddBus" Grid.Column="1" Content="add a bus" Click="AddBus_Click"/>
+        </Grid>
     </StackPanel>
 </Window>
