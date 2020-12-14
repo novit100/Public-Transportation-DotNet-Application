@@ -75,9 +75,9 @@ namespace dotNet5781_03B_7224_0847
                         newBus.last_care_d = new DateTime(newBus.last_care_d.Year - 1, newBus.last_care_d.Month, newBus.last_care_d.Day);
                     }
                 }
-                if (i == indcond2)//closley to 20000km
+                else if (i == indcond2)//closley to 20000km
                     newBus.Km_since_care = r.Next(19995, 20000);
-                if (i == indcond3)//very few fuel
+                else if (i == indcond3)//very few fuel
                     newBus.Km_since_fuel = r.Next(1175, 1200);
                 buses.Add(newBus);
             }

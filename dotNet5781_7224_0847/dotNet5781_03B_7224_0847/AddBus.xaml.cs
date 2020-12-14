@@ -33,7 +33,10 @@ namespace dotNet5781_03B_7224_0847
             bool flag = int.TryParse(str, out tmp);
             if (flag)//numbers only
             {
+                if (str.Length >= 7 && str.Length <= 8) { }
                 //regular initialization in set 
+                else
+                    MessageBox.Show("invalid license number! type again, in format xx-xxx-xx / xxx-xx-xxx / xxxxxxx / xxxxxxxx");
             }
             else//not only numbers, other caracters also
             {
