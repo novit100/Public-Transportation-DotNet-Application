@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_7224_0847"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="MainWindow" Height="450" Width="800" >
     <Window.Resources>
-        <DataTemplate x:Key="BusesListTemplate"
+        <DataTemplate x:Key="BusTemplate"
                   DataType="local:Bus">
             <Grid>
                 <Grid.RowDefinitions>
@@ -22,23 +22,20 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0"
-                   Text="First Name: " />
+                   Text="LicenseNumber:" />
                 <TextBlock Grid.Column="1"
-                   Text="{Binding Path=FirstName}" />
-                <TextBlock Grid.Column="2"
-                   Text="Last Name: " />
-                <TextBlock Grid.Column="3"
-                   Text="{Binding Path=LastName}" />
-                <CheckBox Grid.Column="4"
-                  Content="Is Lecturer?"
-                  IsEnabled="False"
-                  IsChecked="{Binding Path=IsLecturer}" />
+                   Text="{Binding Path=LicenseNumber}" />
+                <Button x:Name="FuelButton" Grid.Column="2" Content="fuel"/>
+                <Button x:Name="takeToRideButton" Grid.Column="3" Content="take to a ride"/>
+             
+             
             </Grid>
         </DataTemplate>
     </Window.Resources>
     <StackPanel>
         <ListBox ItemsSource="{Binding}"
-             ItemTemplate="{StaticResource BusesListTemplate}"
+           ItemTemplate="{StaticResource BusTemplate}"
              HorizontalContentAlignment="Stretch" />
+        <Button x:Name="AddBus"  Content="add a bus" Click="AddBus_Click"/>
     </StackPanel>
 </Window>
