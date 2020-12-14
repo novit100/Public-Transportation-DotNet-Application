@@ -20,17 +20,13 @@ namespace dotNet5781_03B_7224_0847
     /// </summary>
     public partial class AddBus : Window
     {
-
-        public AddBus()
+        Bus bus1;
+        public AddBus( Bus b1)
         {
             InitializeComponent();
-            this.DataContext = b1;
+            grid1.DataContext = b1;
+            bus1 = b1;
             
-        }
-        private Bus returnBussAdded()
-        {
-            Bus B2=;
-            return B2; 
         }
     }
 }

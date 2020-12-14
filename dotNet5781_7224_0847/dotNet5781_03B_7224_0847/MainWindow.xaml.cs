@@ -101,9 +101,9 @@ namespace dotNet5781_03B_7224_0847
 
         private void AddBus_Click(object sender, RoutedEventArgs e)
         {
-
-            AddBus win = new AddBus();
-            Bus b1 = win.returnBusAdded();
+            Bus b1 = new Bus() { status = Status.TRY_ME };//a new bus,try-me status unserted
+            buses.Add(b1);//adding the bus to the collection 
+            AddBus win = new AddBus(b1);//we sent the bus b1 to a new window we created named AddBus
             win.ShowDialog();
             
 
