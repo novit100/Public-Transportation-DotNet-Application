@@ -10,7 +10,7 @@ namespace dotNet5781_03B_7224_0847
     {
      TRY_ME  ,DRIVING  ,FUELING  ,IN_CARE  //STATUS OF BUS
     }
-    public class Bus
+  public  class Bus
     {
         public int LicenseNumber { get; set; }         //license number
         public DateTime Start_d { get; set; }           //starting activity day
@@ -18,7 +18,7 @@ namespace dotNet5781_03B_7224_0847
         public long Km { get; set; }                    //kilometrage of one bus
         public int Km_since_care { get; set; }
         public int Km_since_fuel { get; set; }
-        public Status status { get; set; }
+       public Status status { get; set; }
         //    private static void fuelOrcare()
         //    {
         //        Console.WriteLine("please enter the licence number:");
