@@ -1,0 +1,49 @@
+﻿<Window x:Class="Ex97_Style.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ex97_Style"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <Style x:Key="myButtonStyle"   TargetType="Button">
+            <Setter Property="FontSize"
+              Value="32" />
+            <Setter Property="FontFamily"
+              Value="Consolas" />
+            <Setter Property="FontWeight"
+              Value="Bold" />
+        </Style>
+    </Window.Resources>
+    <StackPanel>
+        <Button Style="{StaticResource myButtonStyle}"
+            Content="button 1" />
+        <Button Style="{StaticResource myButtonStyle}"
+            Content="button 2" />
+        <Button Style="{StaticResource myButtonStyle}"
+            Content="button 3" />
+    </StackPanel>
+    
+    
+    <!-- Implicit style
+    <Window.Resources>
+    <Style TargetType="Button">
+      <Setter Property="FontSize"
+              Value="32" />
+      <Setter Property="FontFamily"
+              Value="Consolas" />
+      <Setter Property="FontWeight"
+              Value="Bold" />
+    </Style>
+  </Window.Resources>
+  <StackPanel>
+    <Button Content="button 1" />
+    <Button Content="button 2" />
+    <Button Content="button 3" />
+  </StackPanel>
+
+    
+    -->
+
+</Window>

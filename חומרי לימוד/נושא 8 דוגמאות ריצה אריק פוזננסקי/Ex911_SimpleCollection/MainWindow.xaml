@@ -1,0 +1,46 @@
+﻿<Window x:Class="Ex911_SimpleCollection.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ex911_SimpleCollection"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="50*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="103*"/>
+            <RowDefinition Height="316*"/>
+            <RowDefinition Height="103*"/>
+            <RowDefinition Height="316*"/>
+        </Grid.RowDefinitions>
+        
+<ListBox x:Name="lbFromXML" HorizontalAlignment="Stretch"  Grid.Row="1" VerticalAlignment="Stretch" SelectionChanged="lbFromXML_SelectionChanged" >
+    <ListBox.Items>
+        <ListBoxItem Content="Item 1 from XML" />
+        <ListBoxItem Content="Item 2 from XML" />
+        <ListBoxItem Content="Item 3 from XML" />
+    </ListBox.Items>
+</ListBox>
+
+<ListBox x:Name="lbFromCode" SelectionMode="Multiple" HorizontalAlignment="Stretch"   Grid.Row="3" VerticalAlignment="Stretch" />
+
+<ComboBox x:Name="cbFromXML" Grid.Column="1" HorizontalAlignment="Left" Margin="86,33,0,0" Grid.Row="1" VerticalAlignment="Top" Width="180" Height="38">
+    <ComboBox.Items>
+
+        <ComboBoxItem Content="Item 1 from XML" />
+        <ComboBoxItem Content="Item 2 from XML" />
+        <ComboBoxItem Content="Item 3 from XML" />
+    </ComboBox.Items>
+
+</ComboBox>
+
+<ComboBox x:Name="cbFromCode" Grid.Column="1" HorizontalAlignment="Left" Margin="86,42,0,0" Grid.Row="3" VerticalAlignment="Top" Width="180" Height="38" SelectionChanged="cbFromCode_SelectionChanged"/>
+        
+        <Label Content="ListBox Samples" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" FontSize="20" FontWeight="Bold"/>
+        <Label Content="ComboBox Samples" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" FontSize="20" FontWeight="Bold" Grid.Column="1" Margin="64,0,0,0"/>
+    </Grid>
+</Window>

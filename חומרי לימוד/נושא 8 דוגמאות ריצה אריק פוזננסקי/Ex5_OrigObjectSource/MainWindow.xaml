@@ -1,0 +1,26 @@
+﻿<Window x:Class="Ex5_OrigObjectSource.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ex5_OrigObjectSource"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Height="350"
+        Width="525">
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel.Resources>
+                <local:MyData x:Key="mySource"
+                      User="Arik2"
+                      Password="654321" />
+            </StackPanel.Resources>
+            <TextBlock Text="User: " />
+            <TextBox Text="{Binding Source={StaticResource mySource}, Path=User}" />
+            <TextBlock Text="Password: " />
+            <TextBox Text="{Binding Source={StaticResource mySource}, Path=Password}" />
+        </StackPanel>
+
+    </StackPanel>
+
+</Window>
