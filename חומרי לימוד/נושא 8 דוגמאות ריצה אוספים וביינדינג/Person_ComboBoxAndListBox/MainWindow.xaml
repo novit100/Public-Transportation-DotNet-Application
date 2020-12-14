@@ -1,0 +1,97 @@
+﻿<Window x:Class="Person_ComboBoxAndListBox.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Person_ComboBoxAndListBox"
+        mc:Ignorable="d"
+                Title="ComboBox and ListBox Samples" Height="962.322" Width="997.635">
+
+    <Window.Resources>
+        <DataTemplate x:Key="OnePersonTemplate" DataType="local:Person">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="ID:"  />
+                <TextBlock Grid.Column="1" Text="{Binding Path=ID}"   />
+                <TextBlock Grid.Column="2" Text="Name:"   />
+                <TextBlock Grid.Column="3" Text="{Binding Path=Name}"  />
+                <TextBlock Grid.Column="4" Text="Status:"  />
+                <TextBlock Grid.Column="5" Text="{Binding Path=PersonalStatus}"   />
+                <Button Grid.Column="6" Content="ShowFull" Margin="10,10,10,10"  Click="Button_Click_1" />
+
+            </Grid>
+        </DataTemplate>
+
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="50*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="100*"/>
+
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Fill from XAML" Grid.Row="0" HorizontalAlignment="Left" Margin="21,10,0,0" VerticalAlignment="Top" Height="27" Width="151"/>
+        <ComboBox x:Name="cb0" HorizontalAlignment="Left" Margin="21,42,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBox.Items>
+                <ComboBoxItem Content="Item 1 from XML" />
+                <ComboBoxItem Content="Item 2 from XML" />
+                <ComboBoxItem Content="Item 3 from XML" />
+            </ComboBox.Items>
+        </ComboBox>
+        <ListBox x:Name="lb0" HorizontalAlignment="Left" Height="77" Margin="174,42,0,0" VerticalAlignment="Top" Width="135">
+            <ListBox.Items>
+                <ListBoxItem Content="Item 1 from XML" />
+                <ListBoxItem Content="Item 2 from XML" />
+                <ListBoxItem Content="Item 3 from XML" />
+            </ListBox.Items>
+        </ListBox>
+
+        <Label Content="Fill from C#: Items.Add()" Grid.Row="1" HorizontalAlignment="Left" Margin="21,10,0,0" VerticalAlignment="Top" Height="27" Width="151"/>
+        <ComboBox x:Name="cb1" HorizontalAlignment="Left" Margin="21,43,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+        <ListBox x:Name="lb1" HorizontalAlignment="Left" Height="81" Margin="174,43,0,0" Grid.Row="1" VerticalAlignment="Top" Width="135"/>
+
+        <Label Content="Fill from C#: ItemsSource = Enum.GetValues()" Grid.Row="2" HorizontalAlignment="Left" Margin="21,10,0,0" VerticalAlignment="Top" Height="27" Width="252"/>
+        <ComboBox x:Name="cb2" HorizontalAlignment="Left" Margin="21,43,0,0" Grid.Row="2" VerticalAlignment="Top" Width="120"/>
+        <ListBox x:Name="lb2" HorizontalAlignment="Left" Height="81" Margin="174,43,0,0" Grid.Row="2" VerticalAlignment="Top" Width="135"/>
+
+        <Label Content="Fill from C#: ItemsSource = listPerson" Grid.Row="3" HorizontalAlignment="Left" Margin="21,10,0,0" VerticalAlignment="Top" Height="27" Width="252"/>
+        <ComboBox x:Name="cb3" HorizontalAlignment="Left" Margin="21,43,0,0" Grid.Row="3" VerticalAlignment="Top" Width="120" SelectionChanged="cb3_SelectionChanged"/>
+        <ListBox x:Name="lb3" HorizontalAlignment="Left" Height="81" Margin="174,43,0,0" Grid.Row="3" VerticalAlignment="Top" Width="135"/>
+        <Label Content="ToString() must be overrided" HorizontalAlignment="Left" Height="36" Margin="168,130,0,0" Grid.Row="3" VerticalAlignment="Top" Width="162"/>
+        <Label Content="ToString() DONT HAVE to be overriden with DataTemplate" HorizontalAlignment="Left" Height="42" Margin="21,42,0,0" Grid.Row="1" VerticalAlignment="Top" Width="355" Grid.Column="1"/>
+
+        <Label Content="Fill from C#:  ItemsSource with Binding,  DataContext = listPerson" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Margin="21,10,0,0" VerticalAlignment="Top" Height="27" Width="419"/>
+        <ComboBox x:Name="cb4" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="21,43,0,0" Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" Width="120"/>
+        <ListBox x:Name="lb4" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="81" Margin="174,43,0,0" Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" Width="476"/>
+        <Label Content="ToString() must be overrided" HorizontalAlignment="Left" Height="36" Margin="5,83,0,0" VerticalAlignment="Top" Width="164" Grid.Column="1"/>
+
+        <Label Content="Fill from C#:  ItemsSource with Binding, ItemTemplate is OneBusTemplate, DataContext = listPerson" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="21,10,0,0" VerticalAlignment="Top" Height="27" Width="553"/>
+        <ListBox x:Name="lb5" ItemsSource="{Binding}" ItemTemplate="{StaticResource OnePersonTemplate}" HorizontalAlignment="Left" Height="135" Margin="21,89,0,0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Width="619"/>
+        <Label Content="ToString() DONT HAVE" HorizontalAlignment="Left" Height="35" Margin="21,82,0,0" Grid.Row="3" VerticalAlignment="Top" Width="132"/>
+        <Label Content="to be overriden" HorizontalAlignment="Left" Height="31" Margin="23,106,0,0" Grid.Row="3" VerticalAlignment="Top" Width="130"/>
+
+        <Button Content="Add New Person" Grid.Column="1" HorizontalAlignment="Left" Margin="100,37,0,0" Grid.Row="3" VerticalAlignment="Top" Width="121" Height="43" Click="Button_Click"/>
+        <Label Content="need to be ObservanleCollection" Grid.Column="1" HorizontalAlignment="Left" Height="31" Margin="240,49,0,0" Grid.Row="3" VerticalAlignment="Top" Width="213"/>
+
+
+    </Grid>
+</Window>
