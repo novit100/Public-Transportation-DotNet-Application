@@ -10,7 +10,7 @@ namespace dotNet5781_03B_7224_0847
     {
      TRY_ME  ,DRIVING  ,FUELING  ,IN_CARE  //STATUS OF BUS
     }
-    class Bus
+  public  class Bus
     {
         public int LicenseNumber { get; set; }         //license number
         public DateTime Start_d { get; set; }           //starting activity day
