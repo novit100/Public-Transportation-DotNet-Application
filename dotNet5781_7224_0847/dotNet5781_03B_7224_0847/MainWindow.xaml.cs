@@ -29,7 +29,8 @@ namespace dotNet5781_03B_7224_0847
         public MainWindow()
         {
             InitializeComponent();
-        
+            initBuses();
+            this.DataContext = buses;//connecting the busus to the main window 
 
         }
 
@@ -59,9 +60,9 @@ namespace dotNet5781_03B_7224_0847
                 else newBus.last_care_d = new DateTime(r.Next(year, 2020), r.Next(month, 12), r.Next(1, 28));//INSERTING RANDOMLY A REASONABLE DATE FOR THE LAST CARE DATE 
                 if (newBus.Start_d.Year < 2018)
                 {//ACCORDING TO THE INSTRUCTIONS IN EX1 
-                    newBus.License_num = r.Next(1000000, 9999999);//7 DIGITS
+                    newBus.LicenseNumber = r.Next(1000000, 9999999);//7 DIGITS
                 }
-                else newBus.License_num = r.Next(10000000, 99999999);//8 DIGITS
+                else newBus.LicenseNumber = r.Next(10000000, 99999999);//8 DIGITS
                 newBus.status = Status.TRY_ME; //WE ASSUMED THAT IN THE BEGINING ALL OF THE BUSES ARE READY TO BE TRIED (BY THE USER) TO TAKE THEM FOR A RIDE ///////////////////////////////////////////enum of statuses(Status)r.Next(0, 4);
                 if (newBus.Start_d == DateTime.Now)//IF THE STARTING DATE IS TODAY
                 {
@@ -98,13 +99,14 @@ namespace dotNet5781_03B_7224_0847
             }
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void AddBus_Click(object sender, RoutedEventArgs e)
         {
+              Bus b1=new Bus();
+              AddBus win = new AddBus(b1);
+              win.ShowDialog();
+        
 
-            System.Windows.Data.CollectionViewSource busViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("busViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // busViewSource.Source = [generic data source]
-        }
+    }
     }
 }         
 //int[] condition = { -1, -1, -1 };//ALL THE CONDIYIONS ARE DIFAULTIVLY FALSE,IF A CONDITION IS TRUE-IT WILL ACSSESS A PLACE IN THE ARRAY WITH THE BUS INDEX

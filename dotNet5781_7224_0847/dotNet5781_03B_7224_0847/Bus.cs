@@ -12,7 +12,7 @@ namespace dotNet5781_03B_7224_0847
     }
     class Bus
     {
-        public int License_num { get; set; }         //license number
+        public int LicenseNumber { get; set; }         //license number
         public DateTime Start_d { get; set; }           //starting activity day
         public DateTime last_care_d { get; set; }
         public long Km { get; set; }                    //kilometrage of one bus
