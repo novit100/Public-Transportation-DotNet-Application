@@ -20,22 +20,36 @@ namespace dotNet5781_03B_7224_0847
             {
                 int tmp;
                 bool flag = int.TryParse(value, out tmp);
-                if (flag)//numbers only
+                if (flag)//if its integers
                 {
-                    if (tmp >= 1000000 && tmp <= 9999999)//7 digits
-                        licenseNumber = value.Substring(0, 2) + "-" + value.Substring(2, 3) + "-" + value.Substring(5, 2);
-                    if (tmp >= 10000000 && tmp <= 99999999)//8 digits
-                        licenseNumber = value.Substring(0, 3) + "-" + value.Substring(3, 2) + "-" + value.Substring(5, 3);
+                    if (tmp <= 9999999)//7 digits (we dont allow typing more than 7 digits if the year<2018)
+                    {
+                        if (Start_d.Year < 2018)
+                        {
+                            if (tmp < 1000000)//less than 7 digits
+                            {
+                                string str;
+                                str = "0000000";
+                                str=str.Insert(7 - (tmp.ToString().Length), tmp.ToString());
+                                str = str.Remove(7, tmp.ToString().Length);
+                                licenseNumber = str.Substring(0, 2) + "-" + str.Substring(2, 3) + "-" + str.Substring(5, 2);
+                            }
+                            else licenseNumber = value.Substring(0, 2) + "-" + value.Substring(2, 3) + "-" + value.Substring(5, 2);
+                        }
+                        //else { throw new BusException("license number does not match the year!"); }
+
+                    }
+                    if (tmp >= 10000000 && tmp <= 99999999)//8 digits and if year>=2018
+                    {
+                        if (Start_d.Year >= 2018)
+                            licenseNumber = value.Substring(0, 3) + "-" + value.Substring(3, 2) + "-" + value.Substring(5, 3);
+                        //else { throw new BusException("license number does not match the year!"); }
+                    }
                 }
-                else//allready includes "-" between the numbers
-                { 
-                    if(value.Length==9)
-                        licenseNumber = value.Substring(0, 2) + "-" + value.Substring(3, 3) + "-" + value.Substring(7, 2);
-                    else if(value.Length==10)
-                        licenseNumber = value.Substring(0, 3) + "-" + value.Substring(4, 2) + "-" + value.Substring(7, 3);
-                    else { }//dont init yet since the value isnt valid
-                }
-            } 
+                //else//value is allready a string (with "-")
+                //    licenseNumber = value;
+
+            }
         }         
         public DateTime Start_d { get; set; }           //starting activity day
         public DateTime last_care_d { get; set; }
