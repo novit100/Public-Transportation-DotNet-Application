@@ -23,14 +23,19 @@ namespace dotNet5781_03B_7224_0847
     public partial class fuelProgressBar : Window
     {
         BackgroundWorker fuel_worker;
-        public fuelProgressBar(int length)
+        public fuelProgressBar(int length,ref Bus b1)
         {
             InitializeComponent();
             fuel_worker = new BackgroundWorker();
             fuel_worker.DoWork += fuel_worker_DoWork;
             fuel_worker.ProgressChanged += fuel_worker_ProgressChanged;
             fuel_worker.WorkerReportsProgress = true;
-            fuel_worker.RunWorkerAsync(length);
+            if (!fuel_worker.IsBusy)
+            {
+                fuel_worker.RunWorkerAsync(length);
+                b1.status = Status.FUELING;
+            }
+           
         }
         private void fuel_worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
