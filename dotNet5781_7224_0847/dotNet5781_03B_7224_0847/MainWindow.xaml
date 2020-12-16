@@ -9,7 +9,7 @@
     <Window.Resources>
         <DataTemplate x:Key="BusTemplate"
                   DataType="local:Bus">
-            <Grid>
+            <Grid x:Name="OneBusGrid">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
@@ -25,13 +25,16 @@
                    Text="LicenseNumber:" />
                 <TextBlock Grid.Column="1"
                    Text="{Binding Path=LicenseNumber}" />
-                <Button x:Name="FuelButton" Grid.Column="2" Content="fuel" Click="FuelButton_Click" />
-                <Button x:Name="takeToRideButton" Grid.Column="3" Content="take to a ride" Click="takeToRideButton_Click"/>
+                <Button x:Name="FuelButton" Grid.Column="2" Content="fuel" Click="FuelButton_Click" Panel.ZIndex="1" />
+                <ProgressBar x:Name="fuelPB" Grid.Column="2" Panel.ZIndex="0"/>
+                <Button x:Name="takeToRideButton" Grid.Column="3" Content="take to a ride" Click="takeToRideButton_Click" Panel.ZIndex="1"/>
+                <ProgressBar x:Name="takeToRidePB" Grid.Column="3" Panel.ZIndex="0"/>
+                <ProgressBar x:Name="treatmentPB" Grid.Column="4"/>
             </Grid>
         </DataTemplate>
     </Window.Resources>
     <StackPanel>
-        <ListBox ItemsSource="{Binding}" ItemTemplate="{StaticResource BusTemplate}" HorizontalContentAlignment="Stretch"/>
+        <ListBox x:Name="listOfBuses" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusTemplate}" HorizontalContentAlignment="Stretch"/>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />

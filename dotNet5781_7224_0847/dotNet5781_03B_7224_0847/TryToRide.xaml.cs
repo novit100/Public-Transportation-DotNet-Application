@@ -19,7 +19,9 @@ namespace dotNet5781_03B_7224_0847
     /// </summary>
     public partial class TryToRide : Window
     {
-        private Bus currentBus=new Bus();
+        Bus currentBus;
+        Button senderButton;
+
         public TryToRide(Bus b1)
         {
             InitializeComponent();
@@ -71,7 +73,7 @@ namespace dotNet5781_03B_7224_0847
             if (e == null) return;
             if(e.Key==Key.Enter)
             {
-                MessageBox.Show("Enter");
+                TryToRide(sender);
                 return;
             }
             if (e.Key == Key.Delete || e.Key == Key.Back)//allow delete keys
@@ -92,5 +94,9 @@ namespace dotNet5781_03B_7224_0847
             
         }
 
+        private void TryToRide(object sender)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -22,7 +22,7 @@ namespace dotNet5781_03B_7224_0847
     {
         //private static int digitsCounter=0;//count only the digits
         //private static int numOfKeysTyped = 0;//includes the key "-"  
-        public AddBus( Bus b1)
+        public AddBus(Bus b1)
         {
             InitializeComponent();
             grid1.DataContext = b1;
@@ -34,28 +34,15 @@ namespace dotNet5781_03B_7224_0847
             if(((DateTime)start_dDatePicker.SelectedDate).Year<2018)
             {
                 licenseNumberTextBox.MaxLength = 7;
-
-                //licenseNumberTextBox.MaxLength = 9;//including "-"
-                //if (licenseNumberTextBox.Text.Length == 2)
-                //    licenseNumberTextBox.Text.Insert(2, "-");
-                //else if(licenseNumberTextBox.Text.Length == 6)
-                //    licenseNumberTextBox.Text.Insert(6, "-");
             }
             else
             {
                 licenseNumberTextBox.MaxLength = 8;
-                //licenseNumberTextBox.MaxLength = 10;//including "-"
-                //if (licenseNumberTextBox.Text.Length == 3)
-                //    licenseNumberTextBox.Text.Insert(3, "-");
-                //else if (licenseNumberTextBox.Text.Length == 6)
-                //    licenseNumberTextBox.Text.Insert(6, "-");
             }
 
             if (e == null) return;
             if (e.Key == Key.Delete || e.Key == Key.Back)//allow delete keys
             {
-                //numOfKeysTyped--;
-                //digitsCounter--;
                 return;
             }
 
@@ -66,35 +53,14 @@ namespace dotNet5781_03B_7224_0847
                   || Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift)
                   || Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
                 {
-                    //numOfKeysTyped++;
-                    //digitsCounter++;//if no one of them is down- its okay. its a number.
+                    //if no one of them is down- its okay. its a number.
                     return;
                 }
             }
-
-            //if (e.Key == Key.OemMinus)
-            //{
-            //    if (digitsCounter == 2 && numOfKeysTyped == 2 || digitsCounter == 5 && numOfKeysTyped == 6)
-            //    {
-            //        numOfKeysTyped++;//we add the "-"
-            //        return;
-            //    }
-            //}
 
             //no other keys are allowed
             e.Handled = true;//if handeled=true, the char wont be added to the pakad, since as we checked, it is not a number
         }
 
-        //private void licenseNumberTextBox_LostFocus(object sender, RoutedEventArgs e)
-        //{
-        //    try
-        //    {
-        //        int num = int.Parse(e.ToString());
-        //    }
-        //    catch (BusException ex)
-        //    {
-        //        MessageBox.Show(ex.ToString());
-        //    }
-        //}
     }
 }

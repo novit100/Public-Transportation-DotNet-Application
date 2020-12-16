@@ -28,19 +28,17 @@ namespace dotNet5781_03B_7224_0847
     {
         private static Random r = new Random(DateTime.Now.Millisecond);
         private ObservableCollection<Bus> buses = new ObservableCollection<Bus>();
-     
-   
+        BackgroundWorker fuel_worker;
+        Bus currentBus;
+        Button senderButton;
 
         public MainWindow()
         {
             InitializeComponent();
             initBuses();
-            this.DataContext = buses;//connecting the busus to the main window 
+            listOfBuses.DataContext = buses;//connecting the busus to the main window 
             
         }
-
-       
-       
 
         public void initBuses()
         {
@@ -107,23 +105,16 @@ namespace dotNet5781_03B_7224_0847
 
         private void AddBus_Click(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
                 Bus b1 = new Bus() { status = Status.TRY_ME };//a new bus,try-me status unserted
                 buses.Add(b1);//adding the bus to the collection 
                 AddBus addBusWindow = new AddBus(b1);//we sent the bus b1 to a new window we created named AddBus
                 addBusWindow.ShowDialog();
-            //}
-            //catch (BusException ex)
-            //{
-            //    MessageBox.Show(ex.ToString());
-            //}
-
         }
 
         private void takeToRideButton_Click(object sender, RoutedEventArgs e)
         {
-            Bus b1 = sender as Bus;
+            Button bt = sender as Button;
+            Bus b1 = bt.DataContext as Bus;
 
             TryToRide tryToRideWindow = new TryToRide(b1);
             tryToRideWindow.Show();
@@ -131,9 +122,49 @@ namespace dotNet5781_03B_7224_0847
 
         private void FuelButton_Click(object sender, RoutedEventArgs e)
         {
-            Bus b1 = sender as Bus;
-            fuelProgressBar fuelProgressBarWIN = new fuelProgressBar(12,ref b1);
-            fuelProgressBarWIN.Show();
+            senderButton = sender as Button;
+            senderButton.Visibility = Visibility.Hidden;//in order to expose the progress bar underneath
+            //Panel.SetZIndex(senderButton, -1);
+
+            currentBus = senderButton.DataContext as Bus;
+
+            fuel_worker = new BackgroundWorker();
+            fuel_worker.DoWork += worker_DoWork;
+            fuel_worker.ProgressChanged += worker_ProgressChanged;
+            fuel_worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+            fuel_worker.WorkerReportsProgress = true;
+            if (!fuel_worker.IsBusy)
+            {
+                currentBus.status = Status.FUELING;
+                fuel_worker.RunWorkerAsync(12);
+            }
+            currentBus.Km_since_fuel = 0;
+        }
+
+        private void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            int progress = e.ProgressPercentage;
+
+            fuelPB.Value = progress;
+
+        }
+        private void worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            int length = (int)e.Argument;
+            for (int i = 1; i <= length; i++)
+            {
+                Thread.Sleep(1000);
+                fuel_worker.ReportProgress(i * 100 / length);
+            }
+        }
+
+        private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            currentBus.status= Status.TRY_ME;
+
+            senderButton.Visibility = Visibility.Visible;
         }
     }
 }
