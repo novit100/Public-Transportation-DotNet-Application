@@ -132,6 +132,7 @@ namespace dotNet5781_03B_7224_0847
         private void FuelButton_Click(object sender, RoutedEventArgs e)
         {
             Bus b1 = sender as Bus;
+            b1.status = Status.FUELING;
             fuelProgressBar fuelProgressBarWIN = new fuelProgressBar(12,ref b1);
             fuelProgressBarWIN.Show();
         }
