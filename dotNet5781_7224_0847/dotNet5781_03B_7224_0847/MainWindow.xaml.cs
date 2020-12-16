@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,19 +23,24 @@ namespace dotNet5781_03B_7224_0847
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    
     public partial class MainWindow : Window
     {
         private static Random r = new Random(DateTime.Now.Millisecond);
         private ObservableCollection<Bus> buses = new ObservableCollection<Bus>();
-        
+     
+   
 
         public MainWindow()
         {
             InitializeComponent();
             initBuses();
             this.DataContext = buses;//connecting the busus to the main window 
-
+            
         }
+
+       
+       
 
         public void initBuses()
         {
@@ -119,6 +127,13 @@ namespace dotNet5781_03B_7224_0847
 
             TryToRide tryToRideWindow = new TryToRide(b1);
             tryToRideWindow.Show();
+        }
+
+        private void FuelButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            fuelProgressBar fuelProgressBarWIN = new fuelProgressBar(12);
+            fuelProgressBarWIN.Show();
         }
     }
 }

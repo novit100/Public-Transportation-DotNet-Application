@@ -25,10 +25,8 @@
                    Text="LicenseNumber:" />
                 <TextBlock Grid.Column="1"
                    Text="{Binding Path=LicenseNumber}" />
-                <Button x:Name="FuelButton" Grid.Column="2" Content="fuel"/>
+                <Button x:Name="FuelButton" Grid.Column="2" Content="fuel" Click="FuelButton_Click" />
                 <Button x:Name="takeToRideButton" Grid.Column="3" Content="take to a ride" Click="takeToRideButton_Click"/>
-             
-             
             </Grid>
         </DataTemplate>
     </Window.Resources>
@@ -43,7 +41,11 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button x:Name="AddBus" Grid.Column="1" Content="add a bus" Click="AddBus_Click"/>
+
+
+            <Button x:Name="AddBus" Click="AddBus_Click" Grid.ColumnSpan="2" Margin="243,0,21.6,-21.8" Content="Add A Bus"/>
+            
         </Grid>
+      
     </StackPanel>
 </Window>
