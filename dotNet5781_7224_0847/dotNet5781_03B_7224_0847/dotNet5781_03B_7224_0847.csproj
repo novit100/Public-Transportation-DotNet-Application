@@ -58,9 +58,16 @@
     <Compile Include="AddBus.xaml.cs">
       <DependentUpon>AddBus.xaml</DependentUpon>
     </Compile>
+    <Compile Include="displayOneBus.xaml.cs">
+      <DependentUpon>displayOneBus.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TryToRide.xaml.cs">
       <DependentUpon>TryToRide.xaml</DependentUpon>
     </Compile>
+    <Page Include="displayOneBus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
