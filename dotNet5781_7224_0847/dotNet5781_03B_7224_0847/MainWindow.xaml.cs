@@ -50,7 +50,18 @@ namespace dotNet5781_03B_7224_0847
             {
                 Bus newBus = new Bus();
 
-                initDates(ref newBus);
+                //initDates(ref newBus);
+
+                newBus.Start_d = new DateTime(r.Next(1997, 2021), r.Next(1, 13), r.Next(1, 29));//not including yaer 2021(the future), month 13(not exist), and day 29(doesnt always exist)
+
+                newBus.last_care_d = new DateTime(r.Next(newBus.Start_d.Year, 2021), r.Next(1, 13), r.Next(1, 29));//INSERTING RANDOMLY A REASONABLE DATE FOR THE LAST CARE DATE 
+
+                if (newBus.Start_d > newBus.last_care_d)//impossible- last care cannot happen before start date 
+                {
+                    DateTime tmp = new DateTime(newBus.last_care_d.Year, newBus.last_care_d.Month, newBus.last_care_d.Day);
+                    newBus.last_care_d = newBus.Start_d;
+                    newBus.Start_d = tmp;//swap the start date and last care date
+                }
 
                 if (newBus.Start_d.Year < 2018)//ACCORDING TO THE INSTRUCTIONS IN EX1 
                     newBus.LicenseNumber = r.Next(1000000, 9999999).ToString();//7 DIGITS
@@ -89,19 +100,19 @@ namespace dotNet5781_03B_7224_0847
             }
         }
 
-        private void initDates(ref Bus newBus)
-        {
-            newBus.Start_d = new DateTime(r.Next(1997, 2021), r.Next(1, 13), r.Next(1, 29));//not including yaer 2021(the future), month 13(not exist), and day 29(doesnt always exist)
+        //private void initDates(ref Bus newBus)
+        //{
+        //    newBus.Start_d = new DateTime(r.Next(1997, 2021), r.Next(1, 13), r.Next(1, 29));//not including yaer 2021(the future), month 13(not exist), and day 29(doesnt always exist)
 
-            newBus.last_care_d = new DateTime(r.Next(newBus.Start_d.Year, 2021), r.Next(1, 13), r.Next(1, 29));//INSERTING RANDOMLY A REASONABLE DATE FOR THE LAST CARE DATE 
+        //    newBus.last_care_d = new DateTime(r.Next(newBus.Start_d.Year, 2021), r.Next(1, 13), r.Next(1, 29));//INSERTING RANDOMLY A REASONABLE DATE FOR THE LAST CARE DATE 
 
-            if (newBus.Start_d > newBus.last_care_d)//impossible- last care cannot happen before start date 
-            {
-                DateTime tmp = new DateTime(newBus.last_care_d.Year, newBus.last_care_d.Month, newBus.last_care_d.Day);
-                newBus.last_care_d = newBus.Start_d;
-                newBus.Start_d = tmp;//swap the start date and last care date
-            }
-        }
+        //    if (newBus.Start_d > newBus.last_care_d)//impossible- last care cannot happen before start date 
+        //    {
+        //        DateTime tmp = new DateTime(newBus.last_care_d.Year, newBus.last_care_d.Month, newBus.last_care_d.Day);
+        //        newBus.last_care_d = newBus.Start_d;
+        //        newBus.Start_d = tmp;//swap the start date and last care date
+        //    }
+        //}
 
         private void AddBus_Click(object sender, RoutedEventArgs e)
         {
@@ -132,33 +143,50 @@ namespace dotNet5781_03B_7224_0847
             fuel_worker.DoWork += worker_DoWork;
             fuel_worker.ProgressChanged += worker_ProgressChanged;
             fuel_worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+
             fuel_worker.WorkerReportsProgress = true;
-            if (!fuel_worker.IsBusy)
-            {
-                currentBus.status = Status.FUELING;
-                fuel_worker.RunWorkerAsync(12);
-            }
+
+            //if (!fuel_worker.IsBusy)
+            //{
+            //    currentBus.status = Status.FUELING;
+            //    fuel_worker.RunWorkerAsync(12);
+            //}
+            currentBus.status = Status.FUELING;
+            fuel_worker.RunWorkerAsync(12);
             currentBus.Km_since_fuel = 0;
+        }
+
+        private void worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            int length = (int)e.Argument;
+
+            int i;
+            for (i = 1; i <= length; i++)
+            {
+                Thread.Sleep(1000);
+                fuel_worker.ReportProgress(i * 100 / length);
+            }
+            e.Result = stopwatch.ElapsedMilliseconds;
         }
 
         private void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             int progress = e.ProgressPercentage;
 
-            fuelPB.Value = progress;
+            //fuelPB.Value = progress;
+
+            //MessageBox.Show(listOfBuses.DataContext.ToString());
+            //Bus selectedBus = listOfBuses.DataContext as Bus;
+            //selectedBus.FuelProgressTime = progress;
+
+            //currentBus = senderButton.DataContext as Bus;
+            currentBus.FuelProgressTime = progress;
 
         }
-        private void worker_DoWork(object sender, DoWorkEventArgs e)
-        {
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-            int length = (int)e.Argument;
-            for (int i = 1; i <= length; i++)
-            {
-                Thread.Sleep(1000);
-                fuel_worker.ReportProgress(i * 100 / length);
-            }
-        }
+
 
         private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
