@@ -20,15 +20,17 @@ namespace dotNet5781_03B_7224_0847
     /// </summary>
     public partial class AddBus : Window
     {
+        
         //private static int digitsCounter=0;//count only the digits
         //private static int numOfKeysTyped = 0;//includes the key "-"  
         public AddBus(Bus b1)
         {
             InitializeComponent();
             grid1.DataContext = b1;
-
+            
         }
-
+        
+        
         private void licenseNumberTextBox_PreviewKeyDown(object sender, KeyEventArgs e)//allow adding in a correct format!
         {
             if(((DateTime)start_dDatePicker.SelectedDate).Year<2018)

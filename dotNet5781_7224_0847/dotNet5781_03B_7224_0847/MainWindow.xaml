@@ -23,8 +23,8 @@
 
                 <TextBlock Grid.Column="0"
                    Text="LicenseNumber:" />
-                <TextBlock Grid.Column="1"
-                   Text="{Binding Path=LicenseNumber}" />
+                <TextBlock Name="licenseNumText" Grid.Column="1"
+                   Text="{Binding LicenseNumber , Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
 
                 <ProgressBar x:Name="fuelPB" Value="{Binding FuelProgressTime, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" />
                 <Button x:Name="FuelButton" Grid.Column="2" Content="fuel" Click="FuelButton_Click" />
@@ -36,6 +36,7 @@
     </Window.Resources>
     <StackPanel>
         <ListBox x:Name="listOfBuses" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="listOfBuses_MouseDoubleClick"/>
+        <Button x:Name="AddBus" Click="AddBus_Click" Grid.ColumnSpan="2" Margin="243,0,21.6,-21.8" Content="Add A Bus"/>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -47,7 +48,7 @@
             </Grid.ColumnDefinitions>
 
 
-            <Button x:Name="AddBus" Click="AddBus_Click" Grid.ColumnSpan="2" Margin="243,0,21.6,-21.8" Content="Add A Bus"/>
+           
             
         </Grid>
       
