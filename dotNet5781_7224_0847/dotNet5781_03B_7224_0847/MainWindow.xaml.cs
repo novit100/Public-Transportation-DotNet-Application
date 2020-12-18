@@ -193,5 +193,13 @@ namespace dotNet5781_03B_7224_0847
 
             senderButton.Visibility = Visibility.Visible;
         }
+
+        private void listOfBuses_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ListBox lb = sender as ListBox;
+            Bus b1 = lb.DataContext as Bus;
+            displayOneBus displayOneBusWin = new displayOneBus(b1);
+            displayOneBusWin.Show();
+        }
     }
 }

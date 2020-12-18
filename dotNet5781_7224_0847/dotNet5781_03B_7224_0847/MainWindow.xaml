@@ -11,7 +11,7 @@
                   DataType="local:Bus">
             <Grid x:Name="OneBusGrid">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -35,7 +35,7 @@
         </DataTemplate>
     </Window.Resources>
     <StackPanel>
-        <ListBox x:Name="listOfBuses" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusTemplate}" HorizontalContentAlignment="Stretch"/>
+        <ListBox x:Name="listOfBuses" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="listOfBuses_MouseDoubleClick"/>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
