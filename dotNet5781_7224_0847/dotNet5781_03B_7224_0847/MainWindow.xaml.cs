@@ -26,12 +26,12 @@ namespace dotNet5781_03B_7224_0847
     
     public partial class MainWindow : Window
     {
-        private ObservableCollection<Bus> buses = new ObservableCollection<Bus>();
         private static Random r = new Random(DateTime.Now.Millisecond);
+        private ObservableCollection<Bus> buses = new ObservableCollection<Bus>();
         BackgroundWorker fuel_worker;
         Bus currentBus;
         Button senderButton;
-       
+
         public MainWindow()
         {
             InitializeComponent();
@@ -39,7 +39,13 @@ namespace dotNet5781_03B_7224_0847
             listOfBuses.DataContext = buses;//connecting the busus to the main window 
             
         }
-        
+        private void AddBus_Click(object sender, RoutedEventArgs e)
+        {
+            Bus b1 = new Bus() { status = Status.TRY_ME };//a new bus,try-me status unserted
+            Buses.Add(b1);//adding the bus to the collection 
+            AddBus addBusWindow = new AddBus(b1);//we sent the bus b1 to a new window we created named AddBus
+            addBusWindow.ShowDialog();
+        }
         public void initBuses()
         {
             int indcond1 = r.Next(0, 2);//choose a random bus wich in it, a year past since last care
@@ -180,13 +186,7 @@ namespace dotNet5781_03B_7224_0847
 
         }
 
-        private void AddBus_Click(object sender, RoutedEventArgs e)
-        {
-            Bus b1 = new Bus() { status = Status.TRY_ME };//a new bus,try-me status unserted
-            buses.Add(b1);//adding the bus to the collection 
-            AddBus addBusWindow = new AddBus(b1);//we sent the bus b1 to a new window we created named AddBus
-            addBusWindow.ShowDialog();
-        }
+
         private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             currentBus.status= Status.TRY_ME;
