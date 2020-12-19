@@ -30,7 +30,7 @@ namespace dotNet5781_03B_7224_0847
         private ObservableCollection<Bus> buses = new ObservableCollection<Bus>();
         BackgroundWorker fuel_worker;
         Bus currentBus;
-        Button senderButton;
+       // Button senderButton;
 
         public MainWindow()
         {
@@ -42,7 +42,7 @@ namespace dotNet5781_03B_7224_0847
         private void AddBus_Click(object sender, RoutedEventArgs e)
         {
             Bus b1 = new Bus() { status = Status.TRY_ME };//a new bus,try-me status unserted
-            Buses.Add(b1);//adding the bus to the collection 
+            buses.Add(b1);//adding the bus to the collection 
             AddBus addBusWindow = new AddBus(b1);//we sent the bus b1 to a new window we created named AddBus
             addBusWindow.ShowDialog();
         }
@@ -131,18 +131,29 @@ namespace dotNet5781_03B_7224_0847
         }
 
         private void FuelButton_Click(object sender, RoutedEventArgs e)
-        {
-            senderButton = sender as Button;
-            senderButton.Visibility = Visibility.Hidden;//in order to expose the progress bar underneath
-            //Panel.SetZIndex(senderButton, -1);
-
+        {   
+            Button senderButton = sender as Button;
             currentBus = senderButton.DataContext as Bus;
 
+            ////senderButton.Visibility = Visibility.Hidden;//in order to expose the progress bar underneath
+            //Panel.SetZIndex(senderButton, -1);
+            List<object> mylist = new List<object>();
+            var g = senderButton.Parent as Grid;
+
+            var a = g.Children[0] as TextBlock;
+            var b = g.Children[1] as TextBlock;
+            var c = g.Children[2] as Button;
+            var d = g.Children[3] as Button;
+            var five = g.Children[4] as ProgressBar;
+            mylist.Add(a);
+            mylist.Add(b);
+            mylist.Add(c);
+            mylist.Add(d);
+            mylist.Add(five);
             fuel_worker = new BackgroundWorker();
             fuel_worker.DoWork += worker_DoWork;
             fuel_worker.ProgressChanged += worker_ProgressChanged;
             fuel_worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-
             fuel_worker.WorkerReportsProgress = true;
 
             //if (!fuel_worker.IsBusy)
@@ -151,47 +162,63 @@ namespace dotNet5781_03B_7224_0847
             //    fuel_worker.RunWorkerAsync(12);
             //}
             currentBus.status = Status.FUELING;
-            fuel_worker.RunWorkerAsync(12);
-            currentBus.Km_since_fuel = 0;
+            fuel_worker.RunWorkerAsync(mylist);
+            //currentBus.Km_since_fuel = 0; שמנו בפונק של הקומפליט 
         }
 
         private void worker_DoWork(object sender, DoWorkEventArgs e)
         {
 
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-            int length = (int)e.Argument;
-
+            //Stopwatch stopwatch = new Stopwatch();
+            //stopwatch.Start();
+            //int length = (int)e.Argument;
+            BackgroundWorker bg = sender as BackgroundWorker;
+            List<object> mylist = e.Argument as List<object>;
+            int length = 12;
+            var myprog = e.Argument as ProgressBar;
             int i;
             for (i = 1; i <= length; i++)
             {
                 Thread.Sleep(1000);
-                fuel_worker.ReportProgress(i * 100 / length);
+                // fuel_worker.ReportProgress(i * 100 / length);
+                bg.ReportProgress((i * 100 / length), mylist);
+                
             }
-            e.Result = stopwatch.ElapsedMilliseconds;
+            
+            e.Result = mylist;
+            //e.Result = stopwatch.ElapsedMilliseconds;
+            //e.Result=
         }
 
         private void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            int progress = e.ProgressPercentage;
 
-            //fuelPB.Value = progress;
+            List<object> mylist = e.UserState as List<object>;
+            var myprog = mylist[4] as ProgressBar;
+            int progress = e.ProgressPercentage;
+            
+            myprog.Value = progress;
+
+           // PB.Value = progress;
 
             //MessageBox.Show(listOfBuses.DataContext.ToString());
             //Bus selectedBus = listOfBuses.DataContext as Bus;
             //selectedBus.FuelProgressTime = progress;
 
             //currentBus = senderButton.DataContext as Bus;
-            currentBus.FuelProgressTime = progress;
+            //currentBus.FuelProgressTime = progress;
 
         }
 
 
         private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            List<object> mylist = e.Result as List<object>;
             currentBus.status= Status.TRY_ME;
-
-            senderButton.Visibility = Visibility.Visible;
+            currentBus.Km_since_fuel = 0;
+            var myprog = mylist[4] as ProgressBar;
+            myprog.Value = 0;
+           // senderButton.Visibility = Visibility.Visible;
         }
 
         private void listOfBuses_MouseDoubleClick(object sender, MouseButtonEventArgs e)

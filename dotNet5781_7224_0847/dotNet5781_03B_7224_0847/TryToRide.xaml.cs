@@ -20,7 +20,7 @@ namespace dotNet5781_03B_7224_0847
     public partial class TryToRide : Window
     {
         Bus currentBus;
-        Button senderButton;
+       // Button senderButton;
 
         public TryToRide(Bus b1)
         {
