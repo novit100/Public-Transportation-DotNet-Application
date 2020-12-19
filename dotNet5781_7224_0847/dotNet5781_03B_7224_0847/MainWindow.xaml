@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_7224_0847"
         mc:Ignorable="d"
-        Title="Buses information-Kavim company" Height="450" Width="800" Icon= "קווים.png" Background="White" FontWeight="Bold" >
+        Title="Buses information-Kavim company" Height="450" Width="800" Icon= "קווים.png" Background="#FF11B704" FontWeight="Bold" FontStyle="Normal" >
     <Window.Resources>
         <DataTemplate x:Key="BusTemplate"
                   DataType="local:Bus">
