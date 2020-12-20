@@ -40,10 +40,7 @@ namespace dotNet5781_03B_7224_0847
 
             listOfBuses.DataContext = buses;//connecting the buses to the main window 
 
-            //myWorker.DoWork += MyWorker_DoWork;
-            //myWorker.ProgressChanged += MyWorker_ProgressChanged;
-            //myWorker.RunWorkerCompleted += MyWorker_RunWorkerCompleted;
-            //myWorker.WorkerReportsProgress = true;
+          
         }
 
         private void AddBus_Click(object sender, RoutedEventArgs e)
@@ -165,12 +162,20 @@ namespace dotNet5781_03B_7224_0847
             //}
 
             if (ifCanRide(disInKm))
-            {         
+            {   //  changing the row color to dark turquoise while taking to a ride     
+                a.Background = Brushes.DarkTurquoise;
+                b.Background = Brushes.DarkTurquoise;
+                c.Background= Brushes.DarkTurquoise;
+                d.Background =Brushes.DarkTurquoise;
+                five.Background = Brushes.DarkTurquoise;
+
+                //
                 currentBus.status = Status.DRIVING;
                 ride_Worker.RunWorkerAsync(mylist);
                 currentBus.Km += disInKm;
                 currentBus.Km_since_care += disInKm;
                 currentBus.Km_since_fuel += disInKm;
+
             }
 
 
@@ -217,47 +222,9 @@ namespace dotNet5781_03B_7224_0847
             return true;
         }
 
-        private void MyWorker_DoWork(object sender, DoWorkEventArgs e)
-        {
+  
 
-
-            //TryToRide win = (TryToRide)e.Argument;
-            //int length = win.dis;
-            //Bus b1 = win.currentBus;
-
-
-            //for (int i = 1; i <= length; i++)
-            //{
-            //    Thread.Sleep(50);
-            //    myWorker.ReportProgress(i * 100 / length, b1);
-            //}
-            //e.Result = b1;
-            //b1.Km += length;
-            //b1.Precentage = 0;
-        }
-
-
-        private void MyWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            ////Bus b1 = listOfBuses.SelectedItem as Bus;
-            //int progress = (int)e.ProgressPercentage;
-            //Bus b1 = (Bus)e.UserState;
-
-            ////b1.Precentage += progress;
-
-            ///*listOfBuses.DataContext = b1;*///in order to affect the value of bpGeneral
-        }
-
-        private void MyWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            //Bus b1 = listOfBuses.SelectedItem as Bus;
-            //b1.Km += (int)e.Result;
-
-            //Bus theBus = e.Result as Bus;
-            //theBus.Precentage = 0;
-
-        }
-
+        
         public void FuelButton_Click(object sender, RoutedEventArgs e)
         {   
             Button senderButton = sender as Button;
@@ -280,6 +247,12 @@ namespace dotNet5781_03B_7224_0847
             mylist.Add(five);
             mylist.Add(12);//the length
             fuel_worker = new BackgroundWorker();
+            //  changing the row color to dark turquoise while taking to a ride     
+            a.Background = Brushes.Chocolate;
+            b.Background = Brushes.Chocolate;
+            c.Background = Brushes.Chocolate;
+            d.Background = Brushes.Chocolate;
+            five.Background = Brushes.Chocolate;
             fuel_worker.DoWork += worker_DoWork;
             fuel_worker.ProgressChanged += worker_ProgressChanged;
             fuel_worker.RunWorkerCompleted += worker_RunWorkerCompleted;
@@ -353,10 +326,17 @@ namespace dotNet5781_03B_7224_0847
         {
             List<object> mylist = e.Result as List<object>;
             currentBus.status= Status.TRY_ME;
-
+            
             var myprog = mylist[4] as ProgressBar;
             myprog.Value = 0;
-           // senderButton.Visibility = Visibility.Visible;
+
+            //  changing the row color back to white   
+            (mylist[0] as TextBlock).Background = Brushes.White;
+            (mylist[1] as TextBlock).Background = Brushes.White;
+            (mylist[2] as Button).Background = Brushes.LightGray;
+            (mylist[3] as Button).Background = Brushes.LightGray;
+            (mylist[4] as ProgressBar).Background = Brushes.LightGray;
+            // senderButton.Visibility = Visibility.Visible;
         }
 
         private void listOfBuses_MouseDoubleClick(object sender, MouseButtonEventArgs e)
