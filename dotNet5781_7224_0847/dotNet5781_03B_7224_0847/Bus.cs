@@ -10,7 +10,7 @@ namespace dotNet5781_03B_7224_0847
     {
      TRY_ME  ,DRIVING  ,FUELING  ,IN_CARE  //STATUS OF BUS
     }
-  public  class Bus : System.Windows.DependencyObject
+  public  class Bus 
     {
         private string licenseNumber;
         public string LicenseNumber //license number
@@ -57,20 +57,20 @@ namespace dotNet5781_03B_7224_0847
         public int Km_since_care { get; set; }
         public int Km_since_fuel { get; set; }
         public Status status { get; set; }
-        public int FuelProgressTime                     //shows in ints the time passes in fuel progress bar
-        {
-            get
-            {
-                return (int)GetValue(FuelProgressTimeProperty);
-            }
-            set
-            {
-                SetValue(FuelProgressTimeProperty, value); 
-            }
-        }
-        public static readonly System.Windows.DependencyProperty FuelProgressTimeProperty =
-         System.Windows.DependencyProperty.Register("FuelProgressTimeProperty",
-          typeof(int), typeof(Bus), new System.Windows.UIPropertyMetadata(0));
+        //public int FuelProgressTime                     //shows in ints the time passes in fuel progress bar
+        //{
+        //    get
+        //    {
+        //        return (int)GetValue(FuelProgressTimeProperty);
+        //    }
+        //    set
+        //    {
+        //        SetValue(FuelProgressTimeProperty, value); 
+        //    }
+        //}
+        //public static readonly System.Windows.DependencyProperty FuelProgressTimeProperty =
+        // System.Windows.DependencyProperty.Register("FuelProgressTimeProperty",
+        //  typeof(int), typeof(Bus), new System.Windows.UIPropertyMetadata(0));
 
 
     }
