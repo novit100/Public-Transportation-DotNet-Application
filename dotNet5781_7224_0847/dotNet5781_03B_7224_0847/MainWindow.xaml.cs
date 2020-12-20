@@ -130,7 +130,7 @@ namespace dotNet5781_03B_7224_0847
             tryToRideWindow.Show();
         }
 
-        private void FuelButton_Click(object sender, RoutedEventArgs e)
+        public void FuelButton_Click(object sender, RoutedEventArgs e)
         {   
             Button senderButton = sender as Button;
             currentBus = senderButton.DataContext as Bus;

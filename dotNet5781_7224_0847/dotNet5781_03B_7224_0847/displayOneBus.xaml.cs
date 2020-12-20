@@ -25,5 +25,10 @@ namespace dotNet5781_03B_7224_0847
             grid1.DataContext = b1;
         }
 
+        private void InnerFuelButton_Click(object sender, RoutedEventArgs e)
+        {
+            //var win = this.Parent as MainWindow;
+            //win.FuelButton_Click(sender, e);
+        }
     }
 }
