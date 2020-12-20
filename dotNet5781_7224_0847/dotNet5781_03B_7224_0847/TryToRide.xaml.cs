@@ -73,7 +73,7 @@ namespace dotNet5781_03B_7224_0847
             if (e == null) return;
             if(e.Key==Key.Enter)
             {
-                //TryToRide(sender);
+                
                 return;
             }
             if (e.Key == Key.Delete || e.Key == Key.Back)//allow delete keys
