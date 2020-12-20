@@ -36,9 +36,6 @@ namespace dotNet5781_03B_7224_0847
 
         private void InnerFuelButton_Click(object sender, RoutedEventArgs e)
         {
-            //fuelSelected = true;
-            //this.Close();
-
             Button senderButton = sender as Button;
 
             List<object> mylist = new List<object>();
@@ -51,9 +48,8 @@ namespace dotNet5781_03B_7224_0847
             mylist.Add(a);
             mylist.Add(b);
             mylist.Add(c);
-            mylist.Add(12);//the length
+            mylist.Add(12);//the length  inner_fuel_worker = new BackgroundWorker();
 
-            inner_fuel_worker = new BackgroundWorker();
             inner_fuel_worker.DoWork += worker_DoWork;
             inner_fuel_worker.ProgressChanged += worker_ProgressChanged;
             inner_fuel_worker.RunWorkerCompleted += worker_RunWorkerCompleted;
@@ -73,11 +69,7 @@ namespace dotNet5781_03B_7224_0847
         }
 
         private void InnerCareButton_Click(object sender, RoutedEventArgs e)
-        {
-            //careSelected = true;
-            //this.Close();
-
-            Button senderButton = sender as Button;
+        {  Button senderButton = sender as Button;
 
             List<object> mylist = new List<object>();
             var g = senderButton.Parent as Grid;

@@ -43,19 +43,14 @@ namespace dotNet5781_03B_7224_0847
                             }
                             else licenseNumber = value.Substring(0, 2) + "-" + value.Substring(2, 3) + "-" + value.Substring(5, 2);
                         }
-                        //else { throw new BusException("license number does not match the year!"); }
-
                     }
                     if (tmp >= 10000000 && tmp <= 99999999)//8 digits and if year>=2018
                     {
                         if (Start_d.Year >= 2018)
                             licenseNumber = value.Substring(0, 3) + "-" + value.Substring(3, 2) + "-" + value.Substring(5, 3);
-                        //else { throw new BusException("license number does not match the year!"); }
+                        
                     }
                 }
-                //else//value is allready a string (with "-")
-                //    licenseNumber = value;
-
             }
         }         
         public DateTime Start_d { get; set; }           //starting activity day
@@ -65,35 +60,6 @@ namespace dotNet5781_03B_7224_0847
         public int Km_since_fuel { get; set; }
         public Status status { get; set; }
          public Names DriverName { get; set; }
-    //public int FuelProgressTime                     //shows in ints the time passes in fuel progress bar
-    //{
-    //    get
-    //    {
-    //        return (int)GetValue(FuelProgressTimeProperty);
-    //    }
-    //    set
-    //    {
-    //        SetValue(FuelProgressTimeProperty, value); 
-    //    }
-    //}
-    //public static readonly System.Windows.DependencyProperty FuelProgressTimeProperty =
-    // System.Windows.DependencyProperty.Register("FuelProgressTimeProperty",
-    //  typeof(int), typeof(Bus), new System.Windows.UIPropertyMetadata(0));
-
-    //public int Precentage { get; set; }
-
-
-    //public int Precentage
-    //{
-    //    get { return (int)GetValue(PrecentageProperty); }
-    //    set { SetValue(PrecentageProperty, value); }
-    //}
-
-    //// Using a DependencyProperty as the backing store for Precentage.  This enables animation, styling, binding, etc...
-    //public static readonly DependencyProperty PrecentageProperty =
-    //    DependencyProperty.Register("Precentage", typeof(int), typeof(Bus), new PropertyMetadata(0));
-
-
-
+    
 }
 }
