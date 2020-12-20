@@ -19,11 +19,7 @@ namespace dotNet5781_03B_7224_0847
     /// Interaction logic for AddBus.xaml
     /// </summary>
     public partial class AddBus : Window
-    {
-        
-        //private static int digitsCounter=0;//count only the digits
-        //private static int numOfKeysTyped = 0;//includes the key "-"  
-        public AddBus(Bus b1)
+    { public AddBus(Bus b1)
         {
             InitializeComponent();
             grid1.DataContext = b1;

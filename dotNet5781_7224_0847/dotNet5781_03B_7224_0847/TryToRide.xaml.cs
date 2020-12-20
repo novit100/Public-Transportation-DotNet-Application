@@ -20,10 +20,7 @@ namespace dotNet5781_03B_7224_0847
     public partial class TryToRide : Window
     {
         public Bus currentBus;
-        public int dis;
-       // Button senderButton;
-
-        public TryToRide(Bus b1)
+        public int dis; public TryToRide(Bus b1)
         {
             InitializeComponent();
             currentBus = b1;
@@ -56,12 +53,5 @@ namespace dotNet5781_03B_7224_0847
             e.Handled = true;//if handeled=true, the char wont be added to the pakad, since as we checked, it is not a number or "Enter"
             
         }
-
-
-
-        //private void TryToRide(object sender)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }

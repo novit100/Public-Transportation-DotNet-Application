@@ -21,7 +21,8 @@ namespace dotNet5781_03B_7224_0847
 {
 
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// this program is a more complex program of buses display system,
+    /// it resembles a real life working application and has many featurs and cases
     /// </summary>
     
     public partial class MainWindow : Window
@@ -41,10 +42,7 @@ namespace dotNet5781_03B_7224_0847
 
             listOfBuses.DataContext = buses;//connecting the buses to the main window 
 
-            //myWorker.DoWork += MyWorker_DoWork;
-            //myWorker.ProgressChanged += MyWorker_ProgressChanged;
-            //myWorker.RunWorkerCompleted += MyWorker_RunWorkerCompleted;
-            //myWorker.WorkerReportsProgress = true;
+          
         }
 
         private void AddBus_Click(object sender, RoutedEventArgs e)
@@ -117,9 +115,7 @@ namespace dotNet5781_03B_7224_0847
 
         private void takeToRideButton_Click(object sender, RoutedEventArgs e)
         {
-            //Button senderButton = sender as Button;
-            //Bus b1 = senderButton.DataContext as Bus;
-
+           
             takeToRideBt= sender as Button;
             currentBus = takeToRideBt.DataContext as Bus;
 
@@ -132,8 +128,6 @@ namespace dotNet5781_03B_7224_0847
 
         private void TryToRideWindow_Closed(object sender, EventArgs e)
         {
-            //myWorker.RunWorkerAsync((sender as TryToRide));
-
             List<object> mylist = new List<object>();
             var g = takeToRideBt.Parent as Grid;
 
@@ -158,25 +152,22 @@ namespace dotNet5781_03B_7224_0847
             ride_Worker.ProgressChanged += worker_ProgressChanged;
             ride_Worker.RunWorkerCompleted += worker_RunWorkerCompleted;
             ride_Worker.WorkerReportsProgress = true;
-
-            //if (!fuel_worker.IsBusy)
-            //{
-            //    currentBus.status = Status.FUELING;
-            //    fuel_worker.RunWorkerAsync(12);
-            //}
-
             if (ifCanRide(disInKm))
-            {         
+            {   //  changing the row color to dark turquoise while taking to a ride     
+                a.Background = Brushes.DarkTurquoise;
+                b.Background = Brushes.DarkTurquoise;
+                c.Background= Brushes.DarkTurquoise;
+                d.Background =Brushes.DarkTurquoise;
+                five.Background = Brushes.DarkTurquoise;
+                //
                 currentBus.status = Status.DRIVING;
                 ride_Worker.RunWorkerAsync(mylist);
                 currentBus.Km += disInKm;
                 currentBus.Km_since_care += disInKm;
                 currentBus.Km_since_fuel += disInKm;
+
             }
-
-
         }
-
         private bool ifCanRide(int disInKm)
         {
             //check distances and dates:
@@ -217,58 +208,12 @@ namespace dotNet5781_03B_7224_0847
 
             return true;
         }
-
-        private void MyWorker_DoWork(object sender, DoWorkEventArgs e)
-        {
-
-
-            //TryToRide win = (TryToRide)e.Argument;
-            //int length = win.dis;
-            //Bus b1 = win.currentBus;
-
-
-            //for (int i = 1; i <= length; i++)
-            //{
-            //    Thread.Sleep(50);
-            //    myWorker.ReportProgress(i * 100 / length, b1);
-            //}
-            //e.Result = b1;
-            //b1.Km += length;
-            //b1.Precentage = 0;
-        }
-
-
-        private void MyWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            ////Bus b1 = listOfBuses.SelectedItem as Bus;
-            //int progress = (int)e.ProgressPercentage;
-            //Bus b1 = (Bus)e.UserState;
-
-            ////b1.Precentage += progress;
-
-            ///*listOfBuses.DataContext = b1;*///in order to affect the value of bpGeneral
-        }
-
-        private void MyWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            //Bus b1 = listOfBuses.SelectedItem as Bus;
-            //b1.Km += (int)e.Result;
-
-            //Bus theBus = e.Result as Bus;
-            //theBus.Precentage = 0;
-
-        }
-
         public void FuelButton_Click(object sender, RoutedEventArgs e)
         {   
             Button senderButton = sender as Button;
             currentBus = senderButton.DataContext as Bus;
-
-            ////senderButton.Visibility = Visibility.Hidden;//in order to expose the progress bar underneath
-            //Panel.SetZIndex(senderButton, -1);
             List<object> mylist = new List<object>();
             var g = senderButton.Parent as Grid;
-
             var a = g.Children[0] as TextBlock;
             var b = g.Children[1] as TextBlock;
             var c = g.Children[2] as Button;
@@ -281,17 +226,17 @@ namespace dotNet5781_03B_7224_0847
             mylist.Add(five);
             mylist.Add(12);//the length
             fuel_worker = new BackgroundWorker();
+             //  changing the row color to dark turquoise while taking to a ride     
+            a.Background = Brushes.Chocolate;
+            b.Background = Brushes.Chocolate;
+            c.Background = Brushes.Chocolate;
+            d.Background = Brushes.Chocolate;
+            five.Background = Brushes.Chocolate;
+             //
             fuel_worker.DoWork += worker_DoWork;
             fuel_worker.ProgressChanged += worker_ProgressChanged;
             fuel_worker.RunWorkerCompleted += worker_RunWorkerCompleted;
             fuel_worker.WorkerReportsProgress = true;
-
-            //if (!fuel_worker.IsBusy)
-            //{
-            //    currentBus.status = Status.FUELING;
-            //    fuel_worker.RunWorkerAsync(12);
-            //}
-
             if(currentBus.status == Status.TRY_ME)
             {
                currentBus.status = Status.FUELING;
@@ -307,10 +252,8 @@ namespace dotNet5781_03B_7224_0847
 
         private void worker_DoWork(object sender, DoWorkEventArgs e)
         {
-
             //Stopwatch stopwatch = new Stopwatch();
-            //stopwatch.Start();
-            //int length = (int)e.Argument;
+            //stopwatch.Start();      
             BackgroundWorker bg = sender as BackgroundWorker;
             List<object> mylist = e.Argument as List<object>;
             int length = (int)mylist[5];
@@ -318,15 +261,10 @@ namespace dotNet5781_03B_7224_0847
             int i;
             for (i = 1; i <= length; i++)
             {
-                Thread.Sleep(1000);
-                // fuel_worker.ReportProgress(i * 100 / length);
+                Thread.Sleep(1000);//pausing the action 
                 bg.ReportProgress((i * 100 / length), mylist);
-                
             }
-            
             e.Result = mylist;
-            //e.Result = stopwatch.ElapsedMilliseconds;
-            //e.Result=
         }
 
         private void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -335,18 +273,7 @@ namespace dotNet5781_03B_7224_0847
             List<object> mylist = e.UserState as List<object>;
             var myprog = mylist[4] as ProgressBar;
             int progress = e.ProgressPercentage;
-            
             myprog.Value = progress;
-
-           // PB.Value = progress;
-
-            //MessageBox.Show(listOfBuses.DataContext.ToString());
-            //Bus selectedBus = listOfBuses.DataContext as Bus;
-            //selectedBus.FuelProgressTime = progress;
-
-            //currentBus = senderButton.DataContext as Bus;
-            //currentBus.FuelProgressTime = progress;
-
         }
 
 
@@ -354,73 +281,25 @@ namespace dotNet5781_03B_7224_0847
         {
             List<object> mylist = e.Result as List<object>;
             currentBus.status= Status.TRY_ME;
-
+            
             var myprog = mylist[4] as ProgressBar;
             myprog.Value = 0;
-           // senderButton.Visibility = Visibility.Visible;
+
+            //  changing the row color back to white   
+            (mylist[0] as TextBlock).Background = Brushes.White;
+            (mylist[1] as TextBlock).Background = Brushes.White;
+            (mylist[2] as Button).Background = Brushes.LightGray;
+            (mylist[3] as Button).Background = Brushes.LightGray;
+            (mylist[4] as ProgressBar).Background = Brushes.LightGray;
+            // senderButton.Visibility = Visibility.Visible;
         }
 
         private void listOfBuses_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (listOfBuses.SelectedItem != null)
-            {
-                //showTheBus= listOfBuses.SelectedItem as Bus;
-
-                Bus b1 = (listOfBuses.SelectedItem as Bus);
-                displayOneBus displayOneBusWin = new displayOneBus(b1);
-
-                //displayOneBusWin.Closed += DisplayOneBus_Closed;
-
-                displayOneBusWin.Show();
+            {  Bus b1 = (listOfBuses.SelectedItem as Bus);
+                displayOneBus displayOneBusWin = new displayOneBus(b1); displayOneBusWin.Show();
             }
         }
-
-        //private void DisplayOneBus_Closed(object sender, EventArgs e)
-        //{
-        //    displayOneBus win = sender as displayOneBus;
-        //    if(win.fuelSelected)
-        //    {
-
-        //    }
-
-        //    else if(win.careSelected)
-        //    {
-
-        //    }
-
-        //    List<object> mylist = new List<object>();
-        //    var g = showTheBus as Grid;
-
-        //    int careTime = 144;//seconds
-
-        //    var a = g.Children[0] as TextBlock;
-        //    var b = g.Children[1] as TextBlock;
-        //    var c = g.Children[2] as Button;
-        //    var d = g.Children[3] as Button;
-        //    var five = g.Children[4] as ProgressBar;
-        //    mylist.Add(a);
-        //    mylist.Add(b);
-        //    mylist.Add(c);
-        //    mylist.Add(d);
-        //    mylist.Add(five);
-        //    mylist.Add(careTime);//the length
-        //    ride_Worker = new BackgroundWorker();
-        //    ride_Worker.DoWork += worker_DoWork;
-        //    ride_Worker.ProgressChanged += worker_ProgressChanged;
-        //    ride_Worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-        //    ride_Worker.WorkerReportsProgress = true;
-
-        //    //if (!fuel_worker.IsBusy)
-        //    //{
-        //    //    currentBus.status = Status.FUELING;
-        //    //    fuel_worker.RunWorkerAsync(12);
-        //    //}
-
-
-        //    currentBus.status = Status.IN_CARE;
-        //    ride_Worker.RunWorkerAsync(mylist);
-        //    currentBus.Km_since_care =0;
-
-        //}
     }
 }
