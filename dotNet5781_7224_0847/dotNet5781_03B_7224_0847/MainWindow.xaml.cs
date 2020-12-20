@@ -158,8 +158,10 @@ namespace dotNet5781_03B_7224_0847
                 one.Background = Brushes.DarkTurquoise;
                 two.Background = Brushes.DarkTurquoise;
                 three.Background= Brushes.DarkTurquoise;
-                four.Background =Brushes.DarkTurquoise;
+                four.Background = Brushes.DarkTurquoise;
                 five.Background = Brushes.DarkTurquoise;
+                six.Background = Brushes.DarkTurquoise;
+
                 //
                 currentBus.status = Status.DRIVING;
                 ride_Worker.RunWorkerAsync(mylist);
@@ -239,13 +241,13 @@ namespace dotNet5781_03B_7224_0847
             fuel_worker.WorkerReportsProgress = true;
             if(currentBus.status == Status.TRY_ME)
             {   //  changing the row color      
-                one.Background = Brushes.Chocolate;
-                two.Background = Brushes.Chocolate;
-                three.Background = Brushes.Chocolate;
-                four.Background = Brushes.Chocolate;
-                five.Background = Brushes.Chocolate;
-                six.Background = Brushes.Chocolate;
-                seven.Background = Brushes.Chocolate;
+                one.Background = Brushes.Crimson;
+                two.Background = Brushes.Crimson;
+                three.Background = Brushes.Crimson;
+                four.Background = Brushes.Crimson;
+                five.Background = Brushes.Crimson;
+                six.Background = Brushes.Crimson;
+                seven.Background = Brushes.Crimson;
                 //
                 currentBus.status = Status.FUELING;
                fuel_worker.RunWorkerAsync(mylist);
@@ -296,9 +298,9 @@ namespace dotNet5781_03B_7224_0847
             //  changing the row color back to white   
             (mylist[0] as TextBlock).Background = Brushes.White;
             (mylist[1] as TextBlock).Background = Brushes.White;
-            (mylist[2] as Button).Background = Brushes.LightGray;
-            (mylist[3] as Button).Background = Brushes.LightGray;
-            (mylist[4] as ProgressBar).Background = Brushes.LightGray;
+            (mylist[2] as Button).Background = Brushes.PowderBlue;
+            (mylist[3] as Button).Background = Brushes.PowderBlue;
+            (mylist[4] as ProgressBar).Background = Brushes.PowderBlue;
             (mylist[5] as TextBlock).Background = Brushes.White;
             (mylist[6] as TextBlock).Background = Brushes.White;
             // senderButton.Visibility = Visibility.Visible;
