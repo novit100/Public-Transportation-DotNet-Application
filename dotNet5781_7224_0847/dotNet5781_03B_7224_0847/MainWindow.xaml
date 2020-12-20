@@ -19,6 +19,8 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0"
@@ -35,7 +37,7 @@
     </Window.Resources>
     <StackPanel>
         <ListBox x:Name="listOfBuses" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="listOfBuses_MouseDoubleClick"/>
-        <Button x:Name="AddBus" Click="AddBus_Click" Margin="0,0,-0.4,-21.8" Content="Add A Bus " Height="29" HorizontalAlignment="Stretch" Background="PowderBlue"/>
+        <Button x:Name="AddBus" Click="AddBus_Click" Margin="0,0,-0.4,-21.8" Content="Add A Bus " Height="29" HorizontalAlignment="Stretch" Background="PowderBlue" />
 
 
 
