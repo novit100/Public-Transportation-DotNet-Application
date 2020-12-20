@@ -32,6 +32,7 @@ namespace dotNet5781_03B_7224_0847
         BackgroundWorker fuel_worker;
         Bus currentBus;
         Button takeToRideBt;
+        Bus showTheBus;
 
         public MainWindow()
         {
@@ -343,60 +344,63 @@ namespace dotNet5781_03B_7224_0847
         {
             if (listOfBuses.SelectedItem != null)
             {
+                //showTheBus= listOfBuses.SelectedItem as Bus;
 
                 Bus b1 = (listOfBuses.SelectedItem as Bus);
                 displayOneBus displayOneBusWin = new displayOneBus(b1);
 
-                displayOneBusWin.Closed += DisplayOneBus_Closed;
+                //displayOneBusWin.Closed += DisplayOneBus_Closed;
 
                 displayOneBusWin.Show();
-
-
             }
         }
 
-        private void DisplayOneBus_Closed(object sender, EventArgs e)
-        {
+        //private void DisplayOneBus_Closed(object sender, EventArgs e)
+        //{
+        //    displayOneBus win = sender as displayOneBus;
+        //    if(win.fuelSelected)
+        //    {
 
-            List<object> mylist = new List<object>();
-            var g = takeToRideBt.Parent as Grid;
+        //    }
 
-            int disInKm = (sender as TryToRide).dis;
-            int randKmPerHour = r.Next(20, 50);
-            double rideHours = (disInKm / (randKmPerHour / 60.0)) / 60;
-            int rideDemiLength = (int)(rideHours * 6);//we show the progress time like this: every real-time hour is 6 seconds 
+        //    else if(win.careSelected)
+        //    {
 
-            var a = g.Children[0] as TextBlock;
-            var b = g.Children[1] as TextBlock;
-            var c = g.Children[2] as Button;
-            var d = g.Children[3] as Button;
-            var five = g.Children[4] as ProgressBar;
-            mylist.Add(a);
-            mylist.Add(b);
-            mylist.Add(c);
-            mylist.Add(d);
-            mylist.Add(five);
-            mylist.Add(rideDemiLength);//the length
-            ride_Worker = new BackgroundWorker();
-            ride_Worker.DoWork += worker_DoWork;
-            ride_Worker.ProgressChanged += worker_ProgressChanged;
-            ride_Worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-            ride_Worker.WorkerReportsProgress = true;
+        //    }
 
-            //if (!fuel_worker.IsBusy)
-            //{
-            //    currentBus.status = Status.FUELING;
-            //    fuel_worker.RunWorkerAsync(12);
-            //}
+        //    List<object> mylist = new List<object>();
+        //    var g = showTheBus as Grid;
 
-            if (ifCanRide(disInKm))
-            {
-                currentBus.status = Status.DRIVING;
-                ride_Worker.RunWorkerAsync(mylist);
-                currentBus.Km += disInKm;
-                currentBus.Km_since_care += disInKm;
-                currentBus.Km_since_fuel += disInKm;
-            }
-        }
+        //    int careTime = 144;//seconds
+
+        //    var a = g.Children[0] as TextBlock;
+        //    var b = g.Children[1] as TextBlock;
+        //    var c = g.Children[2] as Button;
+        //    var d = g.Children[3] as Button;
+        //    var five = g.Children[4] as ProgressBar;
+        //    mylist.Add(a);
+        //    mylist.Add(b);
+        //    mylist.Add(c);
+        //    mylist.Add(d);
+        //    mylist.Add(five);
+        //    mylist.Add(careTime);//the length
+        //    ride_Worker = new BackgroundWorker();
+        //    ride_Worker.DoWork += worker_DoWork;
+        //    ride_Worker.ProgressChanged += worker_ProgressChanged;
+        //    ride_Worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+        //    ride_Worker.WorkerReportsProgress = true;
+
+        //    //if (!fuel_worker.IsBusy)
+        //    //{
+        //    //    currentBus.status = Status.FUELING;
+        //    //    fuel_worker.RunWorkerAsync(12);
+        //    //}
+
+
+        //    currentBus.status = Status.IN_CARE;
+        //    ride_Worker.RunWorkerAsync(mylist);
+        //    currentBus.Km_since_care =0;
+
+        //}
     }
 }
