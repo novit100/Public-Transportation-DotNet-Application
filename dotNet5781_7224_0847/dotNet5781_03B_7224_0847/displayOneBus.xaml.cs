@@ -48,7 +48,8 @@ namespace dotNet5781_03B_7224_0847
             mylist.Add(a);
             mylist.Add(b);
             mylist.Add(c);
-            mylist.Add(12);//the length  inner_fuel_worker = new BackgroundWorker();
+            mylist.Add(12);//the length  
+            inner_fuel_worker = new BackgroundWorker();
 
             inner_fuel_worker.DoWork += worker_DoWork;
             inner_fuel_worker.ProgressChanged += worker_ProgressChanged;
@@ -57,7 +58,8 @@ namespace dotNet5781_03B_7224_0847
 
             if (currentBus.status == Status.TRY_ME)
             {
-                currentBus.status = Status.FUELING;
+                this.Background = Brushes.Chocolate;
+                  currentBus.status = Status.FUELING;
                 inner_fuel_worker.RunWorkerAsync(mylist);
                 currentBus.Km_since_fuel = 0;
             }
@@ -90,7 +92,7 @@ namespace dotNet5781_03B_7224_0847
             care_worker.WorkerReportsProgress = true;
 
             if (currentBus.status == Status.TRY_ME)
-            {
+            {   this.Background = Brushes.DarkTurquoise;
                 currentBus.status = Status.IN_CARE;
                 care_worker.RunWorkerAsync(mylist);
                 currentBus.Km_since_care=0;
@@ -133,6 +135,7 @@ namespace dotNet5781_03B_7224_0847
 
         private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            this.Background = Brushes.White;
             List<object> mylist = e.Result as List<object>;
             currentBus.status = Status.TRY_ME;
 

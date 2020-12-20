@@ -62,11 +62,7 @@ namespace dotNet5781_03B_7224_0847
             for (int i = 0; i < 10; i++)//INISHIALIZING 10 BUSES 
             {
                 Bus newBus = new Bus();
-
-                //initDates(ref newBus);
-
                 newBus.Start_d = new DateTime(r.Next(1997, 2021), r.Next(1, 13), r.Next(1, 29));//not including yaer 2021(the future), month 13(not exist), and day 29(doesnt always exist)
-
                 newBus.last_care_d = new DateTime(r.Next(newBus.Start_d.Year, 2021), r.Next(1, 13), r.Next(1, 29));//INSERTING RANDOMLY A REASONABLE DATE FOR THE LAST CARE DATE 
 
                 if (newBus.Start_d > newBus.last_care_d)//impossible- last care cannot happen before start date 
@@ -136,16 +132,21 @@ namespace dotNet5781_03B_7224_0847
             double rideHours = (disInKm / (randKmPerHour / 60.0)) / 60;
             int rideDemiLength = (int)(rideHours * 6);//we show the progress time like this: every real-time hour is 6 seconds 
 
-            var a = g.Children[0] as TextBlock;
-            var b = g.Children[1] as TextBlock;
-            var c = g.Children[2] as Button;
-            var d = g.Children[3] as Button;
-            var five = g.Children[4] as ProgressBar;
-            mylist.Add(a);
-            mylist.Add(b);
-            mylist.Add(c);
-            mylist.Add(d);
+            var one = g.Children[0] as TextBlock;
+            var two = g.Children[1] as TextBlock;
+            var three = g.Children[2] as Button;
+            var four = g.Children[3] as Button;
+            var five = g.Children[4] as ProgressBar; 
+            var six = g.Children[5] as TextBlock;
+            var seven = g.Children[6] as TextBlock;
+           
+            mylist.Add(one);
+            mylist.Add(two);
+            mylist.Add(three);
+            mylist.Add(four);
             mylist.Add(five);
+            mylist.Add(six);
+            mylist.Add(seven);
             mylist.Add(rideDemiLength);//the length
             ride_Worker = new BackgroundWorker();
             ride_Worker.DoWork += worker_DoWork;
@@ -154,11 +155,13 @@ namespace dotNet5781_03B_7224_0847
             ride_Worker.WorkerReportsProgress = true;
             if (ifCanRide(disInKm))
             {   //  changing the row color to dark turquoise while taking to a ride     
-                a.Background = Brushes.DarkTurquoise;
-                b.Background = Brushes.DarkTurquoise;
-                c.Background= Brushes.DarkTurquoise;
-                d.Background =Brushes.DarkTurquoise;
+                one.Background = Brushes.DarkTurquoise;
+                two.Background = Brushes.DarkTurquoise;
+                three.Background= Brushes.DarkTurquoise;
+                four.Background = Brushes.DarkTurquoise;
                 five.Background = Brushes.DarkTurquoise;
+                six.Background = Brushes.DarkTurquoise;
+
                 //
                 currentBus.status = Status.DRIVING;
                 ride_Worker.RunWorkerAsync(mylist);
@@ -214,32 +217,39 @@ namespace dotNet5781_03B_7224_0847
             currentBus = senderButton.DataContext as Bus;
             List<object> mylist = new List<object>();
             var g = senderButton.Parent as Grid;
-            var a = g.Children[0] as TextBlock;
-            var b = g.Children[1] as TextBlock;
-            var c = g.Children[2] as Button;
-            var d = g.Children[3] as Button;
+            var one = g.Children[0] as TextBlock;
+            var two = g.Children[1] as TextBlock;
+            var three = g.Children[2] as Button;
+            var four = g.Children[3] as Button;
             var five = g.Children[4] as ProgressBar;
-            mylist.Add(a);
-            mylist.Add(b);
-            mylist.Add(c);
-            mylist.Add(d);
+            var six = g.Children[5] as TextBlock;
+            var seven = g.Children[6] as TextBlock;
+            
+            mylist.Add(one);
+            mylist.Add(two);
+            mylist.Add(three);
+            mylist.Add(four);
             mylist.Add(five);
+            mylist.Add(six);
+            mylist.Add(seven);
             mylist.Add(12);//the length
             fuel_worker = new BackgroundWorker();
-             //  changing the row color to dark turquoise while taking to a ride     
-            a.Background = Brushes.Chocolate;
-            b.Background = Brushes.Chocolate;
-            c.Background = Brushes.Chocolate;
-            d.Background = Brushes.Chocolate;
-            five.Background = Brushes.Chocolate;
-             //
+             
             fuel_worker.DoWork += worker_DoWork;
             fuel_worker.ProgressChanged += worker_ProgressChanged;
             fuel_worker.RunWorkerCompleted += worker_RunWorkerCompleted;
             fuel_worker.WorkerReportsProgress = true;
             if(currentBus.status == Status.TRY_ME)
-            {
-               currentBus.status = Status.FUELING;
+            {   //  changing the row color      
+                one.Background = Brushes.Crimson;
+                two.Background = Brushes.Crimson;
+                three.Background = Brushes.Crimson;
+                four.Background = Brushes.Crimson;
+                five.Background = Brushes.Crimson;
+                six.Background = Brushes.Crimson;
+                seven.Background = Brushes.Crimson;
+                //
+                currentBus.status = Status.FUELING;
                fuel_worker.RunWorkerAsync(mylist);
                currentBus.Km_since_fuel = 0; 
             }
@@ -256,7 +266,7 @@ namespace dotNet5781_03B_7224_0847
             //stopwatch.Start();      
             BackgroundWorker bg = sender as BackgroundWorker;
             List<object> mylist = e.Argument as List<object>;
-            int length = (int)mylist[5];
+            int length = (int)mylist[7];
             var myprog = e.Argument as ProgressBar;
             int i;
             for (i = 1; i <= length; i++)
@@ -288,9 +298,11 @@ namespace dotNet5781_03B_7224_0847
             //  changing the row color back to white   
             (mylist[0] as TextBlock).Background = Brushes.White;
             (mylist[1] as TextBlock).Background = Brushes.White;
-            (mylist[2] as Button).Background = Brushes.LightGray;
-            (mylist[3] as Button).Background = Brushes.LightGray;
-            (mylist[4] as ProgressBar).Background = Brushes.LightGray;
+            (mylist[2] as Button).Background = Brushes.PowderBlue;
+            (mylist[3] as Button).Background = Brushes.PowderBlue;
+            (mylist[4] as ProgressBar).Background = Brushes.PowderBlue;
+            (mylist[5] as TextBlock).Background = Brushes.White;
+            (mylist[6] as TextBlock).Background = Brushes.White;
             // senderButton.Visibility = Visibility.Visible;
         }
 
