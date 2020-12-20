@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-
 namespace dotNet5781_03B_7224_0847
 {
     public enum Status
@@ -14,11 +13,12 @@ namespace dotNet5781_03B_7224_0847
 
     public enum Names
     {
-        Moshe,Avraham,Yaakov,Izak,Charlie,Maoz,Roy,Dan,Sharon,Gabriel,Daniel,Refael,Simcha,Yona,Eliran,Shimmon,Israel,Beeri,Gilboa,Yozavad,Mahalalel,Isterak,Gay,Elroey,Noam,Gilaad,Alon,Zvika,Sarel,Yonni//27 names
+        Moshe,Avraham,Yaakov,Izak,Charlie,Maoz,Roy,Dan,Sharon,Gabriel,Daniel,Refael,Simcha,Yona,Eliran,Shimmon,Israel,Ariel,Gilboa,Yozavad,Mahalalel,Isterak,Gay,Elroey,Noam,Gilaad,Alon,Zvika,Sarel,Yonni,Shaul//31 names
     }
 
     public class Bus 
     {
+       private static Random rand = new Random(DateTime.Now.Millisecond);
         private string licenseNumber;
         public string LicenseNumber //license number
         {
@@ -59,7 +59,8 @@ namespace dotNet5781_03B_7224_0847
         public int Km_since_care { get; set; }
         public int Km_since_fuel { get; set; }
         public Status status { get; set; }
-         public Names DriverName { get; set; }
+        Names drivername = (Names)rand.Next(0, 32);
+         public Names DriverName { get { return drivername; } set { drivername = value; } }
     
 }
 }

@@ -62,11 +62,7 @@ namespace dotNet5781_03B_7224_0847
             for (int i = 0; i < 10; i++)//INISHIALIZING 10 BUSES 
             {
                 Bus newBus = new Bus();
-
-                //initDates(ref newBus);
-
                 newBus.Start_d = new DateTime(r.Next(1997, 2021), r.Next(1, 13), r.Next(1, 29));//not including yaer 2021(the future), month 13(not exist), and day 29(doesnt always exist)
-
                 newBus.last_care_d = new DateTime(r.Next(newBus.Start_d.Year, 2021), r.Next(1, 13), r.Next(1, 29));//INSERTING RANDOMLY A REASONABLE DATE FOR THE LAST CARE DATE 
 
                 if (newBus.Start_d > newBus.last_care_d)//impossible- last care cannot happen before start date 
@@ -226,20 +222,20 @@ namespace dotNet5781_03B_7224_0847
             mylist.Add(five);
             mylist.Add(12);//the length
             fuel_worker = new BackgroundWorker();
-             //  changing the row color to dark turquoise while taking to a ride     
-            a.Background = Brushes.Chocolate;
-            b.Background = Brushes.Chocolate;
-            c.Background = Brushes.Chocolate;
-            d.Background = Brushes.Chocolate;
-            five.Background = Brushes.Chocolate;
-             //
+             
             fuel_worker.DoWork += worker_DoWork;
             fuel_worker.ProgressChanged += worker_ProgressChanged;
             fuel_worker.RunWorkerCompleted += worker_RunWorkerCompleted;
             fuel_worker.WorkerReportsProgress = true;
             if(currentBus.status == Status.TRY_ME)
-            {
-               currentBus.status = Status.FUELING;
+            {   //  changing the row color to dark turquoise while taking to a ride     
+                a.Background = Brushes.Chocolate;
+                b.Background = Brushes.Chocolate;
+                c.Background = Brushes.Chocolate;
+                d.Background = Brushes.Chocolate;
+                five.Background = Brushes.Chocolate;
+                //
+                currentBus.status = Status.FUELING;
                fuel_worker.RunWorkerAsync(mylist);
                currentBus.Km_since_fuel = 0; 
             }
