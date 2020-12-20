@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace dotNet5781_03B_7224_0847
     {
      TRY_ME  ,DRIVING  ,FUELING  ,IN_CARE  //STATUS OF BUS
     }
-  public  class Bus 
+  public  class Bus
     {
         private string licenseNumber;
         public string LicenseNumber //license number
@@ -58,6 +59,7 @@ namespace dotNet5781_03B_7224_0847
         public int Km_since_care { get; set; }
         public int Km_since_fuel { get; set; }
         public Status status { get; set; }
+
         //public int FuelProgressTime                     //shows in ints the time passes in fuel progress bar
         //{
         //    get
