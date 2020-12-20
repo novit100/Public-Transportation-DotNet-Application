@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace dotNet5781_03B_7224_0847
 {
@@ -71,6 +72,20 @@ namespace dotNet5781_03B_7224_0847
         //public static readonly System.Windows.DependencyProperty FuelProgressTimeProperty =
         // System.Windows.DependencyProperty.Register("FuelProgressTimeProperty",
         //  typeof(int), typeof(Bus), new System.Windows.UIPropertyMetadata(0));
+
+        //public int Precentage { get; set; }
+
+
+        //public int Precentage
+        //{
+        //    get { return (int)GetValue(PrecentageProperty); }
+        //    set { SetValue(PrecentageProperty, value); }
+        //}
+
+        //// Using a DependencyProperty as the backing store for Precentage.  This enables animation, styling, binding, etc...
+        //public static readonly DependencyProperty PrecentageProperty =
+        //    DependencyProperty.Register("Precentage", typeof(int), typeof(Bus), new PropertyMetadata(0));
+
 
 
     }

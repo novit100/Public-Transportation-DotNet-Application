@@ -8,7 +8,7 @@
         Title="TryToRide" Height="300" Width="300">
     <Grid>
         <TextBlock  HorizontalAlignment="Left" Margin="48,35,0,0" TextWrapping="Wrap" Text="Enter the distance of the ride (in km)" VerticalAlignment="Top"/>
-        <TextBox x:Name="distanceTextBox" HorizontalAlignment="Left" Height="23" Margin="82,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" LostFocus="distanceTextBox_LostFocus" PreviewKeyDown="distanceTextBox_PreviewKeyDown"/>
+        <TextBox x:Name="distanceTextBox" HorizontalAlignment="Left" Height="23" Margin="82,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewKeyDown="distanceTextBox_PreviewKeyDown"/>
 
 
     </Grid>

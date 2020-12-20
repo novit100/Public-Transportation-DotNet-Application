@@ -28,17 +28,25 @@ namespace dotNet5781_03B_7224_0847
     {
         private static Random r = new Random(DateTime.Now.Millisecond);
         private ObservableCollection<Bus> buses = new ObservableCollection<Bus>();
+        BackgroundWorker ride_Worker;
         BackgroundWorker fuel_worker;
         Bus currentBus;
-       // Button senderButton;
+        Button takeToRideBt;
+        Button fuelBt;
 
         public MainWindow()
         {
             InitializeComponent();
             initBuses();
-            listOfBuses.DataContext = buses;//connecting the busus to the main window 
-            
+
+            listOfBuses.DataContext = buses;//connecting the buses to the main window 
+
+            //myWorker.DoWork += MyWorker_DoWork;
+            //myWorker.ProgressChanged += MyWorker_ProgressChanged;
+            //myWorker.RunWorkerCompleted += MyWorker_RunWorkerCompleted;
+            //myWorker.WorkerReportsProgress = true;
         }
+
         private void AddBus_Click(object sender, RoutedEventArgs e)
         {
             Bus b1 = new Bus() { status = Status.TRY_ME };//a new bus,try-me status unserted
@@ -46,6 +54,7 @@ namespace dotNet5781_03B_7224_0847
             AddBus addBusWindow = new AddBus(b1);//we sent the bus b1 to a new window we created named AddBus
             addBusWindow.ShowDialog();
         }
+
         public void initBuses()
         {
             int indcond1 = r.Next(0, 2);//choose a random bus wich in it, a year past since last care
@@ -106,28 +115,148 @@ namespace dotNet5781_03B_7224_0847
             }
         }
 
-        //private void initDates(ref Bus newBus)
-        //{
-        //    newBus.Start_d = new DateTime(r.Next(1997, 2021), r.Next(1, 13), r.Next(1, 29));//not including yaer 2021(the future), month 13(not exist), and day 29(doesnt always exist)
-
-        //    newBus.last_care_d = new DateTime(r.Next(newBus.Start_d.Year, 2021), r.Next(1, 13), r.Next(1, 29));//INSERTING RANDOMLY A REASONABLE DATE FOR THE LAST CARE DATE 
-
-        //    if (newBus.Start_d > newBus.last_care_d)//impossible- last care cannot happen before start date 
-        //    {
-        //        DateTime tmp = new DateTime(newBus.last_care_d.Year, newBus.last_care_d.Month, newBus.last_care_d.Day);
-        //        newBus.last_care_d = newBus.Start_d;
-        //        newBus.Start_d = tmp;//swap the start date and last care date
-        //    }
-        //}
-
-       
         private void takeToRideButton_Click(object sender, RoutedEventArgs e)
         {
-            Button bt = sender as Button;
-            Bus b1 = bt.DataContext as Bus;
+            //Button senderButton = sender as Button;
+            //Bus b1 = senderButton.DataContext as Bus;
 
-            TryToRide tryToRideWindow = new TryToRide(b1);
+            takeToRideBt= sender as Button;
+            currentBus = takeToRideBt.DataContext as Bus;
+
+            TryToRide tryToRideWindow = new TryToRide(currentBus);
+            tryToRideWindow.Closed += TryToRideWindow_Closed;
+
             tryToRideWindow.Show();
+
+        }
+
+        private void TryToRideWindow_Closed(object sender, EventArgs e)
+        {
+            //myWorker.RunWorkerAsync((sender as TryToRide));
+
+            List<object> mylist = new List<object>();
+            var g = takeToRideBt.Parent as Grid;
+
+            int disInKm = (sender as TryToRide).dis;
+            int randKmPerHour= r.Next(20, 50);
+            double rideHours = (disInKm / (randKmPerHour / 60.0)) / 60;
+            int rideDemiLength = (int)(rideHours * 6);//we show the progress time like this: every real-time hour is 6 seconds 
+
+            var a = g.Children[0] as TextBlock;
+            var b = g.Children[1] as TextBlock;
+            var c = g.Children[2] as Button;
+            var d = g.Children[3] as Button;
+            var five = g.Children[4] as ProgressBar;
+            mylist.Add(a);
+            mylist.Add(b);
+            mylist.Add(c);
+            mylist.Add(d);
+            mylist.Add(five);
+            mylist.Add(rideDemiLength);//the length
+            ride_Worker = new BackgroundWorker();
+            ride_Worker.DoWork += worker_DoWork;
+            ride_Worker.ProgressChanged += worker_ProgressChanged;
+            ride_Worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+            ride_Worker.WorkerReportsProgress = true;
+
+            //if (!fuel_worker.IsBusy)
+            //{
+            //    currentBus.status = Status.FUELING;
+            //    fuel_worker.RunWorkerAsync(12);
+            //}
+
+            if (ifCanRide(disInKm))
+            {         
+                currentBus.status = Status.DRIVING;
+                ride_Worker.RunWorkerAsync(mylist);
+                currentBus.Km += disInKm;
+                currentBus.Km_since_care += disInKm;
+                currentBus.Km_since_fuel += disInKm;
+            }
+
+
+        }
+
+        private bool ifCanRide(int disInKm)
+        {
+            //check distances and dates:
+            if (currentBus.Km_since_care + disInKm >= 20000)
+            {
+                MessageBox.Show("the bus has passed 20000 km since the last care, cannot take the bus to ride before taking care");
+                return false;            
+            }
+
+            if (currentBus.Km_since_fuel + disInKm >= 1200)
+            {
+                MessageBox.Show("the bus has passed 1200 km since the last fuel, cannot take the bus to ride before fueling");
+                return false;
+            }
+
+            if ((DateTime.Now - currentBus.last_care_d).TotalDays >= 365)
+            {
+                MessageBox.Show("a year passed since the last care date, cannot take the bus to ride before taking care");
+                return false;
+            }
+
+            //check status:
+            if (currentBus.status == Status.DRIVING)
+            {
+                MessageBox.Show("the current bus is already in a ride");
+                return false;
+            }
+            else if (currentBus.status == Status.FUELING)
+            {
+                MessageBox.Show("cannot take the bus to ride since it is in fueling now");
+                return false;
+            }
+            else if (currentBus.status == Status.IN_CARE)
+            {
+                MessageBox.Show("cannot take the bus to ride since it is in a care now");
+                return false;
+            }
+
+            return true;
+        }
+
+        private void MyWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+
+            //TryToRide win = (TryToRide)e.Argument;
+            //int length = win.dis;
+            //Bus b1 = win.currentBus;
+
+
+            //for (int i = 1; i <= length; i++)
+            //{
+            //    Thread.Sleep(50);
+            //    myWorker.ReportProgress(i * 100 / length, b1);
+            //}
+            //e.Result = b1;
+            //b1.Km += length;
+            //b1.Precentage = 0;
+        }
+
+
+        private void MyWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            ////Bus b1 = listOfBuses.SelectedItem as Bus;
+            //int progress = (int)e.ProgressPercentage;
+            //Bus b1 = (Bus)e.UserState;
+
+            ////b1.Precentage += progress;
+
+            ///*listOfBuses.DataContext = b1;*///in order to affect the value of bpGeneral
+        }
+
+        private void MyWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            //Bus b1 = listOfBuses.SelectedItem as Bus;
+            //b1.Km += (int)e.Result;
+
+            //Bus theBus = e.Result as Bus;
+            //theBus.Precentage = 0;
+
         }
 
         public void FuelButton_Click(object sender, RoutedEventArgs e)
@@ -150,6 +279,7 @@ namespace dotNet5781_03B_7224_0847
             mylist.Add(c);
             mylist.Add(d);
             mylist.Add(five);
+            mylist.Add(12);//the length
             fuel_worker = new BackgroundWorker();
             fuel_worker.DoWork += worker_DoWork;
             fuel_worker.ProgressChanged += worker_ProgressChanged;
@@ -161,9 +291,18 @@ namespace dotNet5781_03B_7224_0847
             //    currentBus.status = Status.FUELING;
             //    fuel_worker.RunWorkerAsync(12);
             //}
-            currentBus.status = Status.FUELING;
-            fuel_worker.RunWorkerAsync(mylist);
-            //currentBus.Km_since_fuel = 0; שמנו בפונק של הקומפליט 
+
+            if(currentBus.status == Status.TRY_ME)
+            {
+               currentBus.status = Status.FUELING;
+               fuel_worker.RunWorkerAsync(mylist);
+               currentBus.Km_since_fuel = 0; 
+            }
+            else 
+            {
+                MessageBox.Show(@"Another progress is taking place right now
+                wait till it's ready to fuel.");
+            }
         }
 
         private void worker_DoWork(object sender, DoWorkEventArgs e)
@@ -174,7 +313,7 @@ namespace dotNet5781_03B_7224_0847
             //int length = (int)e.Argument;
             BackgroundWorker bg = sender as BackgroundWorker;
             List<object> mylist = e.Argument as List<object>;
-            int length = 12;
+            int length = (int)mylist[5];
             var myprog = e.Argument as ProgressBar;
             int i;
             for (i = 1; i <= length; i++)
@@ -215,7 +354,7 @@ namespace dotNet5781_03B_7224_0847
         {
             List<object> mylist = e.Result as List<object>;
             currentBus.status= Status.TRY_ME;
-            currentBus.Km_since_fuel = 0;
+
             var myprog = mylist[4] as ProgressBar;
             myprog.Value = 0;
            // senderButton.Visibility = Visibility.Visible;
@@ -228,11 +367,57 @@ namespace dotNet5781_03B_7224_0847
 
                 Bus b1 = (listOfBuses.SelectedItem as Bus);
                 displayOneBus displayOneBusWin = new displayOneBus(b1);
-               displayOneBusWin.Show();
+
+                displayOneBusWin.Closed += DisplayOneBus_Closed;
+
+                displayOneBusWin.Show();
+
+
             }
-                //ListBox lb = sender as ListBox;
-                //Bus b1 = lb.DataContext as Bus;
-                
+        }
+
+        private void DisplayOneBus_Closed(object sender, EventArgs e)
+        {
+
+            List<object> mylist = new List<object>();
+            var g = takeToRideBt.Parent as Grid;
+
+            int disInKm = (sender as TryToRide).dis;
+            int randKmPerHour = r.Next(20, 50);
+            double rideHours = (disInKm / (randKmPerHour / 60.0)) / 60;
+            int rideDemiLength = (int)(rideHours * 6);//we show the progress time like this: every real-time hour is 6 seconds 
+
+            var a = g.Children[0] as TextBlock;
+            var b = g.Children[1] as TextBlock;
+            var c = g.Children[2] as Button;
+            var d = g.Children[3] as Button;
+            var five = g.Children[4] as ProgressBar;
+            mylist.Add(a);
+            mylist.Add(b);
+            mylist.Add(c);
+            mylist.Add(d);
+            mylist.Add(five);
+            mylist.Add(rideDemiLength);//the length
+            ride_Worker = new BackgroundWorker();
+            ride_Worker.DoWork += worker_DoWork;
+            ride_Worker.ProgressChanged += worker_ProgressChanged;
+            ride_Worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+            ride_Worker.WorkerReportsProgress = true;
+
+            //if (!fuel_worker.IsBusy)
+            //{
+            //    currentBus.status = Status.FUELING;
+            //    fuel_worker.RunWorkerAsync(12);
+            //}
+
+            if (ifCanRide(disInKm))
+            {
+                currentBus.status = Status.DRIVING;
+                ride_Worker.RunWorkerAsync(mylist);
+                currentBus.Km += disInKm;
+                currentBus.Km_since_care += disInKm;
+                currentBus.Km_since_fuel += disInKm;
+            }
         }
     }
 }

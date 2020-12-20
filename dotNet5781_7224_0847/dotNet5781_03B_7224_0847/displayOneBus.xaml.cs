@@ -27,8 +27,7 @@ namespace dotNet5781_03B_7224_0847
 
         private void InnerFuelButton_Click(object sender, RoutedEventArgs e)
         {
-            //var win = this.Parent as MainWindow;
-            //win.FuelButton_Click(sender, e);
+            this.Close();
         }
     }
 }
