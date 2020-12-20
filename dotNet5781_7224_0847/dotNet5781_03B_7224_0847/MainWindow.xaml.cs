@@ -223,10 +223,16 @@ namespace dotNet5781_03B_7224_0847
 
         private void listOfBuses_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            ListBox lb = sender as ListBox;
-            Bus b1 = lb.DataContext as Bus;
-            displayOneBus displayOneBusWin = new displayOneBus(b1);
-            displayOneBusWin.Show();
+            if (listOfBuses.SelectedItem != null)
+            {
+
+                Bus b1 = (listOfBuses.SelectedItem as Bus);
+                displayOneBus displayOneBusWin = new displayOneBus(b1);
+               displayOneBusWin.Show();
+            }
+                //ListBox lb = sender as ListBox;
+                //Bus b1 = lb.DataContext as Bus;
+                
         }
     }
 }
