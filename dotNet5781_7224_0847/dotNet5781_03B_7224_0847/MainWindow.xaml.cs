@@ -76,11 +76,11 @@ namespace dotNet5781_03B_7224_0847
                 Bus newBus = new Bus();
                 newBus.Start_d = new DateTime(r.Next(2005, 2021), r.Next(1, 13), r.Next(1, 29));//not including yaer 2021(the future), month 13(not exist), and day 29(doesnt always exist)
                 int fromYear;
-                if (newBus.Start_d.Year + 7 > 2021)
+                if ((int)(newBus.Start_d.Year) + 2 > 2021)
                     fromYear = newBus.Start_d.Year;
                 else
-                    fromYear = 2021;
-                newBus.last_care_d = new DateTime(r.Next(newBus.Start_d.Year, 2021), r.Next(1, 13), r.Next(1, 29));//INSERTING RANDOMLY A REASONABLE DATE FOR THE LAST CARE DATE 
+                    fromYear = 2020;
+                newBus.last_care_d = new DateTime(r.Next(fromYear, 2021), r.Next(1, 13), r.Next(1, 29));//INSERTING RANDOMLY A REASONABLE DATE FOR THE LAST CARE DATE 
 
                 if (newBus.Start_d > newBus.last_care_d)//impossible- last care cannot happen before start date 
                 {
@@ -146,8 +146,12 @@ namespace dotNet5781_03B_7224_0847
 
             int disInKm = (sender as TryToRide).dis;
             int randKmPerHour= r.Next(20, 50);
-            double rideHours = (disInKm / (randKmPerHour / 60.0)) / 60;
-            int rideDemiLength = (int)(rideHours * 6);//we show the progress time like this: every real-time hour is 6 seconds 
+            double rideHours = ((disInKm*1.0) / randKmPerHour);
+            int rideDemiLength;
+            if (rideHours < 1)
+                rideDemiLength = 6;
+            else
+                rideDemiLength = (int)(rideHours * 6);//we show the progress time like this: every real-time hour is 6 seconds 
 
             var one = g.Children[0] as TextBlock;
             var two = g.Children[1] as TextBlock;
@@ -283,7 +287,7 @@ namespace dotNet5781_03B_7224_0847
             //stopwatch.Start();      
             BackgroundWorker bg = sender as BackgroundWorker;
             List<object> mylist = e.Argument as List<object>;
-            int length = (int)mylist[7];
+            int length = (int)(mylist[7]);
             var myprog = e.Argument as ProgressBar;
             int i;
             for (i = 1; i <= length; i++)
