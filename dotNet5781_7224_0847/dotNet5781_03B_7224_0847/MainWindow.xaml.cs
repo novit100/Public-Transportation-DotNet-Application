@@ -154,14 +154,14 @@ namespace dotNet5781_03B_7224_0847
             ride_Worker.RunWorkerCompleted += worker_RunWorkerCompleted;
             ride_Worker.WorkerReportsProgress = true;
             if (ifCanRide(disInKm))
-            {   //  changing the row color to dark turquoise while taking to a ride     
-                one.Background = Brushes.DarkTurquoise;
-                two.Background = Brushes.DarkTurquoise;
-                three.Background= Brushes.DarkTurquoise;
-                four.Background = Brushes.DarkTurquoise;
-                five.Background = Brushes.DarkTurquoise;
-                six.Background = Brushes.DarkTurquoise;
-
+            {   //  changing the row color to Gold while taking to a ride     
+                one.Background = Brushes.Gold;
+                two.Background = Brushes.Gold;
+                three.Background= Brushes.Gold;
+                four.Background = Brushes.Gold;
+                five.Background = Brushes.Gold;
+                six.Background = Brushes.Gold;
+                seven.Background = Brushes.Gold;
                 //
                 currentBus.status = Status.DRIVING;
                 ride_Worker.RunWorkerAsync(mylist);
