@@ -194,6 +194,23 @@ namespace dotNet5781_03B_7224_0847
         }
         private bool ifCanRide(int disInKm)
         {
+            //check status:
+            if (currentBus.status == Status.DRIVING)
+            {
+                MessageBox.Show("the current bus is already in a ride");
+                return false;
+            }
+            else if (currentBus.status == Status.FUELING)
+            {
+                MessageBox.Show("cannot take the bus to ride since it is in fueling now");
+                return false;
+            }
+            else if (currentBus.status == Status.IN_CARE)
+            {
+                MessageBox.Show("cannot take the bus to ride since it is in a care now");
+                return false;
+            }
+
             //check distances and dates:
             if (currentBus.Km_since_care + disInKm >= 20000)
             {
@@ -210,23 +227,6 @@ namespace dotNet5781_03B_7224_0847
             if ((DateTime.Now - currentBus.last_care_d).TotalDays >= 365)
             {
                 MessageBox.Show("a year passed since the last care date, cannot take the bus to ride before taking care");
-                return false;
-            }
-
-            //check status:
-            if (currentBus.status == Status.DRIVING)
-            {
-                MessageBox.Show("the current bus is already in a ride");
-                return false;
-            }
-            else if (currentBus.status == Status.FUELING)
-            {
-                MessageBox.Show("cannot take the bus to ride since it is in fueling now");
-                return false;
-            }
-            else if (currentBus.status == Status.IN_CARE)
-            {
-                MessageBox.Show("cannot take the bus to ride since it is in a care now");
                 return false;
             }
 
