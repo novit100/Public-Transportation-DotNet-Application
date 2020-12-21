@@ -42,10 +42,10 @@
     </Window.Resources>
     <StackPanel>
         <ListBox x:Name="listOfBuses" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="listOfBuses_MouseDoubleClick"/>
-        <Button x:Name="AddBus" Click="AddBus_Click" Margin="0,0,-0.4,-21.8" Content="Add A Bus " Height="29" HorizontalAlignment="Stretch" Background="PowderBlue" />
-        <Label Content="אדום-תדלוק" Margin="20,20,-0.4,0" Foreground="Crimson"/>
-        <Label Content="צהוב-נסיעה" Margin="20,20,-0.4,0" Foreground="Gold"/>
-        <Label Content="טורקיז-טיפול" Margin="20,20,-0.4,0" Foreground="DarkTurquoise"/>
+        <Button x:Name="AddBus" Click="AddBus_Click" Margin="0,0,-0.4,-21.8" Content="Add A Bus " Height="29" HorizontalAlignment="Stretch" Background="PowderBlue"  />
+        <Label Content=" Red-feuling" Margin="346,20,-0.4,0" Foreground="Crimson" FontSize="14"/>
+        <Label Content="Turquoise-treatment" Margin="325,20,-0.4,0" Foreground="Turquoise" FontSize="14"/>
+        <Label Content=" Yellow-on a ride " Margin="336,20,-0.4,0" Foreground="Gold" FontSize="14"/>
 
         <Grid>
             <Grid.RowDefinitions>
