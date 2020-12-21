@@ -58,7 +58,7 @@ namespace dotNet5781_03B_7224_0847
 
             if (currentBus.status == Status.TRY_ME)
             {
-                this.Background = Brushes.Chocolate;
+                this.Background = Brushes.Gold;
                   currentBus.status = Status.FUELING;
                 inner_fuel_worker.RunWorkerAsync(mylist);
                 currentBus.Km_since_fuel = 0;
