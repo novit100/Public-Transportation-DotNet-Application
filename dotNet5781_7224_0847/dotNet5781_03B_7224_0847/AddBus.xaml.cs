@@ -19,7 +19,9 @@ namespace dotNet5781_03B_7224_0847
     /// Interaction logic for AddBus.xaml
     /// </summary>
     public partial class AddBus : Window
-    { public AddBus(Bus b1)
+    {
+        public bool legalBus=false;
+        public AddBus(Bus b1)
         {
             InitializeComponent();
             grid1.DataContext = b1;
@@ -73,7 +75,10 @@ namespace dotNet5781_03B_7224_0847
                 MessageBox.Show("cannot add a bus before adding the license number");
             }
             else
+            {
+                legalBus = true;//legal bus, with license number
                 AddABusWindow.Close();//since its an observable list, and we did proper binding, its automatically updated with the bus added
+            }
         }
     }
 }

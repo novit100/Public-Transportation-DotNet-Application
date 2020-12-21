@@ -50,7 +50,20 @@ namespace dotNet5781_03B_7224_0847
             Bus b1 = new Bus() { status = Status.TRY_ME };//a new bus,try-me status unserted
             buses.Add(b1);//adding the bus to the collection 
             AddBus addBusWindow = new AddBus(b1);//we sent the bus b1 to a new window we created named AddBus
+
+            addBusWindow.Closed += AddBusWindow_Closed;
+
             addBusWindow.ShowDialog();
+            
+        }
+
+        private void AddBusWindow_Closed(object sender, EventArgs e)
+        {
+            if (!(sender as AddBus).legalBus)//not legal bus- dont add to list. (delete the new empty bus added before)
+            {
+                buses.RemoveAt(buses.Count() - 1);
+                MessageBox.Show("bus was not added. insert all bus fields correctly and click the add button to insert");
+            }
         }
 
         public void initBuses()
