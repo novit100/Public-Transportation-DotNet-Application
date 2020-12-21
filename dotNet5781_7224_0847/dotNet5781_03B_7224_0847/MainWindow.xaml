@@ -32,7 +32,6 @@
                     <ProgressBar.Foreground>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="#FF11B704" Offset="1"/>
-                            
                         </LinearGradientBrush>
                     </ProgressBar.Foreground>
                 </ProgressBar>
@@ -44,8 +43,9 @@
     <StackPanel>
         <ListBox x:Name="listOfBuses" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusTemplate}" HorizontalContentAlignment="Stretch" MouseDoubleClick="listOfBuses_MouseDoubleClick"/>
         <Button x:Name="AddBus" Click="AddBus_Click" Margin="0,0,-0.4,-21.8" Content="Add A Bus " Height="29" HorizontalAlignment="Stretch" Background="PowderBlue" />
-
-
+        <Label Content="אדום-תדלוק" Margin="20,20,-0.4,0" Foreground="Crimson"/>
+        <Label Content="צהוב-נסיעה" Margin="20,20,-0.4,0" Foreground="Gold"/>
+        <Label Content="טורקיז-טיפול" Margin="20,20,-0.4,0" Foreground="DarkTurquoise"/>
 
         <Grid>
             <Grid.RowDefinitions>
