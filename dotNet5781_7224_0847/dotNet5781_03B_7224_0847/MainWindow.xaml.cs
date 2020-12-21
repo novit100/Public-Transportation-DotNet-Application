@@ -33,7 +33,6 @@ namespace dotNet5781_03B_7224_0847
         BackgroundWorker fuel_worker;
         Bus currentBus;
         Button takeToRideBt;
-        Bus showTheBus;
 
         public MainWindow()
         {
@@ -75,8 +74,13 @@ namespace dotNet5781_03B_7224_0847
             for (int i = 0; i < 10; i++)//INISHIALIZING 10 BUSES 
             {
                 Bus newBus = new Bus();
-                newBus.Start_d = new DateTime(r.Next(1997, 2021), r.Next(1, 13), r.Next(1, 29));//not including yaer 2021(the future), month 13(not exist), and day 29(doesnt always exist)
-                newBus.last_care_d = new DateTime(r.Next(newBus.Start_d.Year, 2021), r.Next(1, 13), r.Next(1, 29));//INSERTING RANDOMLY A REASONABLE DATE FOR THE LAST CARE DATE 
+                newBus.Start_d = new DateTime(r.Next(2005, 2021), r.Next(1, 13), r.Next(1, 29));//not including yaer 2021(the future), month 13(not exist), and day 29(doesnt always exist)
+                int tillYear;
+                if (newBus.Start_d.Year + 7 > 2021)
+                    tillYear = 2021;
+                else
+                    tillYear = newBus.Start_d.Year + 7;
+                newBus.last_care_d = new DateTime(r.Next(newBus.Start_d.Year, tillYear), r.Next(1, 13), r.Next(1, 29));//INSERTING RANDOMLY A REASONABLE DATE FOR THE LAST CARE DATE 
 
                 if (newBus.Start_d > newBus.last_care_d)//impossible- last care cannot happen before start date 
                 {
