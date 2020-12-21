@@ -38,7 +38,10 @@ namespace dotNet5781_03B_7224_0847
                 licenseNumberTextBox.MaxLength = 8;
             }
 
-            if (e == null) return;
+            if (e == null)
+            {
+                return;
+            }
             if (e.Key == Key.Delete || e.Key == Key.Back)//allow delete keys
             {
                 return;
@@ -58,7 +61,19 @@ namespace dotNet5781_03B_7224_0847
 
             //no other keys are allowed
             e.Handled = true;//if handeled=true, the char wont be added to the pakad, since as we checked, it is not a number
+        
+
+                
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if ((licenseNumberTextBox.Text).ToString() == "")
+            {
+                MessageBox.Show("cannot add a bus before adding the license number");
+            }
+            else
+                AddABusWindow.Close();//since its an observable list, and we did proper binding, its automatically updated with the bus added
+        }
     }
 }
