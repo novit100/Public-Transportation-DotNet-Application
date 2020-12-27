@@ -9,7 +9,7 @@ namespace DS
 {
     public static class DataSource
     {
-        public static List<Person> ListPersons;
+        public static List<User> ListPersons;
         public static List<Course> ListCourses;
         public static List<Student> ListStudents;
         public static List<Lecturer> ListLecturers;
@@ -22,9 +22,9 @@ namespace DS
         }
         static void InitAllLists()
         {
-            ListPersons = new List<Person>
+            ListPersons = new List<User>
             {
-                new Person
+                new User
                 {
                     Name = "David",
                     ID = 36,
@@ -35,7 +35,7 @@ namespace DS
                     BirthDate = DateTime.Parse("24.03.85")
                 },
 
-                new Person
+                new User
                 {
                     Name = "Yossi",
                     ID = 23,
@@ -46,7 +46,7 @@ namespace DS
                     BirthDate = DateTime.Parse("13.10.95")
                 },
 
-                new Person
+                new User
                 {
                     Name = "Roni",
                     ID = 15,

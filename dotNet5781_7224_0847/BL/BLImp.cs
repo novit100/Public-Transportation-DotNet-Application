@@ -13,11 +13,11 @@ namespace BL
     {
         IDL dl = DLFactory.GetDL();
 
-        public BO.Student GetStudent(int id)
+        public BO.user GetStudent(int id)
         {
-            BO.Student studentBO = new BO.Student();
+            BO.user studentBO = new BO.user();
 
-            DO.Person personDO;
+            DO.User personDO;
             try
             {
                 personDO = dl.GetPerson(id);
@@ -57,14 +57,14 @@ namespace BL
         }
 
 
-        public IEnumerable<BO.Student> GetAllStudents()
+        public IEnumerable<BO.user> GetAllStudents()
         {
             return from item in dl.GetStudentIDs( (id) => { return GetStudent(id); } )
-                   let student = item as BO.Student
+                   let student = item as BO.user
                    orderby student.ID
                    select student;
         }
-        public IEnumerable<BO.Student> GetStudentsBy(Predicate<BO.Student> predicate)
+        public IEnumerable<BO.user> GetStudentsBy(Predicate<BO.user> predicate)
         {
             throw new NotImplementedException();
         }

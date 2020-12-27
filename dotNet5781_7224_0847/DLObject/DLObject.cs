@@ -23,25 +23,25 @@ namespace DL
 
         //Implement IDL methods, CRUD
         #region Person
-        public DO.Person GetPerson(int id)
+        public DO.User GetPerson(int id)
         {
-            DO.Person per = DataSource.ListPersons.Find(p => p.ID == id);
+            DO.User per = DataSource.ListPersons.Find(p => p.ID == id);
 
             if (per != null)
                 return per.Clone();
             else
                 throw new DO.BadPersonIdException(id, $"bad person id: {id}");
         }
-        public IEnumerable<DO.Person> GetAllPersons()
+        public IEnumerable<DO.User> GetAllPersons()
         {
             return from person in DataSource.ListPersons
                    select person.Clone();
         }
-        public IEnumerable<DO.Person> GetAllPersonsBy(Predicate<DO.Person> predicate)
+        public IEnumerable<DO.User> GetAllPersonsBy(Predicate<DO.User> predicate)
         {
             throw new NotImplementedException();
         }
-        public void AddPerson(DO.Person person)
+        public void AddPerson(DO.User person)
         {
             if (DataSource.ListPersons.FirstOrDefault(p => p.ID == person.ID) != null)
                 throw new DO.BadPersonIdException(person.ID, "Duplicate person ID");
@@ -53,12 +53,12 @@ namespace DL
             throw new NotImplementedException();
         }
 
-        public void UpdatePerson(DO.Person p)
+        public void UpdatePerson(DO.User p)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdatePerson(int id, Action<DO.Person> update)
+        public void UpdatePerson(int id, Action<DO.User> update)
         {
             throw new NotImplementedException();
         }

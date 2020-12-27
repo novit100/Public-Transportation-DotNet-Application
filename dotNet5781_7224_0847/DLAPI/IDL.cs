@@ -13,12 +13,12 @@ namespace DLAPI
     public interface IDL
     {
         #region Person
-        IEnumerable<Person> GetAllPersons();
-        IEnumerable<Person> GetAllPersonsBy(Predicate<Person> predicate);
-        Person GetPerson(int id);
-        void AddPerson(Person person);
-        void UpdatePerson(Person person);
-        void UpdatePerson(int id, Action<Person> update); //method that knows to updt specific fields in Person
+        IEnumerable<User> GetAllPersons();
+        IEnumerable<User> GetAllPersonsBy(Predicate<User> predicate);
+        User GetPerson(int id);
+        void AddPerson(User person);
+        void UpdatePerson(User person);
+        void UpdatePerson(int id, Action<User> update); //method that knows to updt specific fields in Person
         void DeletePerson(int id);
         #endregion
 

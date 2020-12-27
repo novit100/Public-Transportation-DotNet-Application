@@ -13,4 +13,8 @@ namespace DO
     public enum LecturerStatus { STUFF, SABBATICAL, ADJUNCT, PENSIONER, FIRED, LEFT }
     public enum LecturerPosition { TEACHER, SENIOR_TEACHER, LECTURER, SENIOR_LECTURER, ASSISTANT_PROFESSOR, ASSOCIATE_PROFESSOR, PROFESSOR, ASSISTANT_TEACHER_A, ASSISTANT_TEACHER_B }
     public enum CourseLectureStatus { LECTURER, PRACTITIONER }
+    public enum Areas
+    {
+        General, North, South, Center, Jerusalem
+    }
 }

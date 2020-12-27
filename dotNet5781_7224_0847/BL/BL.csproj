@@ -51,7 +51,7 @@
     <Compile Include="BO\LecturerCourse.cs" />
     <Compile Include="BO\ListedPerson.cs" />
     <Compile Include="BO\Person.cs" />
-    <Compile Include="BO\Student.cs" />
+    <Compile Include="BO\user.cs" />
     <Compile Include="BO\StudentCourse.cs" />
     <Compile Include="BLAPI\IBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
