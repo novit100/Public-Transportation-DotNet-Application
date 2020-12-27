@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-/// <summary>    
+/// <summary>
 /// this project is programmed to be a platform which we will be able to actualize a system 
 /// of buses.
 /// we assumed in our project that the user does not change the first or last 
-/// bus stop, because they are what define the essence of the specific bus line. 
-/// we assume that 2 stations with the same key can appear in 2 buses with different areas,
-/// since there are interurbun buses, that statrt from the same city but travel to different areas.
-/// 
+/// bus stop, because they are what define the essence of the specific bus line.
+/// also we assume that the time is a function of distance. 
+///there were 
 /// </summary>
 namespace dotNet5781_02_7224_0847
 {
@@ -19,12 +18,11 @@ namespace dotNet5781_02_7224_0847
     {
         static void Main(string[] args)
         {
-            Console.Title = "                                          " +
-                "                                                 Esti's ans Nov's second bus project";
+            Console.Title = "Esti's ans Nov's second bus project";
             Console.BackgroundColor = ConsoleColor.Magenta;
             Console.ForegroundColor = ConsoleColor.White;
 
-            BusLineCollections coll = new BusLineCollections();
+            BusLineCollections coll = new BusLineCollections();//buslines collection
 
             int num = -1;
             Options op;
@@ -33,10 +31,10 @@ namespace dotNet5781_02_7224_0847
             {
                 Console.WriteLine(@"
                     to add a new bus line press 1
-                    to add a new bus stop press 2
+                    to sdd a new bus stop press 2
                     to to delete a bus line press 3
                     to to delete a bus station from a bus line path press 4
-                    to search for buses that get to a certain station press 5
+                    to search buses that approach a certain station press 5
                     to search for a direct path between two bus stations press 6
                     for printing all of the bus lines press 7
                     for printing the whole list of stations and the bus line that approach them press 8
@@ -98,7 +96,7 @@ namespace dotNet5781_02_7224_0847
                     case Options.SearchBuses:
                         try //5
                         {
-                            Console.WriteLine("please enter the key of the bus station you want to search buses that get to");
+                            Console.WriteLine("please enter the key of the bus station you want to serch");
                             int key = ReceiveInt();
                             coll.busesPassInStation(key);
                         }
@@ -120,8 +118,6 @@ namespace dotNet5781_02_7224_0847
                         {
                             Console.WriteLine(ex.ToString());
                         }
-                        catch
-                        { throw new BusException("unknown error"); }
                         break;
 
                     case Options.PrintBusLines://7
@@ -141,40 +137,24 @@ namespace dotNet5781_02_7224_0847
                     case Options.PrintAllStations://8
                         try
                         {
-                            List<BusLineStation> allstat = new List<BusLineStation>();//contains all the stat but only once
+                            
 
-                            foreach (BusLine bus in coll)
+                            foreach (BusLineStation item in allStat)
                             {
-                                foreach (BusLineStation stat in bus.Stations)
-                                {
-                                    bool ifExistInAllStat = false;
-                                    foreach (BusLineStation s in allstat)
-                                    {
-                                        if (s.BusStationKey == stat.BusStationKey)
-                                            ifExistInAllStat = true;
-                                    }
-                                    if(!ifExistInAllStat)//add only stations that dont exist allready in allstat
-                                        allstat.Add(stat);
-                                }
+
                             }
-                            foreach (BusLineStation item in allstat)
-                            {
-                                Console.WriteLine("bus station " + item.BusStationKey+":");
-                                coll.busesPassInStation(item.BusStationKey);
-                                Console.WriteLine("\n");
-                            }
+
+
                         }
                         catch(BusException ex)
                         {
                             Console.WriteLine(ex.ToString());
                         }
                         break;
-                        
+
 
                     default: break;
-                        
                 }
-                
             }
             while (op != Options.exit);
             Console.ReadKey();
@@ -191,6 +171,5 @@ namespace dotNet5781_02_7224_0847
             }
             return x;
         }
-
     }
 }
