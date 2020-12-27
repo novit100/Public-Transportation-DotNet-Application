@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public class ListedPerson
+    public class Station
     {
-        public int ID { get; set; }
+        public int Code { get; set; }
         public string Name { get; set; }
+        IEnumerable<LinePassesInStation> linesInStation { set; get; }
     }
 }

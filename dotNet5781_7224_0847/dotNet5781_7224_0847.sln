@@ -21,6 +21,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLObject", "DLObject\DLObje
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DS", "DS\DS.csproj", "{17D9C931-7BEA-455E-8FB1-646C6D62348C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PL", "PL\PL.csproj", "{231CC1DB-B66B-4ABD-9213-273E0B7DAF37}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0D092CB4-3A3D-46CF-9C48-F8CF9E71B804}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Downloads\config.xml = ..\..\..\Downloads\config.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +70,10 @@ Global
 		{17D9C931-7BEA-455E-8FB1-646C6D62348C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17D9C931-7BEA-455E-8FB1-646C6D62348C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17D9C931-7BEA-455E-8FB1-646C6D62348C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{231CC1DB-B66B-4ABD-9213-273E0B7DAF37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{231CC1DB-B66B-4ABD-9213-273E0B7DAF37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{231CC1DB-B66B-4ABD-9213-273E0B7DAF37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{231CC1DB-B66B-4ABD-9213-273E0B7DAF37}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

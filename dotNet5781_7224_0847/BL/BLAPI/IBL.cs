@@ -10,13 +10,6 @@ namespace BLAPI
 {
     public interface IBL
     {
-        //Add Person to Course
-        //get all courses for student
-        //etc...
-        BO.user GetStudent(int id);
-        IEnumerable<BO.user> GetAllStudents();
-        IEnumerable<BO.ListedPerson> GetStudentIDs();
 
-        IEnumerable<BO.user> GetStudentsBy(Predicate<BO.user> predicate);
     }
 }

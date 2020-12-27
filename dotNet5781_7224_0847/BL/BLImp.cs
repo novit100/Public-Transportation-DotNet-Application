@@ -11,75 +11,75 @@ namespace BL
 {
     class BLImp : IBL //internal
     {
-        IDL dl = DLFactory.GetDL();
+        //IDL dl = DLFactory.GetDL();
 
-        public BO.user GetStudent(int id)
-        {
-            BO.user studentBO = new BO.user();
+        //public BO.user GetStudent(int id)
+        //{
+        //    BO.user studentBO = new BO.user();
 
-            DO.User personDO;
-            try
-            {
-                personDO = dl.GetPerson(id);
-            }
-            catch (DO.BadPersonIdException ex)
-            {
-                throw new BO.BadStudentIdException("Student ID is illegal", ex);
-            }
-            personDO.CopyPropertiesTo(studentBO);
-            //studentBO.ID = personDO.ID;
-            //studentBO.BirthDate = personDO.BirthDate;
-            //studentBO.City = personDO.City;
-            //studentBO.Name = personDO.Name;
-            //studentBO.HouseNumber = personDO.HouseNumber;
-            //studentBO.Street = personDO.Street;
-            //studentBO.PersonalStatus = (BO.PersonalStatus)(int)personDO.PersonalStatus;
+        //    DO.User personDO;
+        //    try
+        //    {
+        //        personDO = dl.GetPerson(id);
+        //    }
+        //    catch (DO.BadPersonIdException ex)
+        //    {
+        //        throw new BO.BadStudentIdException("Student ID is illegal", ex);
+        //    }
+        //    personDO.CopyPropertiesTo(studentBO);
+        //    //studentBO.ID = personDO.ID;
+        //    //studentBO.BirthDate = personDO.BirthDate;
+        //    //studentBO.City = personDO.City;
+        //    //studentBO.Name = personDO.Name;
+        //    //studentBO.HouseNumber = personDO.HouseNumber;
+        //    //studentBO.Street = personDO.Street;
+        //    //studentBO.PersonalStatus = (BO.PersonalStatus)(int)personDO.PersonalStatus;
 
-            DO.Student studentDO = dl.GetStudent(id);
-            studentDO.CopyPropertiesTo(studentBO);
-            //studentBO.StartYear = studentDO.StartYear;
-            //studentBO.Status = (BO.StudentStatus)(int)studentDO.Status;
-            //studentBO.Graduation = (BO.StudentGraduate)(int)studentDO.Graduation;
+        //    DO.Student studentDO = dl.GetStudent(id);
+        //    studentDO.CopyPropertiesTo(studentBO);
+        //    //studentBO.StartYear = studentDO.StartYear;
+        //    //studentBO.Status = (BO.StudentStatus)(int)studentDO.Status;
+        //    //studentBO.Graduation = (BO.StudentGraduate)(int)studentDO.Graduation;
 
-            studentBO.ListOfCourses = from sic in dl.GetStudentInCourseList(sic => sic.PersonId == id)
-                                      let course = dl.GetCourse(sic.CourseId)
-                                      select course.CopyToStudentCourse(sic);
-                                      //new BO.StudentCourse()
-                                      //{
-                                      //    ID = course.ID,
-                                      //    Number = course.Number,
-                                      //    Name = course.Name,
-                                      //    Year = course.Year,
-                                      //    Semester = (BO.Semester)(int)course.Semester,
-                                      //    Grade = sic.Grade
-                                      //};
-            return studentBO;
-        }
-
-
-        public IEnumerable<BO.user> GetAllStudents()
-        {
-            return from item in dl.GetStudentIDs( (id) => { return GetStudent(id); } )
-                   let student = item as BO.user
-                   orderby student.ID
-                   select student;
-        }
-        public IEnumerable<BO.user> GetStudentsBy(Predicate<BO.user> predicate)
-        {
-            throw new NotImplementedException();
-        }
+        //    studentBO.ListOfCourses = from sic in dl.GetStudentInCourseList(sic => sic.PersonId == id)
+        //                              let course = dl.GetCourse(sic.CourseId)
+        //                              select course.CopyToStudentCourse(sic);
+        //                              //new BO.StudentCourse()
+        //                              //{
+        //                              //    ID = course.ID,
+        //                              //    Number = course.Number,
+        //                              //    Name = course.Name,
+        //                              //    Year = course.Year,
+        //                              //    Semester = (BO.Semester)(int)course.Semester,
+        //                              //    Grade = sic.Grade
+        //                              //};
+        //    return studentBO;
+        //}
 
 
-        public IEnumerable<BO.ListedPerson> GetStudentIDs()
-        {
-            return from item in dl.GetStudentIDs((id, name) =>
-                    {
-                        try { Thread.Sleep(1500); } catch (ThreadInterruptedException e) { }
-                        return new BO.ListedPerson() { ID = id, Name = name };
-                    })
-                   let student = item as BO.ListedPerson
-                   orderby student.ID
-                   select student;
-        }
+        //public IEnumerable<BO.user> GetAllStudents()
+        //{
+        //    return from item in dl.GetStudentIDs( (id) => { return GetStudent(id); } )
+        //           let student = item as BO.user
+        //           orderby student.ID
+        //           select student;
+        //}
+        //public IEnumerable<BO.user> GetStudentsBy(Predicate<BO.user> predicate)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+
+        //public IEnumerable<BO.ListedPerson> GetStudentIDs()
+        //{
+        //    return from item in dl.GetStudentIDs((id, name) =>
+        //            {
+        //                try { Thread.Sleep(1500); } catch (ThreadInterruptedException e) { }
+        //                return new BO.ListedPerson() { ID = id, Name = name };
+        //            })
+        //           let student = item as BO.ListedPerson
+        //           orderby student.ID
+        //           select student;
+        //}
     }
 }

@@ -43,16 +43,12 @@
   <ItemGroup>
     <Compile Include="BLAPI\BLFactory.cs" />
     <Compile Include="BLImp.cs" />
-    <Compile Include="BO\Course.cs" />
-    <Compile Include="BO\CourseLecturer.cs" />
+    <Compile Include="BO\Station.cs" />
     <Compile Include="BO\Enums.cs" />
     <Compile Include="BO\Exceptions.cs" />
-    <Compile Include="BO\Lecturer.cs" />
-    <Compile Include="BO\LecturerCourse.cs" />
-    <Compile Include="BO\ListedPerson.cs" />
-    <Compile Include="BO\Person.cs" />
-    <Compile Include="BO\user.cs" />
-    <Compile Include="BO\StudentCourse.cs" />
+    <Compile Include="BO\LineStation.cs" />
+    <Compile Include="BO\Line.cs" />
+    <Compile Include="BO\LinePassesInStation.cs" />
     <Compile Include="BLAPI\IBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BO\Tools.cs" />
@@ -62,6 +58,10 @@
     <ProjectReference Include="..\DLAPI\DLAPI.csproj">
       <Project>{e8505a1c-4323-4085-8a7d-96c2e5c5d8cd}</Project>
       <Name>DLAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DLObject\DLObject.csproj">
+      <Project>{0cc72c53-46ec-442d-80eb-89c7a36cd5b2}</Project>
+      <Name>DLObject</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
