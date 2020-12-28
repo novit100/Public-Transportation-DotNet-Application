@@ -139,10 +139,10 @@ namespace dotNet5781_02_7224_0847
                         {
                             
 
-                            foreach (BusLineStation item in allStat)
-                            {
+                            //foreach (BusLineStation item in allStat)
+                            //{
 
-                            }
+                            //}
 
 
                         }
