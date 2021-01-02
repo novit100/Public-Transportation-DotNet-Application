@@ -10,12 +10,9 @@ namespace DS
     public static class DataSource
     {
         public static List<Station> listStations;
-        //public static List<User> ListPersons;
-        //public static List<Course> ListCourses;
-        //public static List<Student> ListStudents;
-        //public static List<Lecturer> ListLecturers;
-        //public static List<LecturerInCourse> ListLectInCourses;
-        //public static List<StudentInCourse> ListStudInCourses;
+        public static List<Line> listLines;
+        public static List<LineStation> listLineStations;
+        public static List<AdjacentStations> listAdjacentStations;
 
         static DataSource()
         {
@@ -377,40 +374,38 @@ namespace DS
                     Lattitude = 31.759186,
                     Longitude = 35.189336
                 },
-
-
-                 new Station
-                 {
-                    Code = 1518,
-                    Name = "פרץ ברנשטיין/נזר דוד",
-                    Address = " רחוב:פרץ ברנשטיין 56 עיר: ירושלים ",
-                    Lattitude = 31.759121,
-                    Longitude = 35.189178
-                 },
-                new Station
-                {
-                    Code = 1522,
-                    Name = "מוזיאון ישראל/רופין",
-                    Address = "  רחוב:דרך רופין  עיר: ירושלים ",
-                    Lattitude = 31.774484,
-                   Longitude = 35.204882
+               new Station
+               {
+                  Code = 1518,
+                  Name = "פרץ ברנשטיין/נזר דוד",
+                  Address = " רחוב:פרץ ברנשטיין 56 עיר: ירושלים ",
+                  Lattitude = 31.759121,
+                  Longitude = 35.189178
+               },
+              new Station
+              {
+              Code = 1522,
+              Name = "מוזיאון ישראל/רופין",
+              Address = "  רחוב:דרך רופין  עיר: ירושלים ",
+              Lattitude = 31.774484,
+              Longitude = 35.204882
                 },
 
-                new Station
-                {
-                    Code = 1523,
-                    Name = "הרצוג/טשרניחובסקי",
-                    Address = "   רחוב:הרב הרצוג  עיר: ירושלים  ",
-                    Lattitude = 31.769652,
-                    Longitude = 35.208248
+             new Station
+                  {
+             Code = 1523,
+            Name = "הרצוג/טשרניחובסקי",
+            Address = "   רחוב:הרב הרצוג  עיר: ירושלים  ",
+            Lattitude = 31.769652,
+            Longitude = 35.208248
                 },
-                new Station
+              new Station
                 {
-                   Code = 1524,
-                   Name = "רופין/שד' הזז",
-                   Address = "    רחוב:הרב הרצוג  עיר: ירושלים   ",
-                   Lattitude = 31.769652,
-                   Longitude = 35.208248,
+              Code = 1524,
+            Name = "רופין/שד' הזז",
+            Address = "    רחוב:הרב הרצוג  עיר: ירושלים   ",
+            Lattitude = 31.769652,
+            Longitude = 35.208248,
                  },
                 new Station
                 {
@@ -435,12 +430,186 @@ namespace DS
                     Address = "  רחוב:הרב סורוצקין 28 עיר: ירושלים",
                     Lattitude = 31.79617,
                     Longitude =35.206158
+                },
+
+
+
+                 new Station
+                 {
+                    Code = 46422,
+                    Name = "חזון איש/ רבי עקיבא",
+                    Address = " רחוב:חזון איש 35 עיר: בני ברק ",
+                    Lattitude = 31.759121,
+                    Longitude = 35.189178
+                 },
+                new Station
+                {
+                    Code = 46425,
+                    Name = "חזון איש/ דבורה הנביאה",
+                    Address = " רחוב:חזון איש 51  עיר: בני ברק ",
+                    Lattitude = 31.774484,
+                   Longitude = 35.204882
+                },
+
+                new Station
+                {
+                    Code = 35272,
+                    Name = "חזון איש/ בעל שם טוב",
+                    Address = " רחוב:חזון איש 67  עיר: בני ברק ",
+                    Lattitude = 31.769652,
+                    Longitude = 35.208248
+                },
+                new Station
+                {
+                   Code = 20115,
+                   Name = "כהנמן/ הרב יעקובוביץ",
+                   Address = " רחוב:בהנמן 165  עיר: בני ברק   ",
+                   Lattitude = 31.769652,
+                   Longitude = 35.208248,
+                 },
+                new Station
+                {
+                    Code = 20116,
+                    Name = "כהנמן/ מנחת שלמה ",
+                    Address = " רחוב:כהנמן 211 עיר: בני ברק",
+                    Lattitude = 31.796033,
+                    Longitude =35.206094
+                },
+                new Station
+                {
+                    Code = 32298,
+                    Name = "רבי עקיבע/הרב קוק ",
+                    Address = " רחוב:רבי עקיבא 115 עיר: בני ברק",
+                    Lattitude = 31.794958,
+                    Longitude =35.205216
+                },
+                new Station
+                {
+                    Code = 32287,
+                    Name = "רבי עקיבא/ גן ורשא ",
+                    Address = " רחוב:רבי עקיבע 49 עיר: בני ברק",
+                    Lattitude = 31.79617,
+                    Longitude =35.206158
                 }
 
-               
                 #endregion
             };
 
+            listLines = new List<Line>();
+            {
+                #region restart lines
+
+                new Line
+                {
+                    BusNumber = 179,
+                    Area = Areas.General,
+                    FirstStation= 1491,
+                    LastStation = 1486,
+                };
+                new Line
+                {
+                    BusNumber = 280,
+                    Area = Areas.Jerusalem,
+                    FirstStation = 89,
+                    LastStation = 90,
+                };
+                new Line
+                {
+                    BusNumber = 67,
+                    Area = Areas.Jerusalem,
+                    FirstStation = 105,
+                    LastStation = 1494,
+                };
+                new Line
+                {
+                    BusNumber = 15,
+                    Area = Areas.Jerusalem,
+                    FirstStation = 1510,
+                    LastStation = 111,
+                };
+
+                new Line
+                {
+                    BusNumber = 56,
+                    Area = Areas.Jerusalem,
+                    FirstStation = 73,
+                    LastStation = 76,
+                };
+
+                 new Line
+                {
+                  BusNumber = 180,
+                    Area = Areas.Jerusalem,
+                 FirstStation = 86,
+                    LastStation = 89,
+                };
+                new Line
+                {
+                    BusNumber = 277,
+                    Area = Areas.Jerusalem,
+                    FirstStation = 109,
+                    LastStation = 119,
+                };
+                new Line
+                {
+                    BusNumber = 377,
+                    Area = Areas.Jerusalem,
+                    FirstStation = 1494,
+                    LastStation = 1510,
+                };
+                new Line
+                {
+                    BusNumber = 3,
+                    Area = Areas.Jerusalem,
+                    FirstStation = 123,
+                    LastStation = 121,
+                };
+                new Line
+                {
+                    BusNumber = 157,
+                    Area = Areas.Jerusalem,
+                    FirstStation = 76,
+                    LastStation = 121,
+                };
+                new Line
+                {
+                    BusNumber = 92,
+                    Area = Areas.Center,
+                    FirstStation = 46422,
+                    LastStation = 32287,
+                };
+                new Line
+                {
+                    BusNumber = 108,
+                    Area = Areas.Center,
+                    FirstStation = 46422,
+                    LastStation = 32298,
+                };
+                new Line
+                {
+                    BusNumber = 108,
+                    Area = Areas.Center,
+                    FirstStation = 20116,
+                    LastStation = 32287,
+                };
+
+                #endregion
+            };
+
+            listLineStations = new List<LineStation>();
+            {
+                #region restart line stations
+
+                new LineStation
+                {
+                    Station=
+                    LineStationIndex=1,
+                    PrevStation=
+                    NextStation=
+                };
+
+                #endregion
+            };
 
 
             //ListStudents = new List<Student>
