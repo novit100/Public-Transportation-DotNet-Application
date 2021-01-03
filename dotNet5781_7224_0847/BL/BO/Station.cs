@@ -13,7 +13,7 @@ namespace BO
         public string Address { get; set; }
         public double Longitude { get; set; }
         public double Lattitude { get; set; }
-        IEnumerable<Line> linesInStation { set; get; }
+        IEnumerable<Line> lines { set; get; }
         //IEnumerable<LinePassesInStation> linesInStation { set; get; }
     }
 }
