@@ -61,6 +61,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\DataSources\BO.Student.datasource" />
     <None Include="Properties\DataSources\BO.StudentCourse.datasource" />
   </ItemGroup>
