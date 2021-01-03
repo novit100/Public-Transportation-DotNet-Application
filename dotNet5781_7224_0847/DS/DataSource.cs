@@ -18,7 +18,7 @@ namespace DS
         {
             InitAllLists();
         }
-        static void InitAllLists()
+        static void InitAllLists() 
         {
             listStations = new List<Station>
             {
