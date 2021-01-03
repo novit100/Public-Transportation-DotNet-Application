@@ -55,12 +55,6 @@
     <Compile Include="DeepCopyUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DLAPI\DLAPI.csproj">
-      <Project>{e8505a1c-4323-4085-8a7d-96c2e5c5d8cd}</Project>
-      <Name>DLAPI</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Properties\DataSources\BO.Student.datasource" />
     <None Include="Properties\DataSources\BO.StudentCourse.datasource" />
   </ItemGroup>
