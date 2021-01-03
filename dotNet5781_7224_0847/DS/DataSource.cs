@@ -374,38 +374,38 @@ namespace DS
                     Lattitude = 31.759186,
                     Longitude = 35.189336
                 },
-               new Station
-               {
-                  Code = 1518,
-                  Name = "פרץ ברנשטיין/נזר דוד",
-                  Address = " רחוב:פרץ ברנשטיין 56 עיר: ירושלים ",
-                  Lattitude = 31.759121,
-                  Longitude = 35.189178
-               },
-              new Station
-              {
-              Code = 1522,
-              Name = "מוזיאון ישראל/רופין",
-              Address = "  רחוב:דרך רופין  עיר: ירושלים ",
-              Lattitude = 31.774484,
-              Longitude = 35.204882
+                new Station
+                {
+                    Code = 1518,
+                    Name = "פרץ ברנשטיין/נזר דוד",
+                    Address = " רחוב:פרץ ברנשטיין 56 עיר: ירושלים ",
+                    Lattitude = 31.759121,
+                    Longitude = 35.189178
+                },
+                new Station
+                {
+                    Code = 1522,
+                    Name = "מוזיאון ישראל/רופין",
+                    Address = "  רחוב:דרך רופין  עיר: ירושלים ",
+                    Lattitude = 31.774484,
+                    Longitude = 35.204882
                 },
 
-             new Station
-                  {
-             Code = 1523,
-            Name = "הרצוג/טשרניחובסקי",
-            Address = "   רחוב:הרב הרצוג  עיר: ירושלים  ",
-            Lattitude = 31.769652,
-            Longitude = 35.208248
-                },
-              new Station
+                new Station
                 {
-              Code = 1524,
-            Name = "רופין/שד' הזז",
-            Address = "    רחוב:הרב הרצוג  עיר: ירושלים   ",
-            Lattitude = 31.769652,
-            Longitude = 35.208248,
+                    Code = 1523,
+                    Name = "הרצוג/טשרניחובסקי",
+                    Address = "   רחוב:הרב הרצוג  עיר: ירושלים  ",
+                    Lattitude = 31.769652,
+                    Longitude = 35.208248
+                },
+                new Station
+                {
+                    Code = 1524,
+                    Name = "רופין/שד' הזז",
+                    Address = "    רחוב:הרב הרצוג  עיר: ירושלים   ",
+                    Lattitude = 31.769652,
+                    Longitude = 35.208248,
                  },
                 new Station
                 {
@@ -538,9 +538,9 @@ namespace DS
 
                  new Line
                 {
-                  BusNumber = 180,
+                    BusNumber = 180,
                     Area = Areas.Jerusalem,
-                 FirstStation = 86,
+                    FirstStation = 86,
                     LastStation = 89,
                 };
                 new Line
@@ -588,9 +588,9 @@ namespace DS
                 new Line
                 {
                     BusNumber = 108,
-                    Area = Areas.Center,
-                    FirstStation = 20116,
-                    LastStation = 32287,
+                    Area = Areas.Jerusalem,
+                    FirstStation = 106,
+                    LastStation = 88,
                 };
 
                 #endregion
@@ -600,13 +600,345 @@ namespace DS
             {
                 #region restart line stations
 
+                //line 179, jerusalem
                 new LineStation
                 {
-                    Station=
-                    LineStationIndex=1,
-                    PrevStation=
-                    NextStation=
+                    Station= 1491,
+                    LineStationIndex =0,
+                    PrevStation=-1,
+                    NextStation= 90,
                 };
+                new LineStation
+                {
+                    Station = 90,
+                    LineStationIndex = 1,
+                    PrevStation = 1491,
+                    NextStation = 91,
+                };
+                new LineStation
+                {
+                    Station = 91,
+                    LineStationIndex = 2,
+                    PrevStation = 90,
+                    NextStation = 93,
+                };
+                new LineStation
+                {
+                    Station = 93,
+                    LineStationIndex = 3,
+                    PrevStation = 91,
+                    NextStation = 94,
+                };
+                new LineStation
+                {
+                    Station = 94,
+                    LineStationIndex = 4,
+                    PrevStation = 93,
+                    NextStation = 95,
+                };
+                new LineStation
+                {
+                    Station = 95,
+                    LineStationIndex = 5,
+                    PrevStation = 94,
+                    NextStation = 102,
+                };
+                new LineStation
+                {
+                    Station = 102,
+                    LineStationIndex = 6,
+                    PrevStation = 95,
+                    NextStation = 103,
+                };
+                new LineStation
+                {
+                    Station = 103,
+                    LineStationIndex = 7,
+                    PrevStation = 102,
+                    NextStation = 110,
+                };
+                new LineStation
+                {
+                    Station = 110,
+                    LineStationIndex = 8,
+                    PrevStation = 103,
+                    NextStation = 1486,
+                };
+                new LineStation
+                {
+                    Station = 1486,
+                    LineStationIndex = 9,
+                    PrevStation = 110,
+                    NextStation = -1,
+                };
+
+                //line 67, jerusalem
+                new LineStation
+                {
+                    Station = 105,
+                    LineStationIndex = 0,
+                    PrevStation = -1,
+                    NextStation = 106,
+                };
+                new LineStation
+                {
+                    Station = 106,
+                    LineStationIndex = 1,
+                    PrevStation = 105,
+                    NextStation = 108,
+                };
+                new LineStation
+                {
+                    Station = 108,
+                    LineStationIndex = 2,
+                    PrevStation = 106,
+                    NextStation = 109,
+                };
+                new LineStation
+                {
+                    Station = 109,
+                    LineStationIndex = 3,
+                    PrevStation = 108,
+                    NextStation = 110,
+                };
+                new LineStation
+                {
+                    Station = 110,
+                    LineStationIndex = 4,
+                    PrevStation = 109,
+                    NextStation = 111,
+                };
+                new LineStation
+                {
+                    Station = 111,
+                    LineStationIndex = 5,
+                    PrevStation = 110,
+                    NextStation = 119,
+                };
+                new LineStation
+                {
+                    Station = 119,
+                    LineStationIndex = 6,
+                    PrevStation = 111,
+                    NextStation = 1487,
+                };
+                new LineStation
+                {
+                    Station = 1487,
+                    LineStationIndex = 7,
+                    PrevStation = 119,
+                    NextStation = 1492,
+                };
+                new LineStation
+                {
+                    Station = 1492,
+                    LineStationIndex = 8,
+                    PrevStation = 1487,
+                    NextStation = 1494,
+                };
+                new LineStation
+                {
+                    Station = 1494,
+                    LineStationIndex = 9,
+                    PrevStation = 1492,
+                    NextStation = -1,
+                };
+
+                //line 180, jerusalem
+                new LineStation
+                {
+                    Station = 86,
+                    LineStationIndex = 0,
+                    PrevStation = -1,
+                    NextStation = 85,
+                };
+                new LineStation
+                {
+                    Station = 85,
+                    LineStationIndex = 1,
+                    PrevStation = 86,
+                    NextStation = 84,
+                };
+                new LineStation
+                {
+                    Station = 84,
+                    LineStationIndex = 2,
+                    PrevStation = 85,
+                    NextStation = 83,
+                };
+                new LineStation
+                {
+                    Station = 83,
+                    LineStationIndex = 3,
+                    PrevStation = 84,
+                    NextStation = 78,
+                };
+                new LineStation
+                {
+                    Station = 78,
+                    LineStationIndex = 4,
+                    PrevStation = 83,
+                    NextStation = 77,
+                };
+                new LineStation
+                {
+                    Station = 77,
+                    LineStationIndex = 5,
+                    PrevStation = 78,
+                    NextStation = 115,
+                };
+                new LineStation
+                {
+                    Station = 115,
+                    LineStationIndex = 6,
+                    PrevStation = 77,
+                    NextStation = 113,
+                };
+                new LineStation
+                {
+                    Station = 113,
+                    LineStationIndex = 7,
+                    PrevStation = 115,
+                    NextStation = 94,
+                };
+                new LineStation
+                {
+                    Station = 94,
+                    LineStationIndex = 8,
+                    PrevStation = 113,
+                    NextStation = 89,
+                };
+                new LineStation
+                {
+                    Station = 89,
+                    LineStationIndex = 9,
+                    PrevStation = 94,
+                    NextStation = -1,
+                };
+
+                //line 3, jerusalem
+                new LineStation
+                {
+                    Station = 123,
+                    LineStationIndex = 0,
+                    PrevStation = -1,
+                    NextStation = 122,
+                };
+                new LineStation
+                {
+                    Station = 122,
+                    LineStationIndex = 1,
+                    PrevStation = 123,
+                    NextStation = 1510,
+                };
+                new LineStation
+                {
+                    Station = 1510,
+                    LineStationIndex = 2,
+                    PrevStation = 122,
+                    NextStation = 1511,
+                };
+                new LineStation
+                {
+                    Station = 1511,
+                    LineStationIndex = 3,
+                    PrevStation = 1510,
+                    NextStation = 1514,
+                };
+                new LineStation
+                {
+                    Station = 1514,
+                    LineStationIndex = 4,
+                    PrevStation = 1511,
+                    NextStation = 1518,
+                };
+                new LineStation
+                {
+                    Station = 1518,
+                    LineStationIndex = 5,
+                    PrevStation = 1514,
+                    NextStation = 1522,
+                };
+                new LineStation
+                {
+                    Station = 1522,
+                    LineStationIndex = 6,
+                    PrevStation = 1518,
+                    NextStation = 1523,
+                };
+                new LineStation
+                {
+                    Station = 1523,
+                    LineStationIndex = 7,
+                    PrevStation = 1522,
+                    NextStation = 1524,
+                };
+                new LineStation
+                {
+                    Station = 1524,
+                    LineStationIndex = 8,
+                    PrevStation = 1523,
+                    NextStation = 121,
+                };
+                new LineStation
+                {
+                    Station = 121,
+                    LineStationIndex = 9,
+                    PrevStation = 1524,
+                    NextStation = -1,
+                };
+
+                //line 108, center
+                new LineStation
+                {
+                    Station = 46422,
+                    LineStationIndex = 0,
+                    PrevStation = -1,
+                    NextStation = 35272,
+                };
+                new LineStation
+                {
+                    Station = 35272,
+                    LineStationIndex = 1,
+                    PrevStation = 46422,
+                    NextStation = 20116,
+                };
+                new LineStation
+                {
+                    Station = 20116,
+                    LineStationIndex = 2,
+                    PrevStation = 35272,
+                    NextStation = 20115,
+                };
+                new LineStation
+                {
+                    Station = 20115,
+                    LineStationIndex = 3,
+                    PrevStation = 20116,
+                    NextStation = 46425,
+                };
+                new LineStation
+                {
+                    Station = 46425,
+                    LineStationIndex = 4,
+                    PrevStation = 20115,
+                    NextStation = 32287,
+                };
+                new LineStation
+                {
+                    Station = 32287,
+                    LineStationIndex = 5,
+                    PrevStation = 46425,
+                    NextStation = 32298,
+                };
+                new LineStation
+                {
+                    Station = 32298,
+                    LineStationIndex = 6,
+                    PrevStation = 32287,
+                    NextStation = -1,
+                };
+
 
                 #endregion
             };
