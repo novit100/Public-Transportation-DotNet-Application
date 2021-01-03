@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using BLAPI;
+
 namespace PL
 {
     /// <summary>
@@ -20,9 +22,25 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
+        IBL bl = BLFactory.GetBL("1");
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void btnGO_Click(object sender, RoutedEventArgs e)
+        {
+            if (rbStations.IsChecked == true)
+            {
+                StationsWindow win = new StationsWindow(bl);
+                win.Show();
+            }
+            else
+            {
+                LinesWindow win = new LinesWindow(bl);
+                win.Show();
+            }
+
         }
     }
 }

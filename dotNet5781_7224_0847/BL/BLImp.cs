@@ -15,7 +15,7 @@ namespace BL
 
         //public BO.user GetStudent(int id)
         //{
-        //    BO.user studentBO = new BO.user();
+        //    BO.user studentBO = new BO.user();+
 
         //    DO.User personDO;
         //    try

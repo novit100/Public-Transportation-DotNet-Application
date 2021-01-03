@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BO
+namespace DO
 {
-    public enum Areas
+    public static class Config
     {
-        General, North, South, Center, Jerusalem
+        //for running numbers
+        public static int LineId = 0;
+
     }
 }
