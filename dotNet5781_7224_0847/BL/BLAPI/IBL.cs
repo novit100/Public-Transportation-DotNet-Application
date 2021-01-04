@@ -10,6 +10,7 @@ namespace BLAPI
 {
     public interface IBL
     {
-
+        void UpdateStationDetails(BO.Station currStat);
+        void DeleteStation(int code);
     }
 }

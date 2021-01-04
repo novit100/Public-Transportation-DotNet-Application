@@ -12,6 +12,7 @@ namespace DLAPI
     // Delete - delete an instance
     public interface IDL
     {
-
+        void UpdateStation(DO.Station station);
+        void DeleteStation(int code);
     }
 }
