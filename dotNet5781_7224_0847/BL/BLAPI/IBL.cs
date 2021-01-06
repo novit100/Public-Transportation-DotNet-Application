@@ -11,6 +11,9 @@ namespace BLAPI
     public interface IBL
     {
         void UpdateStationDetails(BO.Station currStat);
-        void DeleteStation(int code);
+        //void DeleteStation(int code);
+        IEnumerable<BO.Station> GetAllStations();
+
+        //IEnumerable<BO.Line> GetAllLines();
     }
 }
