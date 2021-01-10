@@ -10,7 +10,7 @@ using DLAPI;
 using DS;
 
 namespace DL
-{
+{   
     sealed class DLObject : IDL    //internal
 
     {
