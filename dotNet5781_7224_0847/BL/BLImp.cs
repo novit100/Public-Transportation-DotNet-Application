@@ -148,5 +148,9 @@ namespace BL
                    let course = dl.GetCourse(sic.CourseId)
                    select course.CopyToStudentCourse(sic);
         }
+        public void AddStationToList()
+        {
+
+        }
     }
 }

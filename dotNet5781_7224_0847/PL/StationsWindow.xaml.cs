@@ -91,5 +91,26 @@ namespace PL
             //    MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             //}
         }
+
+        private void BTAdd_Click(object sender, RoutedEventArgs e)
+        {
+            // bl.AddStationToList()
+            BO.Station Stat = new BO.Station() { };//a new Station
+            AddStation addStationWindow = new AddStation(Stat);//we sent the station Stat to a new window we created named AddStation
+
+            addStationWindow.Closed += AddStationWindow_Closed;
+
+            addStationWindow.ShowDialog();
+
+        }
+        private void AddStationWindow_Closed(object sender, EventArgs e)
+        {
+            if (!(sender as AddStation).legalBus)//not legal bus- dont add to list. (delete the new empty bus added before)
+            {
+                //buses.RemoveAt(buses.Count() - 1);
+                //MessageBox.Show("bus was not added. insert all bus fields correctly and click the add button to insert");
+            }
+        }
+
     }
 }
