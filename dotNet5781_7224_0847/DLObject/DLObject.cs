@@ -50,15 +50,15 @@ namespace DL
 
         public void DeleteStation(int code)
         {
-            DO.Station station = DataSource.listStations.Find(st => st.Code == code);
+            DO.Station stationToDel = DataSource.listStations.Find(st => st.Code == code);
 
-            if (station != null)//station was found
+            if (stationToDel != null)//station was found
             {
                 //if there are already lines that pass in this station, we cannot delete the station. we need to delete those lines first.
                 if(DataSource.listLineStations.Exists(st => st.Code == code))
                     throw new DO.StationException(code, $"the station that its code is: {code} is in the path of bus/es");
 
-                DataSource.listStations.Remove(station);
+                DataSource.listStations.Remove(stationToDel);
             }
             else
                 throw new DO.StationException(code, $"the station that its code is: {code} wasnt found");

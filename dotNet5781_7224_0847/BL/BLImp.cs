@@ -34,7 +34,6 @@ namespace BL
             try
             {
                 dl.DeleteStation(code);
-                dl.DeleteStudentFromAllCourses(code);
             }
             catch (DO.StationException ex)
             {
@@ -132,5 +131,9 @@ namespace BL
 
         //}
 
+        public void AddStationToList()
+        {
+
+        }
     }
 }

@@ -81,9 +81,9 @@ namespace PL
                 {
                     bl.DeleteStation(currStat.Code);
 
-                    RefreshAllRegisteredCoursesGrid();
-                    RefreshAllNotRegisteredCoursesGrid();
-                    RefreshAllStudentComboBox();
+                    //RefreshAllRegisteredCoursesGrid();
+                    //RefreshAllNotRegisteredCoursesGrid();
+                    RefreshAllStationsComboBox();
                 }
             }
             catch (BO.StationException ex)
@@ -105,11 +105,11 @@ namespace PL
         }
         private void AddStationWindow_Closed(object sender, EventArgs e)
         {
-            if (!(sender as AddStation).legalBus)//not legal bus- dont add to list. (delete the new empty bus added before)
-            {
-                //buses.RemoveAt(buses.Count() - 1);
-                //MessageBox.Show("bus was not added. insert all bus fields correctly and click the add button to insert");
-            }
+            //if (!(sender as AddStation).legalBus)//not legal bus- dont add to list. (delete the new empty bus added before)
+            //{
+            //    //buses.RemoveAt(buses.Count() - 1);
+            //    //MessageBox.Show("bus was not added. insert all bus fields correctly and click the add button to insert");
+            //}
         }
 
     }

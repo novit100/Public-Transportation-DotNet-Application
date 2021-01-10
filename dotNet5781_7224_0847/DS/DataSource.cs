@@ -1659,11 +1659,11 @@ namespace DS
                         Station1=1491,
                         Station2=90,
                         Distance=Math.Sqrt(Math.Pow(31.768465 - 31.766256, 2) + Math.Pow(35.178701 - 35.173, 2)), 
-                        Time = ( Math.Sqrt(Math.Pow(31.768465 - 31.766256, 2) + Math.Pow(35.178701 - 35.173, 2)) * 1.0 / 40);
+                        //Time = ( Math.Sqrt(Math.Pow(31.768465 - 31.766256, 2) + Math.Pow(35.178701 - 35.173, 2)) * 1.0 / 40),
 
                        //(sender as TryToRide).dis;
            // Time =(TimeSpan) v;
-        },
+                    },
 
                     #endregion
             };
