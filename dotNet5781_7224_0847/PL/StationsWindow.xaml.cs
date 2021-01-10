@@ -72,24 +72,24 @@ namespace PL
 
         private void BTDelete_Click(object sender, RoutedEventArgs e)
         {
-            //MessageBoxResult res = MessageBox.Show("Delete selected station?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            //if (res == MessageBoxResult.No)
-            //    return;
-            //try
-            //{
-            //    if (currStat != null)
-            //    {
-            //        bl.DeleteStudent(currStat.Code);
+            MessageBoxResult res = MessageBox.Show("Delete selected station?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (res == MessageBoxResult.No)
+                return;
+            try
+            {
+                if (currStat != null)
+                {
+                    bl.DeleteStation(currStat.Code);
 
-            //        RefreshAllRegisteredCoursesGrid();
-            //        RefreshAllNotRegisteredCoursesGrid();
-            //        RefreshAllStudentComboBox();
-            //    }
-            //}
-            //catch (BO.StationException ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
-            //}
+                    RefreshAllRegisteredCoursesGrid();
+                    RefreshAllNotRegisteredCoursesGrid();
+                    RefreshAllStudentComboBox();
+                }
+            }
+            catch (BO.StationException ex)
+            {
+                MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

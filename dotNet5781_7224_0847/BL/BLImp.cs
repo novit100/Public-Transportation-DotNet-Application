@@ -29,18 +29,18 @@ namespace BL
 
         }
 
-        //public void DeleteStation(int code)
-        //{
-        //    try
-        //    {
-        //        dl.DeleteStation(code);
-        //        dl.DeleteStudentFromAllCourses(code);
-        //    }
-        //    catch (DO.StationException ex)
-        //    {
-        //        throw new BO.StationException("error, cannot delete station", ex);
-        //    }
-        //}
+        public void DeleteStation(int code)
+        {
+            try
+            {
+                dl.DeleteStation(code);
+                dl.DeleteStudentFromAllCourses(code);
+            }
+            catch (DO.StationException ex)
+            {
+                throw new BO.StationException("error, cannot delete station", ex);
+            }
+        }
 
         public IEnumerable<BO.Station> GetAllStations()//move through all stationsDO, make them stationsBO and return the list of stationBO
         {
@@ -57,7 +57,7 @@ namespace BL
         {
             BO.Station stationBO = new BO.Station();
             DO.Station newStationDO;//before copying stationDO to stationBO, we need to ensure that stationDO is legal- legal code.
-            //sometimes we get here after the user filled ststionDO fields. thats why we copy the given stationDO to a new stationDO and check if it is legal.
+            //sometimes we get here after the user filled stationDO fields. thats why we copy the given stationDO to a new stationDO and check if it is legal.
             int code = stationDO.Code;
             try
             {
@@ -79,20 +79,10 @@ namespace BL
 
             foreach (BO.Line line in stationBO.lines)
             {
-                line.lineStations = dl.GetLineStationsListOfALine(line.LineId);
-                foreach (DO.LineStation lineStationDO in dl.GetLineStationsListOfALine(line.LineId))
-                {
-                    BO.LineStation lineStationDoBoAdapter(lineStationDO)
-                }
+                line.lineStations = from lineStationDO in dl.GetLineStationsListOfALine(line.LineId)
+                                    let lineStationBO = lineStationDoBoAdapter(lineStationDO)
+                                    select lineStationBO;
             }
-
-            //BO.Line currLine = new BO.Line();
-
-
-
-            //stationBO.lines = from lineStation in dl.GetLineStationsListThatMatchAStation(code)
-            //                  let line = dl.GetLineStationsListOfALine(int lineId)
-            //                  select line.CopyDOLineStationToBOLine(lineStation);
 
             return stationBO;
         }
@@ -116,14 +106,22 @@ namespace BL
 
             //copy the rest needed fields
 
-            
+            lineStationBO.Name = dl.GetStation(code).Name;
+
+            if (lineStationBO.LineStationIndex == 1)
+            {
+                //lineStationBO.Time = 00:00:00 - default
+                //lineStationBO.Distance = 0 - default
+            }
+            else
+            {
+                //distance from the former station:
+                lineStationBO.Distance = dl.GetAdjacentStations(code).FirstOrDefault(adj => adj.Station2 == code).Distance;
+                //time from the former station:
+                lineStationBO.Time = dl.GetAdjacentStations(code).FirstOrDefault(adj => adj.Station2 == code).Time;
+            }
 
             return lineStationBO;
-        }
-
-        BO.Line lineDoBoAdapter(DO.Line lineDO)
-        {
-
         }
 
         //public IEnumerable<BO.Line> GetAllLines()
@@ -134,19 +132,5 @@ namespace BL
 
         //}
 
-        public BO.Line lineDoBoAdapter(this DO.Course course, DO.StudentInCourse sic)
-        {
-            BO.StudentCourse result = (BO.StudentCourse)course.CopyPropertiesToNew(typeof(BO.StudentCourse));
-            // propertys' names changed? copy them here...
-            result.Grade = sic.Grade;
-            return result;
-        }
-
-        public IEnumerable<BO.StudentCourse> GetAllCoursesPerStudent(int id)
-        {
-            return from sic in dl.GetStudentsInCourseList(sic => sic.PersonId == id)
-                   let course = dl.GetCourse(sic.CourseId)
-                   select course.CopyToStudentCourse(sic);
-        }
     }
 }
