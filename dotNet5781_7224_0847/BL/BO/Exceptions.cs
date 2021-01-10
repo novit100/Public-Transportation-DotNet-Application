@@ -8,20 +8,20 @@ using System.Threading.Tasks;
 namespace BO
 {
     [Serializable]
-    public class BadStudentIdException : Exception
+    public class StationException : Exception
     {
-        public int ID;
-        public BadStudentIdException(string message, Exception innerException) : 
-            base(message, innerException) => ID = ((DO.BadPersonIdException)innerException).ID;
-        public override string ToString() => base.ToString() + $", bad student id: {ID}";
+        public int CODE;
+        public StationException(string message, Exception innerException) : 
+            base(message, innerException) => CODE = ((DO.StationException)innerException).CODE;
+        public override string ToString() => base.ToString() + $", error in station that its code is: {CODE}";
     }
 
-    [Serializable]
-    public class BadLecturerIdException : Exception
-    {
-        public int ID;
-        public BadLecturerIdException(string message, Exception innerException) : 
-            base(message, innerException) => ID = ((DO.BadPersonIdException)innerException).ID;
-        public override string ToString() => base.ToString() + $", bad student id: {ID}";
-    }
+    //[Serializable]
+    //public class BadLecturerIdException : Exception
+    //{
+    //    public int ID;
+    //    public BadLecturerIdException(string message, Exception innerException) : 
+    //        base(message, innerException) => ID = ((DO.BadPersonIdException)innerException).ID;
+    //    public override string ToString() => base.ToString() + $", bad student id: {ID}";
+    //}
 }

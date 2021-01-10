@@ -22,10 +22,74 @@ namespace PL
     public partial class StationsWindow : Window
     {
         IBL bl;
+        BO.Station currStat;
+
         public StationsWindow(IBL _bl)
         {
             InitializeComponent();
             bl = _bl;
+
+            //graduationComboBox.ItemsSource = Enum.GetValues(typeof(BO.StudentGraduate));
+            //statusComboBox.ItemsSource = Enum.GetValues(typeof(BO.StudentStatus));
+            //personalStatusComboBox.ItemsSource = Enum.GetValues(typeof(BO.PersonalStatus));
+
+            CBChosenStat.DisplayMemberPath = "Name";//show only specific Property of object
+            CBChosenStat.SelectedValuePath = "Code";//selection return only specific Property of object
+            CBChosenStat.SelectedIndex = 0; //index of the object to be selected
+            RefreshAllStationsComboBox();
+
+            linesDataGrid.IsReadOnly = true;
+        }
+
+        void RefreshAllStationsComboBox()//refresh the combobox each time the user changes the selection 
+        {
+            CBChosenStat.DataContext = bl.GetAllStations();//ObserListOfStations;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            System.Windows.Data.CollectionViewSource stationViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("stationViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // stationViewSource.Source = [generic data source]
+            System.Windows.Data.CollectionViewSource lineViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("lineViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // lineViewSource.Source = [generic data source]
+        }
+
+        private void BTUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (currStat!= null)
+                    bl.UpdateStationDetails(currStat);
+            }
+            catch (BO.StationException ex)
+            {
+                MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void BTDelete_Click(object sender, RoutedEventArgs e)
+        {
+            //MessageBoxResult res = MessageBox.Show("Delete selected station?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            //if (res == MessageBoxResult.No)
+            //    return;
+            //try
+            //{
+            //    if (currStat != null)
+            //    {
+            //        bl.DeleteStudent(currStat.Code);
+
+            //        RefreshAllRegisteredCoursesGrid();
+            //        RefreshAllNotRegisteredCoursesGrid();
+            //        RefreshAllStudentComboBox();
+            //    }
+            //}
+            //catch (BO.StationException ex)
+            //{
+            //    MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+            //}
         }
     }
 }

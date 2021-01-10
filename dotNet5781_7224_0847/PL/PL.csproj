@@ -101,16 +101,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Properties\DataSources\BL.DeepCopyUtilities.datasource" />
-    <None Include="Properties\DataSources\BLAPI.BLFactory.datasource" />
-    <None Include="Properties\DataSources\BLAPI.IBL.datasource" />
-    <None Include="Properties\DataSources\BO.BadLecturerIdException.datasource" />
-    <None Include="Properties\DataSources\BO.BadStudentIdException.datasource" />
     <None Include="Properties\DataSources\BO.Line.datasource" />
-    <None Include="Properties\DataSources\BO.LinePassesInStation.datasource" />
-    <None Include="Properties\DataSources\BO.LineStation.datasource" />
     <None Include="Properties\DataSources\BO.Station.datasource" />
-    <None Include="Properties\DataSources\BO.Tools.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 namespace DO
 {
     [Serializable]
-    public class BadPersonIdException : Exception
+    public class StationException : Exception
     {
-        public int ID;
-        public BadPersonIdException(int id) : base() => ID = id;
-        public BadPersonIdException(int id, string message) : 
-            base(message) => ID = id;
-        public BadPersonIdException(int id, string message, Exception innerException) : 
-            base(message, innerException) => ID = id;
-        public override string ToString() => base.ToString() + $", bad person id: {ID}";
+        public int CODE;
+        public StationException(int code) : base() => CODE = code;//quick initialization and call to father("base") ctor
+        public StationException(int code, string message) : 
+            base(message) => CODE = code;
+        public StationException(int code, string message, Exception innerException) : 
+            base(message, innerException) => CODE = code;
+        public override string ToString() => base.ToString() + $", error in station that its code is: {CODE}";
     }
 }
