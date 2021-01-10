@@ -78,7 +78,7 @@ namespace DL
         public IEnumerable<DO.LineStation> GetLineStationsListThatMatchAStation(int code)//returns a list of the logical stations (line stations) that match a physical station with a given code.
         {
             return from ls in DataSource.listLineStations
-                   where ls.Station==code
+                   where ls.Code==code
                    select ls.Clone();
         }
 

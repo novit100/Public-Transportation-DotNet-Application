@@ -11,7 +11,7 @@ namespace BO
         public int Code { get; set; }
         public string Name { get; set; }
         public int LineStationIndex { get; set; }//it can help us sort the stations
-        public double Distance { get; set; }
-        public TimeSpan Time { get; set; }
+        public double Distance { get; set; }//distance from prev station
+        public TimeSpan Time { get; set; }//time from prev station
     }
 }
