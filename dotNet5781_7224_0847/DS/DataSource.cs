@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 using DO;
 namespace DS
-{
+{ 
     public static class DataSource
     {
+        private static Random r = new Random();
         public static List<Station> listStations;
         public static List<Line> listLines;
         public static List<LineStation> listLineStations;
@@ -1649,11 +1651,24 @@ namespace DS
             };
 
             listAdjacentStations = new List<AdjacentStations>()
-            {
+            { 
+            #region restart stations
 
+                    new AdjacentStations
+                    {
+                        Station1=1491,
+                        Station2=90,
+                        Distance=Math.Sqrt(Math.Pow(31.768465 - 31.766256, 2) + Math.Pow(35.178701 - 35.173, 2)), 
+                        Time = ( Math.Sqrt(Math.Pow(31.768465 - 31.766256, 2) + Math.Pow(35.178701 - 35.173, 2)) * 1.0 / 40);
+
+                       //(sender as TryToRide).dis;
+           // Time =(TimeSpan) v;
+        },
+
+                    #endregion
             };
 
-            //mydistance = Math.Sqrt(Math.Pow(s1.width - s2.width, 2) - Math.Pow(s1.Length - s2.Length, 2));
+           //mydistance = Math.Sqrt(Math.Pow(s1.width - s2.width, 2) - Math.Pow(s1.Length - s2.Length, 2));
             /*
                          int disInKm = (sender as TryToRide).dis;
             int randKmPerHour= r.Next(20, 50);
