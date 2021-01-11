@@ -27,5 +27,36 @@ namespace PL
             InitializeComponent();  
             bl = _bl;
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            System.Windows.Data.CollectionViewSource lineViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("lineViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // lineViewSource.Source = [generic data source]
+            System.Windows.Data.CollectionViewSource iBLViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("iBLViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // iBLViewSource.Source = [generic data source]
+            System.Windows.Data.CollectionViewSource lineStationViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("lineStationViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // lineStationViewSource.Source = [generic data source]
+        }
+
+        private void BTUpdate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BTDelete_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BTAdd_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+      
     }
 }
