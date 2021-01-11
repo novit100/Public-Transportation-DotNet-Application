@@ -45,7 +45,7 @@ namespace DL
                 DataSource.listStations.Add(newStat.Clone());
             }
             else
-                throw new DO.StationException(newStat.Code, $"error in station that its code is: {newStat.Code}");
+                throw new DO.StationException(newStat.Code, $"the station that its code is: {newStat.Code} was not found");
         }
 
         public void DeleteStation(int code)
@@ -71,6 +71,14 @@ namespace DL
             return from station in DataSource.listStations
                    select station.Clone();
         }
+
+        public void AddStationToList(DO.Station newStatDO)
+        {
+            if(DataSource.listStations.Exists(st=>st.Code==newStatDO.Code))
+                throw new DO.StationException(newStatDO.Code, $"the station that its code is: {newStatDO.Code} already exists in the list");
+            DataSource.listStations.Add(newStatDO);
+        }
+
         #endregion
 
         #region LineStation

@@ -14,6 +14,7 @@ namespace BLAPI
         void UpdateStationDetails(BO.Station currStat);
         IEnumerable<BO.Station> GetAllStations();
         void DeleteStation(int code);
+        void AddStationToList(BO.Station newStat);
         #endregion
 
         IEnumerable<BO.Line> GetAllLinesPerStation(int code);

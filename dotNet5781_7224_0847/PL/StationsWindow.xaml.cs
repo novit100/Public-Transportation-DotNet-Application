@@ -99,9 +99,17 @@ namespace PL
 
         private void BTAdd_Click(object sender, RoutedEventArgs e)
         {
-            // bl.AddStationToList()
-            BO.Station Stat = new BO.Station() { };//a new Station
-            AddStation addStationWindow = new AddStation(Stat);//we sent the station Stat to a new window we created named AddStation
+            BO.Station stat = new BO.Station();//a new Station
+            try 
+            { 
+                bl.AddStationToList(stat); 
+            }
+            catch(BO.StationException ex)
+            {
+                MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            AddStation addStationWindow = new AddStation(stat);//we sent the station Stat to a new window we created named AddStation
 
             addStationWindow.Closed += AddStationWindow_Closed;
 

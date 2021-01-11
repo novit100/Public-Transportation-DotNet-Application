@@ -17,6 +17,7 @@ namespace DLAPI
         void UpdateStation(DO.Station station);
         void DeleteStation(int code);
         IEnumerable<DO.Station> GetAllStations();
+        void AddStationToList(DO.Station newStat);
         #endregion
 
         #region LineStation

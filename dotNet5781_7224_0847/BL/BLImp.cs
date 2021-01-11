@@ -86,6 +86,20 @@ namespace BL
             return stationBO;
         }
 
+        DO.Station stationBoDoAdapter(BO.Station stationBO)
+        {
+            DO.Station stationDO= new DO.Station();
+            //check code of the station:
+            if (stationBO.Code < 1 || stationBO.Code > 999999)
+                throw new BO.StationException("illegal station code");
+            //check longitude and lattitude:
+            if(stationBO.Lattitude < 31 || stationBO.Lattitude> 33.3 || stationBO.Longitude < 34.3 || stationBO.Longitude > 35.5)
+                throw new BO.StationException("station is not is Israel's teritory. illegal longitude or lattitude.");
+
+            stationBO.CopyPropertiesTo(stationDO);
+            return stationDO;
+        }
+
         BO.LineStation lineStationDoBoAdapter(DO.LineStation lineStationDO)
         {
             BO.LineStation lineStationBO = new BO.LineStation();
@@ -131,9 +145,17 @@ namespace BL
 
         //}
 
-        public void AddStationToList()
+        public void AddStationToList(BO.Station newStat)
         {
-
+            try
+            {
+                //the adapter will check if its logically possible to add the station
+                dl.AddStationToList(stationBoDoAdapter(newStat));
+            }
+            catch (DO.StationException ex)
+            {
+                throw new BO.StationException("error, cannot add the station", ex);
+            }
         }
 
         public IEnumerable<BO.Line> GetAllLinesPerStation(int code)
