@@ -46,7 +46,22 @@ namespace PL
             CBChosenStat.DataContext = bl.GetAllStations();//ObserListOfStations;
         }
 
+        void RefreshAllLinesOfStationGrid()
+        {
+            linesDataGrid.DataContext = bl.GetAllLinesPerStation(currStat.Code);
+        }
 
+        private void CBChosenStat_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            currStat = (CBChosenStat.SelectedItem as BO.Station);
+            gridOneStation.DataContext = currStat;
+
+            if (currStat != null)
+            {
+                RefreshAllLinesOfStationGrid();
+
+            }
+        }
 
         private void BTUpdate_Click(object sender, RoutedEventArgs e)
         {
@@ -72,8 +87,7 @@ namespace PL
                 {
                     bl.DeleteStation(currStat.Code);
 
-                    //RefreshAllRegisteredCoursesGrid();
-                    //RefreshAllNotRegisteredCoursesGrid();
+                    RefreshAllLinesOfStationGrid();
                     RefreshAllStationsComboBox();
                 }
             }
@@ -102,6 +116,7 @@ namespace PL
             //    //MessageBox.Show("bus was not added. insert all bus fields correctly and click the add button to insert");
             //}
         }
+
 
     }
 }

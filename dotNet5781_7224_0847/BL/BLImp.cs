@@ -107,7 +107,7 @@ namespace BL
 
             lineStationBO.Name = dl.GetStation(code).Name;
 
-            if (lineStationBO.LineStationIndex == 1)
+            if (lineStationBO.LineStationIndex == 0)
             {
                 //lineStationBO.Time = 00:00:00 - default
                 //lineStationBO.Distance = 0 - default
@@ -134,6 +134,13 @@ namespace BL
         public void AddStationToList()
         {
 
+        }
+
+        public IEnumerable<BO.Line> GetAllLinesPerStation(int code)
+        {
+            return from lineStation in dl.GetLineStationsListThatMatchAStation(code)
+                   let line = dl.GetLine(lineStation.LineId)
+                   select line.CopyDOLineStationToBOLine(lineStation);
         }
     }
 }
