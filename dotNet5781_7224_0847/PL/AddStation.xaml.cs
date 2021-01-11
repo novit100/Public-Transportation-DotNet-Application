@@ -22,6 +22,7 @@ namespace PL
         public AddStation(BO.Station Stat)
         {
             InitializeComponent();
+            grid1.DataContext = Stat;
         }
 
         private void codeTextBox_PreviewKeyDown(object sender, KeyEventArgs e)

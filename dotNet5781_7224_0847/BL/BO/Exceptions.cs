@@ -17,12 +17,13 @@ namespace BO
         public override string ToString() => base.ToString() + $", error in station that its code is: {CODE}";
     }
 
-    //[Serializable]
-    //public class BadLecturerIdException : Exception
-    //{
-    //    public int ID;
-    //    public BadLecturerIdException(string message, Exception innerException) : 
-    //        base(message, innerException) => ID = ((DO.BadPersonIdException)innerException).ID;
-    //    public override string ToString() => base.ToString() + $", bad student id: {ID}";
-    //}
+    [Serializable]
+    public class LineException : Exception
+    {
+        public int BUSNUMBER;
+        public LineException(string message) : base(message) { }
+        public LineException(string message, Exception innerException) :
+            base(message, innerException) => BUSNUMBER = ((DO.LineException)innerException).BUSNUMBER;
+        public override string ToString() => base.ToString() + $", error in line: {BUSNUMBER}";
+    }
 }

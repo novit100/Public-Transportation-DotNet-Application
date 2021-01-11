@@ -62,8 +62,6 @@ namespace DL
             }
             else
                 throw new DO.StationException(code, $"the station that its code is: {code} wasnt found");
-
-
         }
 
         public IEnumerable<DO.Station> GetAllStations()
@@ -104,9 +102,28 @@ namespace DL
             else//didnt find the station
                 throw new DO.StationException(code, $"error in line station that its code is: {code}");
         }
+
+        public void DeleteLineStationsOfALine(int lineId)
+        {
+            DataSource.listLineStations.RemoveAll(ls => ls.LineId == lineId);
+        }
         #endregion
 
         #region Line
+        public void UpdateLine(DO.Line newLine)
+        {
+            DO.Line ln = DataSource.listLines.Find(l => l.LineId == newLine.LineId);//search for the the line with the same lineId, if exist.
+
+            if (ln != null)//if found
+            {
+                DataSource.listLines.Remove(ln);
+                DataSource.listLines.Add(newLine.Clone());
+            }
+            else
+                throw new DO.LineException(newLine.BusNumber, $"the station that its code is: {newLine.BusNumber} was not found");
+
+        }
+
         public DO.Line GetLine(int lineId)
         {
             return DataSource.listLines.Find(l => l.LineId == lineId).Clone();
@@ -116,6 +133,38 @@ namespace DL
         {
             return from line in DataSource.listLines
                    select line.Clone();
+        }
+
+        public void DeleteLine(int lineId, int busNumber)
+        {
+            DO.Line lineToDel = DataSource.listLines.Find(ln => ln.LineId == lineId);
+
+            if (lineToDel != null)//line was found
+            {
+                //delete all line stations of the line
+                DeleteLineStationsOfALine(lineId);
+                //then delete the line itself
+                DataSource.listLines.Remove(lineToDel);
+            }
+            else
+                throw new DO.LineException(busNumber, $"the line: {busNumber} wasnt found"););
+        }
+
+        public void AddLineToList(DO.Line newLine)
+        {
+            //check if a bus with the same identifying stations (first and last stations) already exists.
+            if (DataSource.listLines.Exists(l => l.FirstStation == newLine.FirstStation && l.LastStation==newLine.LastStation))
+                throw new DO.LineException(newLine.BusNumber, $"the line: {newLine.BusNumber} allready exists, with the same first and last stations");
+
+            ////check if both the first and last stations of the bus- exist in the stations list
+            //if(DataSource.listStations.Exists(st=>st.Code==newLine.FirstStation))
+            //{
+            //    if (DataSource.listStations.Exists(st => st.Code == newLine.LastStation))
+                    
+            //}
+            DataSource.listLines.Add(newLine);
+
+            //throw new DO.LineException(newLine.BusNumber, $"the station chosen as First Station or Last Station doesnt exist. Add the station/s before trying again.");
         }
         #endregion
 
@@ -128,5 +177,6 @@ namespace DL
                    select adjSt.Clone();//return a list of adjacent stations, in which the station with the given code apears as the 1st/2nd in the pair
         }
         #endregion
+
     }
 }

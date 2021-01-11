@@ -43,10 +43,6 @@ namespace BL
 
         public IEnumerable<BO.Station> GetAllStations()//move through all stationsDO, make them stationsBO and return the list of stationBO
         {
-            //return from item in dl.GetStudentListWithSelectedFields( (stud) => { return GetStudent(stud.ID); } )
-            //       let student = item as BO.Student
-            //       orderby student.ID
-            //       select student;
             return from stationDO in dl.GetAllStations()//ask dl to provide all the DO.stations, make them BO.stations and return the list.
                    orderby stationDO.Code           //order it by their code
                    select stationDoBoAdapter(stationDO);
@@ -76,12 +72,12 @@ namespace BL
 
             //now we need to restart the "lineStations" list of each line.
 
-            //foreach (BO.Line line in stationBO.lines)
-            //{
-            //    line.lineStations = from lineStationDO in dl.GetLineStationsListOfALine(line.LineId)
-            //                        let lineStationBO = lineStationDoBoAdapter(lineStationDO)
-            //                        select lineStationBO;
-            //}
+            foreach (BO.Line line in stationBO.lines)
+            {
+                line.lineStations = from lineStationDO in dl.GetLineStationsListOfALine(line.LineId)
+                                    let lineStationBO = lineStationDoBoAdapter(lineStationDO)
+                                    select lineStationBO;
+            }
 
             return stationBO;
         }
@@ -152,6 +148,21 @@ namespace BL
         #endregion
 
         #region Line
+        public void UpdateLineDetails(BO.Line currLine)
+        {
+            //Update DO.Line            
+            DO.Line lineDO = new DO.Line();
+            currLine.CopyPropertiesTo(lineDO);
+            try
+            {
+                dl.UpdateLine(lineDO);
+            }
+            catch (DO.LineException ex)
+            {
+                throw new BO.LineException("Line Number is illegal", ex);
+            }
+        }
+
         public IEnumerable<BO.Line> GetAllLinesPerStation(int code)
         {
             return from lineStation in dl.GetLineStationsListThatMatchAStation(code)
@@ -190,6 +201,62 @@ namespace BL
                                   select lineStationBO;
            
             return lineBO;
+        }
+
+        DO.Line lineBoDoAdapter(BO.Line lineBO)
+        {
+            DO.Line lineDO = new DO.Line();
+
+            lineBO.CopyPropertiesTo(lineDO);
+
+            //check if both the first and last stations of the bus- exist in the stations list
+            if (GetAllStations.)
+            {
+                if (DataSource.listStations.Exists(st => st.Code == newLine.LastStation))
+
+            }
+
+            throw new DO.LineException(newLine.BusNumber, $"the station chosen as First Station or Last Station doesnt exist. Add the station/s before trying again.");
+
+
+            lineDO.LineId=
+
+
+            return lineDO;
+        }
+
+        public void DeleteLine(int lineId, int busNumber)
+        {
+            try
+            {
+                dl.DeleteLine(lineId, busNumber);
+            }
+            catch (DO.LineException ex)
+            {
+                throw new BO.LineException("error, cannot delete line", ex);
+            }
+        }
+
+        public void AddLineToList(BO.Line newLine)
+        {
+            try
+            {
+                //the adapter/ the adding func will check if its logically possible to add the line
+                dl.AddLineToList(lineBoDoAdapter(newLine));
+            }
+            catch (DO.LineException ex)
+            {
+                throw new BO.LineException("error, cannot add the line", ex);
+            }
+        }
+        #endregion
+
+        #region LineStation
+        public IEnumerable<BO.LineStation> GetAllLineStationsPerLine(int lineId)
+        {
+            return from DOlineStation in dl.GetLineStationsListOfALine(lineId)
+                   let BOlineStation = lineStationDoBoAdapter(DOlineStation)
+                   select BOlineStation;
         }
         #endregion
     }

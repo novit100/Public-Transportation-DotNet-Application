@@ -22,41 +22,103 @@ namespace PL
     public partial class LinesWindow : Window
     {
         IBL bl;
+        BO.Line currLine;
+
         public LinesWindow(IBL _bl)
         {
             InitializeComponent();  
             bl = _bl;
+
+            CBCurrentLine.DisplayMemberPath = "BusNumber";//show only specific Property of object
+            CBCurrentLine.SelectedValuePath = "LineId";//selection return only specific Property of object
+            CBCurrentLine.SelectedIndex = 0; //index of the object to be selected
+            RefreshAllLinesComboBox();
+
+            lineStationDataGrid.IsReadOnly = true;
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        void RefreshAllLinesComboBox()//refresh the combobox each time the user changes the selection 
         {
+            CBCurrentLine.DataContext = bl.GetAllLines();//ObserListOfStations;
+        }
 
-            System.Windows.Data.CollectionViewSource lineViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("lineViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // lineViewSource.Source = [generic data source]
-            System.Windows.Data.CollectionViewSource iBLViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("iBLViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // iBLViewSource.Source = [generic data source]
-            System.Windows.Data.CollectionViewSource lineStationViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("lineStationViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // lineStationViewSource.Source = [generic data source]
+        void RefreshAllLineStationsOfLineGrid()
+        {
+            lineStationDataGrid.DataContext = bl.GetAllLineStationsPerLine(currLine.LineId);
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            currLine = (CBCurrentLine.SelectedItem as BO.Line);
+            gridOneLine.DataContext = currLine;
+
+            if (currLine != null)
+            {
+                RefreshAllLineStationsOfLineGrid();
+            }
         }
 
         private void BTUpdate_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                if (currLine != null)
+                    bl.UpdateLineDetails(currLine);
+            }
+            catch (BO.LineException ex)
+            {
+                MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void BTDelete_Click(object sender, RoutedEventArgs e)
         {
+            MessageBoxResult res = MessageBox.Show("Delete selected line?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (res == MessageBoxResult.No)
+                return;
+            try
+            {
+                if (currLine != null)
+                {
+                    bl.DeleteLine(currLine.LineId, currLine.BusNumber);
 
+                    RefreshAllLineStationsOfLineGrid();
+                    RefreshAllLinesComboBox();
+                }
+            }
+            catch (BO.StationException ex)
+            {
+                MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void BTAdd_Click(object sender, RoutedEventArgs e)
         {
+            BO.Line line = new BO.Line();//a new line
+            try
+            {
+                bl.AddLineToList(line);
 
+                AddLine addLineWindow = new AddLine(line);//we sent the line to a new window we created named AddLine
+
+                addLineWindow.Closed += AddLineWindow_Closed;
+
+                addLineWindow.ShowDialog();
+            }
+            catch (BO.LineException ex)
+            {
+                MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
-      
+        private void AddLineWindow_Closed(object sender, EventArgs e)
+        {
+            //if (!(sender as AddStation).legalBus)//not legal bus- dont add to list. (delete the new empty bus added before)
+            //{
+            //    //buses.RemoveAt(buses.Count() - 1);
+            //    //MessageBox.Show("bus was not added. insert all bus fields correctly and click the add button to insert");
+            //}
+        }
+
     }
 }

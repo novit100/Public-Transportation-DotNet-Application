@@ -46,6 +46,16 @@ namespace BL
             return result;
         }
 
+        //public static BO.LineStation CopyDOLineStationToBOLineSttation(this DO.LineStation lineStationDO, DO.LineStation linestationBO)
+        //{
+        //    BO.LineStation result = (BO.LineStation)lineStationDO.CopyPropertiesToNew(typeof(BO.LineStation));//copy the relevant properties of lineStationDO to a new object- linestationBO
+
+        //    //important!
+        //    //we still didnt restart the result's Distance, Time and LineId fields. for that, we need to reach the "listStations" and "listAdjacentStations" in DataSource, wicth we cannot do here. 
+        //    //we will do it to the result from BLImp, by using "dl".
+        //    return result;
+        //}
+
 
     }
 }

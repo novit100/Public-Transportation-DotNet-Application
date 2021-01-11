@@ -29,10 +29,6 @@ namespace PL
             InitializeComponent();
             bl = _bl;
 
-            //graduationComboBox.ItemsSource = Enum.GetValues(typeof(BO.StudentGraduate));
-            //statusComboBox.ItemsSource = Enum.GetValues(typeof(BO.StudentStatus));
-            //personalStatusComboBox.ItemsSource = Enum.GetValues(typeof(BO.PersonalStatus));
-
             CBChosenStat.DisplayMemberPath = "Name";//show only specific Property of object
             CBChosenStat.SelectedValuePath = "Code";//selection return only specific Property of object
             CBChosenStat.SelectedIndex = 0; //index of the object to be selected
@@ -102,18 +98,18 @@ namespace PL
             BO.Station stat = new BO.Station();//a new Station
             try 
             { 
-                bl.AddStationToList(stat); 
+                bl.AddStationToList(stat);
+
+                AddStation addStationWindow = new AddStation(stat);//we sent the station Stat to a new window we created named AddStation
+
+                addStationWindow.Closed += AddStationWindow_Closed;
+
+                addStationWindow.ShowDialog();
             }
             catch(BO.StationException ex)
             {
                 MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
-            AddStation addStationWindow = new AddStation(stat);//we sent the station Stat to a new window we created named AddStation
-
-            addStationWindow.Closed += AddStationWindow_Closed;
-
-            addStationWindow.ShowDialog();
 
         }
         private void AddStationWindow_Closed(object sender, EventArgs e)
