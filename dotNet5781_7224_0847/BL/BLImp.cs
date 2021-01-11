@@ -82,7 +82,7 @@ namespace BL
                 line.lineStations = dl.GetLineStationsListOfALine(line.LineId);
                 foreach (DO.LineStation lineStationDO in dl.GetLineStationsListOfALine(line.LineId))
                 {
-                    BO.LineStation lineStationDoBoAdapter(lineStationDO)
+                    BO.LineStation lineStationDoBoAdapter(lineStationDO);
                 }
             }
 
