@@ -46,15 +46,21 @@ namespace PL
             CBChosenStat.DataContext = bl.GetAllStations();//ObserListOfStations;
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        void RefreshAllLinesOfStationGrid()
         {
+            linesDataGrid.DataContext = bl.GetAllLinesPerStation(currStat.Code);
+        }
 
-            System.Windows.Data.CollectionViewSource stationViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("stationViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // stationViewSource.Source = [generic data source]
-            System.Windows.Data.CollectionViewSource lineViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("lineViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // lineViewSource.Source = [generic data source]
+        private void CBChosenStat_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            currStat = (CBChosenStat.SelectedItem as BO.Station);
+            gridOneStation.DataContext = currStat;
+
+            if (currStat != null)
+            {
+                RefreshAllLinesOfStationGrid();
+
+            }
         }
 
         private void BTUpdate_Click(object sender, RoutedEventArgs e)
@@ -72,31 +78,38 @@ namespace PL
 
         private void BTDelete_Click(object sender, RoutedEventArgs e)
         {
-            //MessageBoxResult res = MessageBox.Show("Delete selected station?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            //if (res == MessageBoxResult.No)
-            //    return;
-            //try
-            //{
-            //    if (currStat != null)
-            //    {
-            //        bl.DeleteStudent(currStat.Code);
+            MessageBoxResult res = MessageBox.Show("Delete selected station?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (res == MessageBoxResult.No)
+                return;
+            try
+            {
+                if (currStat != null)
+                {
+                    bl.DeleteStation(currStat.Code);
 
-            //        RefreshAllRegisteredCoursesGrid();
-            //        RefreshAllNotRegisteredCoursesGrid();
-            //        RefreshAllStudentComboBox();
-            //    }
-            //}
-            //catch (BO.StationException ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
-            //}
+                    RefreshAllLinesOfStationGrid();
+                    RefreshAllStationsComboBox();
+                }
+            }
+            catch (BO.StationException ex)
+            {
+                MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void BTAdd_Click(object sender, RoutedEventArgs e)
         {
-            // bl.AddStationToList()
-            BO.Station Stat = new BO.Station() { };//a new Station
-            AddStation addStationWindow = new AddStation(Stat);//we sent the station Stat to a new window we created named AddStation
+            BO.Station stat = new BO.Station();//a new Station
+            try 
+            { 
+                bl.AddStationToList(stat); 
+            }
+            catch(BO.StationException ex)
+            {
+                MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            AddStation addStationWindow = new AddStation(stat);//we sent the station Stat to a new window we created named AddStation
 
             addStationWindow.Closed += AddStationWindow_Closed;
 
@@ -111,6 +124,7 @@ namespace PL
             //    //MessageBox.Show("bus was not added. insert all bus fields correctly and click the add button to insert");
             //}
         }
+
 
     }
 }

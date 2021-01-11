@@ -10,10 +10,16 @@ namespace BLAPI
 {
     public interface IBL
     {
+        #region Station
         void UpdateStationDetails(BO.Station currStat);
-        //void DeleteStation(int code);
         IEnumerable<BO.Station> GetAllStations();
+        void DeleteStation(int code);
+        void AddStationToList(BO.Station newStat);
+        #endregion
 
+        IEnumerable<BO.Line> GetAllLinesPerStation(int code);
         //IEnumerable<BO.Line> GetAllLines();
+
+
     }
 }

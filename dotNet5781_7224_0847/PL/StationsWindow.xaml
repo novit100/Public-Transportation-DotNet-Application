@@ -6,16 +6,13 @@
         xmlns:local="clr-namespace:PL"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.StationsWindow"
         mc:Ignorable="d"
-        Title="StationsWindow" Height="450" Width="800" Loaded="Window_Loaded">
-    <Window.Resources>
-        <CollectionViewSource x:Key="stationViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Station}, CreateList=True}"/>
-        <CollectionViewSource x:Key="lineViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Line}, CreateList=True}"/>
-    </Window.Resources>
-    <Grid DataContext="{StaticResource lineViewSource}">
-        <ComboBox x:Name="CBChosenStat" HorizontalAlignment="Left" Margin="142,61,0,0" VerticalAlignment="Top" Width="120"/>
+        Title="StationsWindow" Height="450" Width="800" >
+
+    <Grid>
+        <ComboBox x:Name="CBChosenStat" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="142,61,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CBChosenStat_SelectionChanged"/>
         <Label Content="Chosen station" HorizontalAlignment="Left" Margin="40,57,0,0" VerticalAlignment="Top"/>
 
-        <Grid x:Name="grid1" DataContext="{StaticResource stationViewSource}" HorizontalAlignment="Left" Margin="64,118,0,0" VerticalAlignment="Top">
+        <Grid x:Name="gridOneStation"  HorizontalAlignment="Left" Margin="64,118,0,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -40,8 +37,8 @@
         </Grid>
         <DataGrid x:Name="linesDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="309,100,84.333,120.667" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="areaColumn"         Binding="{Binding Area}"        Header="Area" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="busNumberColumn"    Binding="{Binding BusNumber}"   Header="Bus Number" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="areaColumn"         Binding="{Binding Area}"        Header="Area" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="firstStationColumn" Binding="{Binding FirstStation}" Header="First Station" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="lastStationColumn"  Binding="{Binding LastStation}" Header="Last Station" Width="SizeToHeader"/>
             </DataGrid.Columns>

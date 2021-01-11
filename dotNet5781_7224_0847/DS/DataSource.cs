@@ -16,6 +16,7 @@ namespace DS
         public static List<LineStation> listLineStations;
         public static List<AdjacentStations> listAdjacentStations;
 
+        
         static DataSource()
         {
             InitAllLists();
@@ -492,7 +493,7 @@ namespace DS
                 }
 
                 #endregion
-            };
+                };
 
             listLines = new List<Line>()
             {
@@ -577,7 +578,7 @@ namespace DS
                     BusNumber = 157,
                     Area = Areas.Jerusalem,
                     FirstStation = 76,
-                    LastStation = 121,
+                    LastStation = 111,
                 },
                 new Line
                 {
@@ -1331,12 +1332,12 @@ namespace DS
                 Code = 46422,
                 LineStationIndex = 0,
                 PrevStation = -1,
-                NextStation = 32295,
+                NextStation = 1510,
             },
             new LineStation
             {
                 LineId= 10,
-                Code = 32295,
+                Code = 1510,
                 LineStationIndex = 1,
                 PrevStation = 46422,
                 NextStation = 20116,
@@ -1346,7 +1347,7 @@ namespace DS
                 LineId= 10,
                 Code = 20116,
                 LineStationIndex = 2,
-                PrevStation = 32295,
+                PrevStation = 1510,
                 NextStation = 20115,
             },
             new LineStation
@@ -1381,14 +1382,14 @@ namespace DS
                 PrevStation = 46425,
                 NextStation = -1,
             },
-           new LineStation
-            {
-                LineId= 10,
-                Code = 106,
-                LineStationIndex = 0,
-                PrevStation = -1,
-                NextStation = 83,
-            },
+           //new LineStation
+           // {
+           //     LineId= 10,
+           //     Code = 106,
+           //     LineStationIndex = 0,
+           //     PrevStation = -1,
+           //     NextStation = 83,
+           // },
            // line 108 ,Jerusalem
             new LineStation
             {
@@ -1650,54 +1651,45 @@ namespace DS
                 #endregion
             };
 
-            listAdjacentStations = new List<AdjacentStations>()
-            { 
-            #region restart stations
+            listAdjacentStations = new List<AdjacentStations>();
 
-                    new AdjacentStations
-                    {
-                        Station1=1491,
-                        Station2=90,
-                        Distance=Math.Sqrt(Math.Pow(31.768465 - 31.766256, 2) + Math.Pow(35.178701 - 35.173, 2)), 
-                        Time = ( Math.Sqrt(Math.Pow(31.768465 - 31.766256, 2) + Math.Pow(35.178701 - 35.173, 2)) * 1.0 / 40);
+            #region restart AdjacentStations
 
-                       //(sender as TryToRide).dis;
-           // Time =(TimeSpan) v;
-        },
+            foreach (LineStation ls in listLineStations)
+            {
+                if (!listLines.Exists(l => l.LastStation == ls.Code && l.LineId == ls.LineId))//if the lineStation is not the last in the bus
+                {
+                    AdjacentStations newAdj = new AdjacentStations();
+                    //we make each line station a pair of the station after it
+                    newAdj.Station1 = ls.Code;
+                    newAdj.Station2 = ls.NextStation;
 
-                    #endregion
-            };
+                    double long1 = listStations.Find(st => st.Code == ls.Code).Longitude;
+                    double long2 = listStations.Find(st => st.Code == newAdj.Station2).Longitude;
+                    double lat1 = listStations.Find(st => st.Code == ls.Code).Lattitude;
+                    double lat2 = listStations.Find(st => st.Code == newAdj.Station2).Lattitude;
+                    newAdj.Distance = Math.Sqrt(Math.Pow(long1 - long2, 2) + Math.Pow(lat1 - lat2, 2));
 
-           //mydistance = Math.Sqrt(Math.Pow(s1.width - s2.width, 2) - Math.Pow(s1.Length - s2.Length, 2));
-            /*
-                         int disInKm = (sender as TryToRide).dis;
-            int randKmPerHour= r.Next(20, 50);
-            double rideHours = ((disInKm*1.0) / randKmPerHour);
-            int rideDemiLength;
-            if (rideHours < 1)
-                rideDemiLength = 6;
-            else
-                rideDemiLength = (int)(rideHours * 6);//we show the progress time like this: every real-time hour is 6 seconds 
+                    int timeInMin = (int)(newAdj.Distance * 1.0 / r.Next(20, 50))*60;
+                    TimeSpan time = new TimeSpan(0, timeInMin, 0);
+                    newAdj.Time = time;
 
-             */
+                    listAdjacentStations.Add(newAdj);
+                }
+                else
+                {
+                    //no need to create a pair. its the last station in a line.
+                } 
+            }
 
-            //    listAdjacentStations = new List<AdjacentStations>()
-            //    {
-            //        #region restart stations
+            //(sender as TryToRide).dis;
+            // Time =(TimeSpan) v;
 
-            //        new AdjacentStations
-            //        {
-            //            Station1=1491,
-            //            Station2=90,
-            //                               //Lattitude = 31.768465,
-            //            //Longitude = 35.178701
-            //            Distance=Math.Sqrt(Math.Pow(31.768465 - s2.width, 2) - Math.Pow(s1.Length - s2.Length, 2)),
-            //},
 
-            //        #endregion
-            //    }
+            #endregion
 
         }
+
     }
 }
 
