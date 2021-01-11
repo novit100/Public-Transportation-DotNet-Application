@@ -41,5 +41,20 @@ namespace PL
             // Load data by setting the CollectionViewSource.Source property:
             // lineStationViewSource.Source = [generic data source]
         }
+
+        private void BTUpdate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BTDelete_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BTAdd_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
