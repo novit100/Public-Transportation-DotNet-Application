@@ -37,6 +37,9 @@ namespace PL
             System.Windows.Data.CollectionViewSource iBLViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("iBLViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // iBLViewSource.Source = [generic data source]
+            System.Windows.Data.CollectionViewSource lineStationViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("lineStationViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // lineStationViewSource.Source = [generic data source]
         }
     }
 }
