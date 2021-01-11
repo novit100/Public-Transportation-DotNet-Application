@@ -24,7 +24,7 @@ namespace PL
         IBL bl;
         public LinesWindow(IBL _bl)
         {
-            InitializeComponent(); 
+            InitializeComponent();  
             bl = _bl;
         }
 
