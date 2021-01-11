@@ -6,24 +6,38 @@
         xmlns:local="clr-namespace:PL"
         xmlns:BO="clr-namespace:BO;assembly=BL" xmlns:BLAPI="clr-namespace:BLAPI;assembly=BL" x:Class="PL.LinesWindow"
         mc:Ignorable="d"
-        Title="LinesWindow" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="LinesWindow" Height="450" Width="800" Loaded="Window_Loaded"  Icon= "kavimIcon.png">
+    <Window.Background>
+        <SolidColorBrush Color="YellowGreen" Opacity="0.085">
+            <SolidColorBrush.RelativeTransform>
+                <TransformGroup>
+                    <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                    <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                    <RotateTransform CenterY="0.5" CenterX="0.5"/>
+                    <TranslateTransform X="5"/>
+                </TransformGroup>
+            </SolidColorBrush.RelativeTransform>
+        </SolidColorBrush>
+    </Window.Background>
     <Window.Resources>
+        
         <CollectionViewSource x:Key="lineViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Line}, CreateList=True}"/>
         <CollectionViewSource x:Key="iBLViewSource" d:DesignSource="{d:DesignInstance {x:Type BLAPI:IBL}, CreateList=True}"/>
         <CollectionViewSource x:Key="lineStationViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:LineStation}, CreateList=True}"/>
     </Window.Resources>
     <Grid DataContext="{StaticResource lineViewSource}">
-        <DataGrid x:Name="lineDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="396,63,23.6,120" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <DataGrid x:Name="lineDataGrid" LoadingRow="lineDataGrid_LoadingRow" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="396,63,23.6,120" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="lineDataGrid_SelectionChanged" GridLinesVisibility="Horizontal"  HorizontalGridLinesBrush="LightGray" FontFamily="Tahoma"  Foreground="Navy" >
             <DataGrid.Columns>
+                
                 <DataGridTextColumn x:Name="areaColumn" Binding="{Binding Area}" Header="Area" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="busNumberColumn" Binding="{Binding BusNumber}" Header="Bus Number" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="firstStationColumn" Binding="{Binding FirstStation}" Header="First Station" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="lastStationColumn" Binding="{Binding LastStation}" Header="Last Station" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="BTUpdate" Content="Update line" HorizontalAlignment="Left" Margin="142,352,0,0" VerticalAlignment="Top" Width="95" Click="BTUpdate_Click"/>
-        <Button x:Name="BTDelete" Content="Delete line" HorizontalAlignment="Left" Margin="354,352,0,0" VerticalAlignment="Top" Width="86" Click="BTDelete_Click"/>
-        <Button x:Name="BTAdd"    Content="Add line"    HorizontalAlignment="Left" Margin="564,352,0,0" VerticalAlignment="Top" Width="75" Click="BTAdd_Click"/>
+        <Button x:Name="BTUpdate" Content="Update line" HorizontalAlignment="Left" Margin="142,352,0,0" VerticalAlignment="Top" Width="95" Click="BTUpdate_Click"  FontWeight="Bold" Foreground="Navy" BorderThickness="0,0,0,3" BorderBrush="#FF7EC700" Background="Transparent"/>
+        <Button x:Name="BTDelete" Content="Delete line" HorizontalAlignment="Left" Margin="354,352,0,0" VerticalAlignment="Top" Width="86" Click="BTDelete_Click" FontWeight="Bold" Foreground="Navy" BorderThickness="0,0,0,3" BorderBrush="#FF7EC700" Background="Transparent"/>
+        <Button x:Name="BTAdd"    Content="Add line"    HorizontalAlignment="Left" Margin="564,352,0,0" VerticalAlignment="Top" Width="75" Click="BTAdd_Click"  FontWeight="Bold" Foreground="Navy" BorderThickness="0,0,0,3" BorderBrush="#FF7EC700" Background="Transparent"/>
         <Grid x:Name="grid1" DataContext="{StaticResource lineStationViewSource}" HorizontalAlignment="Left" Margin="45,54,0,0" VerticalAlignment="Top" Height="246" Width="263">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -36,16 +50,16 @@
                 <RowDefinition Height="Auto" MinHeight="53.6"/>
                 <RowDefinition Height="Auto" MinHeight="43.2"/>
             </Grid.RowDefinitions>
-            <Label Content="Code:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,10,0,16" Grid.Row="0" VerticalAlignment="Center" Height="26" Width="40"/>
-            <TextBox x:Name="codeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="2.8,12,0,17" Grid.Row="0" Text="{Binding Code, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Distance:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,9,0,12.2" Grid.Row="1" VerticalAlignment="Center" Height="26" Width="58"/>
-            <TextBox x:Name="distanceTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="2.8,10,0,14.2" Grid.Row="1" Text="{Binding Distance, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Line Station Index:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,6.8,0,6.6" Grid.Row="2" VerticalAlignment="Center" Height="25" Width="107"/>
-            <TextBox x:Name="lineStationIndexTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="2.8,7.8,0,7.6" Grid.Row="2" Text="{Binding LineStationIndex, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,13.4,0,15.2" Grid.Row="3" VerticalAlignment="Center" Height="25" Width="45"/>
-            <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="2.8,14.4,0,16.2" Grid.Row="3" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Time:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,9.8,0,7.4" Grid.Row="4" VerticalAlignment="Center" Height="26" Width="38"/>
-            <TextBox x:Name="timeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="2.8,11.8,0,8.4" Grid.Row="4" Text="{Binding Time, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Code:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,10,0,16" Grid.Row="0" VerticalAlignment="Center" Height="26" Width="40"  Foreground="Navy" FontFamily="Tahoma"/>
+            <TextBox x:Name="codeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="2.8,12,0,17" Grid.Row="0" Text="{Binding Code, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"  Foreground="Navy" FontFamily="Tahoma" />
+            <Label Content="Distance:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,9,0,12.2" Grid.Row="1" VerticalAlignment="Center" Height="26" Width="58"  Foreground="Navy" FontFamily="Tahoma"/>
+            <TextBox x:Name="distanceTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="2.8,10,0,14.2" Grid.Row="1" Text="{Binding Distance, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"  Foreground="Navy" FontFamily="Tahoma"/>
+            <Label Content="Line Station Index:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,6.8,0,6.6" Grid.Row="2" VerticalAlignment="Center" Height="25" Width="107"  Foreground="Navy" FontFamily="Tahoma"/>
+            <TextBox x:Name="lineStationIndexTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="2.8,7.8,0,7.6" Grid.Row="2" Text="{Binding LineStationIndex, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"  Foreground="Navy" FontFamily="Tahoma"/>
+            <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,13.4,0,15.2" Grid.Row="3" VerticalAlignment="Center" Height="25" Width="45"  Foreground="Navy" FontFamily="Tahoma"/>
+            <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="2.8,14.4,0,16.2" Grid.Row="3" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"  Foreground="Navy" FontFamily="Tahoma"/>
+            <Label Content="Time:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,9.8,0,7.4" Grid.Row="4" VerticalAlignment="Center" Height="26" Width="38"  Foreground="Navy" FontFamily="Tahoma"/>
+            <TextBox x:Name="timeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="2.8,11.8,0,8.4" Grid.Row="4" Text="{Binding Time, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"  Foreground="Navy" FontFamily="Tahoma"/>
         </Grid>
     </Grid>
 </Window>
