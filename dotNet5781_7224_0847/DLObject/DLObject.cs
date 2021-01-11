@@ -112,16 +112,11 @@ namespace DL
             return DataSource.listLines.Find(l => l.LineId == lineId).Clone();
         }
 
-        //public IEnumerable<DO.Line> GetAllLines(int code)
-        //{
-        //    var lines=from line in DataSource.listLines
-        //              select
-
-        //    return from line in DataSource.listLines
-        //           select line.Clone();
-
-        //    IEnumerable<int> lineNumbers=
-        //}
+        public IEnumerable<DO.Line> GetAllLines()
+        {
+            return from line in DataSource.listLines
+                   select line.Clone();
+        }
         #endregion
 
         #region AdjacentStations

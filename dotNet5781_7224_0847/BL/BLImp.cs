@@ -13,6 +13,7 @@ namespace BL
     {
         IDL dl = DLFactory.GetDL();//we create an "object" of IDL interface in order to use DL functions and classes
 
+        #region Station
         public void UpdateStationDetails(BO.Station currStat)
         {
             //Update DO.Station            
@@ -26,7 +27,6 @@ namespace BL
             {
                 throw new BO.StationException("Station Code is illegal", ex);
             }
-
         }
 
         public void DeleteStation(int code)
@@ -76,12 +76,12 @@ namespace BL
 
             //now we need to restart the "lineStations" list of each line.
 
-            foreach (BO.Line line in stationBO.lines)
-            {
-                line.lineStations = from lineStationDO in dl.GetLineStationsListOfALine(line.LineId)
-                                    let lineStationBO = lineStationDoBoAdapter(lineStationDO)
-                                    select lineStationBO;
-            }
+            //foreach (BO.Line line in stationBO.lines)
+            //{
+            //    line.lineStations = from lineStationDO in dl.GetLineStationsListOfALine(line.LineId)
+            //                        let lineStationBO = lineStationDoBoAdapter(lineStationDO)
+            //                        select lineStationBO;
+            //}
 
             return stationBO;
         }
@@ -115,7 +115,7 @@ namespace BL
                 throw new BO.StationException("Station code is illegal", ex);
             }
 
-            newlineStationDO.CopyPropertiesTo(lineStationBO);//copies from stationDO to stationBO- only flat properties.
+            newlineStationDO.CopyPropertiesTo(lineStationBO);//copies- only flat properties.
 
             //copy the rest needed fields
 
@@ -137,14 +137,6 @@ namespace BL
             return lineStationBO;
         }
 
-        //public IEnumerable<BO.Line> GetAllLines()
-        //{
-        //    return from stationDO in dl.GetAllStations()
-        //           orderby stationDO.Code           //order it by their code
-        //           select stationDoBoAdapter(stationDO);
-
-        //}
-
         public void AddStationToList(BO.Station newStat)
         {
             try
@@ -157,12 +149,48 @@ namespace BL
                 throw new BO.StationException("error, cannot add the station", ex);
             }
         }
+        #endregion
 
+        #region Line
         public IEnumerable<BO.Line> GetAllLinesPerStation(int code)
         {
             return from lineStation in dl.GetLineStationsListThatMatchAStation(code)
                    let line = dl.GetLine(lineStation.LineId)
                    select line.CopyDOLineStationToBOLine(lineStation);
         }
+
+        public IEnumerable<BO.Line> GetAllLines()
+        {
+            return from LineDO in dl.GetAllLines()
+                   orderby LineDO.BusNumber           //order it by their bus number
+                   select lineDoBoAdapter(LineDO);
+        }
+
+        BO.Line lineDoBoAdapter(DO.Line lineDO)
+        {
+            BO.Line lineBO = new BO.Line();
+            DO.Line newlineDO;//before copying lineDO to lineBO, we need to ensure that lineDO is legal- legal busNumber.
+            //sometimes we get here after the user filled lineDO fields. thats why we copy the given lineDO to a new lineDO and check if it is legal.
+            int lineId = lineDO.LineId;
+            try
+            {
+                newlineDO = dl.GetLine(lineId);//if code is legal, returns a new lineStationDO. if not- ecxeption.
+            }
+            catch (DO.StationException ex)
+            {
+                throw new BO.StationException("Line bus number is illegal", ex);
+            }
+
+            newlineDO.CopyPropertiesTo(lineBO);//copies- only flat properties.
+
+            //now we need to restart the "lineStations" list of each line.
+
+            lineBO.lineStations = from lineStationDO in dl.GetLineStationsListOfALine(lineBO.LineId)
+                                  let lineStationBO = lineStationDoBoAdapter(lineStationDO)
+                                  select lineStationBO;
+           
+            return lineBO;
+        }
+        #endregion
     }
 }

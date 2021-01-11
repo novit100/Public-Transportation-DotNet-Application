@@ -28,7 +28,7 @@ namespace DLAPI
 
         #region Line
         DO.Line GetLine(int lineId);
-        //IEnumerable<DO.Line> GetAllLines();
+        IEnumerable<DO.Line> GetAllLines();
         #endregion
 
         #region AdjacentStations

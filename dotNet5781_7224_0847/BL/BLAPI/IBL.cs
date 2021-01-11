@@ -17,9 +17,10 @@ namespace BLAPI
         void AddStationToList(BO.Station newStat);
         #endregion
 
+        #region Line
         IEnumerable<BO.Line> GetAllLinesPerStation(int code);
-        //IEnumerable<BO.Line> GetAllLines();
-
+        IEnumerable<BO.Line> GetAllLines();
+        #endregion
 
     }
 }
