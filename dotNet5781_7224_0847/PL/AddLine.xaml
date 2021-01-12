@@ -7,6 +7,18 @@
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.AddLine"
         mc:Ignorable="d"
         Title="AddLine" Height="450" Width="800">
+    <Window.Background>
+        <SolidColorBrush Color="YellowGreen" Opacity="0.085">
+            <SolidColorBrush.RelativeTransform>
+                <TransformGroup>
+                    <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                    <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                    <RotateTransform CenterY="0.5" CenterX="0.5"/>
+                    <TranslateTransform X="5"/>
+                </TransformGroup>
+            </SolidColorBrush.RelativeTransform>
+        </SolidColorBrush>
+    </Window.Background>
     <Grid>
 
         <Grid x:Name="grid1" VerticalAlignment="Top" Margin="293,98,0,0" HorizontalAlignment="Left">

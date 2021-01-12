@@ -22,7 +22,7 @@
         <Label Content="Welcome to Kavim Company! " HorizontalAlignment="Left" Margin="115,73,0,0" VerticalAlignment="Top" Height="41" Width="348" FontWeight="Bold" FontStyle="Italic" FontSize="20" Foreground="YellowGreen" FontFamily="Verdana"/>
         <GroupBox x:Name="groupBox1" Header="Choose Option:" HorizontalAlignment="Left" Height="186" Margin="115,136,0,0" VerticalAlignment="Top" Width="333" FontSize="16" FontStyle="Italic" FontWeight="SemiBold" BorderBrush="MidnightBlue" Foreground="MidnightBlue" Opacity="1.2"  >
             <StackPanel Margin="21,20,29,24">
-                <RadioButton x:Name ="rbStations" Content="Stations" Height="24" IsChecked="True" Foreground="YellowGreen" />
+                <RadioButton x:Name ="rbStations" Content="Stations" Height="24" IsChecked="True" Foreground="YellowGreen" Background="LightGray" />
                 <RadioButton x:Name ="rbLines" Content="Lines" Height="23" Margin="0,0,-10.8,0" Foreground="YellowGreen" HorizontalAlignment="Right" Width="282" Background="LightGray"/>
             </StackPanel>
         </GroupBox>
