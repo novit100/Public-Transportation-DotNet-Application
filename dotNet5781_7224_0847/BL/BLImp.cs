@@ -210,6 +210,8 @@ namespace BL
             lineBO.CopyPropertiesTo(lineDO);
 
             //check if both the first and last stations of the bus- exist in the stations list
+            IEnumerable<BO.LineStation> suchStations= GetAllStations(lineBO.FirstStation).
+
             if (GetAllStations.)
             {
                 if (DataSource.listStations.Exists(st => st.Code == newLine.LastStation))
@@ -217,9 +219,6 @@ namespace BL
             }
 
             throw new DO.LineException(newLine.BusNumber, $"the station chosen as First Station or Last Station doesnt exist. Add the station/s before trying again.");
-
-
-            lineDO.LineId=
 
 
             return lineDO;

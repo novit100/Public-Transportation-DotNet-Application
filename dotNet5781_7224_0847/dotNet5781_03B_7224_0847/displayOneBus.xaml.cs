@@ -27,7 +27,7 @@ namespace dotNet5781_03B_7224_0847
         BackgroundWorker care_worker;
         Bus currentBus;
 
-        public displayOneBus(Bus b1)
+        public displayOneBus(Bus b1) 
         {
             InitializeComponent();
             grid1.DataContext = b1;
