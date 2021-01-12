@@ -5,16 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="Perfect University" Height="444.695" Width="579.863" >
+        Title="Main Window" Height="444.695" Width="579.863"  Icon= "kavimIcon.png"   >
+    <Window.Background>
+        <SolidColorBrush Color="YellowGreen" Opacity="0.085">
+            <SolidColorBrush.RelativeTransform>
+                <TransformGroup>
+                    <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                    <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                    <RotateTransform CenterY="0.5" CenterX="0.5"/>
+                    <TranslateTransform X="5"/>
+                </TransformGroup>
+            </SolidColorBrush.RelativeTransform>
+        </SolidColorBrush>
+    </Window.Background>
     <Grid>
-        <Label Content="Welcome to Kavim Company! " HorizontalAlignment="Left" Margin="115,73,0,0" VerticalAlignment="Top" Height="41" Width="348" FontWeight="Bold" FontStyle="Italic" FontSize="20" Foreground="#FF1DBCD4"/>
-        <GroupBox Header="Choose Option:" HorizontalAlignment="Left" Height="186" Margin="115,136,0,0" VerticalAlignment="Top" Width="333" FontSize="16" FontStyle="Italic" FontWeight="SemiBold">
+        <Label Content="Welcome to Kavim Company! " HorizontalAlignment="Left" Margin="115,73,0,0" VerticalAlignment="Top" Height="41" Width="348" FontWeight="Bold" FontStyle="Italic" FontSize="20" Foreground="YellowGreen" FontFamily="Verdana"/>
+        <GroupBox x:Name="groupBox1" Header="Choose Option:" HorizontalAlignment="Left" Height="186" Margin="115,136,0,0" VerticalAlignment="Top" Width="333" FontSize="16" FontStyle="Italic" FontWeight="SemiBold" BorderBrush="MidnightBlue" Foreground="MidnightBlue" Opacity="1.2"  >
             <StackPanel Margin="21,20,29,24">
-                <RadioButton x:Name ="rbStations" Content="Stations" Height="24" IsChecked="True"/>
-                <RadioButton x:Name ="rbLines" Content="Lines" Height="23" Margin="0,0,-11,0"/>
+                <RadioButton x:Name ="rbStations" Content="Stations" Height="24" IsChecked="True" Foreground="YellowGreen" />
+                <RadioButton x:Name ="rbLines" Content="Lines" Height="23" Margin="0,0,-10.8,0" Foreground="YellowGreen" HorizontalAlignment="Right" Width="282" Background="LightGray"/>
             </StackPanel>
         </GroupBox>
-        <Button x:Name="btnGO" Content="GO" HorizontalAlignment="Left" Height="42" Margin="230,346,0,0" VerticalAlignment="Top" Width="105" Background="#FF4496CF" FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="btnGO_Click"/>
+        <Button x:Name="btnGO" Content="GO >>" HorizontalAlignment="Left" Height="42" Margin="230,346,0,0" VerticalAlignment="Top" Width="105"  FontSize="16" FontFamily="Kristen ITC" FontWeight="Bold" Click="btnGO_Click" Foreground="YellowGreen"  BorderThickness="0,0,0,4" BorderBrush="YellowGreen" Background="Transparent"/>
 
     </Grid>
 </Window>

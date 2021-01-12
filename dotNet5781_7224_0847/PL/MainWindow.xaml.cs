@@ -29,6 +29,7 @@ namespace PL
             InitializeComponent();
         }
 
+
         private void btnGO_Click(object sender, RoutedEventArgs e)
         {
             if (rbStations.IsChecked == true)
