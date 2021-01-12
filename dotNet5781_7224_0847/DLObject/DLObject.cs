@@ -166,7 +166,7 @@ namespace DL
 
             newLine.LineId= DO.Config.LineId++;//update running number
 
-            DataSource.listLines.Add(newLine);
+            DataSource.listLines.Add(newLine); 
         }
         #endregion
 
