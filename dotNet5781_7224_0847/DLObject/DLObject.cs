@@ -160,11 +160,13 @@ namespace DL
             //if(DataSource.listStations.Exists(st=>st.Code==newLine.FirstStation))
             //{
             //    if (DataSource.listStations.Exists(st => st.Code == newLine.LastStation))
-                    
-            //}
-            DataSource.listLines.Add(newLine);
 
+            //}
             //throw new DO.LineException(newLine.BusNumber, $"the station chosen as First Station or Last Station doesnt exist. Add the station/s before trying again.");
+
+            newLine.LineId= DO.Config.LineId++;//update running number
+
+            DataSource.listLines.Add(newLine);
         }
         #endregion
 
