@@ -156,7 +156,7 @@ namespace DL
                 //then delete the line itself
                 DataSource.listLines.Remove(lineToDel);
             }
-            else
+            else 
                 throw new DO.LineException(busNumber, $"the line: {busNumber} wasnt found");
         }
 
