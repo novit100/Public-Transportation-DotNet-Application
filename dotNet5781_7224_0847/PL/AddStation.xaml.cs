@@ -108,5 +108,10 @@ namespace PL
             e.Handled = true;//if handeled=true, the char wont be added to the pakad, since as we checked, it is not a number
 
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

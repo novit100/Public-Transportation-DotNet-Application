@@ -39,7 +39,7 @@ namespace PL
 
         void RefreshAllStationsComboBox()//refresh the combobox each time the user changes the selection 
         {
-            CBChosenStat.DataContext = bl.GetAllStations();//ObserListOfStations;
+            CBChosenStat.DataContext = bl.GetAllStations().ToList();//ObserListOfStations;
         }
 
         void RefreshAllLinesOfStationGrid()

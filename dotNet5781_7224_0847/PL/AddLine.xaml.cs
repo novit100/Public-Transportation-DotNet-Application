@@ -19,11 +19,6 @@ namespace PL
     /// </summary>
     public partial class AddLine : Window
     {
-        public enum Areas
-        {
-            General, North, South, Center, Jerusalem
-        }
-
         public AddLine(BO.Line line)
         {
             InitializeComponent();

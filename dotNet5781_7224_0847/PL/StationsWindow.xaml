@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.StationsWindow"
         mc:Ignorable="d"
-        Title="StationsWindow" Height="450" Width="800" Icon= "kavimIcon.png" >
+        Title="StationsWindow" Height="450" Width="1034" Icon= "kavimIcon.png" >
     <Window.Background>
         <SolidColorBrush Color="YellowGreen" Opacity="0.085">
             <SolidColorBrush.RelativeTransform>
@@ -20,10 +20,10 @@
         </SolidColorBrush>
     </Window.Background>
     <Grid>
-        <ComboBox x:Name="CBChosenStat" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="142,61,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CBChosenStat_SelectionChanged" FontWeight="Bold" FontStyle="Normal"/>
+        <ComboBox x:Name="CBChosenStat" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="142,61,0,0" VerticalAlignment="Top" Width="264" SelectionChanged="CBChosenStat_SelectionChanged" FontWeight="Bold" FontStyle="Normal"/>
         <Label Content="Chosen station" HorizontalAlignment="Left" Margin="40,57,0,0" VerticalAlignment="Top" FontWeight="Bold" FontStyle="Normal"  FontFamily="Tahoma"  Foreground="Navy"/>
 
-        <Grid x:Name="gridOneStation"  HorizontalAlignment="Left" Margin="64,118,0,0" VerticalAlignment="Top">
+        <Grid x:Name="gridOneStation"  HorizontalAlignment="Left" Margin="64,118,0,0" VerticalAlignment="Top" Width="356">
             <Grid.Background>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
             </Grid.Background>
@@ -40,17 +40,17 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Content="Address:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3.4" Grid.Row="0" VerticalAlignment="Center" FontFamily="Tahoma"  Foreground="Navy" Grid.ColumnSpan="2"/>
-            <TextBox x:Name="addressTextBox" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="3.4,4,0,3.4" Grid.Row="0" Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="Tahoma"  Foreground="Navy" />
+            <TextBox x:Name="addressTextBox" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="3.333,4,-153.333,4.333" Grid.Row="0" Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="278" FontFamily="Tahoma"  Foreground="Navy" />
             <Label Content="Code:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3.6,0,2.8" Grid.Row="1" VerticalAlignment="Center" FontFamily="Tahoma"  Foreground="Navy"/>
-            <TextBox x:Name="codeTextBox" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="3.4,3.6,0,3.8" Grid.Row="1" Text="{Binding Code, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="Tahoma"  Foreground="Navy"/>
+            <TextBox x:Name="codeTextBox" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="3.333,3.667,-152.667,4.667" Grid.Row="1" Text="{Binding Code, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="278" FontFamily="Tahoma"  Foreground="Navy" IsEnabled="False"/>
             <Label Content="Lattitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3.4,0,3" Grid.Row="4" VerticalAlignment="Center" FontFamily="Tahoma"  Foreground="Navy" Grid.ColumnSpan="2"/>
-            <TextBox x:Name="lattitudeTextBox" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="3.4,3.4,0,4" Grid.Row="4" Text="{Binding Lattitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="Tahoma"  Foreground="Navy"/>
+            <TextBox x:Name="lattitudeTextBox" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="3.333,3.667,-150,4.667" Grid.Row="4" Text="{Binding Lattitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="278" FontFamily="Tahoma"  Foreground="Navy"/>
             <Label Content="Longitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,2.8,0,3.6" Grid.Row="3" VerticalAlignment="Center" FontFamily="Tahoma"  Foreground="Navy" Grid.ColumnSpan="2"/>
-            <TextBox x:Name="longitudeTextBox" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="3.4,3.8,0,3.6" Grid.Row="3" Text="{Binding Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="Tahoma"  Foreground="Navy"/>
+            <TextBox x:Name="longitudeTextBox" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="3.333,4,-151.333,4.333" Grid.Row="3" Text="{Binding Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="278" FontFamily="Tahoma"  Foreground="Navy"/>
             <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3.2,0,3.2" Grid.Row="2" VerticalAlignment="Center" FontFamily="Tahoma"  Foreground="Navy" Grid.ColumnSpan="2"/>
-            <TextBox x:Name="nameTextBox" Grid.Column="2" HorizontalAlignment="Left" Height="24" Margin="3.4,3.2,0,3.2" Grid.Row="2" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="Tahoma"  Foreground="Navy"/>
+            <TextBox x:Name="nameTextBox" Grid.Column="2" HorizontalAlignment="Left" Height="24" Margin="3.333,3.333,-152,4" Grid.Row="2" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="278" FontFamily="Tahoma"  Foreground="Navy"/>
         </Grid>
-        <DataGrid x:Name="linesDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="309,100,84.333,120.667" RowDetailsVisibilityMode="VisibleWhenSelected" GridLinesVisibility="Horizontal" FontFamily="Tahoma"  Foreground="Navy">
+        <DataGrid x:Name="linesDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="508,101,168.333,119.667" RowDetailsVisibilityMode="VisibleWhenSelected" GridLinesVisibility="Horizontal" FontFamily="Tahoma"  Foreground="Navy">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="busNumberColumn"    Binding="{Binding BusNumber}"   Header="Bus Number" Width="SizeToHeader" Foreground="MidnightBlue" />
                 <DataGridTextColumn x:Name="areaColumn"         Binding="{Binding Area}"        Header="Area" Width="SizeToHeader" Foreground="MidnightBlue"/>

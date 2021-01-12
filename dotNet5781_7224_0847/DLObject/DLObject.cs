@@ -28,7 +28,7 @@ namespace DL
         public DO.Station GetStation(int code)
         {
             DO.Station stat = DataSource.listStations.Find(s => s.Code == code);
-            try { Thread.Sleep(2000); } catch (ThreadInterruptedException e) { }
+            
             if (stat != null)//found the station
                 return stat.Clone();
             else//didnt find the station
@@ -96,7 +96,7 @@ namespace DL
         public DO.LineStation GetLineStation(int code)
         {
             DO.LineStation stat = DataSource.listLineStations.Find(s => s.Code == code);
-            try { Thread.Sleep(2000); } catch (ThreadInterruptedException e) { }
+            
             if (stat != null)//found the station
                 return stat.Clone();
             else//didnt find the station
@@ -124,6 +124,16 @@ namespace DL
 
         }
 
+        public DO.Line GetLine(int lineId, int busNumber)
+        {
+            DO.Line line = DataSource.listLines.Find(l => l.LineId == lineId);
+
+            if (line != null)//the line was found
+                return line.Clone();
+            else
+                throw new DO.LineException(busNumber, $"error in line: {busNumber}");
+        }
+
         public DO.Line GetLine(int lineId)
         {
             return DataSource.listLines.Find(l => l.LineId == lineId).Clone();
@@ -147,7 +157,7 @@ namespace DL
                 DataSource.listLines.Remove(lineToDel);
             }
             else
-                throw new DO.LineException(busNumber, $"the line: {busNumber} wasnt found"););
+                throw new DO.LineException(busNumber, $"the line: {busNumber} wasnt found");
         }
 
         public void AddLineToList(DO.Line newLine)
@@ -156,13 +166,25 @@ namespace DL
             if (DataSource.listLines.Exists(l => l.FirstStation == newLine.FirstStation && l.LastStation==newLine.LastStation))
                 throw new DO.LineException(newLine.BusNumber, $"the line: {newLine.BusNumber} allready exists, with the same first and last stations");
 
-            ////check if both the first and last stations of the bus- exist in the stations list
-            //if(DataSource.listStations.Exists(st=>st.Code==newLine.FirstStation))
-            //{
-            //    if (DataSource.listStations.Exists(st => st.Code == newLine.LastStation))
+            //check the code of the stations:
+            if (newLine.FirstStation < 1 || newLine.FirstStation > 999999)
+                throw new DO.StationException(newLine.FirstStation, $"the first station code: {newLine.FirstStation} is illegal");
+            if (newLine.LastStation < 1 || newLine.LastStation > 999999)
+                throw new DO.StationException(newLine.LastStation, $"the last station code: {newLine.LastStation} is illegal");
 
-            //}
-            //throw new DO.LineException(newLine.BusNumber, $"the station chosen as First Station or Last Station doesnt exist. Add the station/s before trying again.");
+            //create new stations and fill them with default values. 
+            //(only if the first or last station dont exist yet))
+            if (!DataSource.listStations.Exists(st => st.Code == newLine.FirstStation))
+                DataSource.listStations.Add(new DO.Station() { Code = newLine.FirstStation, Lattitude=31.5, Longitude=35, Name="First station of line "+newLine.BusNumber });
+            if (!DataSource.listStations.Exists(st => st.Code == newLine.LastStation))
+                DataSource.listStations.Add(new DO.Station() { Code = newLine.LastStation, Lattitude = 32, Longitude = 35.3, Name = "Last station of line " + newLine.BusNumber });
+            
+            //add new lineStations of the new stations
+            DataSource.listLineStations.Add(new DO.LineStation() { Code = newLine.FirstStation, LineId = newLine.LineId, LineStationIndex = 0, NextStation = newLine.LastStation, PrevStation = -1 });
+            DataSource.listLineStations.Add(new DO.LineStation() { Code=newLine.LastStation, LineId= newLine.LineId, LineStationIndex=1, NextStation=-1, PrevStation=newLine.FirstStation});
+
+            //add new adjacent stations
+            DataSource.listAdjacentStations.Add(new DO.AdjacentStations() { Station1=newLine.FirstStation, Station2=newLine.LastStation, Distance=0.583, Time=new TimeSpan(00,01,16)});
 
             newLine.LineId= DO.Config.LineId++;//update running number
 

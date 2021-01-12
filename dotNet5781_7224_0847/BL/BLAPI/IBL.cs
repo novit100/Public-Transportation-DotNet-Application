@@ -11,6 +11,7 @@ namespace BLAPI
     public interface IBL
     {
         #region Station
+        BO.Station GetStation(int code);
         void UpdateStationDetails(BO.Station currStat);
         IEnumerable<BO.Station> GetAllStations();
         void DeleteStation(int code);
@@ -26,6 +27,7 @@ namespace BLAPI
         #endregion
 
         #region LineStation
+        //DO.LineStation GetLineStation(int code);
         IEnumerable<BO.LineStation> GetAllLineStationsPerLine(int LineId);
         #endregion
     }

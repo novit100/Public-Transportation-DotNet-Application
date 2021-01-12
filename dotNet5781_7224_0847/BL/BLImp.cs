@@ -14,6 +14,20 @@ namespace BL
         IDL dl = DLFactory.GetDL();//we create an "object" of IDL interface in order to use DL functions and classes
 
         #region Station
+        public BO.Station GetStation(int code)
+        {
+            DO.Station stationDO;
+            try
+            {
+                stationDO = dl.GetStation(code);
+            }
+            catch (DO.StationException ex)
+            {
+                throw new BO.StationException("station does not exist", ex);
+            }
+            return stationDoBoAdapter(stationDO);
+        }
+
         public void UpdateStationDetails(BO.Station currStat)
         {
             //Update DO.Station            
@@ -64,20 +78,20 @@ namespace BL
             }
             newStationDO.CopyPropertiesTo(stationBO);//copies from stationDO to stationBO- only flat properties.
 
-            //now we still need to fill the "lines" list:
+            ////now we still need to fill the "lines" list:
 
             stationBO.lines = from lineStation in dl.GetLineStationsListThatMatchAStation(code)
                               let line = dl.GetLine(lineStation.LineId)
                               select line.CopyDOLineStationToBOLine(lineStation);
 
-            //now we need to restart the "lineStations" list of each line.
+            ////now we need to restart the "lineStations" list of each line.
 
-            foreach (BO.Line line in stationBO.lines)
-            {
-                line.lineStations = from lineStationDO in dl.GetLineStationsListOfALine(line.LineId)
-                                    let lineStationBO = lineStationDoBoAdapter(lineStationDO)
-                                    select lineStationBO;
-            }
+            //foreach (BO.Line line in stationBO.lines)
+            //{
+            //    line.lineStations = from lineStationDO in dl.GetLineStationsListOfALine(line.LineId)
+            //                        let lineStationBO = lineStationDoBoAdapter(lineStationDO)
+            //                        select lineStationBO;
+            //}
 
             return stationBO;
         }
@@ -111,12 +125,13 @@ namespace BL
                 throw new BO.StationException("Station code is illegal", ex);
             }
 
+            //copy "Code" and "LinestationIndex":
             newlineStationDO.CopyPropertiesTo(lineStationBO);//copies- only flat properties.
 
-            //copy the rest needed fields
-
+            //copy "Name":
             lineStationBO.Name = dl.GetStation(code).Name;
 
+            //copy "Distance" and "Time":
             if (lineStationBO.LineStationIndex == 0)
             {
                 //lineStationBO.Time = 00:00:00 - default
@@ -183,9 +198,10 @@ namespace BL
             DO.Line newlineDO;//before copying lineDO to lineBO, we need to ensure that lineDO is legal- legal busNumber.
             //sometimes we get here after the user filled lineDO fields. thats why we copy the given lineDO to a new lineDO and check if it is legal.
             int lineId = lineDO.LineId;
+            int busNumber = lineDO.BusNumber;
             try
             {
-                newlineDO = dl.GetLine(lineId);//if code is legal, returns a new lineStationDO. if not- ecxeption.
+                newlineDO = dl.GetLine(lineId, busNumber);//if code is legal, returns a new lineStationDO. if not- ecxeption.
             }
             catch (DO.StationException ex)
             {
@@ -196,10 +212,10 @@ namespace BL
 
             //now we need to restart the "lineStations" list of each line.
 
-            lineBO.lineStations = from lineStationDO in dl.GetLineStationsListOfALine(lineBO.LineId)
+            lineBO.lineStations = from lineStationDO in dl.GetLineStationsListOfALine(lineId)
                                   let lineStationBO = lineStationDoBoAdapter(lineStationDO)
                                   select lineStationBO;
-           
+
             return lineBO;
         }
 
@@ -207,19 +223,8 @@ namespace BL
         {
             DO.Line lineDO = new DO.Line();
 
+            //copy all relevant properties
             lineBO.CopyPropertiesTo(lineDO);
-
-            //check if both the first and last stations of the bus- exist in the stations list
-            IEnumerable<BO.LineStation> suchStations= GetAllStations(lineBO.FirstStation).
-
-            if (GetAllStations.)
-            {
-                if (DataSource.listStations.Exists(st => st.Code == newLine.LastStation))
-
-            }
-
-            throw new DO.LineException(newLine.BusNumber, $"the station chosen as First Station or Last Station doesnt exist. Add the station/s before trying again.");
-
 
             return lineDO;
         }

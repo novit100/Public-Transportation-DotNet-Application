@@ -21,7 +21,7 @@ namespace DLAPI
         #endregion
 
         #region LineStation
-        void AddLineStation(DO.LineStation newLineStat);
+        //void AddLineStation(DO.LineStation newLineStat);
         IEnumerable<DO.LineStation> GetLineStationsListThatMatchAStation(int code);
         IEnumerable<DO.LineStation> GetLineStationsListOfALine(int lineId);
         DO.LineStation GetLineStation(int code);
@@ -30,6 +30,7 @@ namespace DLAPI
 
         #region Line
         void UpdateLine(DO.Line line);
+        DO.Line GetLine(int lineId, int busNumber);
         DO.Line GetLine(int lineId);
         IEnumerable<DO.Line> GetAllLines();
         void DeleteLine(int lineId, int busNumber);

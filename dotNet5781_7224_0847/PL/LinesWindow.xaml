@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         xmlns:BO="clr-namespace:BO;assembly=BL" xmlns:BLAPI="clr-namespace:BLAPI;assembly=BL" x:Class="PL.LinesWindow"
         mc:Ignorable="d"
-        Title="LinesWindow" Height="450" Width="800" Loaded="Window_Loaded" FontFamily="Tahoma"  Foreground="Navy">
+        Title="LinesWindow" Height="450" Width="800" FontFamily="Tahoma"  Foreground="Navy">
     <Window.Background>
         <SolidColorBrush Color="YellowGreen" Opacity="0.085">
             <SolidColorBrush.RelativeTransform>

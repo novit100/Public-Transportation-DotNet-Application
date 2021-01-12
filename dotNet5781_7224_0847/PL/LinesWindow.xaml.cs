@@ -39,7 +39,7 @@ namespace PL
 
         void RefreshAllLinesComboBox()//refresh the combobox each time the user changes the selection 
         {
-            CBCurrentLine.DataContext = bl.GetAllLines();//ObserListOfStations;
+            CBCurrentLine.DataContext = bl.GetAllLines().ToList();//ObserListOfLines;
         }
 
         void RefreshAllLineStationsOfLineGrid()
@@ -119,16 +119,13 @@ namespace PL
             //    //MessageBox.Show("bus was not added. insert all bus fields correctly and click the add button to insert");
             //}
         }
+
         void lineStationDataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
             e.Row.Header = (e.Row.GetIndex() + 1).ToString();
         }
 
-
     }
 
-    void lineDataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
-    {
-        e.Row.Header = (e.Row.GetIndex() + 1).ToString();
-    }
+
 }
