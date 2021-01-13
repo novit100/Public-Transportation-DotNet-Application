@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:PL"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <!--<Style x:Key="commonStyle" TargetType="control"
+        <Style TargetType="Button">  </Style>-->  
     </Application.Resources>
 </Application>
