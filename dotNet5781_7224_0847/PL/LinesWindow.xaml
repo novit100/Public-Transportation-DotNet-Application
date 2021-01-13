@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="LinesWindow" Height="450" Width="800" FontFamily="Tahoma"  Foreground="Navy">
     <Window.Background>
-        <SolidColorBrush Color="YellowGreen" Opacity="0.085">
+        <SolidColorBrush Color="YellowGreen" Opacity="100">
             <SolidColorBrush.RelativeTransform>
                 <TransformGroup>
                     <ScaleTransform CenterY="0.5" CenterX="0.5"/>

@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using BLAPI;
+
 namespace PL
 {
     /// <summary>
@@ -19,9 +21,12 @@ namespace PL
     /// </summary>
     public partial class AddStation : Window
     {
+        IBL bl = BLFactory.GetBL("1");
+
         public AddStation(BO.Station Stat)
         {
             InitializeComponent();
+
             grid1.DataContext = Stat;
         }
 
@@ -91,7 +96,8 @@ namespace PL
             {
                 return;
             }
-
+            if (e.Key == Key.)
+                return;
             char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
             if (char.IsDigit(c))//if c is a digit- we need to check it is not a char that apperas on the digit(when shift/alt/ctrl are down)
             {
@@ -109,9 +115,9 @@ namespace PL
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void AddStationButton_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
     }
 }

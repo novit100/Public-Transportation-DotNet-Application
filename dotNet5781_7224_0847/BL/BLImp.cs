@@ -205,9 +205,9 @@ namespace BL
             {
                 newlineDO = dl.GetLine(lineId, busNumber);//if code is legal, returns a new lineStationDO. if not- ecxeption.
             }
-            catch (DO.StationException ex)
+            catch (DO.LineException ex)
             {
-                throw new BO.StationException("Line bus number is illegal", ex);
+                throw new BO.LineException("Line bus number is illegal", ex);
             }
 
             newlineDO.CopyPropertiesTo(lineBO);//copies- only flat properties.

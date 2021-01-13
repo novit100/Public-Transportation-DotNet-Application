@@ -37,12 +37,12 @@ namespace PL
             linesDataGrid.IsReadOnly = true;
         }
 
-        void RefreshAllStationsComboBox()//refresh the combobox each time the user changes the selection 
+        private void RefreshAllStationsComboBox()//refresh the combobox each time the user changes the selection 
         {
             CBChosenStat.DataContext = bl.GetAllStations().ToList();//ObserListOfStations;
         }
 
-        void RefreshAllLinesOfStationGrid()
+        private void RefreshAllLinesOfStationGrid()
         {
             linesDataGrid.DataContext = bl.GetAllLinesPerStation(currStat.Code);
         }
@@ -72,6 +72,11 @@ namespace PL
             }
         }
 
+        private void RefreshAllStationsEvent(object sender, EventArgs e)
+        {
+            RefreshAllStationsComboBox();
+        }
+
         private void BTDelete_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult res = MessageBox.Show("Delete selected station?", "Verification", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -98,19 +103,25 @@ namespace PL
             BO.Station stat = new BO.Station();//a new Station
             try 
             { 
-                bl.AddStationToList(stat);
-
                 AddStation addStationWindow = new AddStation(stat);//we sent the station Stat to a new window we created named AddStation
 
-                addStationWindow.Closed += AddStationWindow_Closed;
+                addStationWindow.ShowDialog(); 
+                
+                bl.AddStationToList(stat);
 
-                addStationWindow.ShowDialog();
+                addStationWindow.Closed += RefreshAllStationsEvent;
+
+
             }
             catch(BO.StationException ex)
             {
                 MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
+
+            //AddNewStation newStatWin = new AddNewStation();
+            //newStatWin.Closed += refresh;
+            //newStatWin.Show();
         }
         private void AddStationWindow_Closed(object sender, EventArgs e)
         {
