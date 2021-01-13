@@ -4,7 +4,23 @@
              xmlns:local="clr-namespace:PL"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <!--<Style x:Key="commonStyle" TargetType="control"
-        <Style TargetType="Button">  </Style>-->  
+        <Style x:Key="commonStyle"
+            TargetType="Control">
+            <Setter Property="FontStyle" Value="Normal"/>
+            <Setter Property="FontFamily" Value="Tahoma"/>
+            <Setter Property="Foreground" Value="Navy"/>
+        </Style>
+        <Style x:Key="ButtonCommonStyle" TargetType="Button" BasedOn="{StaticResource commonStyle}">
+            <Setter Property="BorderThickness" Value="0,0,0,3"/>
+            <Setter Property="BorderBrush" Value="#FF7EC700"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+        <Style TargetType="Label" BasedOn="{StaticResource commonStyle}">
+            <Setter Property="VerticalAlignment" Value="Center">
+       
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>
