@@ -21,14 +21,13 @@ namespace PL
     /// </summary>
     public partial class AddStation : Window
     {
-        //IBL bl = BLFactory.GetBL("1");
         public BO.Station addedStat;
+        public bool AllFieldsWereFilled=false;
 
         public AddStation(BO.Station Stat)
         {
             InitializeComponent();
             addedStat = Stat;
-            //grid1.DataContext = Stat;
             DataContext = addedStat;
         }
 
@@ -70,9 +69,10 @@ namespace PL
             {
                 return;
             }
-            if (e.Key == Key.OemQuestion && !Keyboard.IsKeyDown(Key.LeftShift) && !Keyboard.IsKeyDown(Key.RightShift))
+            //allow entering one "." only. (since its double):
+            if (e.Key == Key.OemQuestion && !Keyboard.IsKeyDown(Key.LeftShift) && !Keyboard.IsKeyDown(Key.RightShift) && !lattitudeTextBox.Text.Contains("."))
                 return;
-
+            
             char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
             if (char.IsDigit(c))//if c is a digit- we need to check it is not a char that apperas on the digit(when shift/alt/ctrl are down)
             {
@@ -100,7 +100,8 @@ namespace PL
             {
                 return;
             }
-            if (e.Key == Key.OemQuestion && !Keyboard.IsKeyDown(Key.LeftShift) && !Keyboard.IsKeyDown(Key.RightShift))
+            //allow entering one "." only. (since its double):
+            if (e.Key == Key.OemQuestion && !Keyboard.IsKeyDown(Key.LeftShift) && !Keyboard.IsKeyDown(Key.RightShift) && !longitudeTextBox.Text.Contains("."))
                 return;
 
             char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
@@ -122,6 +123,8 @@ namespace PL
 
         private void AddStationButton_Click(object sender, RoutedEventArgs e)
         {
+            if (addressTextBox.Text != "" && codeTextBox.Text != "0" && lattitudeTextBox.Text != "0" && longitudeTextBox.Text != "0" && nameTextBox.Text != "")
+                AllFieldsWereFilled = true;
             this.Close();
         }
     }

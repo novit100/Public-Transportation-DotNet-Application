@@ -478,7 +478,7 @@ namespace DS
                 new Station
                 {
                     Code = 32298,
-                    Name = "רבי עקיבע/הרב קוק ",
+                    Name = "רבי עקיבא/הרב קוק ",
                     Address = " רחוב:רבי עקיבא 115 עיר: בני ברק",
                     Lattitude = 31.794958,
                     Longitude =35.205216

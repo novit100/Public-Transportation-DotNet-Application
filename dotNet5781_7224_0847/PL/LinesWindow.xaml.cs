@@ -95,29 +95,27 @@ namespace PL
         private void BTAdd_Click(object sender, RoutedEventArgs e)
         {
             BO.Line line = new BO.Line();//a new line
+            AddLine addLineWindow = new AddLine(line);//we sent the line to a new window we created named AddLine
+            addLineWindow.Closing += addLineWindow_Closing;
+            addLineWindow.ShowDialog();
+        }
+
+        private void addLineWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
             try
             {
-                bl.AddLineToList(line);
+                if (!(sender as AddStation).AllFieldsWereFilled)
+                    throw new BO.StationException("cannot add the station since not all fields were filled");
 
-                AddLine addLineWindow = new AddLine(line);//we sent the line to a new window we created named AddLine
+                BO.Station newStationBO = (sender as AddStation).addedStat;
+                bl.AddStationToList(newStationBO);
 
-                addLineWindow.Closed += AddLineWindow_Closed;
-
-                addLineWindow.ShowDialog();
+                RefreshAllStationsComboBox();
             }
             catch (BO.LineException ex)
             {
-                MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+             MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
-
-        private void AddLineWindow_Closed(object sender, EventArgs e)
-        {
-            //if (!(sender as AddStation).legalBus)//not legal bus- dont add to list. (delete the new empty bus added before)
-            //{
-            //    //buses.RemoveAt(buses.Count() - 1);
-            //    //MessageBox.Show("bus was not added. insert all bus fields correctly and click the add button to insert");
-            //}
         }
 
         void lineStationDataGrid_LoadingRow(object sender, DataGridRowEventArgs e)

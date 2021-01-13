@@ -100,7 +100,6 @@ namespace PL
             BO.Station stat = new BO.Station();//a new Station
 
             AddStation addStationWindow = new AddStation(stat);//we sent the station Stat to a new window we created named AddStation 
-            //bl.AddStationToList(stat);
             addStationWindow.Closing += addStationWindow_Closing;
             addStationWindow.ShowDialog();
         }
@@ -108,19 +107,20 @@ namespace PL
 
         private void addStationWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            BO.Station newStationBO = (sender as AddStation).addedStat;
+            try
+            {
+                if (!(sender as AddStation).AllFieldsWereFilled)
+                    throw new BO.StationException("cannot add the station since not all fields were filled");
 
-                try
-                {
-                    bl.AddStationToList(newStationBO);
+                BO.Station newStationBO = (sender as AddStation).addedStat;
+                bl.AddStationToList(newStationBO);
 
-                    RefreshAllStationsComboBox();
-                }
-                catch (BO.StationException ex)
-                {
-                    MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            
+                RefreshAllStationsComboBox();
+            }
+            catch (BO.StationException ex)
+            {
+                MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
 

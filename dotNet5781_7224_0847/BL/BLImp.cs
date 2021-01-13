@@ -31,15 +31,16 @@ namespace BL
         public void UpdateStationDetails(BO.Station currStat)
         {
             //Update DO.Station            
-            DO.Station stationDO = new DO.Station();
-            currStat.CopyPropertiesTo(stationDO);
+            DO.Station stationDO;
+            //currStat.CopyPropertiesTo(stationDO);
             try
             {
+                stationDO = stationBoDoAdapter(currStat);
                 dl.UpdateStation(stationDO);
             }
             catch (DO.StationException ex)
             {
-                throw new BO.StationException("Station Code is illegal", ex);
+                throw new BO.StationException("illegal value/s were inserted", ex);
             }
         }
 
