@@ -109,7 +109,7 @@ namespace PL
 
                 BO.Station newStationBO = (sender as AddStation).addedStat;
                 bl.AddStationToList(newStationBO);
-
+                
                 RefreshAllStationsComboBox();
             }
             catch (BO.LineException ex)
