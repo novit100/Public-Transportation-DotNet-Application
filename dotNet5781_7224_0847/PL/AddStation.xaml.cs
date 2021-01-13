@@ -21,13 +21,15 @@ namespace PL
     /// </summary>
     public partial class AddStation : Window
     {
-        IBL bl = BLFactory.GetBL("1");
+        //IBL bl = BLFactory.GetBL("1");
+        public BO.Station addedStat;
 
         public AddStation(BO.Station Stat)
         {
             InitializeComponent();
-
-            grid1.DataContext = Stat;
+            addedStat = Stat;
+            //grid1.DataContext = Stat;
+            DataContext = addedStat;
         }
 
         private void codeTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -40,8 +42,6 @@ namespace PL
             {
                 return;
             }
-            if (e.Key == Key.OemQuestion && !Keyboard.IsKeyDown(Key.LeftShift) && !Keyboard.IsKeyDown(Key.RightShift))
-                return;
 
             char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
             if (char.IsDigit(c))//if c is a digit- we need to check it is not a char that apperas on the digit(when shift/alt/ctrl are down)

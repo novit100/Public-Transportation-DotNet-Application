@@ -72,10 +72,6 @@ namespace PL
             }
         }
 
-        private void RefreshAllStationsEvent(object sender, EventArgs e)
-        {
-            RefreshAllStationsComboBox();
-        }
 
         private void BTDelete_Click(object sender, RoutedEventArgs e)
         {
@@ -98,39 +94,36 @@ namespace PL
             }
         }
 
+
         private void BTAdd_Click(object sender, RoutedEventArgs e)
         {
             BO.Station stat = new BO.Station();//a new Station
-            try 
-            { 
-                AddStation addStationWindow = new AddStation(stat);//we sent the station Stat to a new window we created named AddStation
 
-                addStationWindow.ShowDialog(); 
-                
-                bl.AddStationToList(stat);
-
-                addStationWindow.Closed += RefreshAllStationsEvent;
-
-
-            }
-            catch(BO.StationException ex)
-            {
-                MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-
-
-            //AddNewStation newStatWin = new AddNewStation();
-            //newStatWin.Closed += refresh;
-            //newStatWin.Show();
+            AddStation addStationWindow = new AddStation(stat);//we sent the station Stat to a new window we created named AddStation 
+            //bl.AddStationToList(stat);
+            addStationWindow.Closing += addStationWindow_Closing;
+            addStationWindow.ShowDialog();
         }
-        private void AddStationWindow_Closed(object sender, EventArgs e)
+
+
+        private void addStationWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //if (!(sender as AddStation).legalBus)//not legal bus- dont add to list. (delete the new empty bus added before)
-            //{
-            //    //buses.RemoveAt(buses.Count() - 1);
-            //    //MessageBox.Show("bus was not added. insert all bus fields correctly and click the add button to insert");
-            //}
+            BO.Station newStationBO = (sender as AddStation).addedStat;
+
+                try
+                {
+                    bl.AddStationToList(newStationBO);
+
+                    RefreshAllStationsComboBox();
+                }
+                catch (BO.StationException ex)
+                {
+                    MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            
         }
+
+
 
 
     }
