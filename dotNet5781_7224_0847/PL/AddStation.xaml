@@ -46,6 +46,6 @@
             <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center" FontFamily="Tahoma"  Foreground="Navy"/>
             <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="Tahoma"  Foreground="Navy"/>
         </Grid>
-        <Button x:Name="AddStationButton" Content="Add The Station" HorizontalAlignment="Left" Margin="322,322,0,0" VerticalAlignment="Top" Width="110" Click="AddStationButton_Click"/>
+        <Button x:Name="AddStationButton" Content="Add The Station" HorizontalAlignment="Left" Margin="322,322,0,0" VerticalAlignment="Top" Width="110" Click="AddStationButton_Click"  Style="{StaticResource ButtonCommonStyle}"/>
     </Grid>
 </Window>
