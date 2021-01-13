@@ -19,10 +19,8 @@
             </SolidColorBrush.RelativeTransform>
         </SolidColorBrush>
     </Window.Background>
-    <Window.Resources>
-        <CollectionViewSource x:Key="stationViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Station}, CreateList=True}"/>
-    </Window.Resources>
-    <Grid DataContext="{StaticResource stationViewSource}">
+
+    <Grid>
         <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="271,101,0,0" VerticalAlignment="Top" Height="162" Width="221">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
