@@ -15,7 +15,11 @@ namespace DO
             base(message) => CODE = code;
         public StationException(int code, string message, Exception innerException) : 
             base(message, innerException) => CODE = code;
-        public override string ToString() => base.ToString() + $", error in station that its code is: {CODE}";
+        //public override string ToString() => base.ToString() + $", error in station that its code is: {CODE}";
+        public override string ToString()
+        {
+            return Message + "\n";
+        }
     }
 
     [Serializable]
@@ -27,6 +31,10 @@ namespace DO
             base(message) => BUSNUMBER = busNumber;
         public LineException(int busNumber, string message, Exception innerException) :
             base(message, innerException) => BUSNUMBER = busNumber;
-        public override string ToString() => base.ToString() + $", error in line: {BUSNUMBER}";
+        //public override string ToString() => base.ToString() + $", error in line: {BUSNUMBER}";
+        public override string ToString()
+        {
+            return Message + "\n";
+        }
     }
 }
