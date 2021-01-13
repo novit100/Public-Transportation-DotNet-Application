@@ -7,16 +7,7 @@
         mc:Ignorable="d"
         Title="Main Window" Height="444.695" Width="579.863"  Icon= "kavimIcon.png"   >
     <Window.Background>
-        <SolidColorBrush Color="YellowGreen" Opacity="100">
-            <SolidColorBrush.RelativeTransform>
-                <TransformGroup>
-                    <ScaleTransform CenterY="0.5" CenterX="0.5"/>
-                    <SkewTransform CenterY="0.5" CenterX="0.5"/>
-                    <RotateTransform CenterY="0.5" CenterX="0.5"/>
-                    <TranslateTransform X="5"/>
-                </TransformGroup>
-            </SolidColorBrush.RelativeTransform>
-        </SolidColorBrush>
+        <ImageBrush ImageSource="greenBackground.tif"/>
     </Window.Background>
     <Grid>
         <Label Content="Welcome to Kavim Company! " HorizontalAlignment="Left" Margin="115,73,0,0" VerticalAlignment="Top" Height="41" Width="348" FontWeight="Bold" FontStyle="Italic" FontSize="20" Foreground="YellowGreen" FontFamily="Verdana"/>
