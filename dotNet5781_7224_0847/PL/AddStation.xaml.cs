@@ -96,7 +96,7 @@ namespace PL
             {
                 return;
             }
-            if (e.Key == Key.)
+            if (e.Key == Key.OemQuestion && !Keyboard.IsKeyDown(Key.LeftShift) && !Keyboard.IsKeyDown(Key.RightShift))
                 return;
             char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
             if (char.IsDigit(c))//if c is a digit- we need to check it is not a char that apperas on the digit(when shift/alt/ctrl are down)
