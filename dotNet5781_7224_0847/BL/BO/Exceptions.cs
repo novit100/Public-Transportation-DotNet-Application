@@ -14,7 +14,11 @@ namespace BO
         public StationException(string message) : base(message) { }
         public StationException(string message, Exception innerException) : 
             base(message, innerException) => CODE = ((DO.StationException)innerException).CODE;
-        public override string ToString() => base.ToString() + $", error in station that its code is: {CODE}";
+        //public override string ToString() => base.ToString() + $", error in station that its code is: {CODE}";
+        public override string ToString()
+        {
+            return Message + "\n";
+        }
     }
 
     [Serializable]
@@ -24,6 +28,10 @@ namespace BO
         public LineException(string message) : base(message) { }
         public LineException(string message, Exception innerException) :
             base(message, innerException) => BUSNUMBER = ((DO.LineException)innerException).BUSNUMBER;
-        public override string ToString() => base.ToString() + $", error in line: {BUSNUMBER}";
+        //public override string ToString() => base.ToString() + $", error in line: {BUSNUMBER}";
+        public override string ToString()
+        {
+            return Message + "\n";
+        }
     }
 }

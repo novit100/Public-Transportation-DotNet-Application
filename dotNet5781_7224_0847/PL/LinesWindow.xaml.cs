@@ -39,7 +39,7 @@ namespace PL
 
         void RefreshAllLinesComboBox()//refresh the combobox each time the user changes the selection 
         {
-            CBCurrentLine.DataContext = bl.GetAllLines().ToList();//ObserListOfLines;
+            CBCurrentLine.DataContext = bl.GetAllLines();//ObserListOfLines;
         }
 
         void RefreshAllLineStationsOfLineGrid()

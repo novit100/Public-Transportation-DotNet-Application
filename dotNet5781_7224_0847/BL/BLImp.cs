@@ -51,7 +51,7 @@ namespace BL
             }
             catch (DO.StationException ex)
             {
-                throw new BO.StationException("error, cannot delete station", ex);
+                throw new BO.StationException("error, cannot delete station\n", ex);
             }
         }
 
@@ -74,7 +74,7 @@ namespace BL
             }
             catch (DO.StationException ex)
             {
-                throw new BO.StationException("Station code is illegal", ex);
+                throw new BO.StationException("Station code is illegal\n", ex);
             }
             newStationDO.CopyPropertiesTo(stationBO);//copies from stationDO to stationBO- only flat properties.
 
@@ -140,9 +140,9 @@ namespace BL
             else
             {
                 //distance from the former station:
-                lineStationBO.Distance = dl.GetAdjacentStations(code).FirstOrDefault(adj => adj.Station2 == code).Distance;
+                //*** lineStationBO.Distance = dl.GetAdjacentStations(code).FirstOrDefault(adj => adj.Station2 == code).Distance;
                 //time from the former station:
-                lineStationBO.Time = dl.GetAdjacentStations(code).FirstOrDefault(adj => adj.Station2 == code).Time;
+                //*** lineStationBO.Time = dl.GetAdjacentStations(code).FirstOrDefault(adj => adj.Station2 == code).Time;
             }
 
             return lineStationBO;
@@ -188,8 +188,10 @@ namespace BL
         public IEnumerable<BO.Line> GetAllLines()
         {
             return from LineDO in dl.GetAllLines()
-                   orderby LineDO.BusNumber           //order it by their bus number
-                   select lineDoBoAdapter(LineDO);
+                                orderby LineDO.BusNumber           //order it by their bus number
+                               select lineDoBoAdapter(LineDO);
+
+            
         }
 
         BO.Line lineDoBoAdapter(DO.Line lineDO)
