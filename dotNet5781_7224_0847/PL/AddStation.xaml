@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="AddStation" Height="450" Width="800"  Icon= "kavimIcon.png">
     <Window.Background>
-        <SolidColorBrush Color="YellowGreen" Opacity="0.085">
+        <SolidColorBrush Color="YellowGreen" Opacity="100">
             <SolidColorBrush.RelativeTransform>
                 <TransformGroup>
                     <ScaleTransform CenterY="0.5" CenterX="0.5"/>
@@ -46,6 +46,6 @@
             <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center" FontFamily="Tahoma"  Foreground="Navy"/>
             <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="Tahoma"  Foreground="Navy"/>
         </Grid>
-        <Button Content="Add The Station" HorizontalAlignment="Left" Margin="322,322,0,0" VerticalAlignment="Top" Width="110" Click="Button_Click"/>
+        <Button x:Name="AddStationButton" Content="Add The Station" HorizontalAlignment="Left" Margin="322,322,0,0" VerticalAlignment="Top" Width="110" Click="AddStationButton_Click"/>
     </Grid>
 </Window>

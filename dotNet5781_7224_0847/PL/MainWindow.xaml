@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Main Window" Height="444.695" Width="579.863"  Icon= "kavimIcon.png"   >
     <Window.Background>
-        <SolidColorBrush Color="YellowGreen" Opacity="0.085">
+        <SolidColorBrush Color="YellowGreen" Opacity="100">
             <SolidColorBrush.RelativeTransform>
                 <TransformGroup>
                     <ScaleTransform CenterY="0.5" CenterX="0.5"/>
