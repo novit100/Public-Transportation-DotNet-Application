@@ -37,4 +37,21 @@ namespace DO
             return Message + "\n";
         }
     }
+
+    [Serializable]
+    public class LineStationException : Exception
+    {
+        public int CODE;
+        public int BUSNUMBER;
+        public LineStationException(int code, int busNumber) :  base() {CODE=code; BUSNUMBER = busNumber;} //quick initialization and call to father("base") ctor
+        public LineStationException(int code, int busNumber, string message) :
+                base(message){ CODE = code; BUSNUMBER = busNumber; }
+        public LineStationException(int code, int busNumber, string message, Exception innerException) :
+            base(message, innerException){ CODE = code; BUSNUMBER = busNumber; }
+        //public override string ToString() => base.ToString() + $", error in station that its code is: {CODE}";
+        public override string ToString()
+        {
+            return Message + "\n";
+        }
+    }
 }

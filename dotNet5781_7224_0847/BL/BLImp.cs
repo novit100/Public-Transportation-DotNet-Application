@@ -23,7 +23,7 @@ namespace BL
             }
             catch (DO.StationException ex)
             {
-                throw new BO.StationException("station does not exist", ex);
+                throw new BO.StationException("station does not exist\n", ex);
             }
             return stationDoBoAdapter(stationDO);
         }
@@ -31,15 +31,16 @@ namespace BL
         public void UpdateStationDetails(BO.Station currStat)
         {
             //Update DO.Station            
-            DO.Station stationDO = new DO.Station();
-            currStat.CopyPropertiesTo(stationDO);
+            DO.Station stationDO;
+            //currStat.CopyPropertiesTo(stationDO);
             try
             {
+                stationDO = stationBoDoAdapter(currStat);
                 dl.UpdateStation(stationDO);
             }
             catch (DO.StationException ex)
             {
-                throw new BO.StationException("Station Code is illegal", ex);
+                throw new BO.StationException("cannot update the station, illegal value/s were inserted\n", ex);
             }
         }
 
@@ -86,13 +87,6 @@ namespace BL
 
             ////now we need to restart the "lineStations" list of each line.
 
-            //foreach (BO.Line line in stationBO.lines)
-            //{
-            //    line.lineStations = from lineStationDO in dl.GetLineStationsListOfALine(line.LineId)
-            //                        let lineStationBO = lineStationDoBoAdapter(lineStationDO)
-            //                        select lineStationBO;
-            //}
-
             return stationBO;
         }
 
@@ -101,10 +95,10 @@ namespace BL
             DO.Station stationDO= new DO.Station();
             //check code of the station:
             if (stationBO.Code < 1 || stationBO.Code > 999999)
-                throw new BO.StationException("illegal station code");
+                throw new DO.StationException(stationBO.Code,"illegal station code");
             //check longitude and lattitude:
             if(stationBO.Lattitude < 31 || stationBO.Lattitude> 33.3 || stationBO.Longitude < 34.3 || stationBO.Longitude > 35.5)
-                throw new BO.StationException("station is not is Israel's teritory. illegal longitude or lattitude.");
+                throw new DO.StationException(stationBO.Code, "station is not is Israel's teritory. illegal longitude or lattitude.");
 
             stationBO.CopyPropertiesTo(stationDO);
             return stationDO;
@@ -116,33 +110,37 @@ namespace BL
             DO.LineStation newlineStationDO;//before copying lineStationDO to lineStationBO, we need to ensure that lineStationDO is legal- legal code.
             //sometimes we get here after the user filled lineStationDO fields. thats why we copy the given lineStationDO to a new lineStationDO and check if it is legal.
             int code = lineStationDO.Code;
+            int lineId = lineStationDO.LineId;
             try
             {
-                newlineStationDO = dl.GetLineStation(code);//if code is legal, returns a new lineStationDO. if not- ecxeption.
+                newlineStationDO = dl.GetLineStation(code, lineId);//if code is legal, returns a new lineStationDO. if not- ecxeption.
             }
             catch (DO.StationException ex)
             {
-                throw new BO.StationException("Station code is illegal", ex);
+                throw new BO.StationException("Station code is illegal\n", ex);
             }
 
             //copy "Code" and "LinestationIndex":
-            newlineStationDO.CopyPropertiesTo(lineStationBO);//copies- only flat properties.
+            //newlineStationDO.CopyPropertiesTo(lineStationBO);//copies- only flat properties.
+            lineStationBO.Code = lineStationDO.Code;
+            lineStationBO.LineStationIndex = lineStationDO.LineStationIndex;
 
             //copy "Name":
             lineStationBO.Name = dl.GetStation(code).Name;
 
             //copy "Distance" and "Time":
-            if (lineStationBO.LineStationIndex == 0)
+            if (lineStationBO.LineStationIndex == 0)//if its the 1st station in the line, the distance and time from the former station =0.
             {
                 //lineStationBO.Time = 00:00:00 - default
                 //lineStationBO.Distance = 0 - default
             }
             else
             {
-                //distance from the former station:
-                //*** lineStationBO.Distance = dl.GetAdjacentStations(code).FirstOrDefault(adj => adj.Station2 == code).Distance;
+                //distance from the former station: we look for the stations pair in which our current stat is the second in the pair. 
+                //it will let us find the distance and time from the former station to her.
+                lineStationBO.Distance = dl.GetAdjacentStationsBySecondOfPair(code).FirstOrDefault(adj => adj.Station2 == code).Distance;
                 //time from the former station:
-                //*** lineStationBO.Time = dl.GetAdjacentStations(code).FirstOrDefault(adj => adj.Station2 == code).Time;
+                lineStationBO.Time = dl.GetAdjacentStationsBySecondOfPair(code).FirstOrDefault(adj => adj.Station2 == code).Time;
             }
 
             return lineStationBO;
@@ -153,11 +151,12 @@ namespace BL
             try
             {
                 //the adapter will check if its logically possible to add the station
-                dl.AddStationToList(stationBoDoAdapter(newStat));
+                DO.Station statToAdd = stationBoDoAdapter(newStat);
+                dl.AddStationToList(statToAdd);
             }
             catch (DO.StationException ex)
             {
-                throw new BO.StationException("error, cannot add the station", ex);
+                throw new BO.StationException("error, cannot add the station\n", ex);
             }
         }
         #endregion
@@ -174,7 +173,7 @@ namespace BL
             }
             catch (DO.LineException ex)
             {
-                throw new BO.LineException("Line Number is illegal", ex);
+                throw new BO.LineException("Line Number is illegal\n", ex);
             }
         }
 
@@ -207,7 +206,7 @@ namespace BL
             }
             catch (DO.LineException ex)
             {
-                throw new BO.LineException("Line bus number is illegal", ex);
+                throw new BO.LineException("Line bus number is illegal\n", ex);
             }
 
             newlineDO.CopyPropertiesTo(lineBO);//copies- only flat properties.
@@ -227,6 +226,7 @@ namespace BL
 
             //copy all relevant properties
             lineBO.CopyPropertiesTo(lineDO);
+            //lineBO.LineId = DO.Config.LineId++;
 
             return lineDO;
         }
@@ -239,7 +239,7 @@ namespace BL
             }
             catch (DO.LineException ex)
             {
-                throw new BO.LineException("error, cannot delete line", ex);
+                throw new BO.LineException("error, cannot delete line\n", ex);
             }
         }
 
@@ -248,11 +248,16 @@ namespace BL
             try
             {
                 //the adapter/ the adding func will check if its logically possible to add the line
-                dl.AddLineToList(lineBoDoAdapter(newLine));
+                DO.Line lineToAdd = lineBoDoAdapter(newLine);
+                dl.AddLineToList(lineToAdd);
+            }
+            catch (DO.StationException ex)
+            {
+                throw new BO.StationException("error, cannot add the line\n", ex);
             }
             catch (DO.LineException ex)
             {
-                throw new BO.LineException("error, cannot add the line", ex);
+                throw new BO.LineException("error, cannot add the line\n", ex);
             }
         }
         #endregion
@@ -260,9 +265,26 @@ namespace BL
         #region LineStation
         public IEnumerable<BO.LineStation> GetAllLineStationsPerLine(int lineId)
         {
+            //return from DOlineStation in dl.GetLineStationsListOfALine(lineId)
+            //       let BOlineStation = lineStationDoBoAdapter(DOlineStation)
+            //       select BOlineStation;
+
             return from DOlineStation in dl.GetLineStationsListOfALine(lineId)
                    let BOlineStation = lineStationDoBoAdapter(DOlineStation)
                    select BOlineStation;
+        }
+
+        public void DeleteStationFromLine(int code, int lineId)
+        {
+            try
+            {
+                dl.DeleteStationFromLine(code, lineId);
+
+            }
+            catch (DO.LineStationException ex)
+            {
+                throw new BO.LineStationException("cannot delete the station from the line\n", ex);
+            }
         }
         #endregion
     }

@@ -24,8 +24,9 @@ namespace DLAPI
         //void AddLineStation(DO.LineStation newLineStat);
         IEnumerable<DO.LineStation> GetLineStationsListThatMatchAStation(int code);
         IEnumerable<DO.LineStation> GetLineStationsListOfALine(int lineId);
-        DO.LineStation GetLineStation(int code);
+        DO.LineStation GetLineStation(int code, int lineId);
         void DeleteLineStationsOfALine(int lineId);
+        void DeleteStationFromLine(int code,int LineId);
         #endregion
 
         #region Line
@@ -38,8 +39,9 @@ namespace DLAPI
         #endregion
 
         #region AdjacentStations
-        IEnumerable<DO.AdjacentStations> GetAdjacentStations(int code);
+        IEnumerable<DO.AdjacentStations> GetAdjacentStationsByFirstOfPair(int code);
+        IEnumerable<DO.AdjacentStations> GetAdjacentStationsBySecondOfPair(int code);
         #endregion
-        
+
     }
 }

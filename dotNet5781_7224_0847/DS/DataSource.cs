@@ -478,7 +478,7 @@ namespace DS
                 new Station
                 {
                     Code = 32298,
-                    Name = "רבי עקיבע/הרב קוק ",
+                    Name = "רבי עקיבא/הרב קוק ",
                     Address = " רחוב:רבי עקיבא 115 עיר: בני ברק",
                     Lattitude = 31.794958,
                     Longitude =35.205216
@@ -1382,15 +1382,17 @@ namespace DS
                 PrevStation = 46425,
                 NextStation = -1,
             },
-           //new LineStation
-           // {
-           //     LineId= 10,
-           //     Code = 106,
-           //     LineStationIndex = 0,
-           //     PrevStation = -1,
-           //     NextStation = 83,
-           // },
-           // line 108 ,Jerusalem
+            
+            //line 108 ,Jerusalem
+           new LineStation
+            {
+                LineId= 10,
+                Code = 106,
+                LineStationIndex = 0,
+                PrevStation = -1,
+                NextStation = 83,
+            },
+            
             new LineStation
             {
                 LineId= 12,
@@ -1668,10 +1670,31 @@ namespace DS
                     double long2 = listStations.Find(st => st.Code == newAdj.Station2).Longitude;
                     double lat1 = listStations.Find(st => st.Code == ls.Code).Lattitude;
                     double lat2 = listStations.Find(st => st.Code == newAdj.Station2).Lattitude;
-                    newAdj.Distance = Math.Sqrt(Math.Pow(long1 - long2, 2) + Math.Pow(lat1 - lat2, 2));
+                    
+                    //the distance between each 2 cordinates is 111 km.
+                    //the hefresh between lat1-lat2 and long1-long2, is a part of the distance between the lat lines and long lines witch is 111 each.
+                    newAdj.Distance = (Math.Sqrt((Math.Pow(long1 - long2, 2)*111) + (Math.Pow(lat1 - lat2, 2))*111)); 
 
-                    int timeInMin = (int)(newAdj.Distance * 1.0 / r.Next(20, 50))*60;
-                    TimeSpan time = new TimeSpan(0, timeInMin, 0);
+                    //int timeInMin = (int)(newAdj.Distance * 1.0 / r.Next(20, 50) * 60);
+                    //int min;
+                    //if (timeInMin == 0)//lost info because of (int), thats why restart with 1 instead of 0.
+                    //    min = 1;
+                    //else
+                    //    min = timeInMin;
+
+                    //TimeSpan time = new TimeSpan(0, min, 0);
+
+                    double timeInSec = ((newAdj.Distance * 1.5) / r.Next(20, 50)) * 60 * 60;//dis*1.5= לחישוב מרחק אמיתי ולא אוירי
+                    int hours = (int)(timeInSec / 3600);
+                    int min = (int)(timeInSec / 60);
+                    int sec = (int)timeInSec;
+
+                    if (sec == 0)
+                    {
+                        sec = 1;//since we dont want the TimeSpan to be all 00:00:00. at least 00:00:01.
+                    }
+
+                    TimeSpan time = new TimeSpan(hours, min, sec);
                     newAdj.Time = time;
 
                     listAdjacentStations.Add(newAdj);
@@ -1681,9 +1704,6 @@ namespace DS
                     //no need to create a pair. its the last station in a line.
                 } 
             }
-
-            //(sender as TryToRide).dis;
-            // Time =(TimeSpan) v;
 
 
             #endregion

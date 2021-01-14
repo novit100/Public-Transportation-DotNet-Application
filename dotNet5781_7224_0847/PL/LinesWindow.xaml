@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         xmlns:BO="clr-namespace:BO;assembly=BL" xmlns:BLAPI="clr-namespace:BLAPI;assembly=BL" x:Class="PL.LinesWindow"
         mc:Ignorable="d"
-        Title="LinesWindow" Height="450" Width="800" FontFamily="Tahoma"  Foreground="Navy">
+        Title="LinesWindow" Height="450" Width="1082" FontFamily="Tahoma"  Foreground="Navy">
     <Window.Background>
             <ImageBrush ImageSource="greenBackground.tif"/>
  </Window.Background>
@@ -24,11 +24,11 @@
         <Label Content="selected line:" HorizontalAlignment="Left" Margin="64,35,0,0" VerticalAlignment="Top" Width="93" FontFamily="Tahoma"  Foreground="Navy" Grid.ColumnSpan="2"/>
         <DataGrid x:Name="lineStationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="231.8,93,9.6,128" RowDetailsVisibilityMode="VisibleWhenSelected" FontFamily="Tahoma"  Foreground="Navy" Grid.Column="1"  LoadingRow="lineStationDataGrid_LoadingRow" GridLinesVisibility="Horizontal"  HorizontalGridLinesBrush="LightGray" SelectionChanged="lineStationDataGrid_SelectionChanged"  >
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="codeColumn" Binding="{Binding Code}" Header="Code" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="distanceColumn" Binding="{Binding Distance}" Header="Distance" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="lineStationIndexColumn" Binding="{Binding LineStationIndex}" Header="Line Station Index" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="timeColumn" Binding="{Binding Time}" Header="Time" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="codeColumn" Binding="{Binding Code}" Header="Code" Width="80"/>
+                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="240"/>
+                <DataGridTextColumn x:Name="distanceColumn" Binding="{Binding Distance}" Header="Distance in km" Width="100"/>
+                <DataGridTextColumn x:Name="timeColumn" Binding="{Binding Time}" Header="Time" Width="100"/>
             </DataGrid.Columns>
         </DataGrid>
         <Grid x:Name="gridOneLine" HorizontalAlignment="Left" Margin="3.2,93,0,0" VerticalAlignment="Top" Grid.Column="1">
@@ -52,5 +52,6 @@
             <Label Content="Last Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center" FontFamily="Tahoma"  Foreground="Navy"/>
             <TextBox x:Name="lastStationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding LastStation, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="Tahoma"  Foreground="Navy"/>
         </Grid>
+        <Label Content="All the station of the line:" Grid.Column="1" HorizontalAlignment="Left" Margin="292.667,48,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

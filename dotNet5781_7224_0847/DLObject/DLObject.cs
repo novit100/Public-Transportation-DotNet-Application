@@ -93,9 +93,9 @@ namespace DL
                    where ls.LineId == lineId
                    select ls.Clone();
         }
-        public DO.LineStation GetLineStation(int code)
+        public DO.LineStation GetLineStation(int code, int lineId)//get the line stat by the line and the stat. since a few line stat can apear with the sme code but different lines.
         {
-            DO.LineStation stat = DataSource.listLineStations.Find(s => s.Code == code);
+            DO.LineStation stat = DataSource.listLineStations.Find(s => s.Code == code && s.LineId==lineId);
             
             if (stat != null)//found the station
                 return stat.Clone();
@@ -106,6 +106,40 @@ namespace DL
         public void DeleteLineStationsOfALine(int lineId)
         {
             DataSource.listLineStations.RemoveAll(ls => ls.LineId == lineId);
+        }
+
+        public void DeleteStationFromLine(int code, int lineId)
+        {
+            int busNumber = GetLine(lineId).BusNumber;
+
+            DO.LineStation lineStation = DataSource.listLineStations.Find(ls => (ls.Code == code && ls.LineId == lineId));
+
+            if (lineStation != null)//found the wanted line station
+            {
+                int indexInLine = lineStation.LineStationIndex;
+
+                if (indexInLine == 0)
+                    throw new DO.LineStationException(code, busNumber, $"the station {code} is the first station of the line {busNumber}");
+
+                if (lineStation.Code== GetLine(lineId).LastStation)
+                    throw new DO.LineStationException(code, busNumber, $"the station {code} is the last station of the line {busNumber}");
+               
+                DataSource.listLineStations.Remove(lineStation);
+
+                foreach (DO.LineStation ls in DataSource.listLineStations)
+                {
+                    if(ls.LineId==lineId)
+                    {
+
+                        //need to update all the indexes of the line station of the line- minus 1.
+                        if (ls.LineStationIndex > indexInLine)
+                            ls.LineStationIndex--;
+                    }
+                }
+            }
+            else
+                throw new DO.LineStationException(code, busNumber, $"the line {busNumber} doesnt pass in the station {code}");
+
         }
         #endregion
 
@@ -162,6 +196,9 @@ namespace DL
 
         public void AddLineToList(DO.Line newLine)
         {
+            newLine.LineId = DO.Config.LineId;//running number
+            DO.Config.LineId++;//update running number
+
             //check if a bus with the same identifying stations (first and last stations) already exists.
             if (DataSource.listLines.Exists(l => l.FirstStation == newLine.FirstStation && l.LastStation==newLine.LastStation))
                 throw new DO.LineException(newLine.BusNumber, $"the line: {newLine.BusNumber} allready exists, with the same first and last stations");
@@ -186,20 +223,25 @@ namespace DL
             //add new adjacent stations
             DataSource.listAdjacentStations.Add(new DO.AdjacentStations() { Station1=newLine.FirstStation, Station2=newLine.LastStation, Distance=0.583, Time=new TimeSpan(00,01,16)});
 
-            newLine.LineId= DO.Config.LineId++;//update running number
-
             DataSource.listLines.Add(newLine); 
         }
         #endregion
 
         #region AdjacentStations
-        public IEnumerable<DO.AdjacentStations> GetAdjacentStations(int code)
+        public IEnumerable<DO.AdjacentStations> GetAdjacentStationsByFirstOfPair(int code)
         {
             return from adjSt in DataSource.listAdjacentStations
                    where adjSt.Station1 == code
-                   where adjSt.Station2 == code
-                   select adjSt.Clone();//return a list of adjacent stations, in which the station with the given code apears as the 1st/2nd in the pair
+                   //where adjSt.Station2 == code
+                   select adjSt.Clone();//return a list of adjacent stations, in which the station with the given code apears as the 1st in the pair
         }
+        public IEnumerable<DO.AdjacentStations> GetAdjacentStationsBySecondOfPair(int code)
+        {
+            return from adjSt in DataSource.listAdjacentStations
+                   where adjSt.Station2 == code
+                   select adjSt.Clone();//return a list of adjacent stations, in which the station with the given code apears as the 2nd in the pair
+        }
+
         #endregion
 
     }

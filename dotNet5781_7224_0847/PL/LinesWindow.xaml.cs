@@ -67,7 +67,7 @@ namespace PL
             }
             catch (BO.LineException ex)
             {
-                MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -88,36 +88,45 @@ namespace PL
             }
             catch (BO.StationException ex)
             {
-                MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private void BTAdd_Click(object sender, RoutedEventArgs e)
         {
-            BO.Line line = new BO.Line();//a new line
             try
             {
-                bl.AddLineToList(line);
-
+                BO.Line line = new BO.Line();//a new line
                 AddLine addLineWindow = new AddLine(line);//we sent the line to a new window we created named AddLine
-
-                addLineWindow.Closed += AddLineWindow_Closed;
-
+                addLineWindow.Closing += addLineWindow_Closing;
                 addLineWindow.ShowDialog();
             }
             catch (BO.LineException ex)
             {
-                MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-        private void AddLineWindow_Closed(object sender, EventArgs e)
+        private void addLineWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //if (!(sender as AddStation).legalBus)//not legal bus- dont add to list. (delete the new empty bus added before)
-            //{
-            //    //buses.RemoveAt(buses.Count() - 1);
-            //    //MessageBox.Show("bus was not added. insert all bus fields correctly and click the add button to insert");
-            //}
+            try
+            {
+                if (!(sender as AddLine).AllFieldsWereFilled)
+                    throw new BO.LineException("cannot add the line since not all fields were filled");
+
+                BO.Line newLineBO = (sender as AddLine).addedLine;
+                bl.AddLineToList(newLineBO);
+
+                RefreshAllLinesComboBox();
+            }
+            catch (BO.LineException ex)
+            {
+             MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (BO.StationException ex)
+            {
+                MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         void lineStationDataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
