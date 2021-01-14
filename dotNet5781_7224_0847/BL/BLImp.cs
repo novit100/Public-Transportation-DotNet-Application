@@ -92,13 +92,14 @@ namespace BL
 
         DO.Station stationBoDoAdapter(BO.Station stationBO)
         {
-            DO.Station stationDO= new DO.Station();
+            DO.Station stationDO = new DO.Station();
             //check code of the station:
             if (stationBO.Code < 1 || stationBO.Code > 999999)
-                throw new DO.StationException(stationBO.Code,"illegal station code");
+                throw new DO.StationException(stationBO.Code, "illegal station code");
             //check longitude and lattitude:
-            if(stationBO.Lattitude < 31 || stationBO.Lattitude> 33.3 || stationBO.Longitude < 34.3 || stationBO.Longitude > 35.5)
-                throw new DO.StationException(stationBO.Code, "station is not is Israel's teritory. illegal longitude or lattitude.");
+            if (stationBO.Lattitude < 31 || stationBO.Lattitude > 33.3 || stationBO.Longitude < 34.3 || stationBO.Longitude > 35.5)
+                throw new DO.StationException(stationBO.Code, "station is not is Israel's teritory. illegal longitude or lattitude " +
+                    "insert latiatude from 31 to 33.3, and longitude from 34.3 to 35.5");
 
             stationBO.CopyPropertiesTo(stationDO);
             return stationDO;
@@ -187,10 +188,10 @@ namespace BL
         public IEnumerable<BO.Line> GetAllLines()
         {
             return from LineDO in dl.GetAllLines()
-                                orderby LineDO.BusNumber           //order it by their bus number
-                               select lineDoBoAdapter(LineDO);
+                   orderby LineDO.BusNumber           //order it by their bus number
+                   select lineDoBoAdapter(LineDO);
 
-            
+
         }
 
         BO.Line lineDoBoAdapter(DO.Line lineDO)

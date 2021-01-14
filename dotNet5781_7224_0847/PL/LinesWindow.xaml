@@ -8,25 +8,8 @@
         mc:Ignorable="d"
         Title="LinesWindow" Height="450" Width="1082" FontFamily="Tahoma"  Foreground="Navy">
     <Window.Background>
-            <ImageBrush ImageSource="greenBackground.tif"/>
- </Window.Background>
-
-    <Window.Resources>
-        <Style TargetType="TextBox" BasedOn="{StaticResource commonStyle}">
-            <Setter Property="VerticalAlignment" Value="Center">
-            </Setter>
-            <Setter Property="FontWeight" Value="Bold">
-            </Setter>
-        </Style>
-
-        <Style TargetType="Label" BasedOn="{StaticResource commonStyle}">
-            <Setter Property="HorizontalAlignment" Value="center">
-            </Setter>
-            <Setter Property="FontWeight" Value="Bold">
-            </Setter>
-        </Style>
-
-    </Window.Resources>
+        <ImageBrush ImageSource="greenBackground.tif"/>
+    </Window.Background>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -37,9 +20,9 @@
         <Button x:Name="BTUpdate" Content="Update line" HorizontalAlignment="Left" Margin="67.2,352,0,0" VerticalAlignment="Top" Width="95" Click="BTUpdate_Click"  Style="{StaticResource ButtonCommonStyle}" Grid.Column="1"/>
         <Button x:Name="BTDelete" Content="Delete line" HorizontalAlignment="Left" Margin="279.2,352,0,0" VerticalAlignment="Top" Width="86" Click="BTDelete_Click"   Style="{StaticResource ButtonCommonStyle}" Grid.Column="1"/>
         <Button x:Name="BTAdd"    Content="Add line"    HorizontalAlignment="Left" Margin="489.2,352,0,0" VerticalAlignment="Top" Width="75" Click="BTAdd_Click"  Style="{StaticResource ButtonCommonStyle}" Grid.Column="1"/>
-        <ComboBox x:Name="CBCurrentLine" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="102.2,35,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1"   FontWeight="Bold" Style="{StaticResource commonStyle}" />
+        <ComboBox x:Name="CBCurrentLine" ItemsSource="{Binding}" Style="{StaticResource commonStyle}" HorizontalAlignment="Left" Margin="102.2,35,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_SelectionChanged" Grid.Column="1"/>
         <Label Content="selected line:" HorizontalAlignment="Left" Margin="64,35,0,0" VerticalAlignment="Top" Width="93" FontFamily="Tahoma"  Foreground="Navy" Grid.ColumnSpan="2"/>
-        <DataGrid x:Name="lineStationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="231.8,93,9.6,128" RowDetailsVisibilityMode="VisibleWhenSelected" FontFamily="Tahoma"  Foreground="Navy" Grid.Column="1"  LoadingRow="lineStationDataGrid_LoadingRow" GridLinesVisibility="Horizontal"  HorizontalGridLinesBrush="LightGray" SelectionChanged="lineStationDataGrid_SelectionChanged" FontWeight="bold"  >
+        <DataGrid x:Name="lineStationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="279.2,93,39.6,128" RowDetailsVisibilityMode="VisibleWhenSelected" FontFamily="Tahoma"  Foreground="Navy" Grid.Column="1"  LoadingRow="lineStationDataGrid_LoadingRow" GridLinesVisibility="Horizontal"  HorizontalGridLinesBrush="LightGray"  >
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="lineStationIndexColumn" Binding="{Binding LineStationIndex}" Header="Line Station Index" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="codeColumn" Binding="{Binding Code}" Header="Code" Width="80"/>
