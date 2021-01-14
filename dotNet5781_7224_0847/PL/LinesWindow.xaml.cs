@@ -134,6 +134,10 @@ namespace PL
             e.Row.Header = (e.Row.GetIndex() + 1).ToString();
         }
 
+        private void lineStationDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 
 
