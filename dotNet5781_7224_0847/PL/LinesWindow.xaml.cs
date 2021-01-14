@@ -67,7 +67,7 @@ namespace PL
             }
             catch (BO.LineException ex)
             {
-                MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -88,33 +88,44 @@ namespace PL
             }
             catch (BO.StationException ex)
             {
-                MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private void BTAdd_Click(object sender, RoutedEventArgs e)
         {
-            BO.Line line = new BO.Line();//a new line
-            AddLine addLineWindow = new AddLine(line);//we sent the line to a new window we created named AddLine
-            addLineWindow.Closing += addLineWindow_Closing;
-            addLineWindow.ShowDialog();
+            try
+            {
+                BO.Line line = new BO.Line();//a new line
+                AddLine addLineWindow = new AddLine(line);//we sent the line to a new window we created named AddLine
+                addLineWindow.Closing += addLineWindow_Closing;
+                addLineWindow.ShowDialog();
+            }
+            catch (BO.LineException ex)
+            {
+                MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void addLineWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             try
             {
-                if (!(sender as AddStation).AllFieldsWereFilled)
-                    throw new BO.StationException("cannot add the station since not all fields were filled");
+                if (!(sender as AddLine).AllFieldsWereFilled)
+                    throw new BO.LineException("cannot add the line since not all fields were filled");
 
-                BO.Station newStationBO = (sender as AddStation).addedStat;
-                bl.AddStationToList(newStationBO);
-                
-                RefreshAllStationsComboBox();
+                BO.Line newLineBO = (sender as AddLine).addedLine;
+                bl.AddLineToList(newLineBO);
+
+                RefreshAllLinesComboBox();
             }
             catch (BO.LineException ex)
             {
-             MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+             MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (BO.StationException ex)
+            {
+                MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

@@ -34,4 +34,24 @@ namespace BO
             return Message + "\n";
         }
     }
+
+    [Serializable]
+    public class LineStationException : Exception
+    {
+        public int CODE;
+        public int BUSNUMBER;
+        public LineStationException(string message) : base(message) { }
+        public LineStationException(string message, Exception innerException) :
+            base(message, innerException)
+        {
+            CODE = ((DO.LineStationException)innerException).CODE;
+            BUSNUMBER = ((DO.LineStationException)innerException).BUSNUMBER;
+        }
+        //public override string ToString() => base.ToString() + $", error in line: {BUSNUMBER}";
+        public override string ToString()
+        {
+            return Message + "\n";
+        }
+    }
+
 }

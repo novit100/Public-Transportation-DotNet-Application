@@ -68,7 +68,7 @@ namespace PL
             }
             catch (BO.StationException ex)
             {
-                MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -119,12 +119,22 @@ namespace PL
             }
             catch (BO.StationException ex)
             {
-                MessageBox.Show(ex.Message, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-
-
-
+        private void btDeleteStationFromThisLine_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                BO.Line lineBO = ((sender as Button).DataContext as BO.Line);
+                bl.DeleteStationFromLine(currStat.Code, lineBO.LineId);
+                RefreshAllLinesOfStationGrid();
+            }
+            catch (BO.LineStationException ex)
+            {
+                MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
     }
 }

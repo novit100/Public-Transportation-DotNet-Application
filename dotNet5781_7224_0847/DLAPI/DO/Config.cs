@@ -9,7 +9,7 @@ namespace DO
     public static class Config
     {
         //for running numbers
-        public static int LineId = 0;
+        public static int LineId = 13;//there are allready 13 stations in data source. the next will have lineId=13.
         
     }
 }

@@ -120,5 +120,18 @@ namespace PL
             e.Handled = true;//if handeled=true, the char wont be added to the pakad, since as we checked, it is not a number
 
         }
+
+        private void AddLineButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (areaTextBox.Text != "" && busNumberTextBox.Text != "0" && firstStationTextBox.Text != "0" && lastStationTextBox.Text != "0")
+                AllFieldsWereFilled = true;
+
+            //check if legal area was typed
+            if (areaTextBox.Text != "General" && areaTextBox.Text != "North" && areaTextBox.Text != "South" && areaTextBox.Text != "Center" && areaTextBox.Text != "Jerusalem")
+                throw new BO.LineException("the area is not legal. choose one of the following: " +
+                    "North, South, Center, Jerusalem, General");
+
+            this.Close();
+        }
     }
 }
