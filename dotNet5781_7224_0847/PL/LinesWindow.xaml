@@ -28,6 +28,23 @@
 
     </Window.Resources>
 
+    <Window.Resources>
+        <Style TargetType="TextBox" BasedOn="{StaticResource commonStyle}">
+            <Setter Property="VerticalAlignment" Value="Center">
+            </Setter>
+            <Setter Property="FontWeight" Value="Bold">
+            </Setter>
+        </Style>
+
+        <Style TargetType="Label" BasedOn="{StaticResource commonStyle}">
+            <Setter Property="HorizontalAlignment" Value="center">
+            </Setter>
+            <Setter Property="FontWeight" Value="Bold">
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="75*"/>
