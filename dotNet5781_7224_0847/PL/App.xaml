@@ -19,8 +19,27 @@
         </Style>
         <Style TargetType="Label" BasedOn="{StaticResource commonStyle}">
             <Setter Property="VerticalAlignment" Value="Center">
-       
             </Setter>
         </Style>
+
+       
+
+
+        <Style x:Key="ButtonTrigger" TargetType="Button" BasedOn="{StaticResource ButtonCommonStyle}">
+           
+               
+                    <Setter Property="Content" Value="Yes!" />
+                    <Setter Property="Foreground" Value="Green" />
+               
+        </Style>
+
+
+
+
+
+
+
+
+
     </Application.Resources>
 </Application>
