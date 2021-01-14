@@ -26,6 +26,7 @@ namespace PL
 
         public AddStation(BO.Station Stat)
         {
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeComponent();
             addedStat = Stat;
             DataContext = addedStat;

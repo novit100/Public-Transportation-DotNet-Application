@@ -24,6 +24,7 @@ namespace PL
 
         public AddLine(BO.Line line)
         {
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeComponent();
             addedLine = line;
             DataContext = addedLine;

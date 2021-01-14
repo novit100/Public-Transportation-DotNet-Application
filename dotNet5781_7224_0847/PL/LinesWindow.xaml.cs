@@ -28,7 +28,7 @@ namespace PL
         {
             InitializeComponent();  
             bl = _bl;
-
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             CBCurrentLine.DisplayMemberPath = "BusNumber";//show only specific Property of object
             CBCurrentLine.SelectedValuePath = "LineId";//selection return only specific Property of object
             CBCurrentLine.SelectedIndex = 0; //index of the object to be selected

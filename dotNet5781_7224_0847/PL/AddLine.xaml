@@ -8,20 +8,28 @@
         mc:Ignorable="d"
         Title="AddLine" Height="450" Width="800">
     <Window.Background>
-        <SolidColorBrush Color="YellowGreen" Opacity="100">
-            <SolidColorBrush.RelativeTransform>
-                <TransformGroup>
-                    <ScaleTransform CenterY="0.5" CenterX="0.5"/>
-                    <SkewTransform CenterY="0.5" CenterX="0.5"/>
-                    <RotateTransform CenterY="0.5" CenterX="0.5"/>
-                    <TranslateTransform X="5"/>
-                </TransformGroup>
-            </SolidColorBrush.RelativeTransform>
-        </SolidColorBrush>
+        <ImageBrush ImageSource="greenBackground.tif"/>
     </Window.Background>
+
+    <Window.Resources>
+        <Style TargetType="TextBox" BasedOn="{StaticResource commonStyle}">
+            <Setter Property="VerticalAlignment" Value="Center">
+            </Setter>
+            <Setter Property="FontWeight" Value="Bold">
+            </Setter>
+        </Style>
+
+        <Style TargetType="Label" BasedOn="{StaticResource commonStyle}">
+            <Setter Property="HorizontalAlignment" Value="center">
+            </Setter>
+            <Setter Property="FontWeight" Value="Bold">
+            </Setter>
+        </Style>
+
+    </Window.Resources>
     <Grid>
 
-        <Grid x:Name="grid1" VerticalAlignment="Top" Margin="293,98,0,0" HorizontalAlignment="Left">
+        <Grid x:Name="grid1" VerticalAlignment="Top" Margin="293,98,0,0" HorizontalAlignment="Left" Height="124" Width="273" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -41,8 +49,8 @@
             <TextBox x:Name="firstStationTextBox" Width="120" VerticalAlignment="Center" Text="{Binding FirstStation, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="2" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1" PreviewKeyDown="firstStationTextBox_PreviewKeyDown"/>
             <Label VerticalAlignment="Center" Grid.Row="3" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Last Station:"/>
             <TextBox x:Name="lastStationTextBox" Width="120" VerticalAlignment="Center" Text="{Binding LastStation, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="3" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1" PreviewKeyDown="lastStationTextBox_PreviewKeyDown"/>
-         </Grid>
-        <Button x:Name="AddLineButton" Content="Add the Line" HorizontalAlignment="Left" Margin="374,315,0,0" VerticalAlignment="Top" Width="75" Click="AddLineButton_Click"/>
-
+        </Grid>
+        <Button x:Name="AddLineButton" Content="Add the Line" HorizontalAlignment="Left" Margin="374,315,0,0" VerticalAlignment="Top" Width="75" Click="AddLineButton_Click" Style="{StaticResource ButtonCommonStyle}"/>
+        <Label VerticalAlignment="Center"  HorizontalAlignment="Left" Grid.Column="0" Content="Esti and Nov" Margin="699,386,0,10" Width="85" FontWeight="Light"/>
     </Grid>
 </Window>
