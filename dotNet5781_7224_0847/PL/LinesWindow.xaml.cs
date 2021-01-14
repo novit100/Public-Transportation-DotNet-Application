@@ -26,9 +26,9 @@ namespace PL
 
         public LinesWindow(IBL _bl)
         {
-            InitializeComponent();  
+            InitializeComponent();
             bl = _bl;
-            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+
             CBCurrentLine.DisplayMemberPath = "BusNumber";//show only specific Property of object
             CBCurrentLine.SelectedValuePath = "LineId";//selection return only specific Property of object
             CBCurrentLine.SelectedIndex = 0; //index of the object to be selected
@@ -121,7 +121,7 @@ namespace PL
             }
             catch (BO.LineException ex)
             {
-             MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (BO.StationException ex)
             {
@@ -134,10 +134,6 @@ namespace PL
             e.Row.Header = (e.Row.GetIndex() + 1).ToString();
         }
 
-        private void lineStationDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 
 
