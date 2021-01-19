@@ -15,4 +15,5 @@ namespace DO
         public int FirstStation { get; set; }
         public int LastStation { get; set; }
     }
+
 }
