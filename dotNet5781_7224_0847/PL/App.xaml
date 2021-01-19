@@ -11,7 +11,7 @@
             <Setter Property="FontFamily" Value="Tahoma"/>
             <Setter Property="Foreground" Value="Navy"/>
         </Style>
-        <Style x:Key="ButtonCommonStyle" TargetType="Button" BasedOn="{StaticResource commonStyle}">
+        <Style  TargetType="Button" BasedOn="{StaticResource commonStyle}">
             <Setter Property="BorderThickness" Value="0,0,0,3"/>
             <Setter Property="BorderBrush" Value="#FF7EC700"/>
             <Setter Property="Height" Value="30"/>
@@ -21,11 +21,13 @@
         <Style TargetType="Label" BasedOn="{StaticResource commonStyle}">
             <Setter Property="VerticalAlignment" Value="Center">
             </Setter>
+            <Setter Property="FontWeight" Value="Bold">
+            </Setter>
         </Style>
 
 
 
-
+        <!--x:Key="ButtonCommonStyle"-->
 
         <Style x:Key="ButtonTrigger" TargetType="Button" BasedOn="{StaticResource ButtonCommonStyle}">
 

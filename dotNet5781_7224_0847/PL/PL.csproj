@@ -146,5 +146,8 @@
   <ItemGroup>
     <Resource Include="blueBackground.tif" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="medi.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

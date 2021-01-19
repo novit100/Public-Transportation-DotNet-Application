@@ -24,7 +24,7 @@
                 <RadioButton x:Name ="rbLines" Content="Lines" Height="23" Margin="0,0,-10.8,0" Foreground="MidnightBlue" HorizontalAlignment="Right" Width="282" Background="YellowGreen"/>
             </StackPanel>
         </GroupBox>
-        <Button x:Name="btnGO" Content="GO >>" HorizontalAlignment="Left" Height="42" Margin="230,346,0,0" VerticalAlignment="Top" Width="105"  FontSize="16" FontFamily="Kristen ITC"  Click="btnGO_Click" FontWeight="ExtraBold" Style="{StaticResource ButtonCommonStyle}"  BorderThickness="0,0,0,5" />
+        <Button x:Name="btnGO" Content="GO >>" HorizontalAlignment="Left" Height="42" Margin="230,346,0,0" VerticalAlignment="Top" Width="105"  FontSize="16" FontFamily="Kristen ITC"  Click="btnGO_Click" FontWeight="ExtraBold"   BorderThickness="0,0,0,5" />
 
     </Grid>
 </Window>
