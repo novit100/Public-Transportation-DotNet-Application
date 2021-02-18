@@ -10,7 +10,6 @@
     <Window.Background>
         <ImageBrush ImageSource="greenBackground.tif"/>
     </Window.Background>
-
     <Window.Resources>
         <Style TargetType="TextBox" BasedOn="{StaticResource commonStyle}">
             <Setter Property="VerticalAlignment" Value="Center">

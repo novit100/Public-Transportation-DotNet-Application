@@ -29,9 +29,19 @@ namespace PL
         {
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeComponent();
+
             addedLine = line;
             DataContext = addedLine;
+            
             areaComboBox.ItemsSource = Enum.GetValues(typeof(BO.Areas));
+            firstStationComboBox.DisplayMemberPath = "Name";//show only specific Property of object
+            lastStationComboBox.DisplayMemberPath = "Name";//show only specific Property of object
+           
+            firstStationComboBox.SelectedValuePath = "Code";//selection return only specific Property of object
+            lastStationComboBox.SelectedValuePath = "Code";//selection return only specific Property of object
+            
+            firstStationComboBox.SelectedIndex = 0; //index of the object to be selected
+            lastStationComboBox.SelectedIndex = 0; //index of the object to be selected
         }
 
         private void busNumberTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
