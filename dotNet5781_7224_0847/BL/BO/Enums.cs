@@ -10,4 +10,8 @@ namespace BO
     {
         General, North, South, Center, Jerusalem
     }
+    public enum UserStatuses
+    {
+        Admine, User
+    }
 }

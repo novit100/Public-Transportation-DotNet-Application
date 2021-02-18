@@ -11,6 +11,7 @@
             <Setter Property="FontFamily" Value="Tahoma"/>
             <Setter Property="Foreground" Value="Navy"/>
         </Style>
+
         <Style  TargetType="Button" BasedOn="{StaticResource commonStyle}">
             <Setter Property="BorderThickness" Value="0,0,0,3"/>
             <Setter Property="BorderBrush" Value="#FF7EC700"/>
@@ -18,7 +19,23 @@
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
-        <Style TargetType="Label" BasedOn="{StaticResource commonStyle}">
+
+
+        <Style  TargetType="Label" BasedOn="{StaticResource commonStyle}">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+
+      
+        <Style TargetType="ComboBox" BasedOn="{StaticResource commonStyle}">
+            <Setter Property="VerticalAlignment" Value="Center">
+            </Setter>
+            <Setter Property="FontWeight" Value="Bold">
+            </Setter>
+        </Style>
+
+        <Style TargetType="TextBox" BasedOn="{StaticResource commonStyle}">
             <Setter Property="VerticalAlignment" Value="Center">
             </Setter>
             <Setter Property="FontWeight" Value="Bold">
@@ -26,8 +43,6 @@
         </Style>
 
 
-
-        <!--x:Key="ButtonCommonStyle"-->
 
         <Style x:Key="ButtonTrigger" TargetType="Button" BasedOn="{StaticResource ButtonCommonStyle}">
 

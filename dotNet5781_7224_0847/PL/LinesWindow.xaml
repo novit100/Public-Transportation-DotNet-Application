@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:PL"
         xmlns:BO="clr-namespace:BO;assembly=BL" xmlns:BLAPI="clr-namespace:BLAPI;assembly=BL" x:Class="PL.LinesWindow"
         mc:Ignorable="d"
-        Title="LinesWindow" Height="450" Width="1082" FontFamily="Tahoma"  Foreground="Navy" >
-
+        Title="LinesWindow" Height="450" Width="1082" FontFamily="Tahoma"  Foreground="Navy">
     <Window.Background>
         <ImageBrush ImageSource="greenBackground.tif"/>
     </Window.Background>
+
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -19,11 +19,11 @@
         </Grid.ColumnDefinitions>
 
         <Button x:Name="BTUpdate" Content="Update line" HorizontalAlignment="Left" Margin="67.2,352,0,0" VerticalAlignment="Top" Width="95" Click="BTUpdate_Click"  Grid.Column="1"/>
-        <Button x:Name="BTDelete" Content="Delete line" HorizontalAlignment="Left" Margin="279.2,352,0,0" VerticalAlignment="Top" Width="86" Click="BTDelete_Click"  Grid.Column="1"/>
-        <Button x:Name="BTAdd"    Content="Add line"    HorizontalAlignment="Left" Margin="489.2,352,0,0" VerticalAlignment="Top" Width="75" Click="BTAdd_Click"  Grid.Column="1"/>
-        <ComboBox x:Name="CBCurrentLine" ItemsSource="{Binding}" Style="{StaticResource commonStyle}" HorizontalAlignment="Left" Margin="102.2,35,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_SelectionChanged" Grid.Column="1"/>
+        <Button x:Name="BTDelete" Content="Delete line" HorizontalAlignment="Left" Margin="279.2,352,0,0" VerticalAlignment="Top" Width="86" Click="BTDelete_Click"   Grid.Column="1"/>
+        <Button x:Name="BTAdd"    Content="Add line"    HorizontalAlignment="Left" Margin="489.2,352,0,0" VerticalAlignment="Top" Width="75" Click="BTAdd_Click"   Grid.Column="1"/>
+        <ComboBox x:Name="CBCurrentLine" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="102.2,35,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_SelectionChanged" Grid.Column="1" FontWeight="Bold"/>
         <Label Content="selected line:" HorizontalAlignment="Left" Margin="64,35,0,0" VerticalAlignment="Top" Width="93" FontFamily="Tahoma"  Foreground="Navy" Grid.ColumnSpan="2"/>
-        <DataGrid x:Name="lineStationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="279.2,93,39.6,128" RowDetailsVisibilityMode="VisibleWhenSelected" FontFamily="Tahoma"  Foreground="Navy" Grid.Column="1"  LoadingRow="lineStationDataGrid_LoadingRow" GridLinesVisibility="Horizontal"  HorizontalGridLinesBrush="LightGray"  >
+        <DataGrid x:Name="lineStationDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="279.2,93,39.6,128" RowDetailsVisibilityMode="VisibleWhenSelected" FontFamily="Tahoma"  Foreground="Navy" Grid.Column="1"  LoadingRow="lineStationDataGrid_LoadingRow" GridLinesVisibility="Horizontal"  HorizontalGridLinesBrush="LightGray"  FontWeight="bold"  >
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="lineStationIndexColumn" Binding="{Binding LineStationIndex}" Header="Line Station Index" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="codeColumn" Binding="{Binding Code}" Header="Code" Width="80"/>
@@ -32,9 +32,7 @@
                 <DataGridTextColumn x:Name="timeColumn" Binding="{Binding Time}" Header="Time" Width="100"/>
             </DataGrid.Columns>
         </DataGrid>
-
-        <Label Content="All the station of the line:" Grid.Column="1" HorizontalAlignment="Left" Margin="292.667,48,0,0" VerticalAlignment="Top"/>
-        <Grid x:Name="gridOneLine" HorizontalAlignment="Left" Margin="101,93,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2">
+        <Grid x:Name="gridOneLine" HorizontalAlignment="Left" Margin="3.2,93,0,0" VerticalAlignment="Top" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -46,22 +44,15 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Content="Area:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <ComboBox x:Name="areaComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" SelectedItem="{Binding Area}" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="120">
-                <ComboBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <VirtualizingStackPanel/>
-                    </ItemsPanelTemplate>
-                </ComboBox.ItemsPanel>
-            </ComboBox>
-            <Label Content="Bus Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBox x:Name="busNumberTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding BusNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="First Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-            <TextBox x:Name="firstStationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding FirstStation, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Last Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-            <TextBox x:Name="lastStationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding LastStation, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Line Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
-            <TextBox x:Name="lineIdTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding LineId, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Area:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center" FontFamily="Tahoma" />
+            <ComboBox x:Name ="areaComboBox" Grid.Column="1" HorizontalAlignment="Left"  Height="23" Margin="3" Grid.Row="1" SelectedItem="{Binding Area}" VerticalAlignment="Center" Width="120" FontFamily="Tahoma"  Foreground="Navy"/>
+            <Label Content="Bus Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center" FontFamily="Tahoma" />
+            <TextBox x:Name="busNumberTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding BusNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="Tahoma"  Foreground="Navy"/>
+            <Label Content="First Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center" FontFamily="Tahoma"  />
+            <TextBox x:Name="firstStationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding FirstStation, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="Tahoma"  Foreground="Navy"/>
+            <Label Content="Last Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center" FontFamily="Tahoma"  />
+            <TextBox x:Name="lastStationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding LastStation, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="Tahoma"  />
         </Grid>
+        <Label Content="All the station of the line:" Grid.Column="1" HorizontalAlignment="Left" Margin="292.667,48,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

@@ -36,10 +36,17 @@ namespace PL
             if (rbStations.IsChecked == true)
             {
                 StationsWindow win = new StationsWindow(bl);
-                // Console.Beep();
-                //string soundfile = @"C:\Users\user\Documents\SEMESTER A !!!!\mini project\dotNet5781_0847_7224\meddi.wav";
-                //var sound = new System.Media.SoundPlayer(soundfile);
-                //sound.Play();
+                Console.Beep();
+               // Sleep(1000);
+                //player.FileName = "123.mp3";
+                //player.Play();
+                //Player pl = new Player();
+                //byte[] arr = File.ReadAllBytes(@"meddi.wav");
+                //pl.Play(arr);
+                string soundfile = @"C:\Users\user\Documents\SEMESTER A !!!!\mini project\dotNet5781_0847_7224\meddi.wav";
+                var sound = new System.Media.SoundPlayer(soundfile);
+                sound.Play();
+                
                 win.Show();
             }
             else
