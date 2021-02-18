@@ -13,7 +13,7 @@ namespace dotNet5781_03A_7224_0847
     class BusLine:IComparable<BusLine>//number of bus line lets say:"kav mispar--76" 
     {
         public List<BusLineStation> Stations { get; set; } //the field of the bus line,it is performed by (many) single bus line stations
-        
+
         private int busLine1;
         public int busLine //number of bus line lets say:"kav mispar--76" 
         {

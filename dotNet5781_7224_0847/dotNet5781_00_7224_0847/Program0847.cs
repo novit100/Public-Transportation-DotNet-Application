@@ -5,25 +5,75 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace dotNet5781_00_0847_7224
-{class c { }
-    struct s { }
+{   class C {/* public int ca=8; public readonly int x = 8;*/ }
+    struct S
+    {
+     public int cb;
+       
+    }
     partial class Program
     {
         static void Main(string[] args)
-        { c co;
-            //Console.WriteLine(co);
+    {
+            //List<int> list = new List<int>() { 1, 2, 3, 4 };
+            //var result1 = list.Where()
+        C co;
+  //      Console.WriteLine(co);
+             S so=new S();
+             Console.WriteLine(so.cb);
+
+
             co = null;
-            s so;
+           
             Console.WriteLine("----------------");
             Console.WriteLine(so);
-            //so = null;
+      //  so = null;
+            ////////////////////////////////
+
+
+
+            Console.WriteLine($"please enter the number of amudot you want in the matrix");
+            int[][] intArray = new int[4][];
+            string y = Console.ReadLine();
+           int x;
+            for (int i = 0; i < intArray.Length; i++)
+            {
+              bool b=int.TryParse(y,out x);
+                Console.WriteLine(x);
+                intArray[i] = new int[x];
+                for (int j = 0; j < intArray[i].Length; j++) intArray[i][j] = (i + 1) * (j + 1);
+            }
+            
+
+for (int i = 0; i < intArray.Length; i++)
+            {
+                for (int j = 0; j < intArray[i].Length; j++) Console.Write("{0,-3}", intArray[i][j]);
+                Console.WriteLine();
+            }
+            //////////////////////
+            int[][] intosArray = new int[4][]
+              {
+    new int[4]{ 1, 2, 3, 4 },
+    new int[4]{ 5, 6, 7, 8 },
+    new int[4]{ 9, 10, 11, 12 },
+    new int[4]{ 13, 14, 15, 16 }
+            };
+            Console.WriteLine("intos");
+Console.WriteLine(intosArray[0][3]); Console.WriteLine(intosArray[3][0]);
+           
+
+
+
+            ///////////////////////////////
+
+
 
             Welcome7224();
             Welcome0847();
            
             Console.ReadKey();
         }
-
+      
         private static void Welcome0847()
         {
             CreateFile("file1.txt");
