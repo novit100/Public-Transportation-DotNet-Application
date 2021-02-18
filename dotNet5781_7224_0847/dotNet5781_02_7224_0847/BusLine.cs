@@ -14,28 +14,28 @@ namespace dotNet5781_02_7224_0847
     {
         public List<BusLineStation> Stations { get; set; } //the field of the bus line,it is performed by (many) single bus line stations
         
-        private int busLine1;
+        //private int busLine1;
         public int busLine //number of bus line lets say:"kav mispar--76" 
         {
             get; set;
         }
 
         ///////////////////////////////////////////////////////
-        private BusLineStation firstStation;
+        //private BusLineStation firstStation;
         public BusLineStation FirstStation
         {
             get; set;
         }
 
         ///////////////////////////////////////////////////////
-        private BusLineStation lastStation;
+        //private BusLineStation lastStation;
         public BusLineStation LastStation
         {
             get; set;
         }
 
         ///////////////////////////////////////////////////////
-        private Areas area;
+        //private Areas area;
         public Areas Area
         {
             get; set;
