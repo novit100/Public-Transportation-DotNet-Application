@@ -31,5 +31,13 @@ namespace BLAPI
         IEnumerable<BO.LineStation> GetAllLineStationsPerLine(int LineId);
         void DeleteStationFromLine(int Code, int LineId);
         #endregion
+        #region User
+        BO.AppUser GetUser(string name);
+        void AddUser(DO.AppUser user);
+        IEnumerable<BO.AppUser> GetAllUsers();
+        #endregion
+        // get user 
+        // add user
+        // get all users
     }
 }

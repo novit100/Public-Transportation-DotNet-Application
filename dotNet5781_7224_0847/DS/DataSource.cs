@@ -15,7 +15,7 @@ namespace DS
         public static List<Line> listLines;
         public static List<LineStation> listLineStations;
         public static List<AdjacentStations> listAdjacentStations;
-
+        public static List<AppUser> users;
 
         static DataSource()
         {
@@ -1708,7 +1708,41 @@ namespace DS
 
             #endregion
 
+
+
+            users = new List<AppUser>
+             
+             {
+                         #region restartUsers
+
+              new AppUser
+             {
+                 UserStatus=UserStatuses.Admine,
+                 UserName = "Nov",
+                 Password = "12300",
+              },
+              new AppUser
+              {
+                 UserStatus=UserStatuses.Admine,
+                 UserName = "Esti",
+                 Password = "e2000",
+              },
+              new AppUser
+              {
+                 UserStatus=UserStatuses.Admine,
+                 UserName = "Efrat",
+                 Password = "amar535",
+              },
+
+                #endregion
+              };
+          
         }
+
 
     }
 }
+
+
+
+

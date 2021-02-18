@@ -288,5 +288,73 @@ namespace BL
             }
         }
         #endregion
+        #region User
+        /// <summary>
+        /// Conversion between do and bo
+        /// </summary>
+        /// <param name="userDO">user do</param>
+        /// <returns>user bo</returns>
+        public BO.AppUser userDoBoAdapter(DO.AppUser userDO)
+        {
+            BO.AppUser userBO = new BO.AppUser();
+            DO.AppUser newUserDO;
+            string name = userDO.UserName;
+            try
+            {
+                newUserDO = dl.GetUser(name);
+            }
+            catch (DO.StationException ex)
+            {
+                throw new BO.StationException("Station code is illegal", ex);
+            }
+            newUserDO.CopyPropertiesTo(userBO);
+
+            userDO.CopyPropertiesTo(userBO);
+
+            return userBO;
+        }
+        /// <summary>
+        /// returns a user
+        /// </summary>
+        /// <param name="name">name</param>
+        /// <returns>user bo</returns>
+        public BO.AppUser GetUser(string name)
+        {
+            DO.AppUser userDO;
+            try
+            {
+                userDO = dl.GetUser(name);
+            }
+            catch (DO.StationException ex)
+            {
+                throw new BO.StationException("User code does not exist or he is not a user", ex);
+            }
+            return userDoBoAdapter(userDO);
+        }
+        /// <summary>
+        /// add a user
+        /// </summary>
+        /// <param name="user">user</param>
+        public void AddUser(DO.AppUser user)
+        {
+            try
+            {
+                dl.AddUser(user);
+            }
+            catch (DO.LineStationException ex)
+            {
+                throw new BO.LineStationException("User is exist", ex);
+            }
+        }
+        /// <summary>
+        /// returns all the users
+        /// </summary>
+        /// <returns>users</returns>
+        public IEnumerable<BO.AppUser> GetAllUsers()
+        {
+            return from item in dl.GetAllUsers()
+                   select userDoBoAdapter(item);
+        }
+        #endregion
     }
 }

@@ -42,6 +42,13 @@ namespace DLAPI
         IEnumerable<DO.AdjacentStations> GetAdjacentStationsByFirstOfPair(int code);
         IEnumerable<DO.AdjacentStations> GetAdjacentStationsBySecondOfPair(int code);
         #endregion
-
+        #region User
+        DO.AppUser GetUser(string name);
+        IEnumerable<DO.AppUser> GetAllUsers();
+        void AddUser(DO.AppUser user);
+        #endregion
+        // get user 
+        // add user
+        // get all users
     }
 }

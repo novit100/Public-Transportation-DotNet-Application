@@ -62,8 +62,14 @@
     <Compile Include="AddStation.xaml.cs">
       <DependentUpon>AddStation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AppUser.xaml.cs">
+      <DependentUpon>AppUser.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LinesWindow.xaml.cs">
       <DependentUpon>LinesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Newuser.xaml.cs">
+      <DependentUpon>Newuser.xaml</DependentUpon>
     </Compile>
     <Compile Include="StationsWindow.xaml.cs">
       <DependentUpon>StationsWindow.xaml</DependentUpon>
@@ -73,6 +79,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddStation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AppUser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -92,6 +102,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Newuser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="StationsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -135,6 +149,10 @@
     <ProjectReference Include="..\BL\BL.csproj">
       <Project>{2256497b-4c6a-485f-8b1b-bfc792e8a372}</Project>
       <Name>BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DLAPI\DLAPI.csproj">
+      <Project>{e8505a1c-4323-4085-8a7d-96c2e5c5d8cd}</Project>
+      <Name>DLAPI</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -24,7 +24,7 @@ namespace PL
     {
         IBL bl = BLFactory.GetBL("1");//we create an "object" of IBL interface in order to use BL functions and classes
 
-        public MainWindow()
+        public MainWindow(IBL _bl)// change// // 
         {
             InitializeComponent();
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
@@ -43,9 +43,9 @@ namespace PL
                 //Player pl = new Player();
                 //byte[] arr = File.ReadAllBytes(@"meddi.wav");
                 //pl.Play(arr);
-                string soundfile = @"C:\Users\user\Documents\SEMESTER A !!!!\mini project\dotNet5781_0847_7224\meddi.wav";
-                var sound = new System.Media.SoundPlayer(soundfile);
-                sound.Play();
+                //string soundfile = @"C:\Users\user\Documents\SEMESTER A !!!!\mini project\dotNet5781_0847_7224\meddi.wav";
+                //var sound = new System.Media.SoundPlayer(soundfile);
+                //sound.Play();
                 
                 win.Show();
             }

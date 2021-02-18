@@ -21,7 +21,7 @@ namespace PL
     /// </summary>
     public partial class AddLine : Window
     {
-        IBL bl;
+       //changed // IBL bl;
         public BO.Line addedLine;
         public bool AllFieldsWereFilled = false;
 

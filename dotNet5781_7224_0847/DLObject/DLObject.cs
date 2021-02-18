@@ -10,7 +10,7 @@ using DLAPI;
 using DS;
 
 namespace DL
-{   
+{
     sealed class DLObject : IDL    //internal
 
     {
@@ -28,7 +28,7 @@ namespace DL
         public DO.Station GetStation(int code)
         {
             DO.Station stat = DataSource.listStations.Find(s => s.Code == code);
-            
+
             if (stat != null)//found the station
                 return stat.Clone();
             else//didnt find the station
@@ -55,7 +55,7 @@ namespace DL
             if (stationToDel != null)//station was found
             {
                 //if there are already lines that pass in this station, we cannot delete the station. we need to delete those lines first.
-                if(DataSource.listLineStations.Exists(st => st.Code == code))
+                if (DataSource.listLineStations.Exists(st => st.Code == code))
                     throw new DO.StationException(code, $"the station that its code is: {code} is in the path of bus/es");
 
                 DataSource.listStations.Remove(stationToDel);
@@ -72,7 +72,7 @@ namespace DL
 
         public void AddStationToList(DO.Station newStatDO)
         {
-            if(DataSource.listStations.Exists(st=>st.Code==newStatDO.Code))
+            if (DataSource.listStations.Exists(st => st.Code == newStatDO.Code))
                 throw new DO.StationException(newStatDO.Code, $"the station that its code is: {newStatDO.Code} already exists in the list");
             DataSource.listStations.Add(newStatDO);
         }
@@ -83,7 +83,7 @@ namespace DL
         public IEnumerable<DO.LineStation> GetLineStationsListThatMatchAStation(int code)//returns a list of the logical stations (line stations) that match a physical station with a given code.
         {
             return from ls in DataSource.listLineStations
-                   where ls.Code==code
+                   where ls.Code == code
                    select ls.Clone();
         }
 
@@ -95,8 +95,8 @@ namespace DL
         }
         public DO.LineStation GetLineStation(int code, int lineId)//get the line stat by the line and the stat. since a few line stat can apear with the sme code but different lines.
         {
-            DO.LineStation stat = DataSource.listLineStations.Find(s => s.Code == code && s.LineId==lineId);
-            
+            DO.LineStation stat = DataSource.listLineStations.Find(s => s.Code == code && s.LineId == lineId);
+
             if (stat != null)//found the station
                 return stat.Clone();
             else//didnt find the station
@@ -121,14 +121,14 @@ namespace DL
                 if (indexInLine == 0)
                     throw new DO.LineStationException(code, busNumber, $"the station {code} is the first station of the line {busNumber}");
 
-                if (lineStation.Code== GetLine(lineId).LastStation)
+                if (lineStation.Code == GetLine(lineId).LastStation)
                     throw new DO.LineStationException(code, busNumber, $"the station {code} is the last station of the line {busNumber}");
-               
+
                 DataSource.listLineStations.Remove(lineStation);
 
                 foreach (DO.LineStation ls in DataSource.listLineStations)
                 {
-                    if(ls.LineId==lineId)
+                    if (ls.LineId == lineId)
                     {
 
                         //need to update all the indexes of the line station of the line- minus 1.
@@ -190,7 +190,7 @@ namespace DL
                 //then delete the line itself
                 DataSource.listLines.Remove(lineToDel);
             }
-            else 
+            else
                 throw new DO.LineException(busNumber, $"the line: {busNumber} wasnt found");
         }
 
@@ -200,7 +200,7 @@ namespace DL
             DO.Config.LineId++;//update running number
 
             //check if a bus with the same identifying stations (first and last stations) already exists.
-            if (DataSource.listLines.Exists(l => l.FirstStation == newLine.FirstStation && l.LastStation==newLine.LastStation))
+            if (DataSource.listLines.Exists(l => l.FirstStation == newLine.FirstStation && l.LastStation == newLine.LastStation))
                 throw new DO.LineException(newLine.BusNumber, $"the line: {newLine.BusNumber} allready exists, with the same first and last stations");
 
             //check the code of the stations:
@@ -212,18 +212,18 @@ namespace DL
             //create new stations and fill them with default values. 
             //(only if the first or last station dont exist yet))
             if (!DataSource.listStations.Exists(st => st.Code == newLine.FirstStation))
-                DataSource.listStations.Add(new DO.Station() { Code = newLine.FirstStation, Lattitude=31.5, Longitude=35, Name="First station of line "+newLine.BusNumber });
+                DataSource.listStations.Add(new DO.Station() { Code = newLine.FirstStation, Lattitude = 31.5, Longitude = 35, Name = "First station of line " + newLine.BusNumber });
             if (!DataSource.listStations.Exists(st => st.Code == newLine.LastStation))
                 DataSource.listStations.Add(new DO.Station() { Code = newLine.LastStation, Lattitude = 32, Longitude = 35.3, Name = "Last station of line " + newLine.BusNumber });
-            
+
             //add new lineStations of the new stations
             DataSource.listLineStations.Add(new DO.LineStation() { Code = newLine.FirstStation, LineId = newLine.LineId, LineStationIndex = 0, NextStation = newLine.LastStation, PrevStation = -1 });
-            DataSource.listLineStations.Add(new DO.LineStation() { Code=newLine.LastStation, LineId= newLine.LineId, LineStationIndex=1, NextStation=-1, PrevStation=newLine.FirstStation});
+            DataSource.listLineStations.Add(new DO.LineStation() { Code = newLine.LastStation, LineId = newLine.LineId, LineStationIndex = 1, NextStation = -1, PrevStation = newLine.FirstStation });
 
             //add new adjacent stations
-            DataSource.listAdjacentStations.Add(new DO.AdjacentStations() { Station1=newLine.FirstStation, Station2=newLine.LastStation, Distance=0.583, Time=new TimeSpan(00,01,16)});
+            DataSource.listAdjacentStations.Add(new DO.AdjacentStations() { Station1 = newLine.FirstStation, Station2 = newLine.LastStation, Distance = 0.583, Time = new TimeSpan(00, 01, 16) });
 
-            DataSource.listLines.Add(newLine); 
+            DataSource.listLines.Add(newLine);
         }
         #endregion
 
@@ -242,6 +242,49 @@ namespace DL
                    select adjSt.Clone();//return a list of adjacent stations, in which the station with the given code apears as the 2nd in the pair
         }
 
+        #endregion
+        #region User
+        public DO.AppUser GetUser(string myname)
+        {
+            DO.AppUser user = DataSource.users.Find(u => u.UserName == myname);
+            //try { Thread.Sleep(2000); } catch (ThreadInterruptedException ex) { }
+            if (user != null)
+            {
+                return user.Clone();
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+        //public IEnumerable<DO.AdjacentStations> GetAdjacentStationsByFirstOfPair(int code)
+        //{
+        //    return from adjSt in DataSource.listAdjacentStations
+        //           where adjSt.Station1 == code
+        //           //where adjSt.Station2 == code
+        //           select adjSt.Clone();//return a list of adjacent stations, in which the station with the given code apears as the 1st in the pair
+        //}
+        //public IEnumerable<DO.AdjacentStations> GetAdjacentStationsBySecondOfPair(int code)
+        //{
+        //    return from adjSt in DataSource.listAdjacentStations
+        //           where adjSt.Station2 == code
+        //           select adjSt.Clone();//return a list of adjacent stations, in which the station with the given code apears as the 2nd in the pair
+        //}
+
+        public IEnumerable<DO.AppUser> GetAllUsers()
+        {
+            return from user in DataSource.users
+                   select user.Clone();
+        }
+        public void AddUser(DO.AppUser user)
+        {
+            if (DataSource.users.Where(s => s.UserName == user.UserName).ToList().Count() > 0)
+            {
+                // throw new DO.BadStationCodeException(user.Name, "Duplicate user Code");
+            }
+            DataSource.users.Add(user);
+        }
         #endregion
 
     }
