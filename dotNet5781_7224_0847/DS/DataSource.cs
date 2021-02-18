@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 using DO;
 namespace DS
-{ 
+{
     public static class DataSource
     {
         private static Random r = new Random();
@@ -16,12 +16,12 @@ namespace DS
         public static List<LineStation> listLineStations;
         public static List<AdjacentStations> listAdjacentStations;
 
-        
+
         static DataSource()
         {
             InitAllLists();
         }
-        static void InitAllLists() 
+        static void InitAllLists()
         {
             listStations = new List<Station>
             {
@@ -1392,7 +1392,7 @@ namespace DS
                 PrevStation = -1,
                 NextStation = 83,
             },
-            
+
             new LineStation
             {
                 LineId= 12,
@@ -1670,10 +1670,10 @@ namespace DS
                     double long2 = listStations.Find(st => st.Code == newAdj.Station2).Longitude;
                     double lat1 = listStations.Find(st => st.Code == ls.Code).Lattitude;
                     double lat2 = listStations.Find(st => st.Code == newAdj.Station2).Lattitude;
-                    
+
                     //the distance between each 2 cordinates is 111 km.
                     //the hefresh between lat1-lat2 and long1-long2, is a part of the distance between the lat lines and long lines witch is 111 each.
-                    newAdj.Distance = (Math.Sqrt((Math.Pow(long1 - long2, 2)*111) + (Math.Pow(lat1 - lat2, 2))*111)); 
+                    newAdj.Distance = (Math.Sqrt((Math.Pow(long1 - long2, 2) * 111) + (Math.Pow(lat1 - lat2, 2)) * 111));
 
                     //int timeInMin = (int)(newAdj.Distance * 1.0 / r.Next(20, 50) * 60);
                     //int min;
@@ -1702,7 +1702,7 @@ namespace DS
                 else
                 {
                     //no need to create a pair. its the last station in a line.
-                } 
+                }
             }
 
 
@@ -1712,4 +1712,3 @@ namespace DS
 
     }
 }
-

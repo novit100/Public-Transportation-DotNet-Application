@@ -7,7 +7,7 @@
     <ProjectGuid>{0CC72C53-46EC-442D-80EB-89C7A36CD5B2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DLObject</RootNamespace>
+    <RootNamespace>DL</RootNamespace>
     <AssemblyName>DLObject</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

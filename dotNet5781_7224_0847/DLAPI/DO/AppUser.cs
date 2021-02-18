@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DO
 {
-    class User
+    public class AppUser
     {
         public string UserName { get; set; }
         public UserStatuses UserStatus { get; set; }
