@@ -299,9 +299,10 @@ namespace BL
             BO.AppUser userBO = new BO.AppUser();
             DO.AppUser newUserDO;
             string name = userDO.UserName;
+            string password = userDO.Password;
             try
             {
-                newUserDO = dl.GetUser(name);
+                newUserDO = dl.GetUser(name,password);
             }
             catch (DO.StationException ex)
             {
@@ -318,16 +319,16 @@ namespace BL
         /// </summary>
         /// <param name="name">name</param>
         /// <returns>user bo</returns>
-        public BO.AppUser GetUser(string name)
+        public BO.AppUser GetUser(string name,string password)
         {
             DO.AppUser userDO;
             try
             {
-                userDO = dl.GetUser(name);
+                userDO = dl.GetUser(name,password);
             }
-            catch (DO.StationException ex)
+            catch (DO.AppUserException ex)
             {
-                throw new BO.StationException("User code does not exist or he is not a user", ex);
+                throw new BO.AppUserException("The user with this password wasn't found", ex);
             }
             return userDoBoAdapter(userDO);
         }

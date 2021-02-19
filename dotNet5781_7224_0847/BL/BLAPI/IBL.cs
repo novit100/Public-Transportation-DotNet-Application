@@ -32,7 +32,7 @@ namespace BLAPI
         void DeleteStationFromLine(int Code, int LineId);
         #endregion
         #region User
-        BO.AppUser GetUser(string name);
+        BO.AppUser GetUser(string name,string password);
         void AddUser(DO.AppUser user);
         IEnumerable<BO.AppUser> GetAllUsers();
         #endregion

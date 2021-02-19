@@ -43,7 +43,7 @@ namespace PL
             {
                 MessageBox.Show("The password doesn't match the password confirm");
             }
-            else if (bl.GetUser(tbNewUser.Text) != null)
+            else if (bl.GetUser(tbNewUser.Text,pbPass.Password) != null)
             {
                 MessageBox.Show("The username exists ");
             }

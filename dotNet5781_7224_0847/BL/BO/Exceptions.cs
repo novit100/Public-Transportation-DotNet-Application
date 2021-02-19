@@ -54,4 +54,17 @@ namespace BO
         }
     }
 
+    [Serializable]
+    public class AppUserException: Exception
+    {
+        public string NAME;
+        public AppUserException(string message) : base(message) { }
+        public AppUserException(string message, Exception innerException) :
+            base(message, innerException) => NAME = ((DO.AppUserException)innerException).NAME;
+   
+        public override string ToString()
+        {
+            return Message + "\n";
+        }
+    }
 }

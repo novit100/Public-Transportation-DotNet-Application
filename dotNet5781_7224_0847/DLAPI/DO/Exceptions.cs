@@ -43,12 +43,29 @@ namespace DO
     {
         public int CODE;
         public int BUSNUMBER;
-        public LineStationException(int code, int busNumber) :  base() {CODE=code; BUSNUMBER = busNumber;} //quick initialization and call to father("base") ctor
+        public LineStationException(int code, int busNumber) : base() { CODE = code; BUSNUMBER = busNumber; } //quick initialization and call to father("base") ctor
         public LineStationException(int code, int busNumber, string message) :
-                base(message){ CODE = code; BUSNUMBER = busNumber; }
+                base(message)
+        { CODE = code; BUSNUMBER = busNumber; }
         public LineStationException(int code, int busNumber, string message, Exception innerException) :
-            base(message, innerException){ CODE = code; BUSNUMBER = busNumber; }
+            base(message, innerException)
+        { CODE = code; BUSNUMBER = busNumber; }
         //public override string ToString() => base.ToString() + $", error in station that its code is: {CODE}";
+        public override string ToString()
+        {
+            return Message + "\n";
+        }
+    }
+    [Serializable]
+    public class AppUserException : Exception
+    {
+        public string NAME;
+        public AppUserException(string name) : base() => NAME = name;//quick initialization and call to father("base") ctor
+        public AppUserException(string name, string message) :
+            base(message) => NAME = name;
+        public AppUserException(string name, string message, Exception innerException) :
+            base(message, innerException) => NAME = name;
+        //public override string ToString() => base.ToString() + $", error in line: {BUSNUMBER}";
         public override string ToString()
         {
             return Message + "\n";

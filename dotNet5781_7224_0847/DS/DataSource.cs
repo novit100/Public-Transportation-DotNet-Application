@@ -1710,7 +1710,7 @@ namespace DS
 
 
 
-            users = new List<AppUser>
+            users = new List<AppUser>()
              
              {
                          #region restartUsers
@@ -1718,19 +1718,19 @@ namespace DS
               new AppUser
              {
                  UserStatus=UserStatuses.Admine,
-                 UserName = "Nov",
+                 UserName = "nov",
                  Password = "12300",
               },
               new AppUser
               {
                  UserStatus=UserStatuses.Admine,
-                 UserName = "Esti",
+                 UserName = "esti",
                  Password = "e2000",
               },
               new AppUser
               {
                  UserStatus=UserStatuses.Admine,
-                 UserName = "Efrat",
+                 UserName = "efrat",
                  Password = "amar535",
               },
 

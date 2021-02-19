@@ -43,7 +43,7 @@ namespace DLAPI
         IEnumerable<DO.AdjacentStations> GetAdjacentStationsBySecondOfPair(int code);
         #endregion
         #region User
-        DO.AppUser GetUser(string name);
+        DO.AppUser GetUser(string name,string password);
         IEnumerable<DO.AppUser> GetAllUsers();
         void AddUser(DO.AppUser user);
         #endregion

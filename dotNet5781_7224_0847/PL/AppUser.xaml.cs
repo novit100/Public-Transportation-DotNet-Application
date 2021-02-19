@@ -37,22 +37,29 @@ namespace PL
 
         private void bLogIn_Click(object sender, RoutedEventArgs e)
         {
-            curUser = bl.GetUser(tbUser.Text);
-            MainWindow myMainWindow = new MainWindow(bl);
+           
+            try
+            {
+                if ((pbPass.Password != "") && (tbUser.Text != ""))//if one or two of the fields are empty
+                {
+                    curUser = bl.GetUser(tbUser.Text, pbPass.Password);
+                    MainWindow myMainWindow = new MainWindow(bl);
+                    myMainWindow.Show();
+                    this.Close();
+                    
+                }
+     
+                
+            }
+            catch(BO.AppUserException ex)//if it didn't find the user
+            {
 
-            if ((curUser != null) && (pbPass.Password == curUser.Password))
-            {
-                myMainWindow.Show();
-                this.Close();
+                MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            else if ((pbPass.Password == "") && (tbUser.Text == ""))
-            {
-                MessageBox.Show(" Something went wrong. Try again!");
-            }
-            else
-            {
-                MessageBox.Show(" Something went wrong. Try again!");
-            }
+
+
+
+
         }
 
         //private void bLogIn_Click(object sender, RoutedEventArgs e)

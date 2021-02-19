@@ -244,9 +244,9 @@ namespace DL
 
         #endregion
         #region User
-        public DO.AppUser GetUser(string myname)
+        public DO.AppUser GetUser(string myname,string mypassword)
         {
-            DO.AppUser user = DataSource.users.Find(u => u.UserName == myname);
+            DO.AppUser user = DataSource.users.FirstOrDefault(u => u.UserName == myname&& u.Password==mypassword);//changed //
             //try { Thread.Sleep(2000); } catch (ThreadInterruptedException ex) { }
             if (user != null)
             {
@@ -254,7 +254,8 @@ namespace DL
             }
             else
             {
-                return null;
+                
+                throw new DO.AppUserException(myname, $"the user: {myname} does'nt exist in the curret state");
             }
 
         }
