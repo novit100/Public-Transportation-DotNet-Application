@@ -42,8 +42,11 @@ namespace PL
             {
                 if ((pbPass.Password != "") && (tbUser.Text != ""))//if one or two of the fields are empty
                 {
+                    bool flag=false;
                     curUser = bl.GetUser(tbUser.Text, pbPass.Password);
-                    MainWindow myMainWindow = new MainWindow(bl);
+                    if (curUser.UserStatus == BO.UserStatuses.Admine)
+                         flag = true;
+                    MainWindow myMainWindow = new MainWindow(flag);
                     myMainWindow.Show();
                     this.Close();
                     

@@ -12,6 +12,6 @@ namespace BO
     }
     public enum UserStatuses
     {
-        Admine, User
+        User, Admine
     }
 }

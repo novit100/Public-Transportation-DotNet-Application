@@ -12,6 +12,6 @@ namespace DO
     }
     public enum UserStatuses
     {
-        Admine,User
+        User,Admine
     }
 }

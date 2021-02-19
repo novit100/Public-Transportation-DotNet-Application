@@ -23,10 +23,15 @@ namespace PL
     public partial class MainWindow : Window
     {
         IBL bl = BLFactory.GetBL("1");//we create an "object" of IBL interface in order to use BL functions and classes
-
-        public MainWindow(IBL _bl)// change// // 
+        bool _isAdmine;
+        public MainWindow(bool isAdmine)
         {
             InitializeComponent();
+            if (!isAdmine)
+            {
+                rbStations.Visibility = Visibility.Collapsed;
+                rbLines.Visibility = Visibility.Collapsed;
+            }
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
         }
 
@@ -37,7 +42,7 @@ namespace PL
             {
                 StationsWindow win = new StationsWindow(bl);
                 Console.Beep();
-               // Sleep(1000);
+                // Sleep(1000);
                 //player.FileName = "123.mp3";
                 //player.Play();
                 //Player pl = new Player();
@@ -46,14 +51,26 @@ namespace PL
                 //string soundfile = @"C:\Users\user\Documents\SEMESTER A !!!!\mini project\dotNet5781_0847_7224\meddi.wav";
                 //var sound = new System.Media.SoundPlayer(soundfile);
                 //sound.Play();
-                
+
                 win.Show();
             }
-            else
+            if (rbLines.IsChecked == true)
             {
                 LinesWindow win = new LinesWindow(bl);
                 win.Show();
             }
+            if (rbschedule.IsChecked == true)
+            {
+                LinesSchedule win = new LinesSchedule(bl);
+                win.Show();
+            }
+            if (rbsimulation.IsChecked == true) 
+            {
+                StationSimulation win = new StationSimulation(bl);
+                win.Show();
+            }
+
+            
 
         }
     }

@@ -65,11 +65,17 @@
     <Compile Include="AppUser.xaml.cs">
       <DependentUpon>AppUser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LinesSchedule.xaml.cs">
+      <DependentUpon>LinesSchedule.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LinesWindow.xaml.cs">
       <DependentUpon>LinesWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Newuser.xaml.cs">
       <DependentUpon>Newuser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StationSimulation.xaml.cs">
+      <DependentUpon>StationSimulation.xaml</DependentUpon>
     </Compile>
     <Compile Include="StationsWindow.xaml.cs">
       <DependentUpon>StationsWindow.xaml</DependentUpon>
@@ -83,6 +89,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AppUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LinesSchedule.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -103,6 +113,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Newuser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StationSimulation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
