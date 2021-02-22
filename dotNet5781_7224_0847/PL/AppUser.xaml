@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="AppUser" Height="450" Width="800">
+        Title="AppUser" Height="507" Width="800">
     <Window.Background>
-        <ImageBrush ImageSource="greenBackground.tif"/>
+        <ImageBrush ImageSource="background.png"/>
     </Window.Background>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -28,20 +28,18 @@
             <RowDefinition Height="0.7*"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-
-        <TextBlock HorizontalAlignment="center" TextWrapping="Wrap" Text="welcome to Kavim -    Start  here:"  Foreground="#FF2B8B30" VerticalAlignment="Center" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" FontWeight="Bold" FontSize="20" Margin="0.2,21,26.8,20.4" Width="237" />
-        <TextBox x:Name="tbcolorup" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" TextWrapping="Wrap"  Text="  Kavim Company" VerticalAlignment="Stretch"  Background="YellowGreen" FontWeight="Bold" Foreground="#FFFCFBFA"  FontSize="18" BorderBrush="{x:Null}"  />
-        <TextBox x:Name="tbcolor" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"  Background="YellowGreen" BorderBrush="{x:Null}"  TextWrapping="Wrap"  Text=" © Esti and nov" Foreground="White" FontSize="11" />
         <PasswordBox x:Name="pbPass"  HorizontalAlignment="Stretch"  VerticalAlignment="Center" Grid.Column="3" Grid.Row="3" Height="20" />
-        <TextBlock HorizontalAlignment="Left"  TextWrapping="Wrap"  Foreground="#FF2B8B30" Text=" User name: " VerticalAlignment="Center" Grid.Column="2"  Grid.Row="2"  FontSize="15" />
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap"  Foreground="#FF2B8B30" Text=" Password: " VerticalAlignment="Center" Grid.Column="2"  Grid.Row="3"  FontSize="15" />
+        <TextBlock HorizontalAlignment="Left"  TextWrapping="Wrap"  Foreground="MidnightBlue" Text=" User name: " VerticalAlignment="Center" Grid.Column="2"  Grid.Row="2"  FontSize="15" FontFamily="Kristen ITC" FontWeight="Bold" />
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap"  Foreground="MidnightBlue" Text=" Password: " VerticalAlignment="Center" Grid.Column="2"  Grid.Row="3"  FontSize="15" FontFamily="Kristen ITC" FontWeight="Bold" />
         <TextBox x:Name="tbUser" HorizontalAlignment="Stretch"  TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="3" Grid.Row="2" Height="20" />
-        <Button x:Name="bLogIn" Content="Log in" HorizontalAlignment="Stretch"  VerticalAlignment="Bottom"  Height="25" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="4" Click="bLogIn_Click" />
-        <Image Grid.Column="3" HorizontalAlignment="center"  Grid.Row="1"  VerticalAlignment="Center"  Source="kavimIcon.png" Height="30"  Width="30" Margin="0.2,44,101.8,20.4" RenderTransformOrigin="0.077,1.863"/>
-        <Button x:Name="bSignUp" Content="Sign up here" Grid.Column="3" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Top" Height="20" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="Navy" Click="bSignUp_Click"/>
-        <TextBlock Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Right"  Grid.Row="5" TextWrapping="Wrap" Text="Not a member? " VerticalAlignment="Top" Opacity="0.6" Margin="11.6,2.8,9.6,0" RenderTransformOrigin="0.457,-0.37"  />
+        <Button x:Name="bLogIn" Content="Log in" HorizontalAlignment="Stretch"  VerticalAlignment="Bottom"  Height="39" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="4" Click="bLogIn_Click" Background="#FFF8F6F6" Margin="0,0,264.333,9.667" />
+        <Image HorizontalAlignment="center"  VerticalAlignment="Center"  Source="kavimIcon.png" Height="119"  Width="144" Margin="110.333,-25,10.333,42.667" RenderTransformOrigin="0.077,1.863" Grid.RowSpan="2" Grid.Column="4"/>
+        <Button x:Name="bSignUp" Content="Sign up here" HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Top" Height="20" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="Navy" Click="bSignUp_Click" Margin="101,0.667,85,0"/>
+        <TextBlock HorizontalAlignment="Right"  Grid.Row="6" TextWrapping="Wrap" Text="Not a member? " VerticalAlignment="Top" Opacity="0.6" Margin="0,0.667,168,0" RenderTransformOrigin="0.457,-0.37"  />
         <Image HorizontalAlignment="Center" Height="20"  Grid.Row="2" VerticalAlignment="Center" Width="21" Grid.Column="1" Source="kavimIcon.png"/>
         <Image HorizontalAlignment="Center" Height="20"  Grid.Row="3" VerticalAlignment="Center" Width="21" Grid.Column="1" Source="kavimIcon.png"/>
+        <Label Content="Welcome to Kavim Company! " HorizontalAlignment="Left" Margin="204,25,0,0" VerticalAlignment="Top" Height="41" Width="371" FontWeight="Bold" FontSize="30" Foreground="MidnightBlue" FontFamily="Narkisim" Grid.ColumnSpan="5" Grid.Row="1"/>
+        <Label VerticalAlignment="Center"  HorizontalAlignment="Left" Grid.Column="4" Content="Esti and Nov" Margin="169.333,46,0,9.667" Width="85" FontWeight="Light" Grid.Row="5" Grid.RowSpan="2"/>
 
     </Grid>
 </Window>

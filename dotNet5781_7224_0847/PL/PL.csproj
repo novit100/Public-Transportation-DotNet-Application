@@ -77,6 +77,9 @@
     <Compile Include="ShowOnMap.xaml.cs">
       <DependentUpon>ShowOnMap.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ShowSingleLine.xaml.cs">
+      <DependentUpon>ShowSingleLine.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SingleLine.xaml.cs">
       <DependentUpon>SingleLine.xaml</DependentUpon>
     </Compile>
@@ -123,6 +126,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ShowOnMap.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ShowSingleLine.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
