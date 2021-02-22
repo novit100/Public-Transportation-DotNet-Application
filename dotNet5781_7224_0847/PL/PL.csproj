@@ -204,6 +204,8 @@
     <Resource Include="bg2.png" />
     <Resource Include="bg1.png" />
     <Resource Include="background.png" />
+    <Resource Include="busIcon1.jpg" />
+    <Resource Include="busIcon2.jpg" />
     <Content Include="medi.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

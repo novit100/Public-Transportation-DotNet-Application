@@ -64,7 +64,7 @@ namespace PL
         private void BTUpdate_Click(object sender, RoutedEventArgs e)
         {
             //a line to save the original details of the bus in case the update is illegal:
-            BO.Line saveTheCurrentDetails = currLine;//the chosen line before the changes
+            BO.Line saveTheCurrentDetails = CBCurrentLine.SelectedItem as BO.Line;//the chosen line before the changes
 
             try
             {

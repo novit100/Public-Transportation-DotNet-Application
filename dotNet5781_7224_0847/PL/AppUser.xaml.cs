@@ -29,12 +29,6 @@ namespace PL
             // bl = _bl;
         }
 
-        private void bSignUp_Click(object sender, RoutedEventArgs e)
-        {
-            Newuser newUserWin = new Newuser();
-              newUserWin.Show();
-        }
-
         private void bLogIn_Click(object sender, RoutedEventArgs e)
         {
            
@@ -51,18 +45,18 @@ namespace PL
                     this.Close();
                     
                 }
-     
-                
             }
             catch(BO.AppUserException ex)//if it didn't find the user
             {
 
                 MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
 
-
-
-
+        private void btSighup_Click(object sender, RoutedEventArgs e)
+        {
+            Newuser newUserWin = new Newuser();
+            newUserWin.Show();
         }
 
         //private void bLogIn_Click(object sender, RoutedEventArgs e)
