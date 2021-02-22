@@ -28,7 +28,7 @@ namespace PL
         {
             InitializeComponent();
             bl = _bl;
-             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             CBChosenStat.DisplayMemberPath = "Name";//show only specific Property of object
             CBChosenStat.SelectedValuePath = "Code";//selection return only specific Property of object
             CBChosenStat.SelectedIndex = 0; //index of the object to be selected

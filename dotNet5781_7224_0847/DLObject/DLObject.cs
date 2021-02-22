@@ -248,6 +248,7 @@ namespace DL
         }
 
         #endregion
+
         #region User
         public DO.AppUser GetUser(string myname,string mypassword)
         {
@@ -291,6 +292,15 @@ namespace DL
             }
             DataSource.users.Add(user);
         }
+        #endregion
+
+        #region LineTrip
+        //public IEnumerable<DO.LineTrip> GetAllLineTripPerLine(int lineid)
+        //{
+        //    return from lnTrip in DataSource.listLineTrip//return all line trips of a specific line.
+        //           where lnTrip.LineID == lineid
+        //           select lnTrip.Clone();
+        //}
         #endregion
 
     }

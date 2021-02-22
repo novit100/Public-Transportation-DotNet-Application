@@ -32,6 +32,7 @@ namespace BLAPI
         IEnumerable<BO.LineStation> GetAllLineStationsPerLine(int LineId);
         void DeleteStationFromLine(int Code, int LineId);
         #endregion
+
         #region User
         BO.AppUser GetUser(string name,string password);
         void AddUser(DO.AppUser user);
@@ -40,5 +41,9 @@ namespace BLAPI
         // get user 
         // add user
         // get all users
+
+        #region LineTrip
+        //IEnumerable<BO.LineTrip> GetAllLineTripPerLine(int lineid);
+        #endregion
     }
 }

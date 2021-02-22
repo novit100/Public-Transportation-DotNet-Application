@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    class LineTrip
+    public class LineTrip
     {
-         public int LineTripID { get; set; }
+        public int LineTripID { get; set; }
         public int LineID { get; set; }
         public TimeSpan StartAt { get; set; }
     }
