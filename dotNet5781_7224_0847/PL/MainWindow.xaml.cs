@@ -39,7 +39,7 @@ namespace PL
         private void btnGO_Click(object sender, RoutedEventArgs e)
         {
             if (rbStations.IsChecked == true)
-            {
+            {  
                 StationsWindow win = new StationsWindow(bl);
                 Console.Beep();
                 // Sleep(1000);
