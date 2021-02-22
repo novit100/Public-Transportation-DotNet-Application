@@ -73,5 +73,12 @@ namespace PL
             
 
         }
+
+        private void btShowMap_Click(object sender, RoutedEventArgs e)
+        {
+            ShowOnMap win = new ShowOnMap(bl);
+            win.Show();
+        }
+
     }
 }

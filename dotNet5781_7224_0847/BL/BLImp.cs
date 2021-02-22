@@ -176,6 +176,10 @@ namespace BL
             {
                 throw new BO.LineException("Line Number is illegal\n", ex);
             }
+            catch (DO.StationException ex)
+            {
+                throw new BO.StationException("stations are illegal\n", ex);
+            }
         }
 
         public IEnumerable<BO.Line> GetAllLinesPerStation(int code)
@@ -183,6 +187,14 @@ namespace BL
             return from lineStation in dl.GetLineStationsListThatMatchAStation(code)
                    let line = dl.GetLine(lineStation.LineId)
                    select line.CopyDOLineStationToBOLine(lineStation);
+        }
+
+        public IEnumerable<BO.Line> GetAllLinesByArea(BO.Areas area)
+        {
+            return from LineDO in dl.GetAllLines()
+                   where LineDO.Area.CompareTo((DO.Areas)area) == 0//if the erea is equal to the given area
+                   orderby LineDO.BusNumber           //order it by their bus number
+                   select lineDoBoAdapter(LineDO);
         }
 
         public IEnumerable<BO.Line> GetAllLines()

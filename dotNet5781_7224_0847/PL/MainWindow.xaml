@@ -12,12 +12,12 @@
 
     Title="Main Window" Height="444.695" Width="579.863"  Icon= "kavimIcon.png"    >
     <Window.Background>
-        <ImageBrush ImageSource="greenBackground.tif"/>
+        <ImageBrush ImageSource="background.png"/>
     </Window.Background>
 
     <Grid>
 
-        <Label Content="Welcome to Kavim Company! " HorizontalAlignment="Left" Margin="115,73,0,0" VerticalAlignment="Top" Height="41" Width="348" FontWeight="Bold" FontStyle="Italic" FontSize="20" Foreground="MidnightBlue" FontFamily="Verdana"/>
+        <Label Content="Welcome to Kavim Company! " HorizontalAlignment="Left" Margin="97,28,0,0" VerticalAlignment="Top" Height="41" Width="371" FontWeight="Bold" FontSize="30" Foreground="MidnightBlue" FontFamily="Narkisim"/>
         <GroupBox x:Name="groupBox1" Header="Choose Option:" HorizontalAlignment="Left" Height="186" Margin="115,136,0,0" VerticalAlignment="Top" Width="333" FontSize="16" FontStyle="Italic" FontWeight="SemiBold" BorderBrush="MidnightBlue" Foreground="MidnightBlue" Opacity="1.2"  >
             <StackPanel Margin="21,20,29,24">
                 <RadioButton x:Name ="rbStations" Content="Stations" Height="24" IsChecked="True" Foreground="MidnightBlue" Background="YellowGreen" />
@@ -26,7 +26,9 @@
                 <RadioButton x:Name="rbsimulation"  Content="Station Simulation" Height="23" Margin="0,0,-10.8,0" Foreground="MidnightBlue" HorizontalAlignment="Right" Width="282" Background="YellowGreen"/>
             </StackPanel>
         </GroupBox>
-        <Button x:Name="btnGO" Content="GO >>" HorizontalAlignment="Left" Height="42" Margin="230,346,0,0" VerticalAlignment="Top" Width="105"  FontSize="16" FontFamily="Kristen ITC"  Click="btnGO_Click" FontWeight="ExtraBold"   BorderThickness="0,0,0,5" />
+        <Button x:Name="btnGO" Content="GO >>" HorizontalAlignment="Left" Height="42" Margin="458,363,0,0" VerticalAlignment="Top" Width="105"  FontSize="16" FontFamily="Kristen ITC"  Click="btnGO_Click" FontWeight="ExtraBold"   BorderThickness="0,0,0,5" />
+        <Button x:Name="btShowMap" Content="Show all lines on map" HorizontalAlignment="Left" Margin="0,370,0,0" VerticalAlignment="Top" Width="166" Height="35" Click="btShowMap_Click"/>
+        <Label VerticalAlignment="Center"  HorizontalAlignment="Left" Grid.Column="0" Content="Esti and Nov" Margin="488,0,0,390.333" Width="85" FontWeight="Light"/>
 
     </Grid>
 </Window>

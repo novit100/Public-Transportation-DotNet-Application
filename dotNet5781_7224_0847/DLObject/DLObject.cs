@@ -150,6 +150,20 @@ namespace DL
 
             if (ln != null)//if found
             {
+                //check if the line's fields that were added are legal
+                //check the code of the stations:
+                if (!DataSource.listStations.Exists(l => l.Code == newLine.FirstStation))
+                    throw new DO.StationException(newLine.FirstStation, $"the station with the code: {newLine.FirstStation} is not found");
+                if (!DataSource.listStations.Exists(l => l.Code == newLine.LastStation))
+                    throw new DO.StationException(newLine.LastStation, $"the station with the code: {newLine.LastStation} is not found");
+
+                if (newLine.FirstStation == newLine.LastStation)
+                    throw new DO.StationException(newLine.LastStation, $"the last station code: {newLine.LastStation} is illegal since the first and last stations must be different");
+
+                //check if a bus with the same identifying stations (first and last stations) already exists.
+                if (DataSource.listLines.Exists(l => l.FirstStation == newLine.FirstStation && l.LastStation == newLine.LastStation && l.BusNumber == newLine.BusNumber))
+                    throw new DO.LineException(newLine.BusNumber, $"the line: {newLine.BusNumber} allready exists, with the same first and last stations");
+
                 DataSource.listLines.Remove(ln);
                 DataSource.listLines.Add(newLine.Clone());
             }
@@ -199,22 +213,13 @@ namespace DL
             newLine.LineId = DO.Config.LineId;//running number
             DO.Config.LineId++;//update running number
 
+            //check if the first and last stations are the same- if so, cannot add the bus.
+            if (newLine.FirstStation == newLine.LastStation)
+                throw new DO.LineException(newLine.BusNumber, $"the line: {newLine.BusNumber} is not legal since the first and last stations must be different");
+
             //check if a bus with the same identifying stations (first and last stations) already exists.
-            if (DataSource.listLines.Exists(l => l.FirstStation == newLine.FirstStation && l.LastStation == newLine.LastStation))
+            if (DataSource.listLines.Exists(l => l.FirstStation == newLine.FirstStation && l.LastStation == newLine.LastStation && l.BusNumber == newLine.BusNumber))
                 throw new DO.LineException(newLine.BusNumber, $"the line: {newLine.BusNumber} allready exists, with the same first and last stations");
-
-            //check the code of the stations:
-            if (newLine.FirstStation < 1 || newLine.FirstStation > 999999)
-                throw new DO.StationException(newLine.FirstStation, $"the first station code: {newLine.FirstStation} is illegal");
-            if (newLine.LastStation < 1 || newLine.LastStation > 999999)
-                throw new DO.StationException(newLine.LastStation, $"the last station code: {newLine.LastStation} is illegal");
-
-            //create new stations and fill them with default values. 
-            //(only if the first or last station dont exist yet))
-            if (!DataSource.listStations.Exists(st => st.Code == newLine.FirstStation))
-                DataSource.listStations.Add(new DO.Station() { Code = newLine.FirstStation, Lattitude = 31.5, Longitude = 35, Name = "First station of line " + newLine.BusNumber });
-            if (!DataSource.listStations.Exists(st => st.Code == newLine.LastStation))
-                DataSource.listStations.Add(new DO.Station() { Code = newLine.LastStation, Lattitude = 32, Longitude = 35.3, Name = "Last station of line " + newLine.BusNumber });
 
             //add new lineStations of the new stations
             DataSource.listLineStations.Add(new DO.LineStation() { Code = newLine.FirstStation, LineId = newLine.LineId, LineStationIndex = 0, NextStation = newLine.LastStation, PrevStation = -1 });

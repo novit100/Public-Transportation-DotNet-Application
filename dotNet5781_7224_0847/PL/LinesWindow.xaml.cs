@@ -27,6 +27,7 @@ namespace PL
         public LinesWindow(IBL _bl)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             bl = _bl;
 
             areaComboBox.ItemsSource = Enum.GetValues(typeof(BO.Areas));
@@ -51,6 +52,7 @@ namespace PL
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             currLine = (CBCurrentLine.SelectedItem as BO.Line);
+
             gridOneLine.DataContext = currLine;
 
             if (currLine != null)
@@ -61,6 +63,9 @@ namespace PL
 
         private void BTUpdate_Click(object sender, RoutedEventArgs e)
         {
+            //a line to save the original details of the bus in case the update is illegal:
+            BO.Line saveTheCurrentDetails = currLine;//the chosen line before the changes
+
             try
             {
                 if (currLine != null)
@@ -68,6 +73,18 @@ namespace PL
             }
             catch (BO.LineException ex)
             {
+                //if an exception was found- return the written textboxes to those before
+                busNumberTextBox.Text = saveTheCurrentDetails.BusNumber.ToString();
+                firstStationTextBox.Text = saveTheCurrentDetails.FirstStation.ToString();
+                lastStationTextBox.Text = saveTheCurrentDetails.LastStation.ToString();
+                MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (BO.StationException ex)
+            {
+                //if an exception was found- return the written textboxes to those before
+                busNumberTextBox.Text = saveTheCurrentDetails.BusNumber.ToString();
+                firstStationTextBox.Text = saveTheCurrentDetails.FirstStation.ToString();
+                lastStationTextBox.Text = saveTheCurrentDetails.LastStation.ToString();
                 MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -97,8 +114,7 @@ namespace PL
         {
             try
             {
-                BO.Line line = new BO.Line();//a new line
-                AddLine addLineWindow = new AddLine(line);//we sent the line to a new window we created named AddLine
+                AddLine addLineWindow = new AddLine(bl);//we sent the line to a new window we created named AddLine
                 addLineWindow.Closing += addLineWindow_Closing;
                 addLineWindow.ShowDialog();
             }
@@ -135,6 +151,103 @@ namespace PL
             e.Row.Header = (e.Row.GetIndex() + 1).ToString();
         }
 
+        private void btDeleteLineStationFromThisLine_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                BO.LineStation lineStationBO = ((sender as Button).DataContext as BO.LineStation);
+                bl.DeleteStationFromLine(lineStationBO.Code, currLine.LineId);
+                RefreshAllLineStationsOfLineGrid();
+            }
+            catch (BO.LineStationException ex)
+            {
+                MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void busNumberTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e == null)
+            {
+                return;
+            }
+            if (e.Key == Key.Delete || e.Key == Key.Back)//allow delete keys
+            {
+                return;
+            }
+
+            char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
+            if (char.IsDigit(c))//if c is a digit- we need to check it is not a char that apperas on the digit(when shift/alt/ctrl are down)
+            {
+                if (!(Keyboard.IsKeyDown(Key.LeftAlt) || Keyboard.IsKeyDown(Key.RightAlt)
+                  || Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift)
+                  || Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+                {
+                    //if no one of them is down- its okay. its a number.
+                    return;
+                }
+            }
+
+            //no other keys are allowed
+            e.Handled = true;//if handeled=true, the char wont be added to the pakad, since as we checked, it is not a number
+
+        }
+
+        private void firstStationTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e == null)
+            {
+                return;
+            }
+            if (e.Key == Key.Delete || e.Key == Key.Back)//allow delete keys
+            {
+                return;
+            }
+
+            char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
+            if (char.IsDigit(c))//if c is a digit- we need to check it is not a char that apperas on the digit(when shift/alt/ctrl are down)
+            {
+                if (!(Keyboard.IsKeyDown(Key.LeftAlt) || Keyboard.IsKeyDown(Key.RightAlt)
+                  || Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift)
+                  || Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+                {
+                    //if no one of them is down- its okay. its a number.
+                    return;
+                }
+            }
+
+            //no other keys are allowed
+            e.Handled = true;//if handeled=true, the char wont be added to the pakad, since as we checked, it is not a number
+
+        }
+
+        private void lastStationTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e == null)
+            {
+                return;
+            }
+            if (e.Key == Key.Delete || e.Key == Key.Back)//allow delete keys
+            {
+                return;
+            }
+
+            char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
+            if (char.IsDigit(c))//if c is a digit- we need to check it is not a char that apperas on the digit(when shift/alt/ctrl are down)
+            {
+                if (!(Keyboard.IsKeyDown(Key.LeftAlt) || Keyboard.IsKeyDown(Key.RightAlt)
+                  || Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift)
+                  || Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+                {
+                    //if no one of them is down- its okay. its a number.
+                    return;
+                }
+            }
+
+            //no other keys are allowed
+            e.Handled = true;//if handeled=true, the char wont be added to the pakad, since as we checked, it is not a number
+
+        }
     }
 
 

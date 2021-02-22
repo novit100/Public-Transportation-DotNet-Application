@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="AddStation" Height="450" Width="800"  Icon= "kavimIcon.png">
     <Window.Background>
-        <ImageBrush ImageSource="greenBackground.tif"/>
+        <ImageBrush ImageSource="bg2.png"/>
     </Window.Background>
 
     <Grid>
@@ -35,6 +35,8 @@
             <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
             <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
         </Grid>
-        <Button x:Name="AddStationButton" Content="Add The Station" HorizontalAlignment="Left" Margin="322,322,0,0" VerticalAlignment="Top" Width="110" Click="AddStationButton_Click" />
+        <Button x:Name="AddStationButton" Content="Add The Station" HorizontalAlignment="Left" Margin="271,322,0,0" VerticalAlignment="Top" Width="221" Click="AddStationButton_Click" Background="#FFF8F4F4" />
+        <Label VerticalAlignment="Center"  HorizontalAlignment="Left" Grid.Column="0" Content="Esti and Nov" Margin="708,373,0,23.667" Width="85" FontWeight="Light"/>
+        <Label Content="Add station details:" HorizontalAlignment="Left" Margin="253,55,0,0" VerticalAlignment="Top" Height="41" Width="371" FontWeight="Bold" FontSize="30" Foreground="MidnightBlue" FontFamily="Narkisim"/>
     </Grid>
 </Window>
