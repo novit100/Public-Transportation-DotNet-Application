@@ -14,7 +14,7 @@ using System.Windows.Shapes;
 using BLAPI;
 namespace PL
 {
-    /// <summary>
+    /// <summary>   
     /// Interaction logic for User.xaml
     /// </summary>
     public partial class AppUser : Window
