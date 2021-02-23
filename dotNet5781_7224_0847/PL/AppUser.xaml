@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
+     
         Title="AppUser" Height="507" Width="800">
+
     <Window.Background>
         <ImageBrush ImageSource="background.png"/>
     </Window.Background>

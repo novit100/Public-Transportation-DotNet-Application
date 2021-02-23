@@ -27,6 +27,8 @@ namespace PL
         {
             InitializeComponent();
             // bl = _bl;
+            // Automatically resize height and width relative to content
+          
         }
 
         private void bLogIn_Click(object sender, RoutedEventArgs e)
