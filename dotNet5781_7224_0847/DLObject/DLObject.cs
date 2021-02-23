@@ -163,6 +163,8 @@ namespace DL
                 //check if a bus with the same identifying stations (first and last stations) already exists.
                 if (DataSource.listLines.Exists(l => l.FirstStation == newLine.FirstStation && l.LastStation == newLine.LastStation))
                     throw new DO.LineException(newLine.BusNumber, $"the line: {newLine.BusNumber} allready exists, with the same first and last stations");
+                
+                //add the new lineStation and adjacent stations
 
                 DataSource.listLines.Remove(ln);
                 DataSource.listLines.Add(newLine.Clone());

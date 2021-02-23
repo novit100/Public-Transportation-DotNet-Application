@@ -62,15 +62,6 @@ namespace PL
             }
         }
 
-        private void TextBox_MouseEnter(object sender, MouseEventArgs e)
-        {
-            //each time we enter with the mouse to the line's fields, we need to save the original line
-            saveTheCurrentDetails.BusNumber = int.Parse(busNumberTextBox.Text);
-            saveTheCurrentDetails.FirstStation = int.Parse(firstStationTextBox.Text);
-            saveTheCurrentDetails.LastStation = int.Parse(lastStationTextBox.Text);
-            saveTheCurrentDetails.Area = (BO.Areas)areaComboBox.SelectedItem;
-        }
-
         private void BTUpdate_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -80,18 +71,18 @@ namespace PL
             }
             catch (BO.LineException ex)
             {
-                //if an exception was found- return the written textboxes to those before
-                busNumberTextBox.Text = saveTheCurrentDetails.BusNumber.ToString();
-                firstStationTextBox.Text = saveTheCurrentDetails.FirstStation.ToString();
-                lastStationTextBox.Text = saveTheCurrentDetails.LastStation.ToString();
+                ////if an exception was found- return the written textboxes to those before
+                //busNumberTextBox.Text = saveTheCurrentDetails.BusNumber.ToString();
+                //firstStationTextBox.Text = saveTheCurrentDetails.FirstStation.ToString();
+                //lastStationTextBox.Text = saveTheCurrentDetails.LastStation.ToString();
                 MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (BO.StationException ex)
             {
-                //if an exception was found- return the written textboxes to those before
-                busNumberTextBox.Text = saveTheCurrentDetails.BusNumber.ToString();
-                firstStationTextBox.Text = saveTheCurrentDetails.FirstStation.ToString();
-                lastStationTextBox.Text = saveTheCurrentDetails.LastStation.ToString();
+                ////if an exception was found- return the written textboxes to those before
+                //busNumberTextBox.Text = saveTheCurrentDetails.BusNumber.ToString();
+                //firstStationTextBox.Text = saveTheCurrentDetails.FirstStation.ToString();
+                //lastStationTextBox.Text = saveTheCurrentDetails.LastStation.ToString();
                 MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
