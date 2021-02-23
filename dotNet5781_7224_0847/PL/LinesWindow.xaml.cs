@@ -66,8 +66,15 @@ namespace PL
         {
             try
             {
-                if (currLine != null)
-                    bl.UpdateLineDetails(currLine);
+                BO.Line NewLine =new BO.Line();//a local line, to save the changes that the user made in line's fields.
+                NewLine.BusNumber = int.Parse(busNumberTextBox.Text);
+                NewLine.Area = (BO.Areas)(areaComboBox.SelectedIndex);
+                NewLine.FirstStation = int.Parse(firstStationTextBox.Text);
+                NewLine.LastStation = int.Parse(lastStationTextBox.Text);
+                NewLine.LineId = currLine.LineId;
+
+                if (NewLine != null)
+                    bl.UpdateLineDetails(NewLine);
             }
             catch (BO.LineException ex)
             {

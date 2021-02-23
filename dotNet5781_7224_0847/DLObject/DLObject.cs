@@ -89,9 +89,10 @@ namespace DL
 
         public IEnumerable<DO.LineStation> GetLineStationsListOfALine(int lineId)//returns a "line stations" list of the wanted line
         {
-            return from ls in DataSource.listLineStations
+            return (from ls in DataSource.listLineStations
                    where ls.LineId == lineId
-                   select ls.Clone();
+                   orderby ls.LineStationIndex
+                   select ls.Clone()).ToList();
         }
         public DO.LineStation GetLineStation(int code, int lineId)//get the line stat by the line and the stat. since a few line stat can apear with the sme code but different lines.
         {
