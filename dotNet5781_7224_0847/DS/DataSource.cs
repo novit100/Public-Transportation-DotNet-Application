@@ -1739,6 +1739,9 @@ namespace DS
               };
 
             listLineTrips = new List<LineTrip>();
+            #region restart line list
+
+            
             foreach (Line ln in listLines)
             {
                 int numTrips = r.Next(2, 10);
@@ -1753,7 +1756,7 @@ namespace DS
                 }
 
             }
-
+            #endregion
 
         }
 

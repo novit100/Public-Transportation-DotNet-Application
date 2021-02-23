@@ -10,7 +10,7 @@
         <ImageBrush ImageSource="background.png"/>
     </Window.Background>
     <Grid >
-        <ListBox x:Name="list" ItemsSource="{Binding}" HorizontalContentAlignment="Stretch" HorizontalAlignment="Left" Height="341" Margin="10,69,0,0" VerticalAlignment="Top" Width="774"  FontSize="30" BorderBrush="{x:Null}" >
+        <ListBox x:Name="list" ItemsSource="{Binding}" HorizontalContentAlignment="Stretch" HorizontalAlignment="Left" Height="341" Margin="10,69,0,0" VerticalAlignment="Top" Width="774"  FontSize="30" BorderBrush="{x:Null}" SelectionChanged="list_SelectionChanged" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
