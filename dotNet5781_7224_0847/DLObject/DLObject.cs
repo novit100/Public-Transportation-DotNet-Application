@@ -256,7 +256,7 @@ namespace DL
             DataSource.listLineStations.Add(new DO.LineStation() { Code = newLine.LastStation, LineId = newLine.LineId, LineStationIndex = 1, NextStation = -1, PrevStation = newLine.FirstStation });
 
             //add new adjacent stations
-            DataSource.listAdjacentStations.Add(new DO.AdjacentStations() { Station1 = newLine.FirstStation, Station2 = newLine.LastStation, Distance = 0.583, Time = new TimeSpan(00, 01, 16) });
+            DataSource.listAdjacentStations.Add(new DO.AdjacentStations() { Station1 = newLine.FirstStation, Station2 = newLine.LastStation, Distance = r.NextDouble(), Time = new TimeSpan(0, r.Next(1,15), r.Next(0,60)) });
 
             //add line trips to the line
             int numTrips = r.Next(2, 10);
