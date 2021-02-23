@@ -6,8 +6,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-
-   
+        SizeToContent="WidthAndHeight"
+       
 
 
     Title="Main Window" Height="444.695" Width="579.863"  Icon= "kavimIcon.png"    >

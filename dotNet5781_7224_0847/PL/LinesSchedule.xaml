@@ -35,7 +35,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Content="Area:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <Label x:Name="areaLabel" Content="{Binding Area}" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <Label x:Name="areaLabel" Content="{Binding Area}" HorizontalAlignment="Left" Margin="58,3,0,3.4" Grid.Row="0" VerticalAlignment="Center" Grid.ColumnSpan="2" Width="65"/>
             <Label Content="First Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
             <Label x:Name="firstStationLabel" Content="{Binding FirstStation}" Grid.Column="1" HorizontalAlignment="Left" Margin="3,3.333,-0.333,3" Grid.Row="2" VerticalAlignment="Center" Width="60"/>
             <Label Content="Last Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>

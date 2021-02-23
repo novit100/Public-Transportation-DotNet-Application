@@ -56,8 +56,13 @@ namespace PL
         void RefreshLineGrid()//get the line's details- the first and last station
         {
             grid1.DataContext = currLine;
+            
         }
-
+        //void RefreshAllLineGrid()
+        //{
+        //    grid1.DataContext = currLine;
+        //     bl.GetAllLines().Where(l=>bl.GetAllLinesPerStation())
+        //}
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
