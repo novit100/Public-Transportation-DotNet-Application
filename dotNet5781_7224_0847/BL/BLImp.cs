@@ -283,9 +283,9 @@ namespace BL
             //       let BOlineStation = lineStationDoBoAdapter(DOlineStation)
             //       select BOlineStation;
 
-            return from DOlineStation in dl.GetLineStationsListOfALine(lineId)
+            return (from DOlineStation in dl.GetLineStationsListOfALine(lineId)
                    let BOlineStation = lineStationDoBoAdapter(DOlineStation)
-                   select BOlineStation;
+                   select BOlineStation).ToList();
         }
 
         public void DeleteStationFromLine(int code, int lineId)
