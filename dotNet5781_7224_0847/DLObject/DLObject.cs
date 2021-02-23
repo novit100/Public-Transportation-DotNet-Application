@@ -167,23 +167,23 @@ namespace DL
 
                 //add new lineStations of the new stations
                 //delete the first linestation and second, and rewrite their details.
-                DO.LineStation ls1 = DataSource.listLineStations.Find(ls => ls.LineStationIndex == 0 && ls.LineId == newLine.LineId);//change the first station
+                DO.LineStation ls1 = DataSource.listLineStations.Find(ls => ls.LineStationIndex == 0 && ls.LineId == ln.LineId);//change the original first station
                 DataSource.listLineStations.Remove(ls1);
                 ls1.Code = newLine.FirstStation;
                 DataSource.listLineStations.Add(ls1);
 
-                DO.LineStation ls2 = DataSource.listLineStations.Find(ls => ls.LineStationIndex == 1 && ls.LineId == newLine.LineId);//change the 2nd station
+                DO.LineStation ls2 = DataSource.listLineStations.Find(ls => ls.LineStationIndex == 1 && ls.LineId == ln.LineId);//change the original 2nd station
                 DataSource.listLineStations.Remove(ls2);
                 ls2.PrevStation = newLine.FirstStation;
                 DataSource.listLineStations.Add(ls2);
 
                 //delete the last linestation and the one before the last, and rewrite their details.
-                DO.LineStation lsBeforeLast = DataSource.listLineStations.Find(ls => ls.NextStation==newLine.LastStation && ls.LineId == newLine.LineId);//change the station before last
+                DO.LineStation lsBeforeLast = DataSource.listLineStations.Find(ls => ls.NextStation==ln.LastStation && ls.LineId == ln.LineId);//change the original station before last
                 DataSource.listLineStations.Remove(lsBeforeLast);
                 lsBeforeLast.NextStation = newLine.LastStation;
                 DataSource.listLineStations.Add(lsBeforeLast);
 
-                DO.LineStation lsLast = DataSource.listLineStations.Find(ls => ls.NextStation == -1 && ls.LineId == newLine.LineId);//change the last station
+                DO.LineStation lsLast = DataSource.listLineStations.Find(ls => ls.NextStation == -1 && ls.LineId == ln.LineId);//change the original last station
                 DataSource.listLineStations.Remove(lsLast);
                 lsLast.Code = newLine.LastStation;
                 DataSource.listLineStations.Add(lsLast);

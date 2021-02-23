@@ -75,6 +75,9 @@ namespace PL
 
                 if (NewLine != null)
                     bl.UpdateLineDetails(NewLine);
+
+                currLine = NewLine;//if succeded, change currLine fields to be as the line. if not- dont do that.
+                RefreshAllLinesComboBox();//refresh the combo box to save the changes!!!
             }
             catch (BO.LineException ex)
             {
