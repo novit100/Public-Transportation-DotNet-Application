@@ -170,6 +170,7 @@
     <None Include="Properties\DataSources\BO.Line.datasource" />
     <None Include="Properties\DataSources\BO.LinePassesInStation1.datasource" />
     <None Include="Properties\DataSources\BO.LineStation1.datasource" />
+    <None Include="Properties\DataSources\BO.LineTrip.datasource" />
     <None Include="Properties\DataSources\BO.Station.datasource" />
     <None Include="Properties\DataSources\BO.Tools1.datasource" />
     <None Include="Properties\Settings.settings">

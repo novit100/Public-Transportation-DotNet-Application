@@ -25,7 +25,7 @@ namespace BL
             {
                 throw new BO.StationException("station does not exist\n", ex);
             }
-            return stationDoBoAdapter(stationDO);
+            return stationDoBoAdapter(stationDO);//adopt each do to bo
         }
 
         public void UpdateStationDetails(BO.Station currStat)
@@ -60,7 +60,7 @@ namespace BL
         {
             return from stationDO in dl.GetAllStations()//ask dl to provide all the DO.stations, make them BO.stations and return the list.
                    orderby stationDO.Code           //order it by their code
-                   select stationDoBoAdapter(stationDO);
+                   select stationDoBoAdapter(stationDO);//adopt each do to bo
         }
 
         BO.Station stationDoBoAdapter(DO.Station stationDO)
@@ -300,6 +300,7 @@ namespace BL
             }
         }
         #endregion
+
         #region User
         /// <summary>
         /// Conversion between do and bo
@@ -367,6 +368,26 @@ namespace BL
         {
             return from item in dl.GetAllUsers()
                    select userDoBoAdapter(item);
+        }
+        #endregion
+
+        #region LineTrip
+        public IEnumerable<BO.LineTrip> GetAllLineTripPerLine(int lineid)
+        {
+            return from lnTripDO in dl.GetAllLineTripPerLine(lineid)//get all line trips of a specific line
+                   let lnTripBO = lineTripDoBoAdapter(lnTripDO)//adopt each do to bo
+                   orderby lnTripBO.StartAt
+                   select lnTripBO;//return bo
+        }
+
+        BO.LineTrip lineTripDoBoAdapter(DO.LineTrip lnTripDO)
+        {
+            BO.LineTrip lnTripBO = new BO.LineTrip();
+
+            //copy all relevant properties
+            lnTripDO.CopyPropertiesTo(lnTripBO);
+
+            return lnTripBO;
         }
         #endregion
     }

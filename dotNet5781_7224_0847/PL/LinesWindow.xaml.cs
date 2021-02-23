@@ -23,6 +23,7 @@ namespace PL
     {
         IBL bl;
         BO.Line currLine;
+        BO.Line saveTheCurrentDetails;//a line to save the original details of the bus in case the update is illegal:
 
         public LinesWindow(IBL _bl)
         {
@@ -61,11 +62,17 @@ namespace PL
             }
         }
 
+        private void TextBox_MouseEnter(object sender, MouseEventArgs e)
+        {
+            //each time we enter with the mouse to the line's fields, we need to save the original line
+            saveTheCurrentDetails.BusNumber = int.Parse(busNumberTextBox.Text);
+            saveTheCurrentDetails.FirstStation = int.Parse(firstStationTextBox.Text);
+            saveTheCurrentDetails.LastStation = int.Parse(lastStationTextBox.Text);
+            saveTheCurrentDetails.Area = (BO.Areas)areaComboBox.SelectedItem;
+        }
+
         private void BTUpdate_Click(object sender, RoutedEventArgs e)
         {
-            //a line to save the original details of the bus in case the update is illegal:
-            BO.Line saveTheCurrentDetails = CBCurrentLine.SelectedItem as BO.Line;//the chosen line before the changes
-
             try
             {
                 if (currLine != null)
@@ -248,6 +255,8 @@ namespace PL
             e.Handled = true;//if handeled=true, the char wont be added to the pakad, since as we checked, it is not a number
 
         }
+
+
     }
 
 
