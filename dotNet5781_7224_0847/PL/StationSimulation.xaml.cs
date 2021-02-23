@@ -75,5 +75,10 @@ namespace PL
                 Thread.Sleep(1000);
             }
         }
+
+        private void list_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
