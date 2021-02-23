@@ -43,7 +43,7 @@ namespace BLAPI
         // get all users
 
         #region LineTrip
-        //IEnumerable<BO.LineTrip> GetAllLineTripPerLine(int lineid);
+        IEnumerable<BO.LineTrip> GetAllLineTripPerLine(int lineid);
         #endregion
     }
 }

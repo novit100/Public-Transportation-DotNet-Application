@@ -372,23 +372,23 @@ namespace BL
         #endregion
 
         #region LineTrip
-        //public IEnumerable<BO.LineTrip> GetAllLineTripPerLine(int lineid)
-        //{
-        //    return from lnTripDO in dl.GetAllLineTripPerLine(lineid)//get all line trips of a specific line
-        //           let lnTripBO = lineTripDoBoAdapter(lnTripDO)//adopt each do to bo
-        //           orderby lnTripBO.StartAt
-        //           select lnTripBO;//return bo
-        //}
+        public IEnumerable<BO.LineTrip> GetAllLineTripPerLine(int lineid)
+        {
+            return from lnTripDO in dl.GetAllLineTripPerLine(lineid)//get all line trips of a specific line
+                   let lnTripBO = lineTripDoBoAdapter(lnTripDO)//adopt each do to bo
+                   orderby lnTripBO.StartAt
+                   select lnTripBO;//return bo
+        }
 
-        //BO.LineTrip lineTripDoBoAdapter(DO.LineTrip lnTripDO)
-        //{
-        //    BO.LineTrip lnTripBO = new BO.LineTrip();
+        BO.LineTrip lineTripDoBoAdapter(DO.LineTrip lnTripDO)
+        {
+            BO.LineTrip lnTripBO = new BO.LineTrip();
 
-        //    //copy all relevant properties
-        //    lnTripDO.CopyPropertiesTo(lnTripBO);
+            //copy all relevant properties
+            lnTripDO.CopyPropertiesTo(lnTripBO);
 
-        //    return lnTripBO;
-        //}
+            return lnTripBO;
+        }
         #endregion
     }
 }

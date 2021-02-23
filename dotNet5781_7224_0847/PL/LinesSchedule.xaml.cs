@@ -40,19 +40,30 @@ namespace PL
         private void cbLine_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             currLine = (cbLine.SelectedItem as BO.Line);
-
-            //lineTripDataGrid.DataContext = currLine;
+            
+            RefreshLineGrid();//get the line's details- the first and last station
 
             if (currLine != null)
             {
                 RefreshAllLineTripsOfLineGrid();
             }
         }
-        void RefreshAllLineTripsOfLineGrid()
+        void RefreshAllLineTripsOfLineGrid()//get all lineTrips list of a line
         {
-            //    lineTripDataGrid.DataContext = bl.GetAllLineTripPerLine(currLine.LineId);
+            lineTripDataGrid.DataContext = bl.GetAllLineTripPerLine(currLine.LineId);
         }
 
+        void RefreshLineGrid()//get the line's details- the first and last station
+        {
+            grid1.DataContext = currLine;
+        }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            System.Windows.Data.CollectionViewSource lineViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("lineViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // lineViewSource.Source = [generic data source]
+        }
     }
 }

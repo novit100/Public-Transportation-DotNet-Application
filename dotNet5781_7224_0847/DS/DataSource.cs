@@ -16,7 +16,8 @@ namespace DS
         public static List<LineStation> listLineStations;
         public static List<AdjacentStations> listAdjacentStations;
         public static List<AppUser> users;
-        
+        public static List<LineTrip> listLineTrips;
+
         static DataSource()
         {
             InitAllLists();
@@ -1736,7 +1737,24 @@ namespace DS
 
                 #endregion
               };
-          
+
+            listLineTrips = new List<LineTrip>();
+            foreach (Line ln in listLines)
+            {
+                int numTrips = r.Next(2, 10);
+                for (int i = 0; i < numTrips; i++)
+                {
+                    LineTrip lnTrip = new LineTrip();
+                    lnTrip.LineID = ln.LineId;
+                    lnTrip.LineTripID = i;
+                    TimeSpan start = new TimeSpan(r.Next(5, 24), r.Next(0, 60), 0);
+                    lnTrip.StartAt = start;
+                    listLineTrips.Add(lnTrip);
+                }
+
+            }
+
+
         }
 
 

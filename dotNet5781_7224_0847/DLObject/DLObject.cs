@@ -295,12 +295,12 @@ namespace DL
         #endregion
 
         #region LineTrip
-        //public IEnumerable<DO.LineTrip> GetAllLineTripPerLine(int lineid)
-        //{
-        //    return from lnTrip in DataSource.listLineTrip//return all line trips of a specific line.
-        //           where lnTrip.LineID == lineid
-        //           select lnTrip.Clone();
-        //}
+        public IEnumerable<DO.LineTrip> GetAllLineTripPerLine(int lineid)
+        {
+            return from lnTrip in DataSource.listLineTrips//return all line trips of a specific line.
+                   where lnTrip.LineID == lineid
+                   select lnTrip.Clone();
+        }
         #endregion
 
     }

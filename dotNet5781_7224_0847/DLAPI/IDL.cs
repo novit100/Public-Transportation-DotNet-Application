@@ -53,7 +53,7 @@ namespace DLAPI
         // get all users
 
         #region LineTrip
-        //IEnumerable<DO.LineTrip> GetAllLineTripPerLine(int lineid);
+        IEnumerable<DO.LineTrip> GetAllLineTripPerLine(int lineid);
         #endregion
 
     }
