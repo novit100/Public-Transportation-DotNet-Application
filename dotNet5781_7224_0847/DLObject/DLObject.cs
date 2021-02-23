@@ -160,11 +160,36 @@ namespace DL
                 if (newLine.FirstStation == newLine.LastStation)
                     throw new DO.StationException(newLine.LastStation, $"the last station code: {newLine.LastStation} is illegal since the first and last stations must be different");
 
-                //check if a bus with the same identifying stations (first and last stations) already exists.
-                if (DataSource.listLines.Exists(l => l.FirstStation == newLine.FirstStation && l.LastStation == newLine.LastStation))
-                    throw new DO.LineException(newLine.BusNumber, $"the line: {newLine.BusNumber} allready exists, with the same first and last stations");
-                
-                //add the new lineStation and adjacent stations
+                ////check if a bus with the same identifying stations (first and last stations) already exists.
+                //if (DataSource.listLines.Exists(l => l.FirstStation == newLine.FirstStation && l.LastStation == newLine.LastStation))
+                //    throw new DO.LineException(newLine.BusNumber, $"the line: {newLine.BusNumber} allready exists, with the same first and last stations");
+
+                //add new lineStations of the new stations
+                //delete the first linestation and second, and rewrite their details.
+                DO.LineStation ls1 = DataSource.listLineStations.Find(ls => ls.LineStationIndex == 0 && ls.LineId == newLine.LineId);//change the first station
+                DataSource.listLineStations.Remove(ls1);
+                ls1.Code = newLine.FirstStation;
+                DataSource.listLineStations.Add(ls1);
+
+                DO.LineStation ls2 = DataSource.listLineStations.Find(ls => ls.LineStationIndex == 1 && ls.LineId == newLine.LineId);//change the 2nd station
+                DataSource.listLineStations.Remove(ls2);
+                ls2.PrevStation = newLine.FirstStation;
+                DataSource.listLineStations.Add(ls2);
+
+                //delete the last linestation and the one before the last, and rewrite their details.
+                DO.LineStation lsBeforeLast = DataSource.listLineStations.Find(ls => ls.NextStation==newLine.LastStation && ls.LineId == newLine.LineId);//change the station before last
+                DataSource.listLineStations.Remove(lsBeforeLast);
+                lsBeforeLast.NextStation = newLine.LastStation;
+                DataSource.listLineStations.Add(lsBeforeLast);
+
+                DO.LineStation lsLast = DataSource.listLineStations.Find(ls => ls.NextStation == -1 && ls.LineId == newLine.LineId);//change the last station
+                DataSource.listLineStations.Remove(lsLast);
+                lsLast.Code = newLine.LastStation;
+                DataSource.listLineStations.Add(lsLast);
+
+                //add new adjacent stations
+                DataSource.listAdjacentStations.Add(new DO.AdjacentStations() { Station1 = newLine.FirstStation, Station2 = ls2.Code, Distance = 0.583, Time = new TimeSpan(00, 01, 16) });
+                DataSource.listAdjacentStations.Add(new DO.AdjacentStations() { Station1 = lsBeforeLast.Code, Station2 = newLine.LastStation, Distance = 0.702, Time = new TimeSpan(00, 03, 45) });
 
                 DataSource.listLines.Remove(ln);
                 DataSource.listLines.Add(newLine.Clone());

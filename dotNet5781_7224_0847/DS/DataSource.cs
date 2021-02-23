@@ -512,7 +512,7 @@ namespace DS
                     LineId= 1,
                     BusNumber = 280,
                     Area = Areas.Jerusalem,
-                    FirstStation = 89,
+                    FirstStation = 88,
                     LastStation = 90,
                 },
                 new Line
@@ -1002,7 +1002,7 @@ namespace DS
             new LineStation
             {
                 LineId=1,
-                Code = 89,
+                Code = 88,
                 LineStationIndex = 0,
                 PrevStation = -1,
                 NextStation = 76,
@@ -1012,7 +1012,7 @@ namespace DS
                 LineId=1,
                 Code = 105,
                 LineStationIndex = 1,
-                PrevStation = 89,
+                PrevStation = 88,
                 NextStation = 121,
             },
             new LineStation
@@ -1066,7 +1066,7 @@ namespace DS
               new LineStation
             {
                 LineId=1,
-                Code = 119,
+                Code = 73,
                 LineStationIndex = 8,
                 PrevStation = 119,
                 NextStation = 90,
@@ -1076,7 +1076,7 @@ namespace DS
                 LineId=1,
                 Code = 90,
                 LineStationIndex = 9,
-                PrevStation = 119,
+                PrevStation = 73,
                 NextStation = -1,
             },
 
