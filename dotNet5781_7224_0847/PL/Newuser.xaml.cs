@@ -29,15 +29,20 @@ namespace PL
         }
 
         private void bNewUser_Click(object sender, RoutedEventArgs e)
-        {//(bl.GetUser(tbNewUser.Text) == null)
-
+        {
             if ((tbNewUser.Text != null) && (pbPass.Password == pbPassNewUser.Password))
             {
                 myUser.UserName = tbNewUser.Text;
                 myUser.Password = pbPass.Password;
-
-                bl.AddUser(myUser);
-                this.Close();
+                try
+                {
+                    bl.AddUser(myUser);
+                    this.Close();
+                }
+                catch(BO.AppUserException ex)
+                {
+                    MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             else if (pbPass.Password != pbPassNewUser.Password)
             {

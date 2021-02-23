@@ -318,9 +318,9 @@ namespace BL
             {
                 newUserDO = dl.GetUser(name,password);
             }
-            catch (DO.StationException ex)
+            catch (DO.AppUserException ex)
             {
-                throw new BO.StationException("Station code is illegal", ex);
+                throw new BO.AppUserException("ERROR!\n", ex);
             }
             newUserDO.CopyPropertiesTo(userBO);
 
@@ -342,7 +342,7 @@ namespace BL
             }
             catch (DO.AppUserException ex)
             {
-                throw new BO.AppUserException("The user with this password wasn't found", ex);
+                throw new BO.AppUserException("The user with this password wasn't found\n", ex);
             }
             return userDoBoAdapter(userDO);
         }
@@ -356,9 +356,9 @@ namespace BL
             {
                 dl.AddUser(user);
             }
-            catch (DO.LineStationException ex)
+            catch (DO.AppUserException ex)
             {
-                throw new BO.LineStationException("User is exist", ex);
+                throw new BO.AppUserException("couldn't add the user\n", ex);
             }
         }
         /// <summary>

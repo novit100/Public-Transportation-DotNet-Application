@@ -294,15 +294,14 @@ namespace DL
         #region User
         public DO.AppUser GetUser(string myname,string mypassword)
         {
-            DO.AppUser user = DataSource.users.FirstOrDefault(u => u.UserName == myname&& u.Password==mypassword);//changed //
+            DO.AppUser user = DataSource.users.FirstOrDefault(u => u.UserName == myname && u.Password==mypassword);
 
-            if (user != null)
+            if (user != null)//if user was found
             {
                 return user.Clone();
             }
             else
             {
-                
                 throw new DO.AppUserException(myname, $"the user: {myname} does'nt exist in the curret state");
             }
 
@@ -317,7 +316,7 @@ namespace DL
         {
             if (DataSource.users.Where(s => s.UserName == user.UserName).ToList().Count() > 0)
             {
-                // throw new DO.BadStationCodeException(user.Name, "Duplicate user Code");
+                throw new DO.AppUserException(user.UserName, $"the user: {user.UserName} allready exists. Choose another name");
             }
             DataSource.users.Add(user);
         }
