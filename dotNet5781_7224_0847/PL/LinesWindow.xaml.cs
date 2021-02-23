@@ -23,7 +23,7 @@ namespace PL
     {
         IBL bl;
         BO.Line currLine;
-       // BO.Line saveTheCurrentDetails;//a line to save the original details of the bus in case the update is illegal:
+        //BO.Line saveTheCurrentDetails;//a line to save the original details of the bus in case the update is illegal:
 
         public LinesWindow(IBL _bl)
         {

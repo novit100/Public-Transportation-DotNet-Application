@@ -171,6 +171,7 @@ namespace BL
             try
             {
                 dl.UpdateLine(lineDO);
+
             }
             catch (DO.LineException ex)
             {
