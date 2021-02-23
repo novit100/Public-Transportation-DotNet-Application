@@ -1387,7 +1387,7 @@ namespace DS
             //line 108 ,Jerusalem
            new LineStation
             {
-                LineId= 10,
+                LineId= 12,
                 Code = 106,
                 LineStationIndex = 0,
                 PrevStation = -1,
@@ -1739,7 +1739,7 @@ namespace DS
               };
 
             listLineTrips = new List<LineTrip>();
-            #region restart line list
+            #region restart lineTrips list
 
             
             foreach (Line ln in listLines)

@@ -89,10 +89,10 @@ namespace DL
 
         public IEnumerable<DO.LineStation> GetLineStationsListOfALine(int lineId)//returns a "line stations" list of the wanted line
         {
-            return (from ls in DataSource.listLineStations
+            return from ls in DataSource.listLineStations
                    where ls.LineId == lineId
                    orderby ls.LineStationIndex
-                   select ls.Clone()).ToList();
+                   select ls.Clone();
         }
         public DO.LineStation GetLineStation(int code, int lineId)//get the line stat by the line and the stat. since a few line stat can apear with the sme code but different lines.
         {
@@ -236,6 +236,8 @@ namespace DL
                 throw new DO.LineException(busNumber, $"the line: {busNumber} wasnt found");
         }
 
+        private static Random r = new Random();
+
         public void AddLineToList(DO.Line newLine)
         {
             newLine.LineId = DO.Config.LineId;//running number
@@ -255,6 +257,18 @@ namespace DL
 
             //add new adjacent stations
             DataSource.listAdjacentStations.Add(new DO.AdjacentStations() { Station1 = newLine.FirstStation, Station2 = newLine.LastStation, Distance = 0.583, Time = new TimeSpan(00, 01, 16) });
+
+            //add line trips to the line
+            int numTrips = r.Next(2, 10);
+            for (int i = 0; i < numTrips; i++)
+            {
+                DO.LineTrip lnTrip = new DO.LineTrip();
+                lnTrip.LineID = newLine.LineId;
+                lnTrip.LineTripID = i;
+                TimeSpan start = new TimeSpan(r.Next(5, 24), r.Next(0, 60), 0);
+                lnTrip.StartAt = start;
+                DataSource.listLineTrips.Add(lnTrip);
+            }
 
             DataSource.listLines.Add(newLine);
         }
@@ -281,7 +295,7 @@ namespace DL
         public DO.AppUser GetUser(string myname,string mypassword)
         {
             DO.AppUser user = DataSource.users.FirstOrDefault(u => u.UserName == myname&& u.Password==mypassword);//changed //
-            //try { Thread.Sleep(2000); } catch (ThreadInterruptedException ex) { }
+
             if (user != null)
             {
                 return user.Clone();
@@ -293,19 +307,6 @@ namespace DL
             }
 
         }
-        //public IEnumerable<DO.AdjacentStations> GetAdjacentStationsByFirstOfPair(int code)
-        //{
-        //    return from adjSt in DataSource.listAdjacentStations
-        //           where adjSt.Station1 == code
-        //           //where adjSt.Station2 == code
-        //           select adjSt.Clone();//return a list of adjacent stations, in which the station with the given code apears as the 1st in the pair
-        //}
-        //public IEnumerable<DO.AdjacentStations> GetAdjacentStationsBySecondOfPair(int code)
-        //{
-        //    return from adjSt in DataSource.listAdjacentStations
-        //           where adjSt.Station2 == code
-        //           select adjSt.Clone();//return a list of adjacent stations, in which the station with the given code apears as the 2nd in the pair
-        //}
 
         public IEnumerable<DO.AppUser> GetAllUsers()
         {

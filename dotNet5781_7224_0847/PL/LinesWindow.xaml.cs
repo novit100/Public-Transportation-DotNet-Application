@@ -66,33 +66,33 @@ namespace PL
         {
             try
             {
-                BO.Line NewLine =new BO.Line();//a local line, to save the changes that the user made in line's fields.
-                NewLine.BusNumber = int.Parse(busNumberTextBox.Text);
-                NewLine.Area = (BO.Areas)(areaComboBox.SelectedIndex);
-                NewLine.FirstStation = int.Parse(firstStationTextBox.Text);
-                NewLine.LastStation = int.Parse(lastStationTextBox.Text);
-                NewLine.LineId = currLine.LineId;
+                if (busNumberTextBox.Text!="" && firstStationTextBox.Text!="" && lastStationTextBox.Text!="")
+                {
+                    BO.Line NewLine = new BO.Line();//a local line, to save the changes that the user made in line's fields.
+                    NewLine.BusNumber = int.Parse(busNumberTextBox.Text);
+                    NewLine.Area = (BO.Areas)(areaComboBox.SelectedIndex);
+                    NewLine.FirstStation = int.Parse(firstStationTextBox.Text);
+                    NewLine.LastStation = int.Parse(lastStationTextBox.Text);
+                    NewLine.LineId = currLine.LineId;
 
-                if (NewLine != null)
-                    bl.UpdateLineDetails(NewLine);
+                    if (NewLine != null)
+                        bl.UpdateLineDetails(NewLine);
 
-                currLine = NewLine;//if succeded, change currLine fields to be as the line. if not- dont do that.
-                RefreshAllLinesComboBox();//refresh the combo box to save the changes!!!
+                    currLine = NewLine;//if succeded, change currLine fields to be as the line. if not- dont do that.
+                    RefreshAllLinesComboBox();//refresh the combo box to save the changes!!!
+                }
+                else//if not all fields are full
+                {
+                    throw new BO.LineException("cannot update the line since not all fields were filled");
+                }
+
             }
             catch (BO.LineException ex)
             {
-                ////if an exception was found- return the written textboxes to those before
-                //busNumberTextBox.Text = saveTheCurrentDetails.BusNumber.ToString();
-                //firstStationTextBox.Text = saveTheCurrentDetails.FirstStation.ToString();
-                //lastStationTextBox.Text = saveTheCurrentDetails.LastStation.ToString();
                 MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (BO.StationException ex)
             {
-                ////if an exception was found- return the written textboxes to those before
-                //busNumberTextBox.Text = saveTheCurrentDetails.BusNumber.ToString();
-                //firstStationTextBox.Text = saveTheCurrentDetails.FirstStation.ToString();
-                //lastStationTextBox.Text = saveTheCurrentDetails.LastStation.ToString();
                 MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }

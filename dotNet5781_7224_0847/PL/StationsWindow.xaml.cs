@@ -23,7 +23,7 @@ namespace PL
     {
         IBL bl;
         BO.Station currStat;
-      
+
         public StationsWindow(IBL _bl)
         {
             InitializeComponent();
@@ -39,7 +39,7 @@ namespace PL
 
         private void RefreshAllStationsComboBox()//refresh the combobox each time the user changes the selection 
         {
-            CBChosenStat.DataContext = bl.GetAllStations().ToList();//ObserListOfStations;
+            CBChosenStat.DataContext = bl.GetAllStations();//ListOfStations;
         }
 
         private void RefreshAllLinesOfStationGrid()
@@ -55,7 +55,6 @@ namespace PL
             if (currStat != null)
             {
                 RefreshAllLinesOfStationGrid();
-
             }
         }
 
@@ -63,8 +62,25 @@ namespace PL
         {
             try
             {
-                if (currStat!= null)
-                    bl.UpdateStationDetails(currStat);
+                if (addressTextBox.Text != "" && nameTextBox.Text!="" && longitudeTextBox.Text != "" && lattitudeTextBox.Text != "")
+                {
+                    BO.Station newStat = new BO.Station();//a local station, to save the changes that the user made in station's fields.
+                    newStat.Code = currStat.Code;
+                    newStat.Address = addressTextBox.Text;
+                    newStat.Name = nameTextBox.Text;
+                    newStat.Longitude = double.Parse(longitudeTextBox.Text);
+                    newStat.Lattitude = double.Parse(lattitudeTextBox.Text);
+                    if (newStat != null)
+                        bl.UpdateStationDetails(newStat);
+
+                    currStat = newStat;//if succeded, change currStat fields to be as the new stat. if not- dont do that.
+                    RefreshAllStationsComboBox();//to save the changes
+                }
+                else//if not all fields are full
+                {
+                    throw new BO.StationException("cannot update the station since not all fields were filled");
+                }
+
             }
             catch (BO.StationException ex)
             {
@@ -135,6 +151,70 @@ namespace PL
             {
                 MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void longitudeTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e == null)
+            {
+                return;
+            }
+            if (e.Key == Key.Delete || e.Key == Key.Back)//allow delete keys
+            {
+                return;
+            }
+            if (e.Key == Key.OemPeriod)//allow "." for decimal
+            {
+                return;
+            }
+
+            char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
+            if (char.IsDigit(c))//if c is a digit- we need to check it is not a char that apperas on the digit(when shift/alt/ctrl are down)
+            {
+                if (!(Keyboard.IsKeyDown(Key.LeftAlt) || Keyboard.IsKeyDown(Key.RightAlt)
+                  || Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift)
+                  || Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+                {
+                    //if no one of them is down- its okay. its a number.
+                    return;
+                }
+            }
+
+            //no other keys are allowed
+            e.Handled = true;//if handeled=true, the char wont be added to the pakad, since as we checked, it is not a number
+
+        }
+
+        private void lattitudeTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e == null)
+            {
+                return;
+            }
+            if (e.Key == Key.Delete || e.Key == Key.Back)//allow delete keys
+            {
+                return;
+            }
+            if (e.Key == Key.OemPeriod)//allow "." for decimal
+            {
+                return;
+            }
+
+            char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
+            if (char.IsDigit(c))//if c is a digit- we need to check it is not a char that apperas on the digit(when shift/alt/ctrl are down)
+            {
+                if (!(Keyboard.IsKeyDown(Key.LeftAlt) || Keyboard.IsKeyDown(Key.RightAlt)
+                  || Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift)
+                  || Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+                {
+                    //if no one of them is down- its okay. its a number.
+                    return;
+                }
+            }
+
+            //no other keys are allowed
+            e.Handled = true;//if handeled=true, the char wont be added to the pakad, since as we checked, it is not a number
+
         }
     }
 }
