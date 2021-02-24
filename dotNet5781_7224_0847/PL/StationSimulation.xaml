@@ -31,7 +31,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <TextBlock x:Name="timeTextBlock" HorizontalAlignment="Left" Margin="320,26,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="38" Width="293" />
+        <TextBlock x:Name="timeTextBlock" HorizontalAlignment="Left" Margin="320,26,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="38" Width="293" FontWeight="ExtraBold"  FontFamily="Narkisim"  Foreground="Navy" FontSize="25" />
         <Label x:Name="NoBusesSoon" Content="No buses anytime soon..." Visibility="Collapsed" HorizontalAlignment="Left" Margin="163,193,0,0" VerticalAlignment="Top" Height="75" Width="470" FontSize="40" Background="{x:Null}" />
     </Grid>
 </Window>

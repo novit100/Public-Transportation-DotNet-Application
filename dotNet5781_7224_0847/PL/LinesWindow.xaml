@@ -77,7 +77,7 @@
             <Label Content="Last Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center" FontFamily="Tahoma"  />
             <TextBox x:Name="lastStationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="2.6,3.8,0,3.6" Grid.Row="3" Text="{Binding LastStation, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" FontFamily="Tahoma" PreviewKeyDown="lastStationTextBox_PreviewKeyDown"/>
         </Grid>
-        <Label Content="All the station of the line:" Grid.Row="0" Grid.Column="4" HorizontalAlignment="Left" Margin="0,86,0,0" VerticalAlignment="Top" Height="32" Width="189" Grid.RowSpan="3" Grid.ColumnSpan="1"/>
+        <Label Content="All the station of the line:" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center" Margin="38.2,9.6,108.4,0" VerticalAlignment="Top" Height="22" Width="207" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
         <Label Content="         ~Lines Information~ " HorizontalAlignment="Left" Margin="9.8,15,0,15.4" VerticalAlignment="Center" Height="56" Width="714" FontWeight="Bold" FontSize="30" Foreground="MidnightBlue" FontFamily="Narkisim" Grid.Column="4" Grid.ColumnSpan="5"/>
         <Label VerticalAlignment="Center"  HorizontalAlignment="Left" Grid.Column="9" Content="Esti and Nov" Margin="19.8,18.2,0,10" Width="85" FontWeight="Light" Height="23" Grid.Row="4"/>
     </Grid>
