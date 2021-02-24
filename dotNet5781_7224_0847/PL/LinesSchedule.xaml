@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.LinesSchedule"
         mc:Ignorable="d"
-        Title="Lines Schedule" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="Lines Schedule" Height="450" Width="800" Loaded="Window_Loaded" Icon= "kavimIcon.png">
     <Window.Resources>
         <CollectionViewSource x:Key="lineTripViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:LineTrip}, CreateList=True}"/>
         <CollectionViewSource x:Key="lineViewSource" d:DesignSource="{d:DesignInstance {x:Type BO:Line}, CreateList=True}"/>
@@ -17,7 +17,7 @@
     <Grid DataContext="{StaticResource lineTripViewSource}">
         <ComboBox x:Name="cbLine" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="227,42,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbLine_SelectionChanged"/>
 
-        <DataGrid x:Name="lineTripDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="408,42,256.333,119.667" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <DataGrid x:Name="lineTripDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="408,42,256.333,119.667" RowDetailsVisibilityMode="VisibleWhenSelected" BorderBrush="Navy">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="startAtColumn" Binding="{Binding StartAt}" Header="Start At" Width="120"/>
             </DataGrid.Columns>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.StationSimulation"
         mc:Ignorable="d"
-        Title="StationSimulation" Height="450" Width="800">
+        Title="StationSimulation" Height="450" Width="800" Icon= "kavimIcon.png">
     <Window.Resources>
         <DataTemplate x:Key="LineTemplate"
                   DataType="local:BO.LineAndTime" >
