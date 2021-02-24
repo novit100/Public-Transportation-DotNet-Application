@@ -33,9 +33,9 @@
     <Grid>
         <Label x:Name="NoBusesSoon" Content="No buses coming in the next hour..." HorizontalAlignment="Left" Margin="196,324,0,0" VerticalAlignment="Top" Height="40" Width="368" FontSize="20" Background="{x:Null}" Visibility="Hidden" />
 
-        <TextBlock x:Name="timerTextBlock" HorizontalAlignment="Left" FlowDirection="RightToLeft" Margin="255,30,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Height="35" Width="249" FontSize="16" FontWeight="Bold" FontFamily="Yu Gothic UI Semibold"/>
+        <TextBlock x:Name="timerTextBlock" HorizontalAlignment="Left" Margin="320,26,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="38" Width="293" FontWeight="ExtraBold"  FontFamily="Narkisim"  Foreground="Navy" FontSize="25" />
+
         <ListBox x:Name="LineAndTimeGrid" FlowDirection="RightToLeft"  ItemsSource="{Binding}" ItemTemplate="{StaticResource LineTemplate}" HorizontalAlignment="Right" Height="217" Margin="0,102,205.333,0" VerticalAlignment="Top" Width="417" Background="#FF0F0F0F"/>
-        <Canvas HorizontalAlignment="Left" Visibility="Visible" Height="32" Margin="171,70,0,0" VerticalAlignment="Top" Width="417" Background="Black"/>
         <!--<Image HorizontalAlignment="Left" Height="32" Margin="395,70,0,0" VerticalAlignment="Top" Width="42" Source="clockIcon.png" OpacityMask="#FF0C0C0C"/>
         <Image HorizontalAlignment="Left" Height="28" Margin="599,74,0,0" VerticalAlignment="Top" Width="28" Source="picture.png" OpacityMask="#FF0C0C0C"/>
         <Image HorizontalAlignment="Left" Height="29" Margin="717,72,0,0" VerticalAlignment="Top" Width="29" Source="הורדה.png" OpacityMask="#FF0C0C0C"/>-->
