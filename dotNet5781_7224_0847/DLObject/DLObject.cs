@@ -255,8 +255,37 @@ namespace DL
             DataSource.listLineStations.Add(new DO.LineStation() { Code = newLine.FirstStation, LineId = newLine.LineId, LineStationIndex = 0, NextStation = newLine.LastStation, PrevStation = -1 });
             DataSource.listLineStations.Add(new DO.LineStation() { Code = newLine.LastStation, LineId = newLine.LineId, LineStationIndex = 1, NextStation = -1, PrevStation = newLine.FirstStation });
 
-            //add new adjacent stations
-            DataSource.listAdjacentStations.Add(new DO.AdjacentStations() { Station1 = newLine.FirstStation, Station2 = newLine.LastStation, Distance = r.NextDouble(), Time = new TimeSpan(0, r.Next(1,15), r.Next(0,60)) });
+            #region add new adjacent stations
+
+            DO.AdjacentStations newAdj = new DO.AdjacentStations();
+
+            newAdj.Station1 = newLine.FirstStation;
+            newAdj.Station2 = newLine.LastStation;
+
+            double long1 = DataSource.listStations.Find(st => st.Code == newAdj.Station1).Longitude;
+            double long2 = DataSource.listStations.Find(st => st.Code == newAdj.Station2).Longitude;
+            double lat1 = DataSource.listStations.Find(st => st.Code == newAdj.Station1).Lattitude;
+            double lat2 = DataSource.listStations.Find(st => st.Code == newAdj.Station2).Lattitude;
+
+            //the distance between each 2 cordinates is 111 km.
+            //the hefresh between lat1-lat2 and long1-long2, is a part of the distance between the lat lines and long lines witch is 111 each.
+            newAdj.Distance = (Math.Sqrt((Math.Pow(long1 - long2, 2) * 111) + (Math.Pow(lat1 - lat2, 2)) * 111));
+
+            double timeInSec = ((newAdj.Distance * 1.5) / r.Next(20, 50)) * 60 * 60;//dis*1.5= לחישוב מרחק אמיתי ולא אוירי
+            int hours = (int)(timeInSec / 3600);
+            int min = (int)(timeInSec / 60);
+            int sec = (int)timeInSec;
+
+            if (sec == 0)
+            {
+                sec = 1;//since we dont want the TimeSpan to be all 00:00:00. at least 00:00:01.
+            }
+
+            TimeSpan time = new TimeSpan(hours, min, sec);
+            newAdj.Time = time;
+            
+            DataSource.listAdjacentStations.Add(newAdj);
+            #endregion
 
             //add line trips to the line
             int numTrips = r.Next(2, 10);

@@ -440,16 +440,16 @@ namespace DS
                    Code = 46422,
                    Name = "חזון איש/ רבי עקיבא",
                    Address = " רחוב:חזון איש 35 עיר: בני ברק ",
-                   Lattitude = 31.759121,
-                   Longitude = 35.189178
+                   Lattitude = 31.21467,
+                   Longitude = 35.01228
                 },
                 new Station
                 {
                     Code = 46425,
                     Name = "חזון איש/ דבורה הנביאה",
                     Address = " רחוב:חזון איש 51  עיר: בני ברק ",
-                    Lattitude = 31.774484,
-                   Longitude = 35.204882
+                    Lattitude = 31.2865,
+                   Longitude = 35.00138
                 },
 
                 new Station
@@ -457,32 +457,32 @@ namespace DS
                     Code = 35272,
                     Name = "חזון איש/ בעל שם טוב",
                     Address = " רחוב:חזון איש 67  עיר: בני ברק ",
-                    Lattitude = 31.769652,
-                    Longitude = 35.208248
+                    Lattitude = 31.24241,
+                    Longitude = 35.01675
                 },
                 new Station
                 {
                    Code = 20115,
                    Name = "כהנמן/ הרב יעקובוביץ",
                    Address = " רחוב:בהנמן 165  עיר: בני ברק   ",
-                   Lattitude = 31.769652,
-                   Longitude = 35.208248,
+                   Lattitude = 31.23543,
+                   Longitude = 35.00419,
                 },
                 new Station
                 {
                     Code = 20116,
                     Name = "כהנמן/ מנחת שלמה ",
                     Address = " רחוב:כהנמן 211 עיר: בני ברק",
-                    Lattitude = 31.796033,
-                    Longitude =35.206094
+                    Lattitude = 31.23408,
+                    Longitude =35.00326
                 },
                 new Station
                 {
                     Code = 32298,
                     Name = "רבי עקיבא/הרב קוק ",
                     Address = " רחוב:רבי עקיבא 115 עיר: בני ברק",
-                    Lattitude = 31.794958,
-                    Longitude =35.205216
+                    Lattitude = 31.237,
+                    Longitude =35.002
                 },
                 new Station
                 {
@@ -1675,15 +1675,6 @@ namespace DS
                     //the distance between each 2 cordinates is 111 km.
                     //the hefresh between lat1-lat2 and long1-long2, is a part of the distance between the lat lines and long lines witch is 111 each.
                     newAdj.Distance = (Math.Sqrt((Math.Pow(long1 - long2, 2) * 111) + (Math.Pow(lat1 - lat2, 2)) * 111));
-
-                    //int timeInMin = (int)(newAdj.Distance * 1.0 / r.Next(20, 50) * 60);
-                    //int min;
-                    //if (timeInMin == 0)//lost info because of (int), thats why restart with 1 instead of 0.
-                    //    min = 1;
-                    //else
-                    //    min = timeInMin;
-
-                    //TimeSpan time = new TimeSpan(0, min, 0);
 
                     double timeInSec = ((newAdj.Distance * 1.5) / r.Next(20, 50)) * 60 * 60;//dis*1.5= לחישוב מרחק אמיתי ולא אוירי
                     int hours = (int)(timeInSec / 3600);
