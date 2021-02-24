@@ -288,13 +288,13 @@ namespace DL
             #endregion
 
             //add line trips to the line
-            int numTrips = r.Next(2, 10);
+            int numTrips = r.Next(20, 30);
             for (int i = 0; i < numTrips; i++)
             {
                 DO.LineTrip lnTrip = new DO.LineTrip();
                 lnTrip.LineID = newLine.LineId;
                 lnTrip.LineTripID = i;
-                TimeSpan start = new TimeSpan(r.Next(5, 24), r.Next(0, 60), 0);
+                TimeSpan start = new TimeSpan(r.Next(5, 24), r.Next(0, 11) * 5, 0);
                 lnTrip.StartAt = start;
                 DataSource.listLineTrips.Add(lnTrip);
             }
@@ -357,6 +357,13 @@ namespace DL
             return from lnTrip in DataSource.listLineTrips//return all line trips of a specific line.
                    where lnTrip.LineID == lineid
                    select lnTrip.Clone();
+        }
+
+        public IEnumerable<DO.LineTrip> GetAllLineTripsBy(Predicate<DO.LineTrip> predicate)
+        {
+            return from lTrip in DataSource.listLineTrips
+                   where predicate(lTrip)
+                   select lTrip.Clone();
         }
         #endregion
 

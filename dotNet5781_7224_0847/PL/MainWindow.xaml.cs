@@ -66,7 +66,7 @@ namespace PL
             }
             if (rbsimulation.IsChecked == true) 
             {
-                StationSimulation win = new StationSimulation(bl);
+                SelectStation win = new SelectStation(bl);//select a station, and then see the simulation
                 win.Show();
             }
 

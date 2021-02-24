@@ -21,7 +21,7 @@ namespace PL
     {
         IBL bl = BLFactory.GetBL("1");
 
-        DO.AppUser myUser = new DO.AppUser();
+        BO.AppUser myUser = new BO.AppUser();
 
         public Newuser()
         {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -22,63 +23,59 @@ namespace PL
     /// </summary>
     public partial class StationSimulation : Window
     {
-        IBL bl;
-        BO.Station currentStation;
-        Stopwatch stopwatch;
-        BackgroundWorker timerWorker;
-        TimeSpan startTime;
-        bool isTimerRun = false;
-        public StationSimulation(IBL _bl)//, BO.Station station
+        IBL bl = BLFactory.GetBL("1");//we create an "object" of IBL interface in order to use BL functions and classes
+        BO.Station currStat;
+        ObservableCollection<BO.LineAndTime> lineTimingList;
+        Stopwatch stopwatch;//stopwatch that runs behind
+        BackgroundWorker timerworker;
+        TimeSpan tsStartTime;//save the time when the stopwatch started working
+        bool isTimerRun;
+        public StationSimulation(BO.Station stat)
         {
             InitializeComponent();
+            Closing += Window_Closing;
+            currStat = stat;
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
-            Closing += Simulation_Closing;
-            bl = _bl;
-            //currentStation = station;
-            stopwatch = new Stopwatch();
-            timerWorker = new BackgroundWorker();
-            timerWorker.DoWork += TimerWorker_DoWork;
-            timerWorker.ProgressChanged += TimerWorker_ProgressChanged;
-            timerWorker.WorkerReportsProgress = true;
-            startTime = DateTime.Now.TimeOfDay;
+            stopwatch = new Stopwatch();//a new stopwatch that runs behind, since the window was open.
+            tsStartTime = DateTime.Now.TimeOfDay;//save the time (date and timeSpan) when the stopwatch started working
             stopwatch.Restart();
             isTimerRun = true;
-            timerWorker.RunWorkerAsync();
+
+            timerworker = new BackgroundWorker();
+            timerworker.DoWork += Worker_DoWork;
+            timerworker.ProgressChanged += Worker_ProgressChanged;
+            timerworker.WorkerReportsProgress = true;
+
+            timerworker.RunWorkerAsync();
         }
 
-        private void Simulation_Closing(object sender, CancelEventArgs e)
-        {
-            isTimerRun = false;
-            stopwatch.Stop();
-        }
-
-        private void TimerWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            TimeSpan currentTime = startTime + stopwatch.Elapsed;
-            timeTextBlock.Text = currentTime.ToString().Substring(0, 8);
-            //if (bl.GetLineTiminigsPerStation(currentStation, currentTime).Count == 0)
-            //    NoBusesSoon.Visibility = Visibility.Visible;
-            //else
-            //{
-            //    list.DataContext = from lt in bl.GetLineTiminigsPerStation(currentStation, currentTime)
-            //                       orderby lt.MinutesToArrive[0]
-            //                       select new lineTiminigPO { FirstStation = lt.FirstStation, LastStation = lt.LastStation, LineCode = lt.LineCode, LineId = lt.LineId, MinutesToArrive = lt.MinutesToArrive };
-            //    NoBusesSoon.Visibility = Visibility.Collapsed;
-            //}
-        }
-
-        private void TimerWorker_DoWork(object sender, DoWorkEventArgs e)
+        private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
             while (isTimerRun)
             {
-                timerWorker.ReportProgress(2);
-                Thread.Sleep(1000);
+                timerworker.ReportProgress(231);
+                Thread.Sleep(1000);//report progress each one second
             }
         }
 
-        private void list_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
+            TimeSpan tsCurrentTime = tsStartTime + stopwatch.Elapsed;//the curr time is the start time+ the time passed since then
+            string timmerText = tsCurrentTime.ToString().Substring(0, 8);//take only hour, min, sec. 00:00:00 , 8 characters.
+            timerTextBlock.Text = timmerText;//show the current time. (as TimeSpan).
 
+            LineAndTimeGrid.ItemsSource = bl.GetLineAndTimePerStation(currStat, tsCurrentTime).ToList();
+            if (LineAndTimeGrid.Items.Count == 0)
+                NoBusesSoon.Visibility = Visibility.Visible;
+
+
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            stopwatch.Stop();
+            isTimerRun = false;
         }
     }
 }

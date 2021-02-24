@@ -35,7 +35,7 @@ namespace BLAPI
 
         #region User
         BO.AppUser GetUser(string name,string password);
-        void AddUser(DO.AppUser user);
+        void AddUser(BO.AppUser user);
         IEnumerable<BO.AppUser> GetAllUsers();
         #endregion
         // get user 
@@ -44,6 +44,10 @@ namespace BLAPI
 
         #region LineTrip
         IEnumerable<BO.LineTrip> GetAllLineTripPerLine(int lineid);
+        #endregion
+
+        #region LineAndTime
+        IEnumerable<BO.LineAndTime> GetLineAndTimePerStation(BO.Station stationBO, TimeSpan currentTime);
         #endregion
     }
 }

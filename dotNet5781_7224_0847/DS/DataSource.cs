@@ -1725,7 +1725,12 @@ namespace DS
                  UserName = "efrat",
                  Password = "amar535",
               },
-
+              new AppUser
+              {
+                 UserStatus=UserStatuses.Admine,
+                 UserName = "1",
+                 Password = "1",
+              },
                 #endregion
               };
 
@@ -1735,13 +1740,13 @@ namespace DS
             
             foreach (Line ln in listLines)
             {
-                int numTrips = r.Next(2, 10);
+                int numTrips = r.Next(20, 30);
                 for (int i = 0; i < numTrips; i++)
                 {
                     LineTrip lnTrip = new LineTrip();
                     lnTrip.LineID = ln.LineId;
                     lnTrip.LineTripID = i;
-                    TimeSpan start = new TimeSpan(r.Next(5, 24), r.Next(0, 60), 0);
+                    TimeSpan start = new TimeSpan(r.Next(5, 24), r.Next(0, 11)*5, 0);
                     lnTrip.StartAt = start;
                     listLineTrips.Add(lnTrip);
                 }

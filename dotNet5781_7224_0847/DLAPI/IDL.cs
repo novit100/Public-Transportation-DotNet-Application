@@ -54,6 +54,7 @@ namespace DLAPI
 
         #region LineTrip
         IEnumerable<DO.LineTrip> GetAllLineTripPerLine(int lineid);
+        IEnumerable<DO.LineTrip> GetAllLineTripsBy(Predicate<DO.LineTrip> predicate);
         #endregion
 
     }
