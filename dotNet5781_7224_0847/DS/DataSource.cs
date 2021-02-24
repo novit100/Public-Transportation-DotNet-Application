@@ -1713,6 +1713,12 @@ namespace DS
                  UserName = "nov",
                  Password = "12300",
               },
+                new AppUser
+             {
+                 UserStatus=UserStatuses.Admine,
+                 UserName = "1",
+                 Password = "1",
+              },
               new AppUser
               {
                  UserStatus=UserStatuses.Admine,
