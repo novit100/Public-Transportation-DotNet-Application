@@ -12,10 +12,25 @@
     </Window.Background>
 
     <Grid >
-        <ComboBox x:Name="CBChosenStat" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="156,88,0,0" VerticalAlignment="Top" Width="264" SelectionChanged="CBChosenStat_SelectionChanged" FontWeight="Bold" />
-        <Label Content="Chosen station" HorizontalAlignment="Left" Margin="41,84,0,0" VerticalAlignment="Top" FontWeight="Bold"   />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75*"/>
+            <RowDefinition Height="36*"/>
+            <RowDefinition Height="248*"/>
+            <RowDefinition Height="61*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="144*"/>
+            <ColumnDefinition Width="143*"/>
+            <ColumnDefinition Width="136*"/>
+            <ColumnDefinition Width="86*"/>
+            <ColumnDefinition Width="228*"/>
+            <ColumnDefinition Width="141*"/>
+            <ColumnDefinition Width="149*"/>
+        </Grid.ColumnDefinitions>
+        <ComboBox x:Name="CBChosenStat" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="0,4.8,0,0" VerticalAlignment="Top" Width="279" SelectionChanged="CBChosenStat_SelectionChanged" FontWeight="Bold" Height="21" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" />
+        <Label Content="Chosen station" HorizontalAlignment="Left" Margin="41,0.8,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="24" Width="99" Grid.Row="1"   />
 
-        <Grid x:Name="gridOneStation"  HorizontalAlignment="Left" Margin="64,144,0,0" VerticalAlignment="Top" Width="356"  >
+        <Grid x:Name="gridOneStation"  HorizontalAlignment="Left" Margin="64,24.8,0,0" VerticalAlignment="Top" Width="356" Height="157" Grid.ColumnSpan="3" Grid.Row="2"  >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="47.6"/>
                 <ColumnDefinition Width="26"/>
@@ -31,7 +46,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Content="Address:" Grid.Column="0" Margin="4,3,16.4,4.2" Grid.Row="0"  Grid.ColumnSpan="2"/>
-            <TextBox x:Name="addressTextBox" Grid.Column="2"  Height="23" Margin="6.6,4,-3,4.2" Grid.Row="0" Text="{Binding Address, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Width="278" Grid.ColumnSpan="3"  />
+            <TextBox x:Name="addressTextBox" Grid.Column="2"  Height="23" Margin="6.6,4,-3,4.2" Grid.Row="0" Text="{Binding Address, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Width="278" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" />
             <Label Content="Code:" Grid.Column="0"  Margin="4,3.8,0,3.2" Grid.Row="1" />
             <TextBox x:Name="codeTextBox" Grid.Column="2"  Height="23" Margin="6.6,3.8,-3,5.2" Grid.Row="1" Text="{Binding Code, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="278"  IsEnabled="False" Grid.ColumnSpan="3"/>
             <Label Content="Latitude" Grid.Column="0"  Margin="5,2.4,0.4,3.8" Grid.Row="4" Grid.ColumnSpan="2"/>
@@ -41,7 +56,7 @@
             <Label Content="Name:" Grid.Column="0"  Margin="3,2.8,0,3.4" Grid.Row="2"  Grid.ColumnSpan="2" HorizontalAlignment="Left"/>
             <TextBox x:Name="nameTextBox" Grid.Column="2"  Height="24" Margin="5.6,2.8,-2,4.4" Grid.Row="2" Text="{Binding Name, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Width="278" Grid.ColumnSpan="3"/>
         </Grid>
-        <DataGrid x:Name="linesDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="511,127,24.333,93.667" RowDetailsVisibilityMode="VisibleWhenSelected" GridLinesVisibility="Horizontal" FontFamily="Tahoma"  Foreground="Navy" FontWeight="bold"  >
+        <DataGrid x:Name="linesDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="4.4,7.8,22.2,33.2" RowDetailsVisibilityMode="VisibleWhenSelected" GridLinesVisibility="Horizontal" FontFamily="Tahoma"  Foreground="Navy" FontWeight="bold" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="3"  >
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="busNumberColumn"    Binding="{Binding BusNumber}"   Header="Bus Number" Width="SizeToHeader"  />
                 <DataGridTextColumn x:Name="areaColumn"         Binding="{Binding Area}"    Header="Area" Width="100"  />
@@ -60,14 +75,14 @@
 
 
         </DataGrid>
-        <Button x:Name="BTUpdate" Content="Update station" HorizontalAlignment="Left" Margin="160,381,0,0" VerticalAlignment="Top" Width="104" Click="BTUpdate_Click" />
-        <Button x:Name="BTDelete" Content="Delete station" HorizontalAlignment="Left" Margin="433,381,0,0" VerticalAlignment="Top" Width="93" Click="BTDelete_Click" />
-        <Button x:Name="BTAdd"    Content="Add station"    HorizontalAlignment="Left" Margin="741,381,0,0" VerticalAlignment="Top" Width="81" Click="BTAdd_Click"  />
-        <Label Content="All the lines that pass in this station:" HorizontalAlignment="Left" Margin="511,88,0,0" VerticalAlignment="Top" />
-        <Label Content="~Stations Information~ " HorizontalAlignment="Left" Margin="354,10,0,0" VerticalAlignment="Top" Height="41" Width="371" FontWeight="Bold" FontSize="30" Foreground="MidnightBlue" FontFamily="Narkisim"/>
-        <Label VerticalAlignment="Center"  HorizontalAlignment="Left" Grid.Column="0" Content="Esti and Nov" Margin="918,381,0,15" Width="85" FontWeight="Light"/>
-        <Label Content="Longitude   : 34.3-35.5 " HorizontalAlignment="Left" Margin="283,330,0,0" VerticalAlignment="Top" Width="130"  FontSize="10" Foreground="YellowGreen"/>
-        <Label Content="Latitude     :      31-33.3" HorizontalAlignment="Left" Margin="283,301,0,0" VerticalAlignment="Top" Width="137" Height="29"  FontSize="10" Foreground="YellowGreen"/>
+        <Button x:Name="BTUpdate" Content="Update station" HorizontalAlignment="Left" Margin="20,13.8,0,0" VerticalAlignment="Center" Width="104" Click="BTUpdate_Click" Grid.Column="1" Grid.Row="3" />
+        <Button x:Name="BTDelete" Content="Delete station" HorizontalAlignment="Center" Margin="135.8,22.8,227.6,8" VerticalAlignment="Center" Width="87" Click="BTDelete_Click" Grid.ColumnSpan="3" Grid.Column="2" Grid.Row="3" />
+        <Button x:Name="BTAdd"    Content="Add station"    HorizontalAlignment="Left" Margin="6.5,13.8,0,0" VerticalAlignment="Center" Width="81" Click="BTAdd_Click" Grid.Column="5" Grid.Row="3"  />
+        <Label Content="All the lines that pass in this station:" HorizontalAlignment="Left" Margin="4.4,4.8,0,0" VerticalAlignment="Bottom" Grid.Column="4" Height="24" Width="230" Grid.Row="1" Grid.ColumnSpan="2" />
+        <Label Content="~Stations Information~ " HorizontalAlignment="Stretch"  VerticalAlignment="Center" Height="41" Width="451" FontWeight="Bold" FontSize="30" Foreground="MidnightBlue" FontFamily="Narkisim" Grid.ColumnSpan="5" Grid.Column="1" Grid.Row="0" Margin="143,0,0,0"/>
+        <Label VerticalAlignment="Center"  HorizontalAlignment="Left" Grid.Column="6" Content="Esti and Nov" Margin="43.6,18.8,0,18" Width="84" FontWeight="Light" Height="24" Grid.Row="3"/>
+        <Label Content="Longitude   : 34.3-35.5 " HorizontalAlignment="Left" Margin="143,210.8,0,0" VerticalAlignment="Top" Width="133"  FontSize="10" Foreground="YellowGreen" Height="22" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2"/>
+        <Label Content="Latitude     :      31-33.3" HorizontalAlignment="Left" Margin="143,181.8,0,0" VerticalAlignment="Top" Width="136" Height="29"  FontSize="10" Foreground="YellowGreen" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2"/>
 
 
     </Grid>

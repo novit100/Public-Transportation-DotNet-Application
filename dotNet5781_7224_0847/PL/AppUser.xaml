@@ -6,43 +6,49 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
      
-        Title="AppUser" Height="507" Width="800">
+        Title="AppUser" Height="507" Width="800"  WindowStartupLocation="CenterScreen" >
 
     <Window.Background>
         <ImageBrush ImageSource="background.png"/>
     </Window.Background>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="0.1*"/>
-            <ColumnDefinition Width="0.4*"/>
+            <ColumnDefinition Width="264*"/>
+            <ColumnDefinition Width="26*"/>
+            <ColumnDefinition Width="106*"/>
 
-            <ColumnDefinition Width="0.5*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="133*"/>
+            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="184*"/>
 
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="28"/>
-            <RowDefinition Height="1.3*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="0.7*"/>
+            <RowDefinition Height="109*"/>
+            <RowDefinition Height="84*"/>
+            <RowDefinition Height="19*"/>
+            <RowDefinition Height="12*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="34*"/>
+            <RowDefinition Height="84*"/>
+            <RowDefinition Height="58*"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        <PasswordBox x:Name="pbPass"  HorizontalAlignment="Stretch"  VerticalAlignment="Center" Grid.Column="3" Grid.Row="3" Height="20" Grid.ColumnSpan="2" Margin="0.333,53.333,264.333,10.667" />
-        <TextBox x:Name="tbUser" HorizontalAlignment="Stretch"  TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="3" Grid.Row="2" Height="20" Grid.ColumnSpan="2" Margin="0.333,83.333,264.333,64.667" Grid.RowSpan="2" />
-        <Button x:Name="bLogIn" Content="Log in" HorizontalAlignment="Stretch"  VerticalAlignment="Bottom"  Height="39" Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="4" Click="bLogIn_Click" Background="#FFF8F6F6" Margin="0,0,264.333,9.667" />
-        <Image HorizontalAlignment="center"  VerticalAlignment="Center"  Source="kavimIcon.png" Height="160"  Width="120" Margin="43.333,-23,74.667,83.667" RenderTransformOrigin="0.077,1.863" Grid.RowSpan="3" Grid.Column="2" Grid.ColumnSpan="2"/>
-        <TextBlock HorizontalAlignment="Right"  Grid.Row="5" TextWrapping="Wrap" Text="Not a member? " VerticalAlignment="Top" Opacity="0.6" Margin="0,54.333,163,0" RenderTransformOrigin="0.457,-0.37" Grid.RowSpan="2"  />
-        <Image HorizontalAlignment="Center" Height="20"  Grid.Row="2" VerticalAlignment="Center" Width="20" Grid.Column="1" Source="kavimIcon.png" RenderTransformOrigin="0.563,3.6" Margin="3.333,83.333,3.333,64.667" Grid.RowSpan="2"/>
-        <Image HorizontalAlignment="Center" Height="20"  Grid.Row="3" VerticalAlignment="Center" Width="21" Grid.Column="1" Source="kavimIcon.png" Margin="2.333,53.333,3.333,10.667"/>
-        <Label Content="Welcome to Kavim Company! " HorizontalAlignment="Left" Margin="205,95,0,0" VerticalAlignment="Top" Height="41" Width="371" FontWeight="Bold" FontSize="30" Foreground="MidnightBlue" FontFamily="Narkisim" Grid.ColumnSpan="5" Grid.Row="1" Grid.RowSpan="2"/>
-        <Label VerticalAlignment="Center"  HorizontalAlignment="Left" Grid.Column="4" Content="Esti and Nov" Margin="169.333,46,0,9.667" Width="85" FontWeight="Light" Grid.Row="5" Grid.RowSpan="2"/>
-        <Button x:Name="btSighup" Content="click here to sign up" HorizontalAlignment="Left" Margin="101,46.333,0,0" VerticalAlignment="Top" Width="129" Height="35" Grid.Row="5" Grid.RowSpan="2" Click="btSighup_Click"/>
-        <Image Grid.Column="4" HorizontalAlignment="Left" Height="66" Margin="124.667,54.333,0,-31.667" Grid.Row="5" Grid.RowSpan="2" VerticalAlignment="Top" Width="45" Source="busIcon2.jpg"/>
-        <TextBlock HorizontalAlignment="Left"  TextWrapping="Wrap"  Foreground="MidnightBlue" Text="User name: " VerticalAlignment="Top" Grid.Row="2"  FontSize="15" Margin="0.667,83.333,0,0" Height="20" Width="126" FontWeight="Bold" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Column="2" />
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap"  Foreground="MidnightBlue" Text="Password: " VerticalAlignment="Top" Grid.Row="3"  FontSize="15" Height="20" Margin="26.333,53.333,0,0" Width="109" FontWeight="Bold"  Grid.ColumnSpan="3" Grid.Column="1"  />
+        <PasswordBox x:Name="pbPass"  HorizontalAlignment="Stretch"  VerticalAlignment="Center" Grid.Column="3" Grid.Row="5" Height="20" Grid.ColumnSpan="2" Margin="0.2,0,79.6,0"  />
+
+        <Button x:Name="bLogIn" Content="Log in" HorizontalAlignment="Stretch"  VerticalAlignment="Bottom"  Height="39" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="7" Click="bLogIn_Click" Background="#FFF8F6F6" Margin="0,0,0.6,9.6" />
+        <Image HorizontalAlignment="center"  VerticalAlignment="Center"  Source="kavimIcon.png" Height="160"  Width="120" Margin="43.6,-23,75.6,83.8" RenderTransformOrigin="0.077,1.863" Grid.RowSpan="3" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <TextBlock HorizontalAlignment="Right"  Grid.Row="8" TextWrapping="Wrap" Text="Not a member? " VerticalAlignment="Top" Opacity="0.6" Margin="0,54.4,163,0" RenderTransformOrigin="0.457,-0.37" Grid.RowSpan="2" Height="16" Width="86"  />
+
+        <Image HorizontalAlignment="Left" Height="16"  Grid.Row="5" VerticalAlignment="Center" Width="26" Grid.Column="1" Source="kavimIcon.png" Margin="0,1,0,3" RenderTransformOrigin="0.502,0.503"/>
+        <Label Content="Welcome to Kavim Company! " HorizontalAlignment="Center"  VerticalAlignment="Top" Height="41" Width="414" FontWeight="Bold" FontSize="30" Foreground="MidnightBlue" FontFamily="Narkisim" Grid.ColumnSpan="6" Grid.Row="2" Grid.RowSpan="1" Margin="196,0.2,183.6,0"/>
+        <Label VerticalAlignment="Center"  HorizontalAlignment="Left" Grid.Column="5" Content="Esti and Nov" Margin="57.4,49.4,0,14.6" Width="85" FontWeight="Light" Grid.Row="8" Grid.RowSpan="2" Height="24"/>
+        <Button x:Name="btSighup" Content="click here to sign up" HorizontalAlignment="Left" Margin="101,46.4,0,0" VerticalAlignment="Top" Width="129" Height="35" Grid.Row="8" Grid.RowSpan="2" Click="btSighup_Click"/>
+        <Image Grid.Column="5" HorizontalAlignment="Left" Height="66" Margin="12.4,54.4,0,-32.4" Grid.Row="8" Grid.RowSpan="2" VerticalAlignment="Top" Width="45" Source="busIcon2.jpg"/>
+        <TextBox x:Name="tbUser" HorizontalAlignment="Stretch"      TextWrapping="Wrap"  VerticalAlignment="Top"  Grid.Column="3"  Grid.Row="3" Height="20"  Margin="0.2,0.2,79.6,0" Grid.ColumnSpan="2" />
+        <TextBlock   Foreground="MidnightBlue"  Text="  User name: " TextWrapping="Wrap"  VerticalAlignment="Stretch"  Grid.Column="2" Grid.Row="3"  Margin="0.6,0.2,0,1"   Grid.ColumnSpan="2" HorizontalAlignment="Left"  FontSize="15" Width="106" FontWeight="Bold" RenderTransformOrigin="0.759,0.748" Grid.RowSpan="2" />
+        <Image HorizontalAlignment="Left" Height="23"   VerticalAlignment="Top" Width="26" Source="kavimIcon.png"  Grid.Column="1" Grid.Row="3" RenderTransformOrigin="0.563,3.6" Margin="0,4.2,0,0" Grid.RowSpan="2" />
+        <TextBlock   Foreground="MidnightBlue" Text="  Password: " TextWrapping="Wrap"  VerticalAlignment="Stretch" Grid.Row="5"  FontSize="15" FontWeight="Bold" Grid.Column="2" Margin="0.6,1,4.8,1" RenderTransformOrigin="0.503,0.608"  />
 
     </Grid>
 </Window>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="SingleLine" Height="450" Width="800" Icon= "kavimIcon.png">
+        Title="SingleLine" Height="450" Width="800" Icon= "kavimIcon.png"  WindowStartupLocation="CenterScreen" >
 
     <Window.Background>
         <ImageBrush ImageSource="bg2.png"/>
