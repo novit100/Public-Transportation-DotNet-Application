@@ -17,7 +17,7 @@
     <Grid DataContext="{StaticResource lineTripViewSource}">
         <ComboBox x:Name="cbLine" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="227,42,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbLine_SelectionChanged"/>
 
-        <DataGrid x:Name="lineTripDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="408,42,256.333,119.667" RowDetailsVisibilityMode="VisibleWhenSelected" BorderBrush="Navy">
+        <DataGrid x:Name="lineTripDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="408,42,256.333,119.667" RowDetailsVisibilityMode="VisibleWhenSelected" BorderBrush="Navy" Foreground="Navy" FontWeight="bold">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="startAtColumn" Binding="{Binding StartAt}" Header="Start At" Width="120"/>
             </DataGrid.Columns>

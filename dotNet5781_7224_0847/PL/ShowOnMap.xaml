@@ -10,21 +10,35 @@
         <ImageBrush ImageSource="bgMap.png"/>
     </Window.Background>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="56*"/>
+            <RowDefinition Height="89*"/>
+            <RowDefinition Height="57*"/>
+            <RowDefinition Height="51*"/>
+            <RowDefinition Height="42*"/>
+            <RowDefinition Height="65*"/>
+            <RowDefinition Height="60*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="19*"/>
-            <ColumnDefinition Width="140*"/>
-            <ColumnDefinition Width="160*"/>
+            <ColumnDefinition Width="38*"/>
+            <ColumnDefinition Width="161*"/>
+            <ColumnDefinition Width="42*"/>
+            <ColumnDefinition Width="78*"/>
+            <ColumnDefinition Width="48*"/>
+            <ColumnDefinition Width="107*"/>
+            <ColumnDefinition Width="130*"/>
+            <ColumnDefinition Width="35*"/>
         </Grid.ColumnDefinitions>
-        <ComboBox x:Name="cbNorth" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="205,89,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1" Height="21" Grid.ColumnSpan="2" SelectionChanged="cb_SelectionChanged"/>
-        <ComboBox x:Name="cbSouth" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="138,390,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1" Height="21" SelectionChanged="cb_SelectionChanged"/>
-        <ComboBox x:Name="cbJerusalem" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="262,274,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1" Height="21" SelectionChanged="cb_SelectionChanged" Grid.ColumnSpan="2"/>
-        <ComboBox x:Name="cbCenter" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="40,265,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1" Height="21" SelectionChanged="cb_SelectionChanged"/>
-        <ComboBox x:Name="cbGeneral" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="153,89,0,0" VerticalAlignment="Top" Width="120" Grid.Column="2" Height="21" SelectionChanged="cb_SelectionChanged"/>
-        <Label Content="           North" HorizontalAlignment="Left" Margin="205,64,0,0" VerticalAlignment="Top" Grid.Column="1" Height="25" Width="120" RenderTransformOrigin="-0.435,0.646" Grid.ColumnSpan="2" Background="White" Opacity="0.5"/>
-        <Label Content="         Center" HorizontalAlignment="Left" Margin="40,240,0,0" VerticalAlignment="Top" Grid.Column="1" Height="25" Width="119" Background="#FFFFFCFC" Opacity="0.5"/>
-        <Label Content="         General" HorizontalAlignment="Left" Margin="153,64,0,0" VerticalAlignment="Top" Grid.Column="2" Height="25" Width="120" Background="#FFFAF7F7" Opacity="0.5"/>
-        <Label Content="      Jerusalem" HorizontalAlignment="Left" Margin="262,250,0,0" VerticalAlignment="Top" Grid.Column="1" Height="25" Width="120" Background="#FFFEFBFB" Opacity="0.5" Grid.ColumnSpan="2"/>
-        <Label Content="          south" HorizontalAlignment="Left" Margin="138,367,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.138,0.814" Grid.Column="1" Height="25" Width="120" Background="#FFFAF6F6" Opacity="0.5"/>
-        <Label Content="~select an area and choose your wanted bus~" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Height="41" Width="553" FontWeight="Bold" FontSize="30" Foreground="MidnightBlue" FontFamily="Narkisim" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <ComboBox x:Name="cbNorth" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="2.2,33,0,0" VerticalAlignment="Top" Width="120" Grid.Column="3" Height="21" Grid.ColumnSpan="2" SelectionChanged="cb_SelectionChanged" Grid.Row="1"/>
+        <ComboBox x:Name="cbSouth" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="40.4,25,0,0" VerticalAlignment="Top" Width="120" Grid.Column="1" Height="21" SelectionChanged="cb_SelectionChanged" Grid.Row="6"/>
+        <ComboBox x:Name="cbJerusalem" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="49.2,42.2,0,0" VerticalAlignment="Top" Width="120" Grid.Column="3" Height="21" SelectionChanged="cb_SelectionChanged" Grid.ColumnSpan="3" Grid.Row="4" Grid.RowSpan="2"/>
+        <ComboBox x:Name="cbCenter" ItemsSource="{Binding}" HorizontalAlignment="Right" Margin="0,31.4,0.4,0" VerticalAlignment="Top" Width="120" Grid.Column="1" Height="21" SelectionChanged="cb_SelectionChanged" Grid.Row="3" Grid.RowSpan="2"/>
+        <ComboBox x:Name="cbGeneral" ItemsSource="{Binding}" HorizontalAlignment="Center" Margin="0,33,0.2,0" VerticalAlignment="Top" Width="108" Grid.Column="6" Height="21" SelectionChanged="cb_SelectionChanged" Grid.Row="1"/>
+        <Label Content="           North" HorizontalAlignment="Left" Margin="2.2,8,0,0" VerticalAlignment="Top" Grid.Column="3" Height="25" Width="120" RenderTransformOrigin="-0.435,0.646" Grid.ColumnSpan="2" Background="White" Opacity="0.5" Grid.Row="1"/>
+        <Label Content="         Center" HorizontalAlignment="Right" Margin="0,6.4,0.4,0" VerticalAlignment="Top" Grid.Column="1" Height="25" Width="119" Background="#FFFFFCFC" Opacity="0.5" Grid.Row="3"/>
+        <Label Content="         General" HorizontalAlignment="Center" Margin="0,8,0.2,0" VerticalAlignment="Top" Grid.Column="6" Height="25" Width="108" Background="#FFFAF7F7" Opacity="0.5" Grid.Row="1"/>
+        <Label Content="      Jerusalem" HorizontalAlignment="Left" Margin="49.2,17.2,0,0" VerticalAlignment="Top" Grid.Column="3" Height="25" Width="120" Background="#FFFEFBFB" Opacity="0.5" Grid.ColumnSpan="3" Grid.Row="4"/>
+        <Label Content="          south" HorizontalAlignment="Left" Margin="40.4,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.138,0.814" Grid.Column="1" Height="25" Width="120" Background="#FFFAF6F6" Opacity="0.5" Grid.Row="6"/>
+        <Label Content="~select an area and choose your wanted bus~" HorizontalAlignment="Center" Margin="10.4,10,32.4,0" VerticalAlignment="Top" Height="41" Width="558" FontWeight="Bold" FontSize="30" Foreground="MidnightBlue" FontFamily="Narkisim" Grid.ColumnSpan="7" Grid.Column="1"/>
     </Grid>
 </Window>
