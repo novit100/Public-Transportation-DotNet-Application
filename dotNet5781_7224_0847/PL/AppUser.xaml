@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
      
-        Title="AppUser" Height="507" Width="800"  WindowStartupLocation="CenterScreen" >
+        Title="AppUser" Height="507" Width="800"  WindowStartupLocation="CenterScreen" Icon= "kavimIcon.png">
 
     <Window.Background>
         <ImageBrush ImageSource="background.png"/>

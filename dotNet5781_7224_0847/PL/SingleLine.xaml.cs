@@ -34,5 +34,6 @@ namespace PL
             stationDataGrid.DataContext = bl.GetAllLineStationsPerLine(line.LineId);
         }
 
+       
     }
 }
