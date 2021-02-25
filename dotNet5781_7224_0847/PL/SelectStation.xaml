@@ -20,9 +20,11 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="136*"/>
             <RowDefinition Height="65*"/>
-            <RowDefinition Height="219*"/>
+            <RowDefinition Height="144*"/>
+            <RowDefinition Height="76*"/>
         </Grid.RowDefinitions>
         <ComboBox x:Name="CBChosenStat" ItemsSource="{Binding}" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="274" SelectionChanged="CBChosenStat_SelectionChanged" FontWeight="Bold" Height="28" Grid.Row="1" Grid.Column="2" Margin="3,16,0,20.8" />
-        <Label Content=" Chosen station:" HorizontalAlignment="Right"  VerticalAlignment="Center" FontWeight="Medium" FontSize="40" Grid.Row="1" Height="65" Grid.Column="1"  />
+        <Label Content=" Chosen station:" HorizontalAlignment="Right"  VerticalAlignment="Center" FontWeight="Medium" FontSize="40" Grid.Row="1" Height="65" Grid.RowSpan="1" Width="319" Grid.Column="1"  />
+        <Label VerticalAlignment="Center"  HorizontalAlignment="Center" Grid.Column="3" Content="Esti and Nov"  Width="84" FontWeight="Light" Grid.Row="3" Height="23"  Grid.ColumnSpan="1"/>
     </Grid>
 </Window>

@@ -41,5 +41,6 @@
             <Label Content="Last Station:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
             <Label x:Name="lastStationLabel" Content="{Binding LastStation}" Grid.Column="1" HorizontalAlignment="Left" Margin="3,3,-0.333,2.667" Grid.Row="3" VerticalAlignment="Center" Width="60"/>
         </Grid>
+        <Label Content="        ~Line schedule~" HorizontalAlignment="Stretch" Margin="227,2,213.6,0" VerticalAlignment="Top" Width="353" FontWeight="Bold" FontSize="30" Foreground="MidnightBlue" FontFamily="Narkisim"/>
     </Grid>
 </Window>
