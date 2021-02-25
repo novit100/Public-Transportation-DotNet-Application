@@ -40,7 +40,7 @@ namespace PL
         {
             currStat = (CBChosenStat.SelectedItem as BO.Station);
             StationSimulation win = new StationSimulation(currStat);//we sent the station
-            win.ShowDialog();  
+            win.ShowDialog();   
         }
     }
 }
