@@ -279,10 +279,6 @@ namespace BL
         #region LineStation
         public IEnumerable<BO.LineStation> GetAllLineStationsPerLine(int lineId)
         {
-            //return from DOlineStation in dl.GetLineStationsListOfALine(lineId)
-            //       let BOlineStation = lineStationDoBoAdapter(DOlineStation)
-            //       select BOlineStation;
-
             return from DOlineStation in dl.GetLineStationsListOfALine(lineId)
                    let BOlineStation = lineStationDoBoAdapter(DOlineStation)
                    select BOlineStation;
