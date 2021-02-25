@@ -34,7 +34,7 @@
             <RowDefinition Height="58*"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        <PasswordBox x:Name="pbPass"  HorizontalAlignment="Stretch"  VerticalAlignment="Center" Grid.Column="3" Grid.Row="5" Height="20" Grid.ColumnSpan="2" Margin="0.2,0,79.6,0"  />
+        <PasswordBox x:Name="pbPass"  HorizontalAlignment="Stretch"  VerticalAlignment="Center" Grid.Column="3" Grid.Row="5" Height="20" Grid.ColumnSpan="2" Margin="0.2,0,79.6,0" />
 
         <Button x:Name="bLogIn" Content="Log in" HorizontalAlignment="Stretch"  VerticalAlignment="Bottom"  Height="39" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="7" Click="bLogIn_Click" Background="#FFF8F6F6" Margin="0,0,0.6,9.6" />
         <Image HorizontalAlignment="center"  VerticalAlignment="Center"  Source="kavimIcon.png" Height="160"  Width="120" Margin="43.6,-23,75.6,83.8" RenderTransformOrigin="0.077,1.863" Grid.RowSpan="3" Grid.Column="2" Grid.ColumnSpan="2"/>

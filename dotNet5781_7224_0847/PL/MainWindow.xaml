@@ -24,13 +24,22 @@
             <RowDefinition Height="14*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="120*"/>
-            <ColumnDefinition Width="345*"/>
             <ColumnDefinition Width="109*"/>
+            <ColumnDefinition Width="347*"/>
+            <ColumnDefinition Width="118*"/>
         </Grid.ColumnDefinitions>
 
-        <Label Content="Welcome to Kavim Company! "   HorizontalAlignment="Center"  VerticalAlignment="Stretch" FontWeight="Bold" FontSize="28" Foreground="MidnightBlue" FontFamily="Narkisim" Margin="119,20,108.6,20" Width="346" Grid.ColumnSpan="3"/>
-        <GroupBox x:Name="groupBox1" Header="Choose Option:" HorizontalAlignment="Stretch" Height="186"  VerticalAlignment="Center" FontSize="16" FontStyle="Italic" FontWeight="SemiBold" BorderBrush="MidnightBlue" Foreground="MidnightBlue" Opacity="1.2"  Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Margin="0,39,5.8,39.8" >
+        <Label Content="Welcome to Kavim Company! "   HorizontalAlignment="Center"  VerticalAlignment="Bottom" FontWeight="Bold" FontSize="28" Foreground="MidnightBlue" FontFamily="Narkisim" Height="38" Margin="0.2,0,0,0" Width="347" Grid.Column="1" RenderTransformOrigin="0.5,0.5">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="0.067"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="-0.199"/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <GroupBox x:Name="groupBox1" Header="Choose Option:" HorizontalAlignment="Stretch" Height="186"  VerticalAlignment="Center" FontSize="16" FontStyle="Italic" FontWeight="SemiBold" BorderBrush="MidnightBlue" Foreground="MidnightBlue" Opacity="1.2"  Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Margin="1.2,39,7,39.8" >
             <StackPanel Margin="21,20,29,24">
                 <RadioButton x:Name ="rbStations" Content="Stations" Height="24" IsChecked="True" Foreground="MidnightBlue" Background="YellowGreen" />
                 <RadioButton x:Name ="rbLines" Content="Lines" Height="23"  Foreground="MidnightBlue" HorizontalAlignment="Left" Width="282" Background="YellowGreen"/>
@@ -38,9 +47,9 @@
                 <RadioButton x:Name="rbsimulation"  Content="Station Simulation" Height="23"  Foreground="MidnightBlue" HorizontalAlignment="Left" Width="282" Background="YellowGreen"/>
             </StackPanel>
         </GroupBox>
-        <Button x:Name="btnGO" Content="GO >>" HorizontalAlignment="Stretch" Height="42" VerticalAlignment="Center"  FontSize="16" FontFamily="Kristen ITC"  Click="btnGO_Click" FontWeight="ExtraBold"   BorderThickness="0,0,0,5" Grid.ColumnSpan="1"  Grid.Column="2" Grid.Row="3" Grid.RowSpan="2" Margin="4.2,14.2,4.6,14.2" />
+        <Button x:Name="btnGO" Content="GO >>" HorizontalAlignment="Stretch" Height="42" VerticalAlignment="Center"  FontSize="16" FontFamily="Kristen ITC"  Click="btnGO_Click" FontWeight="ExtraBold"   BorderThickness="0,0,0,5" Grid.ColumnSpan="1"  Grid.Column="2" Grid.Row="3" Grid.RowSpan="2" Margin="3,14.2,4.6,14.2" />
         <Button x:Name="btShowMap" Content="Show all lines on map" HorizontalAlignment="Left" VerticalAlignment="Center" Width="172" Height="36" Click="btShowMap_Click" Grid.ColumnSpan="2"  Grid.Column="0" Grid.Row="3" Grid.RowSpan="2" FontSize="20" Margin="10,20.2,0,14.2" FontWeight="Medium" FontFamily="Narkisim" />
-        <Label VerticalAlignment="Top"  HorizontalAlignment="Center" Grid.Column="1" Content="Esti and Nov" Width="85" FontWeight="Light" Height="24"  Grid.Row="3" Margin="130,0.2,129.8,0"/>
+        <Label VerticalAlignment="Top"  HorizontalAlignment="Center" Grid.Column="1" Content="Esti and Nov" Width="85" FontWeight="Light" Height="24"  Grid.Row="3" Margin="131.2,0.2,131,0"/>
 
     </Grid>
 </Window>
