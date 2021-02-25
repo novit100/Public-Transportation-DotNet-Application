@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.StationSimulation"
         mc:Ignorable="d"
-        Title="StationSimulation" Height="450" Width="800">
+        Title="StationSimulation" Height="450" Width="800" Icon= "kavimIcon.png">
     <Window.Background>
         <ImageBrush ImageSource="busStationNew.png"/>
     </Window.Background>
@@ -34,11 +34,25 @@
         </DataTemplate>
     </Window.Resources>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="11*"/>
+            <ColumnDefinition Width="213*"/>
+            <ColumnDefinition Width="83*"/>
+            <ColumnDefinition Width="16*"/>
+            <ColumnDefinition Width="470*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="130*"/>
+            <RowDefinition Height="106*"/>
+            <RowDefinition Height="29*"/>
+            <RowDefinition Height="146*"/>
+        </Grid.RowDefinitions>
 
-        <TextBlock x:Name="timerTextBlock" HorizontalAlignment="Left" Margin="219,251,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="38" Width="121" FontWeight="ExtraBold"  FontFamily="Narkisim"  Foreground="Navy" FontSize="25" />
+        <TextBlock x:Name="timerTextBlock" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Bottom" Height="25" FontWeight="ExtraBold"  FontFamily="Narkisim"  Foreground="Navy" FontSize="25" Grid.Row="3" Grid.Column="2" RenderTransformOrigin="0.414,0.415"  Width="83" Margin="0,0,0,0.4" Grid.ColumnSpan="1" />
 
-        <ListBox x:Name="LineAndTimeGrid" FlowDirection="RightToLeft"  ItemsSource="{Binding}" ItemTemplate="{StaticResource LineTemplate}" HorizontalAlignment="Right" Height="128" Margin="-2,10,485.333,0" VerticalAlignment="Top" Width="310" Background="#FF0F0F0F"/>
-        <Label x:Name="NoBusesSoon" Content="No buses coming soon" HorizontalAlignment="Left" Margin="40,52,0,0" VerticalAlignment="Top" Height="42" Width="188" FontSize="15" Background="{x:Null}" Visibility="Hidden" Foreground="White" />
+        <ListBox x:Name="LineAndTimeGrid" FlowDirection="RightToLeft"  ItemsSource="{Binding}" ItemTemplate="{StaticResource LineTemplate}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF0F0F0F" Grid.Row="1" Grid.ColumnSpan="4" Margin="0,2.6,1.2,0" BorderThickness="5"/>
+        <Label x:Name="NoBusesSoon" Content="No buses coming soon" HorizontalAlignment="Left" Margin="29.8,42.6,0,0" VerticalAlignment="Top" Height="42" Width="188" FontSize="15" Background="{x:Null}" Visibility="Hidden" Foreground="White" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" />
 
     </Grid>
 </Window>

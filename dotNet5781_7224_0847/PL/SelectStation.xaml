@@ -6,12 +6,23 @@
         xmlns:local="clr-namespace:PL"
         xmlns:BO="clr-namespace:BO;assembly=BL" x:Class="PL.SelectStation"
         mc:Ignorable="d"
-        Title="SingleLine" Height="450" Width="800" Icon= "kavimIcon.png">
+        Title="Select a station" Height="450" Width="800" Icon= "kavimIcon.png">
     <Window.Background>
         <ImageBrush ImageSource="bg2.png"/>
     </Window.Background>
     <Grid>
-        <ComboBox x:Name="CBChosenStat" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="156,88,0,0" VerticalAlignment="Top" Width="264" SelectionChanged="CBChosenStat_SelectionChanged" FontWeight="Bold" />
-        <Label Content="Chosen station" HorizontalAlignment="Left" Margin="41,84,0,0" VerticalAlignment="Top" FontWeight="Bold"   />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="83*"/>
+            <ColumnDefinition Width="321*"/>
+            <ColumnDefinition Width="302*"/>
+            <ColumnDefinition Width="87*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="136*"/>
+            <RowDefinition Height="65*"/>
+            <RowDefinition Height="219*"/>
+        </Grid.RowDefinitions>
+        <ComboBox x:Name="CBChosenStat" ItemsSource="{Binding}" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="274" SelectionChanged="CBChosenStat_SelectionChanged" FontWeight="Bold" Height="28" Grid.Row="1" Grid.Column="2" Margin="3,16,0,20.8" />
+        <Label Content=" Chosen station:" HorizontalAlignment="Right"  VerticalAlignment="Center" FontWeight="Medium" FontSize="40" Grid.Row="1" Height="65" Grid.Column="1"  />
     </Grid>
 </Window>
