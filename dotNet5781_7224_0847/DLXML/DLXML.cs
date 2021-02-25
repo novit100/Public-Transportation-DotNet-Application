@@ -11,7 +11,7 @@ using DO;
 
 namespace DL
 {
-    class DLXML/*:IDL*/
+    class DLXML : IDL
     {
         #region singelton
         static readonly DLXML instance = new DLXML();

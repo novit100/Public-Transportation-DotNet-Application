@@ -66,7 +66,7 @@ namespace PL
                   || Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
                 {
                     //if no one of them is down- its okay. its a number.
-                    return;
+                    return; 
                 }
             }
 
