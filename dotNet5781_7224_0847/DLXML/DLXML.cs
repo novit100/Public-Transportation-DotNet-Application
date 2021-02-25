@@ -331,14 +331,15 @@ namespace DL
 
             XElement getRunNumElem = (from run in runningNumberRootElem.Elements()
                              select run).FirstOrDefault();
+            
+            int newRunNum = int.Parse(getRunNumElem./*Element("LineId").*/Value);
+            newLine.LineId = newRunNum;//get the current running number
 
-            int newRunNum = int.Parse(getRunNumElem.Element("LineId").Value) + 1;//add 1 to the line id that was before.
-
-            getRunNumElem.Element("LineId").Value = newRunNum.ToString();
+            getRunNumElem./*Element("LineId").*/Value = (newRunNum+1).ToString();//add 1 to the line id that was before.
 
             XMLTools.SaveListToXMLElement(runningNumberRootElem, runningNumberPath);//save the new root in the xml file
 
-            newLine.LineId = newRunNum;//running number
+
             #endregion
 
             //check if the first and last stations are the same- if so, cannot add the bus.
@@ -348,6 +349,11 @@ namespace DL
             //check if a bus with the same identifying stations (first and last stations) already exists.
             if (listLines.Exists(l => l.FirstStation == newLine.FirstStation && l.LastStation == newLine.LastStation && l.BusNumber == newLine.BusNumber))
                 throw new DO.LineException(newLine.BusNumber, $"the line: {newLine.BusNumber} allready exists, with the same first and last stations");
+
+            //check if a bus with the same number and the same area already exists.
+            if (listLines.Exists(l => l.Area == newLine.Area && l.BusNumber == newLine.BusNumber))
+                throw new DO.LineException(newLine.BusNumber, $"the line: {newLine.BusNumber} allready exists in this area");
+
 
             //add new lineStations of the new stations
             listLineStations.Add(new DO.LineStation() { Code = newLine.FirstStation, LineId = newLine.LineId, LineStationIndex = 0, NextStation = newLine.LastStation, PrevStation = -1 });
@@ -480,7 +486,7 @@ namespace DL
             //       select adjSt.Clone();//return a list of adjacent stations, in which the station with the given code apears as the 1st in the pair
 
 
-            return from p in adjacentStationsRootElem.Elements()
+            return from p in adjacentStationsRootElem.Elements()//each p is an adjacent stations
                    let adjStat = new AdjacentStations()
                    {
                        Station1 = Int32.Parse(p.Element("Station1").Value),
@@ -543,7 +549,7 @@ namespace DL
             //       where predicate(lTrip)
             //       select lTrip.Clone();
 
-            return from p in lineTripRootElem.Elements()
+            return from p in lineTripRootElem.Elements()//each p is a line trip
                    let lnTrip = new LineTrip()
                    {
                        LineTripID = Int32.Parse(p.Element("LineTripID").Value),
@@ -554,5 +560,10 @@ namespace DL
                    select lnTrip;
         }
         #endregion
+
+        public void restartXmlLists()
+        {
+            //no need to write anything here, its done by the first haraza of DLObject
+        }
     }
 }

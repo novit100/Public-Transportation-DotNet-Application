@@ -28,7 +28,8 @@ namespace PL
             InitializeComponent();
             // bl = _bl;
             // Automatically resize height and width relative to content
-          
+
+            bl.restartXmlLists();//func to save all lists from data source as xml
         }
 
         private void bLogIn_Click(object sender, RoutedEventArgs e)

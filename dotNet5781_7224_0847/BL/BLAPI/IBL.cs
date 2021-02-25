@@ -10,6 +10,8 @@ namespace BLAPI
 {
     public interface IBL
     {
+        void restartXmlLists();//func to save all lists from data source as xml
+
         #region Station
         BO.Station GetStation(int code);
         void UpdateStationDetails(BO.Station currStat);

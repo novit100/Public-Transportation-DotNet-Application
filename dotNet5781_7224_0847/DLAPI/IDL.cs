@@ -12,6 +12,8 @@ namespace DLAPI
     // Delete - delete an instance
     public interface IDL
     {
+        void restartXmlLists();//func to save all lists from data source as xml
+
         #region Station
         DO.Station GetStation(int code);
         void UpdateStation(DO.Station station);

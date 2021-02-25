@@ -13,6 +13,11 @@ namespace BL
     {
         IDL dl = DLFactory.GetDL();//we create an "object" of IDL interface in order to use DL functions and classes
 
+        public void restartXmlLists()
+        {
+            dl.restartXmlLists();
+        }
+
         #region Station
         public BO.Station GetStation(int code)
         {
@@ -59,7 +64,7 @@ namespace BL
         public IEnumerable<BO.Station> GetAllStations()//move through all stationsDO, make them stationsBO and return the list of stationBO
         {
             return from stationDO in dl.GetAllStations()//ask dl to provide all the DO.stations, make them BO.stations and return the list.
-                   orderby stationDO.Code           //order it by their code
+                   orderby stationDO.Name           //order it by their code
                    select stationDoBoAdapter(stationDO);//adopt each do to bo
         }
 

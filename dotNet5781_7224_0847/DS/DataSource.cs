@@ -1678,7 +1678,7 @@ namespace DS
 
                     double timeInSec = ((newAdj.Distance * 1.5) / r.Next(20, 50)) * 60 * 60;//dis*1.5= לחישוב מרחק אמיתי ולא אוירי
                     int hours = (int)(timeInSec / 3600);
-                    int min = (int)(timeInSec / 60);
+                    int min = (int)(timeInSec / 60); 
                     int sec = (int)timeInSec;
 
                     if (sec == 0)
@@ -1731,12 +1731,7 @@ namespace DS
                  UserName = "efrat",
                  Password = "amar535",
               },
-              new AppUser
-              {
-                 UserStatus=UserStatuses.Admine,
-                 UserName = "1",
-                 Password = "1",
-              },
+
                 #endregion
               };
 
@@ -1746,7 +1741,7 @@ namespace DS
             
             foreach (Line ln in listLines)
             {
-                int numTrips = r.Next(20, 30);
+                int numTrips = r.Next(30, 50);
                 for (int i = 0; i < numTrips; i++)
                 {
                     LineTrip lnTrip = new LineTrip();

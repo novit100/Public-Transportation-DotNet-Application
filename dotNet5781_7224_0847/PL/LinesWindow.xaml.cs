@@ -66,7 +66,7 @@ namespace PL
         {
             try
             {
-                if (busNumberTextBox.Text!="" && firstStationTextBox.Text!="" && lastStationTextBox.Text!="")
+                if (currLine!=null && busNumberTextBox.Text!="" && firstStationTextBox.Text!="" && lastStationTextBox.Text!="")
                 {
                     BO.Line NewLine = new BO.Line();//a local line, to save the changes that the user made in line's fields.
                     NewLine.BusNumber = int.Parse(busNumberTextBox.Text);
