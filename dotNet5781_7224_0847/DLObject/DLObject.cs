@@ -341,6 +341,7 @@ namespace DL
             return from user in DataSource.users
                    select user.Clone();
         }
+
         public void AddUser(DO.AppUser user)
         {
             if (DataSource.users.Where(s => s.UserName == user.UserName).ToList().Count() > 0)
@@ -349,6 +350,7 @@ namespace DL
             }
             DataSource.users.Add(user);
         }
+
         #endregion
 
         #region LineTrip

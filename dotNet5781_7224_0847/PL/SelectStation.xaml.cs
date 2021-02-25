@@ -33,7 +33,7 @@ namespace PL
             CBChosenStat.SelectedValuePath = "Code";//selection return only specific Property of object
             //CBChosenStat.SelectedIndex = 0; //index of the object to be selected
 
-            CBChosenStat.DataContext = bl.GetAllStations();//ListOfStations;
+            CBChosenStat.DataContext = bl.GetAllStations();//ListOfStations;  
         }
 
         private void CBChosenStat_SelectionChanged(object sender, SelectionChangedEventArgs e)
