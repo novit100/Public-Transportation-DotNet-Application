@@ -11,7 +11,7 @@ using DO;
 
 namespace DL
 {
-    class DLXML : IDL
+    sealed class DLXML : IDL
     {
         #region singelton
         static readonly DLXML instance = new DLXML();
@@ -243,6 +243,7 @@ namespace DL
 
             DO.Line ln = listLines.Find(l => l.LineId == newLine.LineId);//search for the the line with the same lineId, if exist.
 
+            #region calc
             if (ln != null)//if found
             {
                 //check if the line's fields that were added are legal
@@ -254,10 +255,6 @@ namespace DL
 
                 if (newLine.FirstStation == newLine.LastStation)
                     throw new DO.StationException(newLine.LastStation, $"the last station code: {newLine.LastStation} is illegal since the first and last stations must be different");
-
-                ////check if a bus with the same identifying stations (first and last stations) already exists.
-                //if (DataSource.listLines.Exists(l => l.FirstStation == newLine.FirstStation && l.LastStation == newLine.LastStation))
-                //    throw new DO.LineException(newLine.BusNumber, $"the line: {newLine.BusNumber} allready exists, with the same first and last stations");
 
                 //add new lineStations of the new stations
                 //delete the first linestation and second, and rewrite their details.
@@ -314,6 +311,7 @@ namespace DL
             }
             else
                 throw new DO.LineException(newLine.BusNumber, $"the station that its code is: {newLine.BusNumber} was not found");
+            #endregion
 
             XMLTools.SaveListToXMLSerializer(listLineStations, lineStationsPath);
             XMLTools.SaveListToXMLSerializer(listLines, linesPath);
@@ -419,6 +417,7 @@ namespace DL
 
             #endregion
 
+            #region calc
             //check if the first and last stations are the same- if so, cannot add the bus.
             if (newLine.FirstStation == newLine.LastStation)
                 throw new DO.LineException(newLine.BusNumber, $"the line: {newLine.BusNumber} is not legal since the first and last stations must be different");
@@ -430,7 +429,7 @@ namespace DL
             //check if a bus with the same number and the same area already exists.
             if (listLines.Exists(l => l.Area == newLine.Area && l.BusNumber == newLine.BusNumber))
                 throw new DO.LineException(newLine.BusNumber, $"the line: {newLine.BusNumber} allready exists in this area");
-
+            #endregion
 
             //add new lineStations of the new stations
             listLineStations.Add(new DO.LineStation() { Code = newLine.FirstStation, LineId = newLine.LineId, LineStationIndex = 0, NextStation = newLine.LastStation, PrevStation = -1 });
@@ -480,7 +479,7 @@ namespace DL
 
             #endregion
 
-            //add line trips to the line
+            # region add line trips to the line
             int numTrips = r.Next(20, 30);
             for (int i = 0; i < numTrips; i++)
             {
@@ -503,6 +502,7 @@ namespace DL
                 XMLTools.SaveListToXMLElement(lineTripRootElem, lineTripPath);//save the new root in the xml file
 
             }
+            #endregion
 
             listLines.Add(newLine);
 
