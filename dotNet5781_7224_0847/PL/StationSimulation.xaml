@@ -39,20 +39,28 @@
             <ColumnDefinition Width="213*"/>
             <ColumnDefinition Width="83*"/>
             <ColumnDefinition Width="16*"/>
-            <ColumnDefinition Width="470*"/>
+            <ColumnDefinition Width="14*"/>
+            <ColumnDefinition Width="284*"/>
+            <ColumnDefinition Width="172*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="10*"/>
-            <RowDefinition Height="130*"/>
+            <RowDefinition Height="23*"/>
+            <RowDefinition Height="26*"/>
+            <RowDefinition Height="80*"/>
             <RowDefinition Height="106*"/>
             <RowDefinition Height="29*"/>
             <RowDefinition Height="146*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock x:Name="timerTextBlock" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Bottom" Height="25" FontWeight="ExtraBold"  FontFamily="Narkisim"  Foreground="Navy" FontSize="25" Grid.Row="3" Grid.Column="2" RenderTransformOrigin="0.414,0.415"  Width="83" Margin="0,0,0,0.4" Grid.ColumnSpan="1" />
+        <TextBlock x:Name="timerTextBlock" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Bottom" Height="25" FontWeight="ExtraBold"  FontFamily="Narkisim"  Foreground="Navy" FontSize="25" Grid.Row="5" Grid.Column="2" RenderTransformOrigin="0.414,0.415" Margin="0,0,0.2,0.6" Grid.ColumnSpan="1" />
 
-        <ListBox x:Name="LineAndTimeGrid" FlowDirection="RightToLeft"  ItemsSource="{Binding}" ItemTemplate="{StaticResource LineTemplate}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF0F0F0F" Grid.Row="1" Grid.ColumnSpan="4" Margin="0,2.6,1.2,0" BorderThickness="5"/>
-        <Label x:Name="NoBusesSoon" Content="No buses coming soon" HorizontalAlignment="Left" Margin="29.8,42.6,0,0" VerticalAlignment="Top" Height="42" Width="188" FontSize="15" Background="{x:Null}" Visibility="Hidden" Foreground="White" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" />
+        <ListBox x:Name="LineAndTimeGrid" FlowDirection="RightToLeft"  ItemsSource="{Binding}" ItemTemplate="{StaticResource LineTemplate}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF0F0F0F" Grid.Row="1" Grid.ColumnSpan="4" Margin="0,2.4,1.2,0.4" BorderThickness="5" Grid.RowSpan="3"/>
+        <Label x:Name="NoBusesSoon" Content="No buses coming soon" HorizontalAlignment="Left" Margin="29.8,11.6,0,0" VerticalAlignment="Top" Height="42" Width="188" FontSize="15" Background="{x:Null}" Visibility="Hidden" Foreground="White" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" />
+        <Label x:Name="StationName"  Grid.Column="5" HorizontalAlignment="Left" Margin="0.4,0.4,0,0" VerticalAlignment="Top" Height="23" Width="284" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+        <Label x:Name="StationCode"  Grid.Column="5" HorizontalAlignment="Right" Margin="0.4,1.2,0,0" Grid.Row="2" VerticalAlignment="Top" Height="24" Width="284" Grid.ColumnSpan="2"/>
+        <Label x:Name="StationCodeLabel" Content=":מספר תחנה" Grid.Column="6" HorizontalAlignment="Left" Margin="0.4,1.2,0,0" Grid.Row="2" VerticalAlignment="Top" Height="24" Width="85"/>
+        <Label x:Name="StationNameLabel" Content=":שם תחנה" Grid.Column="6" HorizontalAlignment="Left" Margin="0.4,0.4,0,0" VerticalAlignment="Top" Width="93" Height="24" Grid.Row="1" Grid.RowSpan="2"/>
 
     </Grid>
 </Window>

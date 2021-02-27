@@ -26,6 +26,7 @@ namespace PL
         IBL bl = BLFactory.GetBL("1");//we create an "object" of IBL interface in order to use BL functions and classes
         BO.Station currStat;
         
+      
         Stopwatch stopwatch;//stopwatch that runs behind
         BackgroundWorker timerworker;
         TimeSpan tsStartTime;//save the time when the stopwatch started working
@@ -37,10 +38,15 @@ namespace PL
             currStat = stat;
             WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
-            stopwatch = new Stopwatch();//a new stopwatch that runs behind, since the window was open.
+
+           stopwatch = new Stopwatch();//a new stopwatch that runs behind, since the window was open.
             tsStartTime = DateTime.Now.TimeOfDay;//save the time (date and timeSpan) when the stopwatch started working
             stopwatch.Restart();
             isTimerRun = true;
+
+
+            StationName.Content = stat.Name;
+            StationCode.Content = stat.Code;
 
             timerworker = new BackgroundWorker();
             timerworker.DoWork += Worker_DoWork;

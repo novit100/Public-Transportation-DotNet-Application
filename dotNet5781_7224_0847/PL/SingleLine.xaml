@@ -41,7 +41,7 @@
             <Label Content="Area:" Grid.Column="0" HorizontalAlignment="Left" Margin="116,17,0,1.333" Grid.Row="1" VerticalAlignment="Center" Height="25" Width="42" RenderTransformOrigin="0.516,1.067"/>
             <Label x:Name="areaLabel" Content="{Binding Area}" Grid.Column="1" HorizontalAlignment="Left" Margin="0.333,17,0,1.333" Grid.Row="1" VerticalAlignment="Center" Height="25" Width="106" Grid.ColumnSpan="2"/>
         </Grid>
-        <Label VerticalAlignment="Center"  HorizontalAlignment="Left" Grid.Column="0" Content="Esti and Nov" Margin="708,376,0,19.667" Width="85" FontWeight="Light"/>
+        <Label VerticalAlignment="Bottom"  HorizontalAlignment="Right" Grid.Column="0" Content="Esti and Nov" Margin="0,0,31.6,30" Width="85" FontWeight="Light" RenderTransformOrigin="0.101,0.867"/>
 
 
     </Grid>
