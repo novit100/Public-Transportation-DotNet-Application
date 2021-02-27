@@ -34,9 +34,14 @@ namespace DL
         #endregion
 
         #region Station
+        /// <summary>
+        /// returns a station with the given code. if doesnt exist- throw exception.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         public DO.Station GetStation(int code)
         {
-            List<Station> listStations= XMLTools.LoadListFromXMLSerializer<Station>(stationsPath);
+            List<Station> listStations = XMLTools.LoadListFromXMLSerializer<Station>(stationsPath);
             DO.Station stat = listStations.Find(s => s.Code == code);
 
             if (stat != null)//found the station
@@ -45,6 +50,10 @@ namespace DL
                 throw new DO.StationException(code, $"error in station that its code is: {code}");
         }
 
+        /// <summary>
+        /// update a specific station details. if doesnt exist- throw exception.
+        /// </summary>
+        /// <param name="newStat"></param>
         public void UpdateStation(DO.Station newStat)
         {
             List<Station> listStations = XMLTools.LoadListFromXMLSerializer<Station>(stationsPath);
@@ -60,6 +69,10 @@ namespace DL
             XMLTools.SaveListToXMLSerializer(listStations, stationsPath);
         }
 
+        /// <summary>
+        /// delete the station with the given code. if doesnt exist- throw exception.
+        /// </summary>
+        /// <param name="code"></param>
         public void DeleteStation(int code)
         {
             List<Station> listStations = XMLTools.LoadListFromXMLSerializer<Station>(stationsPath);
@@ -80,6 +93,10 @@ namespace DL
             XMLTools.SaveListToXMLSerializer(listStations, stationsPath);
         }
 
+        /// <summary>
+        /// returns IEnumerable of all stations that exist
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<DO.Station> GetAllStations()
         {
             List<Station> listStations = XMLTools.LoadListFromXMLSerializer<Station>(stationsPath);
@@ -87,6 +104,10 @@ namespace DL
                    select station;
         }
 
+        /// <summary>
+        /// adds a new station 
+        /// </summary>
+        /// <param name="newStatDO"></param>
         public void AddStationToList(DO.Station newStatDO)
         {
             List<Station> listStations = XMLTools.LoadListFromXMLSerializer<Station>(stationsPath);
@@ -100,6 +121,12 @@ namespace DL
         #endregion
 
         #region LineStation
+
+        /// <summary>
+        /// return IEnumerable of all line stations of the station with the given code
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         public IEnumerable<DO.LineStation> GetLineStationsListThatMatchAStation(int code)//returns a list of the logical stations (line stations) that match a physical station with a given code.
         {
             List<LineStation> listLineStations = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationsPath);
@@ -109,6 +136,11 @@ namespace DL
                    select ls;
         }
 
+        /// <summary>
+        /// returns IEnumerable of all line ststion of a given line
+        /// </summary>
+        /// <param name="lineId"></param>
+        /// <returns></returns>
         public IEnumerable<DO.LineStation> GetLineStationsListOfALine(int lineId)//returns a "line stations" list of the wanted line
         {
             List<LineStation> listLineStations = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationsPath);
@@ -118,6 +150,13 @@ namespace DL
                    orderby ls.LineStationIndex
                    select ls;
         }
+
+        /// <summary>
+        /// returns a line station of the given bus, with the given code. if doesnt exist- throw exception.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="lineId"></param>
+        /// <returns></returns>
         public DO.LineStation GetLineStation(int code, int lineId)//get the line stat by the line and the stat. since a few line stat can apear with the sme code but different lines.
         {
             List<LineStation> listLineStations = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationsPath);
@@ -130,6 +169,10 @@ namespace DL
                 throw new DO.StationException(code, $"error in line station that its code is: {code}");
         }
 
+        /// <summary>
+        /// deletes all line stations of a given line. 
+        /// </summary>
+        /// <param name="lineId"></param>
         public void DeleteLineStationsOfALine(int lineId)
         {
             List<LineStation> listLineStations = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationsPath);
@@ -140,6 +183,11 @@ namespace DL
 
         }
 
+        /// <summary>
+        /// deletes a station from the line. if can't- throw matching exception.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="lineId"></param>
         public void DeleteStationFromLine(int code, int lineId)
         {
             List<LineStation> listLineStations = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationsPath);
@@ -181,6 +229,11 @@ namespace DL
         #endregion
 
         #region Line
+
+        /// <summary>
+        /// update line details, if found. updates the line stations, and the adjacent stations.
+        /// </summary>
+        /// <param name="newLine"></param>
         public void UpdateLine(DO.Line newLine)
         {
             List<Line> listLines = XMLTools.LoadListFromXMLSerializer<Line>(linesPath);
@@ -261,11 +314,17 @@ namespace DL
             }
             else
                 throw new DO.LineException(newLine.BusNumber, $"the station that its code is: {newLine.BusNumber} was not found");
-            
+
             XMLTools.SaveListToXMLSerializer(listLineStations, lineStationsPath);
             XMLTools.SaveListToXMLSerializer(listLines, linesPath);
         }
 
+        /// <summary>
+        /// returns the line with the given id. if not found- throw exception.
+        /// </summary>
+        /// <param name="lineId"></param>
+        /// <param name="busNumber"></param>
+        /// <returns></returns>
         public DO.Line GetLine(int lineId, int busNumber)
         {
             List<Line> listLines = XMLTools.LoadListFromXMLSerializer<Line>(linesPath);
@@ -278,6 +337,11 @@ namespace DL
                 throw new DO.LineException(busNumber, $"error in line: {busNumber}");
         }
 
+        /// <summary>
+        /// returns the line with the given id
+        /// </summary>
+        /// <param name="lineId"></param>
+        /// <returns></returns>
         public DO.Line GetLine(int lineId)
         {
             List<Line> listLines = XMLTools.LoadListFromXMLSerializer<Line>(linesPath);
@@ -285,6 +349,10 @@ namespace DL
             return listLines.Find(l => l.LineId == lineId);
         }
 
+        /// <summary>
+        /// return IEnumerable of all lines that exist
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<DO.Line> GetAllLines()
         {
             List<Line> listLines = XMLTools.LoadListFromXMLSerializer<Line>(linesPath);
@@ -293,6 +361,11 @@ namespace DL
                    select line;
         }
 
+        /// <summary>
+        /// delete the line with the given id. if not found- throw exception.
+        /// </summary>
+        /// <param name="lineId"></param>
+        /// <param name="busNumber"></param>
         public void DeleteLine(int lineId, int busNumber)
         {
             List<Line> listLines = XMLTools.LoadListFromXMLSerializer<Line>(linesPath);
@@ -308,12 +381,16 @@ namespace DL
             }
             else
                 throw new DO.LineException(busNumber, $"the line: {busNumber} wasnt found");
-           
+
             XMLTools.SaveListToXMLSerializer(listLines, linesPath);
         }
 
         private static Random r = new Random();
 
+        /// <summary>
+        /// add a line- add matching line stations, adjacent stations, and line trips for the new line.
+        /// </summary>
+        /// <param name="newLine"></param>
         public void AddLineToList(DO.Line newLine)
         {
             List<Line> listLines = XMLTools.LoadListFromXMLSerializer<Line>(linesPath);
@@ -330,12 +407,12 @@ namespace DL
             XElement runningNumberRootElem = XMLTools.LoadListFromXMLElement(runningNumberPath);//load from xml to Exelement root
 
             XElement getRunNumElem = (from run in runningNumberRootElem.Elements()
-                             select run).FirstOrDefault();
-            
+                                      select run).FirstOrDefault();
+
             int newRunNum = int.Parse(getRunNumElem./*Element("LineId").*/Value);
             newLine.LineId = newRunNum;//get the current running number
 
-            getRunNumElem./*Element("LineId").*/Value = (newRunNum+1).ToString();//add 1 to the line id that was before.
+            getRunNumElem./*Element("LineId").*/Value = (newRunNum + 1).ToString();//add 1 to the line id that was before.
 
             XMLTools.SaveListToXMLElement(runningNumberRootElem, runningNumberPath);//save the new root in the xml file
 
@@ -387,7 +464,7 @@ namespace DL
 
             TimeSpan time = new TimeSpan(hours, min, sec);
             newAdj.Time = time;
-            
+
             //listAdjacentStations.Add(newAdj);
 
             XElement adjacentStationsRootElem = XMLTools.LoadListFromXMLElement(adjacentStationsPath);//load from xml to Exelement root
@@ -435,6 +512,13 @@ namespace DL
         #endregion
 
         #region User
+
+        /// <summary>
+        /// returns the user with this name and passsword. if doesnt exist- throw exception
+        /// </summary>
+        /// <param name="myname"></param>
+        /// <param name="mypassword"></param>
+        /// <returns></returns>
         public DO.AppUser GetUser(string myname, string mypassword)
         {
             List<AppUser> users = XMLTools.LoadListFromXMLSerializer<AppUser>(usersPath);
@@ -452,6 +536,10 @@ namespace DL
 
         }
 
+        /// <summary>
+        /// returns IEnumerable of all existing users 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<DO.AppUser> GetAllUsers()
         {
             List<AppUser> users = XMLTools.LoadListFromXMLSerializer<AppUser>(usersPath);
@@ -460,6 +548,10 @@ namespace DL
                    select user;
         }
 
+        /// <summary>
+        /// add a new user
+        /// </summary>
+        /// <param name="user"></param>
         public void AddUser(DO.AppUser user)
         {
             List<AppUser> users = XMLTools.LoadListFromXMLSerializer<AppUser>(usersPath);
@@ -476,6 +568,12 @@ namespace DL
         #endregion
 
         #region AdjacentStations
+
+        /// <summary>
+        /// return IEnumerable of adjacent stations, in which the station with the given code apears as the 1st in the pair
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         public IEnumerable<DO.AdjacentStations> GetAdjacentStationsByFirstOfPair(int code)
         {
             XElement adjacentStationsRootElem = XMLTools.LoadListFromXMLElement(adjacentStationsPath);
@@ -494,10 +592,16 @@ namespace DL
                        Distance = double.Parse(p.Element("Distance").Value),
                        Time = TimeSpan.ParseExact(p.Element("Time").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture)
                    }
-                   where(adjStat.Station1==code)
+                   where (adjStat.Station1 == code)
                    select adjStat;
 
         }
+
+        /// <summary>
+        /// return IEnumerable of adjacent stations, in which the station with the given code apears as the 2nd in the pair
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         public IEnumerable<DO.AdjacentStations> GetAdjacentStationsBySecondOfPair(int code)
         {
             XElement adjacentStationsRootElem = XMLTools.LoadListFromXMLElement(adjacentStationsPath);
@@ -521,6 +625,11 @@ namespace DL
         #endregion
 
         #region LineTrip
+        /// <summary>
+        /// returns IEnumerable of all line trips of the line with this line id
+        /// </summary>
+        /// <param name="lineid"></param>
+        /// <returns></returns>
         public IEnumerable<DO.LineTrip> GetAllLineTripPerLine(int lineid)
         {
             XElement lineTripRootElem = XMLTools.LoadListFromXMLElement(lineTripPath);
@@ -541,6 +650,11 @@ namespace DL
 
         }
 
+        /// <summary>
+        /// returns IEnumerable of all line trips that return "true" with the given predicate
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
         public IEnumerable<DO.LineTrip> GetAllLineTripsBy(Predicate<DO.LineTrip> predicate)
         {
             XElement lineTripRootElem = XMLTools.LoadListFromXMLElement(lineTripPath);
@@ -565,5 +679,7 @@ namespace DL
         {
             //no need to write anything here, its done by the first haraza of DLObject
         }
+
+
     }
 }

@@ -168,6 +168,11 @@ namespace BL
         #endregion
 
         #region Line
+
+        /// <summary>
+        /// update line details, if cant- throw exception
+        /// </summary>
+        /// <param name="currLine"></param>
         public void UpdateLineDetails(BO.Line currLine)
         {
             //Update DO.Line            
@@ -188,6 +193,11 @@ namespace BL
             }
         }
 
+        /// <summary>
+        /// returns IEnumerable of all lines that pass in a certain station
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         public IEnumerable<BO.Line> GetAllLinesPerStation(int code)
         {
             return from lineStation in dl.GetLineStationsListThatMatchAStation(code)
@@ -195,6 +205,11 @@ namespace BL
                    select line.CopyDOLineStationToBOLine(lineStation);
         }
 
+        /// <summary>
+        /// returns IEnumerable of all lines that are in a given area
+        /// </summary>
+        /// <param name="area"></param>
+        /// <returns></returns>
         public IEnumerable<BO.Line> GetAllLinesByArea(BO.Areas area)
         {
             return from LineDO in dl.GetAllLines()
@@ -203,15 +218,22 @@ namespace BL
                    select lineDoBoAdapter(LineDO);
         }
 
+        /// <summary>
+        /// returns IEnumerable of all lines as BO.lines
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<BO.Line> GetAllLines()
         {
             return from LineDO in dl.GetAllLines()
                    orderby LineDO.BusNumber           //order it by their bus number
                    select lineDoBoAdapter(LineDO);
-
-
         }
 
+        /// <summary>
+        /// private func to adopt all lines from DO to BO
+        /// </summary>
+        /// <param name="lineDO"></param>
+        /// <returns></returns>
         BO.Line lineDoBoAdapter(DO.Line lineDO)
         {
             BO.Line lineBO = new BO.Line();
@@ -239,6 +261,11 @@ namespace BL
             return lineBO;
         }
 
+        /// <summary>
+        /// private func to adopt all lines from BO to DO
+        /// </summary>
+        /// <param name="lineBO"></param>
+        /// <returns></returns>
         DO.Line lineBoDoAdapter(BO.Line lineBO)
         {
             DO.Line lineDO = new DO.Line();
@@ -250,6 +277,11 @@ namespace BL
             return lineDO;
         }
 
+        /// <summary>
+        /// delete a certain line with the given id 
+        /// </summary>
+        /// <param name="lineId"></param>
+        /// <param name="busNumber"></param>
         public void DeleteLine(int lineId, int busNumber)
         {
             try
@@ -262,6 +294,10 @@ namespace BL
             }
         }
 
+        /// <summary>
+        /// add a new line to the list, first adopt it from BO to DO
+        /// </summary>
+        /// <param name="newLine"></param>
         public void AddLineToList(BO.Line newLine)
         {
             try
@@ -282,6 +318,12 @@ namespace BL
         #endregion
 
         #region LineStation
+
+        /// <summary>
+        /// return IEnumerable of all the line stations of the line with the given id
+        /// </summary>
+        /// <param name="lineId"></param>
+        /// <returns></returns>
         public IEnumerable<BO.LineStation> GetAllLineStationsPerLine(int lineId)
         {
             return from DOlineStation in dl.GetLineStationsListOfALine(lineId)
@@ -289,6 +331,11 @@ namespace BL
                    select BOlineStation;
         }
 
+        /// <summary>
+        /// delete the station with the given code from the line with the given id
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="lineId"></param>
         public void DeleteStationFromLine(int code, int lineId)
         {
             try
@@ -305,7 +352,7 @@ namespace BL
 
         #region User
         /// <summary>
-        /// Conversion between do and bo
+        /// adopt DO.user to BO.user and return it
         /// </summary>
         /// <param name="userDO">user do</param>
         /// <returns>user bo</returns>
@@ -329,8 +376,9 @@ namespace BL
 
             return userBO;
         }
+
         /// <summary>
-        /// returns a user
+        /// returns the user with the given name and password
         /// </summary>
         /// <param name="name">name</param>
         /// <returns>user bo</returns>
@@ -347,6 +395,7 @@ namespace BL
             }
             return userDoBoAdapter(userDO);
         }
+
         /// <summary>
         /// add a user
         /// </summary>
@@ -363,6 +412,11 @@ namespace BL
             }
         }
 
+        /// <summary>
+        /// adopt BO.user to DO.user and return it
+        /// </summary>
+        /// <param name="userBO"></param>
+        /// <returns></returns>
         private DO.AppUser userBoDoAdapter(BO.AppUser userBO)
         {
             DO.AppUser userDO= new DO.AppUser();
@@ -371,7 +425,7 @@ namespace BL
         }
 
         /// <summary>
-        /// returns all the users
+        /// returns IEnumerable of all the users
         /// </summary>
         /// <returns>users</returns>
         public IEnumerable<BO.AppUser> GetAllUsers()
@@ -382,6 +436,12 @@ namespace BL
         #endregion
 
         #region LineTrip
+
+        /// <summary>
+        /// returns IEnumerable of all the line trips of a line
+        /// </summary>
+        /// <param name="lineid"></param>
+        /// <returns></returns>
         public IEnumerable<BO.LineTrip> GetAllLineTripPerLine(int lineid)
         {
             return from lnTripDO in dl.GetAllLineTripPerLine(lineid)//get all line trips of a specific line
@@ -390,6 +450,11 @@ namespace BL
                    select lnTripBO;//return bo
         }
 
+        /// <summary>
+        /// adopt DO.LineTrip to BO.LineTrip and return it
+        /// </summary>
+        /// <param name="lnTripDO"></param>
+        /// <returns></returns>
         BO.LineTrip lineTripDoBoAdapter(DO.LineTrip lnTripDO)
         {
             BO.LineTrip lnTripBO = new BO.LineTrip();
@@ -402,6 +467,14 @@ namespace BL
         #endregion
 
         #region LineAndTime
+
+        /// <summary>
+        /// returns IEnumerable of all the "line and times" of the given station, according to the currentTime.
+        /// (the lines that are closely coming, the destination of each line, and a list of maximum 3 times in minutes- of the line trips that are coming soon.)
+        /// </summary>
+        /// <param name="stationBO"></param>
+        /// <param name="currentTime"></param>
+        /// <returns></returns>
         public IEnumerable<BO.LineAndTime> GetLineAndTimePerStation(BO.Station stationBO, TimeSpan currentTime)
         {
             //list of lines that pass in the station
@@ -468,6 +541,12 @@ namespace BL
 
         }
 
+        /// <summary>
+        /// returns the total time of traveling from the source station of the line, till the given station.
+        /// </summary>
+        /// <param name="stationCode"></param>
+        /// <param name="lineID"></param>
+        /// <returns></returns>
         private TimeSpan travelTime(int stationCode, int lineID)
         {//func that return the time from first station in line to specific station
             TimeSpan sumTime = TimeSpan.Zero;
