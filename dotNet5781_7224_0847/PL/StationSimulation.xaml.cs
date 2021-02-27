@@ -25,7 +25,7 @@ namespace PL
     {
         IBL bl = BLFactory.GetBL("1");//we create an "object" of IBL interface in order to use BL functions and classes
         BO.Station currStat;
-        ObservableCollection<BO.LineAndTime> lineTimingList;
+        
         Stopwatch stopwatch;//stopwatch that runs behind
         BackgroundWorker timerworker;
         TimeSpan tsStartTime;//save the time when the stopwatch started working
