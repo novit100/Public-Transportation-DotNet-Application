@@ -114,7 +114,7 @@ namespace DL
             if (st != null)//if found
             {
                 DataSource.listStations.Remove(st);
-                DataSource.listStations.Add(newStat.Clone());
+                DataSource.listStations.Add(newStat.Clone());//cloning!!! because we got newStat from BL and we want to copy it to a new object in DL before adding it to the list.
             }
             else
                 throw new DO.StationException(newStat.Code, $"the station that its code is: {newStat.Code} was not found");
@@ -268,6 +268,7 @@ namespace DL
 
             if (ln != null)//if found
             {
+                #region calc
                 //check if the line's fields that were added are legal
                 //check the code of the stations:
                 if (!DataSource.listStations.Exists(l => l.Code == newLine.FirstStation))
@@ -277,12 +278,9 @@ namespace DL
 
                 if (newLine.FirstStation == newLine.LastStation)
                     throw new DO.StationException(newLine.LastStation, $"the last station code: {newLine.LastStation} is illegal since the first and last stations must be different");
+                #endregion
 
-                ////check if a bus with the same identifying stations (first and last stations) already exists.
-                //if (DataSource.listLines.Exists(l => l.FirstStation == newLine.FirstStation && l.LastStation == newLine.LastStation))
-                //    throw new DO.LineException(newLine.BusNumber, $"the line: {newLine.BusNumber} allready exists, with the same first and last stations");
-
-                //add new lineStations of the new stations
+                #region add new lineStations of the new stations
                 //delete the first linestation and second, and rewrite their details.
                 DO.LineStation ls1 = DataSource.listLineStations.Find(ls => ls.LineStationIndex == 0 && ls.LineId == ln.LineId);//change the original first station
                 DataSource.listLineStations.Remove(ls1);
@@ -304,6 +302,7 @@ namespace DL
                 DataSource.listLineStations.Remove(lsLast);
                 lsLast.Code = newLine.LastStation;
                 DataSource.listLineStations.Add(lsLast);
+                #endregion
 
                 //add new adjacent stations
                 DataSource.listAdjacentStations.Add(new DO.AdjacentStations() { Station1 = newLine.FirstStation, Station2 = ls2.Code, Distance = 0.583, Time = new TimeSpan(00, 01, 16) });
@@ -384,6 +383,7 @@ namespace DL
             newLine.LineId = DO.Config.LineId;//running number
             DO.Config.LineId++;//update running number
 
+            #region calc
             //check if the first and last stations are the same- if so, cannot add the bus.
             if (newLine.FirstStation == newLine.LastStation)
                 throw new DO.LineException(newLine.BusNumber, $"the line: {newLine.BusNumber} is not legal since the first and last stations must be different");
@@ -395,11 +395,12 @@ namespace DL
             //check if a bus with the same number and the same area already exists.
             if (DataSource.listLines.Exists(l => l.Area==newLine.Area && l.BusNumber == newLine.BusNumber))
                 throw new DO.LineException(newLine.BusNumber, $"the line: {newLine.BusNumber} allready exists in this area");
+            #endregion
 
-
-            //add new lineStations of the new stations
+            #region add new lineStations of the new stations
             DataSource.listLineStations.Add(new DO.LineStation() { Code = newLine.FirstStation, LineId = newLine.LineId, LineStationIndex = 0, NextStation = newLine.LastStation, PrevStation = -1 });
             DataSource.listLineStations.Add(new DO.LineStation() { Code = newLine.LastStation, LineId = newLine.LineId, LineStationIndex = 1, NextStation = -1, PrevStation = newLine.FirstStation });
+            #endregion
 
             #region add new adjacent stations
 

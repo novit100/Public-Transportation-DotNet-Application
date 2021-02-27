@@ -60,7 +60,7 @@ namespace PL
         {
             while (isTimerRun)
             {
-                timerworker.ReportProgress(231);
+                timerworker.ReportProgress(44);
                 Thread.Sleep(1000);//report progress each one second
             }
         }
