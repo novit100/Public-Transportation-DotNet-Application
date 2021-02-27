@@ -15,17 +15,23 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="43*"/>
             <RowDefinition Height="45*"/>
-            <RowDefinition Height="173*"/>
-            <RowDefinition Height="107*"/>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="32*"/>
+            <RowDefinition Height="23*"/>
+            <RowDefinition Height="41*"/>
+            <RowDefinition Height="32*"/>
+            <RowDefinition Height="27*"/>
+            <RowDefinition Height="65*"/>
             <RowDefinition Height="52*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="240*"/>
-            <ColumnDefinition Width="269*"/>
+            <ColumnDefinition Width="238*"/>
+            <ColumnDefinition Width="36*"/>
+            <ColumnDefinition Width="235*"/>
             <ColumnDefinition Width="166*"/>
             <ColumnDefinition Width="119*"/>
         </Grid.ColumnDefinitions>
-        <Grid x:Name="grid1" HorizontalAlignment="Center" Margin="39,13,8.8,0" VerticalAlignment="Top" Height="162" Width="221" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" >
+        <Grid x:Name="grid1" HorizontalAlignment="Center" VerticalAlignment="Top" Height="162" Width="221" Grid.Column="1" Grid.Row="2" Grid.RowSpan="5" Margin="30.4,0,19.8,0" Grid.ColumnSpan="2" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -47,9 +53,15 @@
             <TextBox x:Name="longitudeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="longitudeTextBox_PreviewKeyDown"/>
             <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
             <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+
+
+
+
         </Grid>
-        <Button x:Name="AddStationButton" Content="Add The Station" HorizontalAlignment="Center" Margin="38,10.2,9.8,0" VerticalAlignment="Top" Width="221" Click="AddStationButton_Click" Background="#FFF8F4F4" Grid.Column="1" Grid.Row="3" />
-        <Label VerticalAlignment="Center"  HorizontalAlignment="Center" Grid.Column="3" Content="Esti and Nov"  Width="85" FontWeight="Light" Grid.Row="4" Height="23"/>
-        <Label Content="Add station details:" HorizontalAlignment="Center" VerticalAlignment="Top" Height="45" Width="269" FontWeight="Bold" FontSize="30" Foreground="MidnightBlue" FontFamily="Narkisim" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,43,165.5,0"/>
+        <Label Content="Longitude   : 34.3-35.5 " HorizontalAlignment="Center"  VerticalAlignment="Top" Width="235"  FontSize="10" Foreground="White" Grid.Column="2" Grid.Row="7" FontWeight="Light" Grid.ColumnSpan="2" Margin="0,0,165.4,0"/>
+        <Label Content="Latitude     :   31-33.3" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="235" Height="27"  FontSize="10" Foreground="White" Grid.Column="2" Grid.Row="6" FontWeight="Light" Margin="0,0,165.4,0" Grid.ColumnSpan="2"   />
+        <Button x:Name="AddStationButton" Content="Add The Station" HorizontalAlignment="Center" Margin="10.4,12.8,3.8,0" VerticalAlignment="Top" Width="221" Click="AddStationButton_Click" Background="#FFF8F4F4" Grid.Column="2" Grid.Row="8" />
+        <Label VerticalAlignment="Center"  HorizontalAlignment="Center" Grid.Column="4" Content="Esti and Nov"  Width="84" FontWeight="Light" Grid.Row="9" Height="24" Margin="17.6,14"/>
+        <Label Content="Add station details:" HorizontalAlignment="Center" VerticalAlignment="Top" Height="45" Width="269" FontWeight="Bold" FontSize="30" Foreground="MidnightBlue" FontFamily="Narkisim" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="3" Margin="2.4,43,165.4,0"/>
     </Grid>
 </Window>
