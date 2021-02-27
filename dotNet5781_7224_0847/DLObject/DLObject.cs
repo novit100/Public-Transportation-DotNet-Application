@@ -26,9 +26,11 @@ namespace DL
 
         //Implement IDL methods, CRUD
 
+        /// <summary>
+        /// //this func is called once by the first window of PL, we want to save all the lists in xml files, for DLXML.
+        /// </summary>
         public void restartXmlLists()
         {
-            //this func is called by the firstwindow of PL, we want to save all the lists in xml files, for DLXML.
 
             #region save all list from data source to xml files
 
@@ -86,6 +88,11 @@ namespace DL
         }
 
         #region Station
+        /// <summary>
+        /// returns a station with the given code. if doesnt exist- throw exception.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         public DO.Station GetStation(int code)
         {
             DO.Station stat = DataSource.listStations.Find(s => s.Code == code);
@@ -96,6 +103,10 @@ namespace DL
                 throw new DO.StationException(code, $"error in station that its code is: {code}");
         }
 
+        /// <summary>
+        /// update a specific station details. if doesnt exist- throw exception.
+        /// </summary>
+        /// <param name="newStat"></param>
         public void UpdateStation(DO.Station newStat)
         {
             DO.Station st = DataSource.listStations.Find(s => s.Code == newStat.Code);//search for the the station with the same code, if exist.
@@ -109,6 +120,10 @@ namespace DL
                 throw new DO.StationException(newStat.Code, $"the station that its code is: {newStat.Code} was not found");
         }
 
+        /// <summary>
+        /// delete the station with the given code. if doesnt exist- throw exception.
+        /// </summary>
+        /// <param name="code"></param>
         public void DeleteStation(int code)
         {
             DO.Station stationToDel = DataSource.listStations.Find(st => st.Code == code);
@@ -125,12 +140,20 @@ namespace DL
                 throw new DO.StationException(code, $"the station that its code is: {code} wasnt found");
         }
 
+        /// <summary>
+        /// returns IEnumerable of all stations that exist
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<DO.Station> GetAllStations()
         {
             return from station in DataSource.listStations
                    select station.Clone();
         }
 
+        /// <summary>
+        /// adds a new station 
+        /// </summary>
+        /// <param name="newStatDO"></param>
         public void AddStationToList(DO.Station newStatDO)
         {
             if (DataSource.listStations.Exists(st => st.Code == newStatDO.Code))
@@ -141,6 +164,12 @@ namespace DL
         #endregion
 
         #region LineStation
+
+        /// <summary>
+        /// return IEnumerable of all line stations of the station with the given code
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         public IEnumerable<DO.LineStation> GetLineStationsListThatMatchAStation(int code)//returns a list of the logical stations (line stations) that match a physical station with a given code.
         {
             return from ls in DataSource.listLineStations
@@ -148,6 +177,11 @@ namespace DL
                    select ls.Clone();
         }
 
+        /// <summary>
+        /// returns IEnumerable of all line ststion of a given line
+        /// </summary>
+        /// <param name="lineId"></param>
+        /// <returns></returns>
         public IEnumerable<DO.LineStation> GetLineStationsListOfALine(int lineId)//returns a "line stations" list of the wanted line
         {
             return from ls in DataSource.listLineStations
@@ -155,6 +189,13 @@ namespace DL
                    orderby ls.LineStationIndex
                    select ls.Clone();
         }
+
+        /// <summary>
+        /// returns a line station of the given bus, with the given code. if doesnt exist- throw exception.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="lineId"></param>
+        /// <returns></returns>
         public DO.LineStation GetLineStation(int code, int lineId)//get the line stat by the line and the stat. since a few line stat can apear with the sme code but different lines.
         {
             DO.LineStation stat = DataSource.listLineStations.Find(s => s.Code == code && s.LineId == lineId);
@@ -165,11 +206,20 @@ namespace DL
                 throw new DO.StationException(code, $"error in line station that its code is: {code}");
         }
 
+        /// <summary>
+        /// deletes all line stations of a given line. 
+        /// </summary>
+        /// <param name="lineId"></param>
         public void DeleteLineStationsOfALine(int lineId)
         {
             DataSource.listLineStations.RemoveAll(ls => ls.LineId == lineId);
         }
 
+        /// <summary>
+        /// deletes a station from the line. if can't- throw matching exception.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="lineId"></param>
         public void DeleteStationFromLine(int code, int lineId)
         {
             int busNumber = GetLine(lineId).BusNumber;
@@ -206,6 +256,11 @@ namespace DL
         #endregion
 
         #region Line
+
+        /// <summary>
+        /// update line details, if found. updates the line stations, and the adjacent stations.
+        /// </summary>
+        /// <param name="newLine"></param>
         public void UpdateLine(DO.Line newLine)
         {
             DO.Line ln = DataSource.listLines.Find(l => l.LineId == newLine.LineId);//search for the the line with the same lineId, if exist.
@@ -257,10 +312,16 @@ namespace DL
                 DataSource.listLines.Add(newLine.Clone());
             }
             else
-                throw new DO.LineException(newLine.BusNumber, $"the station that its code is: {newLine.BusNumber} was not found");
+                throw new DO.LineException(newLine.BusNumber, $"the line: {newLine.BusNumber} was not found");
 
         }
 
+        /// <summary>
+        /// returns the line with the given id. if not found- throw exception.
+        /// </summary>
+        /// <param name="lineId"></param>
+        /// <param name="busNumber"></param>
+        /// <returns></returns>
         public DO.Line GetLine(int lineId, int busNumber)
         {
             DO.Line line = DataSource.listLines.Find(l => l.LineId == lineId);
@@ -271,17 +332,31 @@ namespace DL
                 throw new DO.LineException(busNumber, $"error in line: {busNumber}");
         }
 
+        /// <summary>
+        /// returns the line with the given id
+        /// </summary>
+        /// <param name="lineId"></param>
+        /// <returns></returns>
         public DO.Line GetLine(int lineId)
         {
             return DataSource.listLines.Find(l => l.LineId == lineId).Clone();
         }
 
+        /// <summary>
+        /// return IEnumerable of all lines that exist
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<DO.Line> GetAllLines()
         {
             return from line in DataSource.listLines
                    select line.Clone();
         }
 
+        /// <summary>
+        /// delete the line with the given id. if not found- throw exception.
+        /// </summary>
+        /// <param name="lineId"></param>
+        /// <param name="busNumber"></param>
         public void DeleteLine(int lineId, int busNumber)
         {
             DO.Line lineToDel = DataSource.listLines.Find(ln => ln.LineId == lineId);
@@ -299,6 +374,10 @@ namespace DL
 
         private static Random r = new Random();
 
+        /// <summary>
+        /// add a line- add matching line stations, adjacent stations, and line trips for the new line.
+        /// </summary>
+        /// <param name="newLine"></param>
         public void AddLineToList(DO.Line newLine)
         {
             newLine.LineId = DO.Config.LineId;//running number
@@ -370,6 +449,12 @@ namespace DL
         #endregion
 
         #region AdjacentStations
+
+        /// <summary>
+        /// return IEnumerable of adjacent stations, in which the station with the given code apears as the 1st in the pair
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         public IEnumerable<DO.AdjacentStations> GetAdjacentStationsByFirstOfPair(int code)
         {
             return from adjSt in DataSource.listAdjacentStations
@@ -377,6 +462,12 @@ namespace DL
                    //where adjSt.Station2 == code
                    select adjSt.Clone();//return a list of adjacent stations, in which the station with the given code apears as the 1st in the pair
         }
+
+        /// <summary>
+        /// return IEnumerable of adjacent stations, in which the station with the given code apears as the 2nd in the pair
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         public IEnumerable<DO.AdjacentStations> GetAdjacentStationsBySecondOfPair(int code)
         {
             return from adjSt in DataSource.listAdjacentStations
@@ -387,6 +478,13 @@ namespace DL
         #endregion
 
         #region User
+
+        /// <summary>
+        /// returns the user with this name and passsword. if doesnt exist- throw exception
+        /// </summary>
+        /// <param name="myname"></param>
+        /// <param name="mypassword"></param>
+        /// <returns></returns>
         public DO.AppUser GetUser(string myname,string mypassword)
         {
             DO.AppUser user = DataSource.users.FirstOrDefault(u => u.UserName == myname && u.Password==mypassword);
@@ -402,6 +500,10 @@ namespace DL
 
         }
 
+        /// <summary>
+        /// returns IEnumerable of all existing users 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<DO.AppUser> GetAllUsers()
         {
             return from user in DataSource.users
@@ -439,6 +541,10 @@ namespace DL
         }
         #endregion
 
+        /// <summary>
+        /// add a new user
+        /// </summary>
+        /// <param name="user"></param>
         public void AddUser(DO.AppUser user)
         {
             if (DataSource.users.Where(s => s.UserName == user.UserName).ToList().Count() > 0)
@@ -451,6 +557,11 @@ namespace DL
         #endregion
 
         #region LineTrip
+        /// <summary>
+        /// returns IEnumerable of all line trips of the line with this line id
+        /// </summary>
+        /// <param name="lineid"></param>
+        /// <returns></returns>
         public IEnumerable<DO.LineTrip> GetAllLineTripPerLine(int lineid)
         {
             return from lnTrip in DataSource.listLineTrips//return all line trips of a specific line.
@@ -458,6 +569,11 @@ namespace DL
                    select lnTrip.Clone();
         }
 
+        /// <summary>
+        /// returns IEnumerable of all line trips that return "true" with the given predicate
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
         public IEnumerable<DO.LineTrip> GetAllLineTripsBy(Predicate<DO.LineTrip> predicate)
         {
             return from lTrip in DataSource.listLineTrips
