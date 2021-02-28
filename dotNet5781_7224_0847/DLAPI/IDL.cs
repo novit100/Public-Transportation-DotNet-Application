@@ -37,7 +37,7 @@ namespace DLAPI
         DO.Line GetLine(int lineId);
         IEnumerable<DO.Line> GetAllLines();
         void DeleteLine(int lineId, int busNumber);
-        void AddLineToList(DO.Line newLine);
+        void AddLineToList(DO.Line newLine, List<DO.LineTrip> trips);
         #endregion
 
         #region AdjacentStations

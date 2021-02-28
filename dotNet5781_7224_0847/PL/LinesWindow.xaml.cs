@@ -139,8 +139,11 @@ namespace PL
                 if (!(sender as AddLine).AllFieldsWereFilled)
                     throw new BO.LineException("cannot add the line since not all fields were filled");
 
+                if(!(sender as AddLine).thereIsATrip)
+                    throw new BO.LineException("cannot add the line, add at least one trip of the line!");
+
                 BO.Line newLineBO = (sender as AddLine).addedLine;
-                bl.AddLineToList(newLineBO);
+                bl.AddLineToList(newLineBO, (sender as AddLine).listTrips);
 
                 RefreshAllLinesComboBox();
             }

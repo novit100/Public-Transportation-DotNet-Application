@@ -298,13 +298,21 @@ namespace BL
         /// add a new line to the list, first adopt it from BO to DO
         /// </summary>
         /// <param name="newLine"></param>
-        public void AddLineToList(BO.Line newLine)
+        public void AddLineToList(BO.Line newLine, List<BO.LineTrip> tripsBO)
         {
             try
             {
                 //the adapter/ the adding func will check if its logically possible to add the line
                 DO.Line lineToAdd = lineBoDoAdapter(newLine);
-                dl.AddLineToList(lineToAdd);
+                List<DO.LineTrip> tripsDO=new List<DO.LineTrip>();//adopt line trips list to DO
+                int i = 0;
+                foreach (BO.LineTrip trip in tripsBO)
+                {
+                    DO.LineTrip lt= new DO.LineTrip() { StartAt = tripsBO[i].StartAt,/* LineID=newLine.LineId,*/ LineTripID = i };//the line is is still 0!! we will change it in the dl layer
+                    tripsDO.Add(lt);
+                    i++;
+                }
+                dl.AddLineToList(lineToAdd, tripsDO);
             }
             catch (DO.StationException ex)
             {

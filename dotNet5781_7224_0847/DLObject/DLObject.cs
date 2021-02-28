@@ -377,7 +377,7 @@ namespace DL
         /// add a line- add matching line stations, adjacent stations, and line trips for the new line.
         /// </summary>
         /// <param name="newLine"></param>
-        public void AddLineToList(DO.Line newLine)
+        public void AddLineToList(DO.Line newLine, List<DO.LineTrip> tripsBO)
         {
             newLine.LineId = DO.Config.LineId;//running number
             DO.Config.LineId++;//update running number
@@ -434,15 +434,21 @@ namespace DL
             #endregion
 
             //add line trips to the line
-            int numTrips = r.Next(20, 30);
-            for (int i = 0; i < numTrips; i++)
+            //int numTrips = r.Next(20, 30);
+            //for (int i = 0; i < numTrips; i++)
+            //{
+            //    DO.LineTrip lnTrip = new DO.LineTrip();
+            //    lnTrip.LineID = newLine.LineId;
+            //    lnTrip.LineTripID = i;
+            //    TimeSpan start = new TimeSpan(r.Next(5, 24), r.Next(0, 11) * 5, 0);
+            //    lnTrip.StartAt = start;
+            //    DataSource.listLineTrips.Add(lnTrip);
+            //}
+
+            foreach (DO.LineTrip trip in tripsBO)
             {
-                DO.LineTrip lnTrip = new DO.LineTrip();
-                lnTrip.LineID = newLine.LineId;
-                lnTrip.LineTripID = i;
-                TimeSpan start = new TimeSpan(r.Next(5, 24), r.Next(0, 11) * 5, 0);
-                lnTrip.StartAt = start;
-                DataSource.listLineTrips.Add(lnTrip);
+                trip.LineID= newLine.LineId;//now we know the line id of the new line.
+                DataSource.listLineTrips.Add(trip);
             }
 
             DataSource.listLines.Add(newLine);

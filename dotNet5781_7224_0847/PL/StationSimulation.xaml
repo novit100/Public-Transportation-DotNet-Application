@@ -57,10 +57,10 @@
 
         <ListBox x:Name="LineAndTimeGrid" FlowDirection="RightToLeft"  ItemsSource="{Binding}" ItemTemplate="{StaticResource LineTemplate}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF0F0F0F" Grid.Row="1" Grid.ColumnSpan="4" Margin="0,2.4,1.2,0.4" BorderThickness="5" Grid.RowSpan="3"/>
         <Label x:Name="NoBusesSoon" Content="No buses coming soon" HorizontalAlignment="Left" Margin="29.8,11.6,0,0" VerticalAlignment="Top" Height="42" Width="188" FontSize="15" Background="{x:Null}" Visibility="Hidden" Foreground="White" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" />
-        <Label x:Name="StationName"  Grid.Column="5" HorizontalAlignment="Left" Margin="0.4,0.4,0,0" VerticalAlignment="Top" Height="23" Width="284" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
-        <Label x:Name="StationCode"  Grid.Column="5" HorizontalAlignment="Right" Margin="0.4,1.2,0,0" Grid.Row="2" VerticalAlignment="Top" Height="24" Width="284" Grid.ColumnSpan="2"/>
-        <Label x:Name="StationCodeLabel" Content=":מספר תחנה" Grid.Column="6" HorizontalAlignment="Left" Margin="0.4,1.2,0,0" Grid.Row="2" VerticalAlignment="Top" Height="24" Width="85"/>
-        <Label x:Name="StationNameLabel" Content=":שם תחנה" Grid.Column="6" HorizontalAlignment="Left" Margin="0.4,0.4,0,0" VerticalAlignment="Top" Width="93" Height="24" Grid.Row="1" Grid.RowSpan="2"/>
+        <Label x:Name="StationName"  Grid.Column="5" HorizontalAlignment="Right" Margin="0,0,98.333,0" VerticalAlignment="Top" Height="23" Width="284" Grid.Row="1" Grid.ColumnSpan="2"/>
+        <Label x:Name="StationCode"  Grid.Column="5" HorizontalAlignment="Right" Margin="0,23,98.333,0" Grid.Row="1" VerticalAlignment="Top" Height="24" Width="284" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <Label x:Name="StationCodeLabel" Content=":מספר תחנה" Grid.Column="6" HorizontalAlignment="Right" Margin="0,0.667,22.333,0" Grid.Row="2" VerticalAlignment="Top" Height="24" Width="85"/>
+        <Label x:Name="StationNameLabel" Content=":שם תחנה" Grid.Column="6" HorizontalAlignment="Right" Margin="0.4,0.4,0,0" VerticalAlignment="Top" Width="93" Height="24" Grid.Row="1" Grid.RowSpan="2"/>
 
     </Grid>
 </Window>
