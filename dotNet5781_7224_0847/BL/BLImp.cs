@@ -564,7 +564,7 @@ namespace BL
                 if (s.Code == stationCode)
                     sumTime += s.Time;//Time from next station
                 else
-                {
+                {  
                     //sumTime += s.TimeFromNext;
                     break;
                 }
