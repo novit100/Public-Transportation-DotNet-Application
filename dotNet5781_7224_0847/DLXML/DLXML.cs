@@ -374,6 +374,7 @@ namespace DL
             {
                 //delete all line stations of the line
                 DeleteLineStationsOfALine(lineId);
+                DeleteAllLineTrips(lineId);
                 //then delete the line itself
                 listLines.Remove(lineToDel);
             }
@@ -666,6 +667,33 @@ namespace DL
                    }
                    where (predicate(lnTrip))
                    select lnTrip;
+        }
+
+        /// <summary>
+        /// delete all line trips of a line
+        /// </summary>
+        /// <param name="lineId"></param>
+        public void DeleteAllLineTrips(int lineId)
+        {
+            XElement lineTripRootElem = XMLTools.LoadListFromXMLElement(lineTripPath);
+
+            IEnumerable<XElement> trips = from p in lineTripRootElem.Elements()
+                             where int.Parse(p.Element("LineID").Value) == lineId
+                             select p;
+
+            if (trips != null)//found trips
+            {
+                foreach (XElement trip in trips)
+                {
+                    trip.Remove();//<==>   Remove trip from lineTripRootElem
+                }
+               
+                XMLTools.SaveListToXMLElement(lineTripRootElem, lineTripPath);
+            }
+            else
+            { }//no trips to delete
+
+            //DataSource.listLineTrips.RemoveAll(lt => lt.LineID == lineId);
         }
         #endregion
 

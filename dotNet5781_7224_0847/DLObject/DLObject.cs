@@ -365,6 +365,7 @@ namespace DL
             {
                 //delete all line stations of the line
                 DeleteLineStationsOfALine(lineId);
+                DeleteAllLineTrips(lineId);
                 //then delete the line itself
                 DataSource.listLines.Remove(lineToDel);
             }
@@ -587,6 +588,14 @@ namespace DL
             return from lTrip in DataSource.listLineTrips
                    where predicate(lTrip)
                    select lTrip.Clone();
+        }
+        /// <summary>
+        /// delete all lineTrips of the line
+        /// </summary>
+        /// <param name="lineId"></param>
+        public void DeleteAllLineTrips(int lineId)
+        {
+            DataSource.listLineTrips.RemoveAll(lt => lt.LineID == lineId);
         }
         #endregion
 
