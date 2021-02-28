@@ -677,9 +677,10 @@ namespace DL
         {
             XElement lineTripRootElem = XMLTools.LoadListFromXMLElement(lineTripPath);
 
-            IEnumerable<XElement> trips = from p in lineTripRootElem.Elements()
+            IEnumerable<XElement> trips = (from p in lineTripRootElem.Elements()
                              where int.Parse(p.Element("LineID").Value) == lineId
-                             select p;
+                             select p).ToList();
+            int x = trips.Count();
 
             if (trips != null)//found trips
             {
