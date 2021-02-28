@@ -26,7 +26,7 @@ namespace BLAPI
         IEnumerable<BO.Line> GetAllLinesByArea(BO.Areas area);
         IEnumerable<BO.Line> GetAllLines();
         void DeleteLine(int lineId, int busNumber);
-        void AddLineToList(BO.Line newLine);
+        void AddLineToList(BO.Line newLine, List<BO.LineTrip> trips);
         #endregion
 
         #region LineStation

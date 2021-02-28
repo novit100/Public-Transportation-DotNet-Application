@@ -23,7 +23,9 @@ namespace PL
     {
         IBL bl;
         public BO.Line addedLine;
+        public List<BO.LineTrip> listTrips=new List<BO.LineTrip>();
         public bool AllFieldsWereFilled = false;
+        public bool thereIsATrip=false;
 
         public AddLine(IBL _bl)
         {
@@ -98,6 +100,26 @@ namespace PL
                 return;
 
             this.Close();
+        }
+
+        private void AddTrip_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                AddLineTrip win = new AddLineTrip();//we sent the line to a new window we created named AddLine
+                win.Closing += AddLineTrip_Closing;
+                win.ShowDialog();
+            }
+            catch (BO.LineException ex)
+            {
+                MessageBox.Show(ex.Message + ex.InnerException, "Operation Failure", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void AddLineTrip_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            listTrips.Add((sender as AddLineTrip).trip);
+            thereIsATrip = true;//at least one trip added to this line
         }
 
     }

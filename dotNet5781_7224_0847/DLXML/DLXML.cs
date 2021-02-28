@@ -374,6 +374,7 @@ namespace DL
             {
                 //delete all line stations of the line
                 DeleteLineStationsOfALine(lineId);
+                DeleteAllLineTrips(lineId);
                 //then delete the line itself
                 listLines.Remove(lineToDel);
             }
@@ -389,7 +390,7 @@ namespace DL
         /// add a line- add matching line stations, adjacent stations, and line trips for the new line.
         /// </summary>
         /// <param name="newLine"></param>
-        public void AddLineToList(DO.Line newLine)
+        public void AddLineToList(DO.Line newLine, List<DO.LineTrip> trips)
         {
             List<Line> listLines = XMLTools.LoadListFromXMLSerializer<Line>(linesPath);
             List<LineStation> listLineStations = XMLTools.LoadListFromXMLSerializer<LineStation>(lineStationsPath);
@@ -480,22 +481,16 @@ namespace DL
             #endregion
 
             # region add line trips to the line
-            int numTrips = r.Next(20, 30);
-            for (int i = 0; i < numTrips; i++)
-            {
-                DO.LineTrip lnTrip = new DO.LineTrip();
-                lnTrip.LineID = newLine.LineId;
-                lnTrip.LineTripID = i;
-                TimeSpan start = new TimeSpan(r.Next(5, 24), r.Next(0, 11) * 5, 0);
-                lnTrip.StartAt = start;
 
+            foreach(DO.LineTrip trip in trips)
+            {
                 //listLineTrips.Add(lnTrip);
 
                 XElement lineTripRootElem = XMLTools.LoadListFromXMLElement(lineTripPath);//load from xml to Exelement root
                 XElement lnTripElem = new XElement("LineTrip",
-                       new XElement("LineTripID", lnTrip.LineTripID.ToString()),
-                       new XElement("LineID", lnTrip.LineID.ToString()),
-                       new XElement("StartAt", lnTrip.StartAt.ToString()));
+                       new XElement("LineTripID", trip.LineTripID.ToString()),
+                       new XElement("LineID", newLine.LineId.ToString()),//now we know the line id of the new line.
+                       new XElement("StartAt", trip.StartAt.ToString()));
 
                 lineTripRootElem.Add(lnTripElem);
 
@@ -672,6 +667,34 @@ namespace DL
                    }
                    where (predicate(lnTrip))
                    select lnTrip;
+        }
+
+        /// <summary>
+        /// delete all line trips of a line
+        /// </summary>
+        /// <param name="lineId"></param>
+        public void DeleteAllLineTrips(int lineId)
+        {
+            XElement lineTripRootElem = XMLTools.LoadListFromXMLElement(lineTripPath);
+
+            IEnumerable<XElement> trips = (from p in lineTripRootElem.Elements()
+                             where int.Parse(p.Element("LineID").Value) == lineId
+                             select p).ToList();
+            int x = trips.Count();
+
+            if (trips != null)//found trips
+            {
+                foreach (XElement trip in trips)
+                {
+                    trip.Remove();//<==>   Remove trip from lineTripRootElem
+                }
+               
+                XMLTools.SaveListToXMLElement(lineTripRootElem, lineTripPath);
+            }
+            else
+            { }//no trips to delete
+
+            //DataSource.listLineTrips.RemoveAll(lt => lt.LineID == lineId);
         }
         #endregion
 
